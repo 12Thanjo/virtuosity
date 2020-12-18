@@ -1,0 +1,20 @@
+{
+  "name": "virtuosity",
+  "version": "0.6.2",
+  "description": "a free, open source game engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "game",
+    "engine"
+  ],
+  "dependencies": {
+    "babylonjs": "^4.1.0",
+    "phaser-ce": "^2.15.1",
+    "virtuosity-server": "*"
+  },
+  "author": "12andrewf",
+  "license": "ISC"
+}

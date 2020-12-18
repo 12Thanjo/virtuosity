@@ -1,0 +1,9 @@
+node_modules/
+*.log
+.project
+.settings/
+.sublime-project
+.tern-project
+.jshintrc
+.~lock*
+.npmignore
