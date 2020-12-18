@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8"/>
+    <title>virtuosity Documentation</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+    	body{
+    		background-color: #f0f0f0;
+    		color: #4d4d4c;
+    		font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    	}
+    	table {
+		  border-collapse: collapse;
+		}
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+		tr:nth-child(odd) {
+		  background-color: #dddddd;
+		}
+		th{
+			background-color:#aaaaaa!important;
+		}
+		var{
+			font-size: 87.5%;
+			font-weight: 500;
+			background-color: white;
+			border-bottom: thin solid #d6d6d6;
+			border-radius: 3px;
+			padding: 2px 4px;
+			color: #c82829;
+			font-family: Menlo, Consolas, Monaco, monospace;
+		}
+		code{
+			background-color: #000000;
+			color: #ffffff;
+			padding: 8px;
+			font-family:  Menlo, Consolas, Monaco, monospace;
+			font-size: 14px;
+		}
+
+		a{
+			color: #345989;
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		a:hover, a:focus{
+			color: #345989;
+			text-decoration: underline;
+		}
+
+		footer{
+			text-align: center;
+			padding: 3%;
+		}
+
+
+		.nav{
+			width: 100%;
+			padding: 1rem 0rem;
+			background-color: #4d4d4c;
+			color: #ffffff;
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.nav-obj{
+			display: relative;
+			padding: 10px 15px;
+		}
+
+		.orange{
+			color: #fd9622;
+		}
+		.blue{
+			color: #67d8ef;
+		}
+		.green{
+			color: #a6e22b;
+		}
+		.red{
+			color: #f92460;
+		}
+		.yellow{
+			color: #e7db74;
+		}
+    </style>
+</head>
+<body>
+	<div class="nav">
+		<span class="nav-obj"><a href="virtuosity.html" style="color:#ffffff;">Home</a></span></div>
+	</br><h1>virtuosity</h1><p>Virtuosity is a free, open source game engine that is puts all of the systems that I have built / found together in one easy place. It is designed to make game development faster and easer by automatically doing all of the annoying stuff. Virtuosity is designed for the intended use in <a href="https://www.electronjs.org/">Electron</a>.<h4>Rendering</h4>Virtuosity uses <a href="https://www.npmjs.com/package/babylonjs">Babylonjs 4.1</a> for 3d rendering and <a href="https://www.npmjs.com/package/phaser-ce">Phaser-CE 2.15.1</a> for 2d rendering. Phaser 3.x is more feature rich and suposedly performs better, however it is not equiped for some features that are neccesary for Virtuosity. Phaser-CE is still getting support as well. </p><code><span class="blue">virtuosity</span>();</code></br><h4>Objects</h4><ul><li><a href="#engine2d">engine2d</a></li><li><a href="#engine3d">engine3d</a></li><li><a href="#inputManager">inputManager</a></li><li><a href="#collisionManager">collisionManager</a></li><li><a href="#time">time</a></li><li><a href="#files">files</a></li><li><a href="#multiThreading">multiThreading</a></li></ul><h4>Methods</h4><ul><li><a href="#setupCSS">setupCSS</a></li></ul><br></br></br></br><h2>Objects</h2><div id="engine2d"></div><a href="./virtuosity.engine2d.html"><h3>engine2d</h3></a><p>engine2d manages all of the graphics rendered in 2D. It uses <a href="https://www.npmjs.com/package/phaser-ce">Phaser-CE 2.15.1</a> for rendering. engine2d uses Phaser as a base and builds off of it to automatically interact with the rest of the engine, as well as adding custom functions for added features and ease of use for the already existing ones. Phaser can be accessed <a href="virtuosity.engine2d.html#expose">directly</a>, but it is only recommended if there is a specific feature that Phaser has that is not currently implemented into engine2d.</p><code><span class="green">virtuosity</span>.<span class="blue">engine2d</span></code></br><div id="engine3d"></div><h3>engine3d</h3><p>3d engine (coming soon...)</p><code><span class="green">virtuosity</span>.<span class="blue">engine3d</span></code></br><div id="inputManager"></div><a href="./virtuosity.inputManager.html"><h3>inputManager</h3></a><p>Manages inputs for keyboard, mouse, and gamepad</p><code><span class="green">virtuosity</span>.<span class="blue">inputManager</span></code></br><div id="collisionManager"></div><a href="./virtuosity.collisionManager.html"><h3>collisionManager</h3></a><p>Manages collisions</p><code><span class="green">virtuosity</span>.<span class="blue">collisionManager</span></code></br><div id="time"></div><a href="./virtuosity.time.html"><h3>time</h3></a><p>Time</p><code><span class="green">virtuosity</span>.<span class="blue">time</span></code></br><div id="files"></div><a href="./virtuosity.files.html"><h3>files</h3></a><p>files (work in progress)</p><code><span class="green">virtuosity</span>.<span class="blue">files</span></code></br><div id="multiThreading"></div><a href="./virtuosity.multiThreading.html"><h3>multiThreading</h3></a><p>Runs another NodeJS program in a seperate thread.</p><code><span class="green">virtuosity</span>.<span class="blue">multiThreading</span></code></br></br></br></br><h2>Methods</h2><div id="setupCSS"></div><h3>setupCSS</h3><p>Automatically sets up CSS to make sure everything works as intended.</p><code><span class="green">virtuosity</span>.<span class="blue">setupCSS</span>();</code></br></br></br></body>
+<footer>
+<p>Documentation Generated by <a href="https://www.npmjs.com/package/scrybe">Scrybe</a></p>
+</footer>
+
+</html>

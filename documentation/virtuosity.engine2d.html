@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8"/>
+    <title>virtuosity Documentation</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+    	body{
+    		background-color: #f0f0f0;
+    		color: #4d4d4c;
+    		font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    	}
+    	table {
+		  border-collapse: collapse;
+		}
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+		tr:nth-child(odd) {
+		  background-color: #dddddd;
+		}
+		th{
+			background-color:#aaaaaa!important;
+		}
+		var{
+			font-size: 87.5%;
+			font-weight: 500;
+			background-color: white;
+			border-bottom: thin solid #d6d6d6;
+			border-radius: 3px;
+			padding: 2px 4px;
+			color: #c82829;
+			font-family: Menlo, Consolas, Monaco, monospace;
+		}
+		code{
+			background-color: #000000;
+			color: #ffffff;
+			padding: 8px;
+			font-family:  Menlo, Consolas, Monaco, monospace;
+			font-size: 14px;
+		}
+
+		a{
+			color: #345989;
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		a:hover, a:focus{
+			color: #345989;
+			text-decoration: underline;
+		}
+
+		footer{
+			text-align: center;
+			padding: 3%;
+		}
+
+
+		.nav{
+			width: 100%;
+			padding: 1rem 0rem;
+			background-color: #4d4d4c;
+			color: #ffffff;
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.nav-obj{
+			display: relative;
+			padding: 10px 15px;
+		}
+
+		.orange{
+			color: #fd9622;
+		}
+		.blue{
+			color: #67d8ef;
+		}
+		.green{
+			color: #a6e22b;
+		}
+		.red{
+			color: #f92460;
+		}
+		.yellow{
+			color: #e7db74;
+		}
+    </style>
+</head>
+<body>
+	<div class="nav">
+		<span class="nav-obj"><a href="virtuosity.html" style="color:#ffffff;">Home</a></span></div>
+	</br><h1>engine2d</h1><p>engine2d manages all of the graphics rendered in 2D. It uses <a href="https://www.npmjs.com/package/phaser-ce">Phaser-CE 2.15.1</a> for rendering. engine2d uses Phaser as a base and builds off of it to automatically interact with the rest of the engine, as well as adding custom functions for added features and ease of use for the already existing ones. Phaser can be accessed <a href="virtuosity.engine2d.html#expose">directly</a>, but it is only recommended if there is a specific feature that Phaser has that is not currently implemented into engine2d.</p><code><span class="green">virtuosity</span>.<span class="blue">engine2d</span>();</code></br><h4>Returnable Classes</h4><ul><li><a href="#Image">Image</a></li><li><a href="#Text">Text</a></li><li><a href="#Audio">Audio</a></li><li><a href="#Textbox">Textbox</a></li></ul><h4>Objects</h4><ul><li><a href="#canvas">canvas</a></li><li><a href="#addToLoadQueue">addToLoadQueue</a></li><li><a href="#uncache">uncache</a></li><li><a href="#add">add</a></li><li><a href="#destroy">destroy</a></li><li><a href="#get">get</a></li><li><a href="#graphics">graphics</a></li></ul><h4>Methods</h4><ul><li><a href="#onFinishLoading">onFinishLoading</a></li><li><a href="#load">load</a></li><li><a href="#addToUpdate">addToUpdate</a></li><li><a href="#removeFromUpdate">removeFromUpdate</a></li><li><a href="#addToRender">addToRender</a></li><li><a href="#removeFromRender">removeFromRender</a></li><li><a href="#expose">expose</a></li><li><a href="#phaser">phaser</a></li></ul><br><h2>Returnable Classes</h2><div id="Image"></div><a href="./virtuosity.engine2d.Image.html"><h3>Image</h3></a><p>Creates an image that uses a <a href="virtuosity.engine2d.addToLoadQueue.html">loaded</a> texture of either an image or spritesheet.</p><div id="Text"></div><a href="./virtuosity.engine2d.Text.html"><h3>Text</h3></a><p>Creates an text object</p><div id="Audio"></div><a href="./virtuosity.engine2d.Audio.html"><h3>Audio</h3></a><p>Creates an audio object</p><div id="Textbox"></div><a href="./virtuosity.engine2d.Textbox.html"><h3>Textbox</h3></a><p>Creates a textbox</p></br></br></br><h2>Objects</h2><div id="canvas"></div><a href="./virtuosity.engine2d.canvas.html"><h3>canvas</h3></a><p>Create, modify, etc. engine2d canvases.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">canvas</span></code></br><div id="addToLoadQueue"></div><a href="./virtuosity.engine2d.addToLoadQueue.html"><h3>addToLoadQueue</h3></a><p>Adds a load task to the loading queue for <a href="virtuosity.engine2d.html">engine2d</a>. <a href="virtuosity.engine2d.html">engine2d</a> loading must be <a href="#start">started</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">addToLoadQueue</span></code></br><div id="uncache"></div><a href="./virtuosity.engine2d.uncache.html"><h3>uncache</h3></a><p>Unchaces loaded assets.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">uncache</span></code></br><div id="add"></div><a href="./virtuosity.engine2d.add.html"><h3>add</h3></a><p>adds assets</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">add</span></code></br><div id="destroy"></div><a href="./virtuosity.engine2d.destroy.html"><h3>destroy</h3></a><p>destroys assets</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">destroy</span></code></br><div id="get"></div><a href="./virtuosity.engine2d.get.html"><h3>get</h3></a><p>Gets objects from <a href="virtuosity.engine2d.html">engine2d</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">get</span></code></br><div id="graphics"></div><a href="./virtuosity.engine2d.graphics.html"><h3>graphics</h3></a><p>Draw engine2d generated graphics.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">graphics</span></code></br></br></br></br><h2>Methods</h2><div id="onFinishLoading"></div><h3>onFinishLoading</h3><p>Adds a function to run when <a href="virtuosity.engine2d.html">engine2d</a> has finished <a href="#load">loading</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">onFinishLoading</span>(<span class="orange">func</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>func</var></td><td>function</td><td>function to run after finished loading</td></tr></table></br><div id="load"></div><h3>load</h3><p>Makes <a href="virtuosity.engine2d.html">engine2d</a> start loading.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">load</span>();</code></br></br></br><div id="addToUpdate"></div><h3>addToUpdate</h3><p>Adds an event to the update function of <a href="virtuosity.engine2d.html">engine2d</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">addToUpdate</span>(<span class="orange">name</span>, <span class="orange">func</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>name</var></td><td>String</td><td>name of update event</td></tr><tr><td><var>func</var></td><td>Function</td><td>function to run after in update function</td></tr></table></br><div id="removeFromUpdate"></div><h3>removeFromUpdate</h3><p>remove an event to the update function of <a href="virtuosity.engine2d.html">engine2d</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">removeFromUpdate</span>(<span class="orange">name</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>name</var></td><td>String</td><td>name of update event</td></tr></table></br><div id="addToRender"></div><h3>addToRender</h3><p>Adds an event to the render function of <a href="virtuosity.engine2d.html">engine2d</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">addToRender</span>(<span class="orange">name</span>, <span class="orange">func</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>name</var></td><td>String</td><td>name of render event</td></tr><tr><td><var>func</var></td><td>Function</td><td>function to run after in render function</td></tr></table></br><div id="removeFromRender"></div><h3>removeFromRender</h3><p>remove an event to the render function of <a href="virtuosity.engine2d.html">engine2d</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">removeFromRender</span>(<span class="orange">name</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>name</var></td><td>String</td><td>name of render event</td></tr></table></br><div id="expose"></div><h3>expose</h3><p>WARNING, USE WITH CAUTION. USING EXPOSE COULD BREAK SOMETHING, SO ONLY USE IF YOU UNDERSTAND <a href="https://www.npmjs.com/package/phaser-ce">Phaser-CE 2.15.1</a> AND WANT TO USE A SPECIFIC FEATURE THAT <a href="virtuosity.engine2d.html">engine2d</a> DOESN'T SUPPORT YET. Exposes <a href="virtuosity.engine2d.html">engine2d</a>.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">expose</span>();</code></br></br></br><div id="phaser"></div><h3>phaser</h3><p>DO NOT USE UNLESS THERE IS A SPECIFIC FEATURE THAT <a href="https://www.npmjs.com/package/phaser-ce">Phaser-CE 2.15.1</a> HAS AND THAT <a href="virtuosity.engine2d.html">engine2d</a> DOESN'T SUPPORT YET. Exposes engine2d's renderer (phaser).</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">phaser</span>();</code></br></br></br></body>
+<footer>
+<p>Documentation Generated by <a href="https://www.npmjs.com/package/scrybe">Scrybe</a></p>
+</footer>
+
+</html>

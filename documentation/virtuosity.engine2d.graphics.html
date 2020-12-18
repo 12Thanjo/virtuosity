@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8"/>
+    <title>virtuosity Documentation</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+    	body{
+    		background-color: #f0f0f0;
+    		color: #4d4d4c;
+    		font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    	}
+    	table {
+		  border-collapse: collapse;
+		}
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+		tr:nth-child(odd) {
+		  background-color: #dddddd;
+		}
+		th{
+			background-color:#aaaaaa!important;
+		}
+		var{
+			font-size: 87.5%;
+			font-weight: 500;
+			background-color: white;
+			border-bottom: thin solid #d6d6d6;
+			border-radius: 3px;
+			padding: 2px 4px;
+			color: #c82829;
+			font-family: Menlo, Consolas, Monaco, monospace;
+		}
+		code{
+			background-color: #000000;
+			color: #ffffff;
+			padding: 8px;
+			font-family:  Menlo, Consolas, Monaco, monospace;
+			font-size: 14px;
+		}
+
+		a{
+			color: #345989;
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		a:hover, a:focus{
+			color: #345989;
+			text-decoration: underline;
+		}
+
+		footer{
+			text-align: center;
+			padding: 3%;
+		}
+
+
+		.nav{
+			width: 100%;
+			padding: 1rem 0rem;
+			background-color: #4d4d4c;
+			color: #ffffff;
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.nav-obj{
+			display: relative;
+			padding: 10px 15px;
+		}
+
+		.orange{
+			color: #fd9622;
+		}
+		.blue{
+			color: #67d8ef;
+		}
+		.green{
+			color: #a6e22b;
+		}
+		.red{
+			color: #f92460;
+		}
+		.yellow{
+			color: #e7db74;
+		}
+    </style>
+</head>
+<body>
+	<div class="nav">
+		<span class="nav-obj"><a href="virtuosity.html" style="color:#ffffff;">Home</a></span><span class="nav-obj"> > </span><span class="nav-obj"><a href="virtuosity.engine2d.html" style="color:#ffffff;">engine2d</a></span></div>
+	</br><h1>graphics</h1><p>Draw engine2d generated graphics.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">graphics</span>();</code></br><h4>Classes</h4><ul><li><a href="#Rectangle">Rectangle</a></li><li><a href="#Box">Box</a></li><li><a href="#Line">Line</a></li><li><a href="#Circle">Circle</a></li><li><a href="#Ellipse">Ellipse</a></li><li><a href="#Polygon">Polygon</a></li></ul><br><h2>Classes</h2><div id="Rectangle"></div><a href="./virtuosity.engine2d.graphics.Rectangle.html"><h3>Rectangle</h3></a><p>Draws a Rectangle.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">Rectangle</span>(<span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>x</var></td><td>Float</td><td>X position of the Rectangle</td></tr><tr><td><var>y</var></td><td>Float</td><td>Y position of the Rectangle</td></tr><tr><td><var>width</var></td><td>Float</td><td>width of the Rectangle</td></tr><tr><td><var>height</var></td><td>Float</td><td>height of the Rectangle</td></tr><tr><td><var>color</var></td><td>HEX code Int</td><td>color of the Rectangle</td></tr></table></br><div id="Box"></div><a href="./virtuosity.engine2d.graphics.Box.html"><h3>Box</h3></a><p>Draws a box. Simmilar to a rectange, but has added features.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">Box</span>(<span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>, <span class="orange">radius</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>x</var></td><td>Float</td><td>X position of the Box</td></tr><tr><td><var>y</var></td><td>Float</td><td>Y position of the Box</td></tr><tr><td><var>width</var></td><td>Float</td><td>width of the Box</td></tr><tr><td><var>height</var></td><td>Float</td><td>height of the Box</td></tr><tr><td><var>color</var></td><td>HEX code Int</td><td>color of the Box</td></tr><tr><td><var>radius</var></td><td>HEX code Int</td><td>radius of the corners of the Box</td></tr></table></br><div id="Line"></div><a href="./virtuosity.engine2d.graphics.Line.html"><h3>Line</h3></a><p>Draws a Line.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">Line</span>(<span class="orange">x1</span>, <span class="orange">y1</span>, <span class="orange">x2</span>, <span class="orange">y2</span>, <span class="orange">color</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>x1</var></td><td>Float</td><td>starting X position of the Line</td></tr><tr><td><var>y1</var></td><td>Float</td><td>starting Y position of the Line</td></tr><tr><td><var>x2</var></td><td>Float</td><td>ending X position of the Line</td></tr><tr><td><var>y2</var></td><td>Float</td><td>ending Y position of the Line</td></tr><tr><td><var>color</var></td><td>HEX code Int</td><td>color of the Line</td></tr></table></br><div id="Circle"></div><a href="./virtuosity.engine2d.graphics.Circle.html"><h3>Circle</h3></a><p>Draws a Circle.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">Circle</span>(<span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">radius</span>, <span class="orange">color</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>x</var></td><td>Float</td><td>X position of the Circle</td></tr><tr><td><var>y</var></td><td>Float</td><td>Y position of the Circle</td></tr><tr><td><var>radius</var></td><td>Float</td><td>radius of the Circle</td></tr><tr><td><var>color</var></td><td>HEX code Int</td><td>color of the Circle</td></tr></table></br><div id="Ellipse"></div><a href="./virtuosity.engine2d.graphics.Ellipse.html"><h3>Ellipse</h3></a><p>Draws a Ellipse.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">Ellipse</span>(<span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">xRadius</span>, <span class="orange">yRadius</span>, <span class="orange">color</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>x</var></td><td>Float</td><td>X position of the Ellipse</td></tr><tr><td><var>y</var></td><td>Float</td><td>Y position of the Ellipse</td></tr><tr><td><var>xRadius</var></td><td>Float</td><td>x radius of the Ellipse</td></tr><tr><td><var>yRadius</var></td><td>Float</td><td>y radius of the Ellipse</td></tr><tr><td><var>color</var></td><td>HEX code Int</td><td>color of the Ellipse</td></tr></table></br><div id="Polygon"></div><a href="./virtuosity.engine2d.graphics.Polygon.html"><h3>Polygon</h3></a><p>Draws a Polygon.</p><code><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">Polygon</span>(<span class="orange">points</span>, <span class="orange">color</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>points</var></td><td><a href="./virtuosity.collisionManager.shape.Polygon.html">Polygon</a></td><td>points of the Polygon</td></tr><tr><td><var>color</var></td><td>HEX code Int</td><td>color of the Polygon</td></tr></table></br></body>
+<footer>
+<p>Documentation Generated by <a href="https://www.npmjs.com/package/scrybe">Scrybe</a></p>
+</footer>
+
+</html>

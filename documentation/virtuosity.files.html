@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8"/>
+    <title>virtuosity Documentation</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+    	body{
+    		background-color: #f0f0f0;
+    		color: #4d4d4c;
+    		font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    	}
+    	table {
+		  border-collapse: collapse;
+		}
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+		tr:nth-child(odd) {
+		  background-color: #dddddd;
+		}
+		th{
+			background-color:#aaaaaa!important;
+		}
+		var{
+			font-size: 87.5%;
+			font-weight: 500;
+			background-color: white;
+			border-bottom: thin solid #d6d6d6;
+			border-radius: 3px;
+			padding: 2px 4px;
+			color: #c82829;
+			font-family: Menlo, Consolas, Monaco, monospace;
+		}
+		code{
+			background-color: #000000;
+			color: #ffffff;
+			padding: 8px;
+			font-family:  Menlo, Consolas, Monaco, monospace;
+			font-size: 14px;
+		}
+
+		a{
+			color: #345989;
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		a:hover, a:focus{
+			color: #345989;
+			text-decoration: underline;
+		}
+
+		footer{
+			text-align: center;
+			padding: 3%;
+		}
+
+
+		.nav{
+			width: 100%;
+			padding: 1rem 0rem;
+			background-color: #4d4d4c;
+			color: #ffffff;
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.nav-obj{
+			display: relative;
+			padding: 10px 15px;
+		}
+
+		.orange{
+			color: #fd9622;
+		}
+		.blue{
+			color: #67d8ef;
+		}
+		.green{
+			color: #a6e22b;
+		}
+		.red{
+			color: #f92460;
+		}
+		.yellow{
+			color: #e7db74;
+		}
+    </style>
+</head>
+<body>
+	<div class="nav">
+		<span class="nav-obj"><a href="virtuosity.html" style="color:#ffffff;">Home</a></span></div>
+	</br><h1>files</h1><p>files (work in progress)</p><code><span class="green">virtuosity</span>.<span class="blue">files</span>();</code></br><h4>Classes</h4><ul><li><a href="#WriteStream">WriteStream</a></li></ul><h4>Methods</h4><ul><li><a href="#readFile">readFile</a></li><li><a href="#writeFile">writeFile</a></li><li><a href="#deleteFile">deleteFile</a></li><li><a href="#copyFile">copyFile</a></li><li><a href="#fileExists">fileExists</a></li><li><a href="#createDirectory">createDirectory</a></li><li><a href="#getFileExtention">getFileExtention</a></li><li><a href="#getFileName">getFileName</a></li><li><a href="#getFilePath">getFilePath</a></li><li><a href="#deleteFolder">deleteFolder</a></li><li><a href="#renameFile">renameFile</a></li><li><a href="#renameDirectory">renameDirectory</a></li></ul><br><h2>Classes</h2><div id="WriteStream"></div><a href="./virtuosity.files.WriteStream.html"><h3>WriteStream</h3></a><p>file write stream</p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">WriteStream</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br></br></br></br><h2>Methods</h2><div id="readFile"></div><h3>readFile</h3><p>readFile </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">readFile</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="writeFile"></div><h3>writeFile</h3><p>writeFile </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">writeFile</span>(<span class="orange">path</span>, <span class="orange">output</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr><tr><td><var>output</var></td><td>String</td><td>output</td></tr></table></br><div id="deleteFile"></div><h3>deleteFile</h3><p>deleteFile </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">deleteFile</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="copyFile"></div><h3>copyFile</h3><p>copyFile</p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">copyFile</span>(<span class="orange">path</span>, <span class="orange">destination</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr><tr><td><var>destination</var></td><td>String</td><td>desination</td></tr></table></br><div id="fileExists"></div><h3>fileExists</h3><p>fileExists </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">fileExists</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="createDirectory"></div><h3>createDirectory</h3><p>createDirectory </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">createDirectory</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="getFileExtention"></div><h3>getFileExtention</h3><p>getFileExtention </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFileExtention</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="getFileName"></div><h3>getFileName</h3><p>getFileName </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFileName</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="getFilePath"></div><h3>getFilePath</h3><p>getFilePath </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFilePath</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="deleteFolder"></div><h3>deleteFolder</h3><p>deleteFolder </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">deleteFolder</span>(<span class="orange">location</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>location</var></td><td>String</td><td>location</td></tr></table></br><div id="renameFile"></div><h3>renameFile</h3><p>renameFile </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">renameFile</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br><div id="renameDirectory"></div><h3>renameDirectory</h3><p>renameDirectory </p><code><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">renameDirectory</span>(<span class="orange">path</span>);</code></br></br><table><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td><var>path</var></td><td>String</td><td>path</td></tr></table></br></body>
+<footer>
+<p>Documentation Generated by <a href="https://www.npmjs.com/package/scrybe">Scrybe</a></p>
+</footer>
+
+</html>
