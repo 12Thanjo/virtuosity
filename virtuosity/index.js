@@ -87,10 +87,19 @@ module.exports = {
 	/*
 	* @name files
 	* @type obj
-	* @description files (work in progress)
+	* @description files (documentation is a work in progress)
 	* @path ../virtuosity-server/files.js
 	*/
 	files: virtuosity_server.files,
+
+
+	/*
+	* @name string
+	* @type obj
+	* @description methods for manipulating strings
+	* @path ../virtuosity-server/string.js
+	*/
+	string: virtuosity_server.string,
 
 	/*
 	* @name multiThreading
