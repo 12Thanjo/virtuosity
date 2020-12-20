@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"virtu",
+				"virtuosity.html\t(dev.html)"
+			],
+			[
 				"cont",
 				"continues\t(time.js)"
 			],
@@ -510,10 +514,6 @@
 			[
 				"out",
 				"output_string\tabc"
-			],
-			[
-				"search",
-				"search_parent\tabc"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/dev.html",
 			"settings":
 			{
-				"buffer_size": 7002,
+				"buffer_size": 6992,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -532,17 +532,8 @@
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 1492,
-				"encoding": "UTF-8",
+				"buffer_size": 1364,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/andre/package.json",
-			"settings":
-			{
-				"buffer_size": 567,
-				"line_ending": "Unix"
 			}
 		},
 		{
@@ -644,6 +635,14 @@
 		"selected_items":
 		[
 			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"giti",
+				"Set Syntax: Git Ignore"
+			],
+			[
 				"json",
 				"Set Syntax: JSON"
 			],
@@ -678,10 +677,6 @@
 			[
 				"nodeh",
 				"Set Syntax: nodehp"
-			],
-			[
-				"html",
-				"HTMLBeautify"
 			],
 			[
 				"yaml",
@@ -808,6 +803,18 @@
 	},
 	"file_history":
 	[
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/package.json",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/package.json",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/README.md",
+		"/C/Users/andre/package.json",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/README.md",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/index.html",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/documentation/index.html",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/.gitignore",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/.npmignore",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/.gitignore",
+		"/C/Users/andre/OneDrive/ANDREW/School/Skidmore/Sophmore/Web/git/cs276d-DemoAll/.gitignore",
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/virtuosity-0.6.1.tgz",
 		"/C/Users/andre/Desktop/Babylon.js Node Material Editor.html",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/documentation/virtuosity sublime completions.sublime-completions",
 		"/C/Users/andre/OneDrive/nodejs/scrybe/virtuosity sublime completions.sublime_completions",
@@ -819,7 +826,6 @@
 		"/C/Users/andre/OneDrive/nodejs/scrybe/scrybe.js",
 		"/C/Users/andre/OneDrive/nodejs/scrybe/package.json",
 		"/C/Users/andre/OneDrive/nodejs/scrybe/README.md",
-		"/C/Users/andre/package.json",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/vm.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/index.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/main.js",
@@ -830,7 +836,6 @@
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/js/2d update.js",
 		"/C/Users/andre/AppData/Local/LGHUB/settings.json",
 		"/C/Users/andre/AppData/Local/LGHUB/settings.backup",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/package.json",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/2d.html",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/package.json",
 		"/C/Users/andre/OneDrive/ANDREW/School/Skidmore/Sophmore/Math Modelling/Postal Museum/Postal Museum Sim/resources/app/index.js",
@@ -844,7 +849,6 @@
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/foro.sublime-snippet",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity-server/files.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/documentation/server.js",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity/README.md",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/time.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity sync/web.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity sync/server.js",
@@ -914,7 +918,6 @@
 		"/C/Users/andre/OneDrive/Faction MOBA/server.js",
 		"/C/Users/andre/OneDrive/Faction MOBA/client/game.html",
 		"/C/Users/andre/OneDrive/Faction MOBA/client/login.html",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/package.json",
 		"/C/Users/andre/OneDrive/nodejs/scrybe/node_modules/virtuosity/package.json",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/InputMangerRework.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/engine2dsave.js",
@@ -927,15 +930,7 @@
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity-server/collisionManager.js",
 		"/C/Users/andre/OneDrive/phaser.min 3 (3d).js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/modules/phaserAddons.js",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/modules/InputManager.js",
-		"/C/Users/andre/AppData/Local/LGHUB/surfaces.json",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/node_modules/virtuosity-server/package.json",
-		"/C/Users/andre/Desktop/documentation.bat",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/timers.js",
-		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/firefox.sublime-build",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/documentation/virtuosity.html",
-		"/C/Users/andre/OneDrive/Faction MOBA/client/js/itemshop.js",
-		"/C/Users/andre/OneDrive/ANDREW/misc/Locker/Thanjo/FACTION/electron/Faction 3d/FactionLauncher.exe"
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/modules/InputManager.js"
 	],
 	"find":
 	{
@@ -1098,7 +1093,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1107,15 +1102,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7002,
+						"buffer_size": 6992,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4692,
-								4692
+								6497,
+								6497
 							]
 						],
 						"settings":
@@ -1125,10 +1120,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1235.0,
+						"translation.y": 1664.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1137,15 +1132,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1492,
+						"buffer_size": 1364,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1341,
-								1341
+								959,
+								959
 							]
 						],
 						"settings":
@@ -1156,41 +1151,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/C/Users/andre/package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 567,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								567,
-								567
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/tscript/JSON.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/js/2d update.js",
 					"semi_transient": false,
 					"settings":
@@ -1216,11 +1181,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/2d.html",
 					"semi_transient": false,
 					"settings":
@@ -1246,11 +1211,11 @@
 						"translation.y": 341.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/multiThreading.js",
 					"semi_transient": false,
 					"settings":
@@ -1262,8 +1227,8 @@
 						"selection":
 						[
 							[
-								3587,
-								3587
+								4784,
+								4784
 							]
 						],
 						"settings":
@@ -1275,7 +1240,7 @@
 						"translation.y": 1253.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1285,7 +1250,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/js/gui.js",
 					"semi_transient": false,
 					"settings":
@@ -1311,11 +1276,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/collisionManager.js",
 					"semi_transient": false,
 					"settings":
@@ -1340,11 +1305,11 @@
 						"translation.y": 1944.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 7,
 					"file": "engine2d.js",
 					"semi_transient": false,
 					"settings":
@@ -1368,11 +1333,11 @@
 						"translation.y": 6959.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 8,
 					"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/time.js",
 					"semi_transient": false,
 					"settings":
@@ -1397,11 +1362,11 @@
 						"translation.y": 1221.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 9,
 					"file": "/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/files.js",
 					"semi_transient": false,
 					"settings":
@@ -1427,7 +1392,7 @@
 						"translation.y": 717.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -1514,12 +1479,12 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 592.0
 	},
 	"selected_group": 0,
 	"settings":

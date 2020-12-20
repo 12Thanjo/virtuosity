@@ -35,7 +35,7 @@ var virtuosity = require('virtuosity');
 
 <a name="API"></a>
 # API
-All of the documentation is on the [Virtuosity website](https://12thanjo.github.io/virtuosity/).
+All of the documentation is on the [Virtuosity website](https://12thanjo.github.io/virtuosity/documentation/virtuosity.html).
 
 
 

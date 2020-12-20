@@ -1,8 +1,8 @@
 {
   "name": "virtuosity",
-  "version": "0.6.2",
+  "version": "0.6.4",
   "description": "a free, open source game engine",
-  "main": "index.js",
+  "browser": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,10 @@
     "virtuosity-server": "*"
   },
   "author": "12andrewf",
-  "license": "ISC"
+  "license": "ISC",
+  "homepage": "https://12thanjo.github.io/virtuosity/documentation/virtuosity.html",
+    "repository": {
+    "type" : "git",
+    "url" : "https://github.com/12Thanjo/virtuosity"
+  }
 }

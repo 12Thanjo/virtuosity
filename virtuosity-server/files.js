@@ -2,12 +2,20 @@ var fs = require("fs");
 var node_path = require('path');
 
 
-var read_file = function(path){
-    return fs.readFileSync(path, 'utf8');
+var read_file = function(path, asyncronous){
+    if(asyncronous == null || asyncronous == false){
+        return fs.readFileSync(path, 'utf8');
+    }else{
+        return fs.readFile(path, 'utf8');
+    }
 }
 
-var write_file = function(path, output){
-    fs.writeFileSync(path, output);
+var write_file = function(path, output, asyncronous){
+    if(asyncronous == null || asyncronous == false){
+        fs.writeFileSync(path, output);
+    }else{
+        fs.writeFile(path, output);
+    }
 }
 
 
@@ -151,9 +159,10 @@ module.exports = {
     * @type method
     * @description readFile 
     * @param {path}{String}{path}
+    * @param {asyncronous}{Boolean}{(OPTIONAL) read file asyncronously}
     */
-    readFile: function(path){
-        return read_file(path);
+    readFile: function(path, asyncronous){
+        return read_file(path, asyncronous);
     },
 
     /*
@@ -162,9 +171,10 @@ module.exports = {
     * @description writeFile 
     * @param {path}{String}{path}
     * @param {output}{String}{output}
+    * @param {asyncronous}{Boolean}{(OPTIONAL) write file asyncronously}
     */
-    writeFile: function(path, output){
-        write_file(path, output);
+    writeFile: function(path, output, asyncronous){
+        write_file(path, output, asyncronous);
     },
 
     /*

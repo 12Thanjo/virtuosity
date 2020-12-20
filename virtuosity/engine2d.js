@@ -1070,9 +1070,9 @@ returnObj = {
 		* @name options
 		* @type param
 		* @parent canvas.create
-		* @param {poll}{int}{(OPTIONAL) polling rate of the update function for <a href="virtuosity.engine2d.html">engine2d</a> (times per second). This must be set with the first canvas created. <b>[default: 64]</b>}
-		* @param {load}{function}{(OPTIONAL) function to complete while <a href="virtuosity.engine2d.html">engine2d</a> is automatically loading assets}
-		* @param {create}{function}{(OPTIONAL) function to complete while <a href="virtuosity.engine2d.html">engine2d</a> has finisished automatically loading assets}
+		* @param {poll}{Int}{(OPTIONAL) polling rate of the update function for <a href="virtuosity.engine2d.html">engine2d</a> (times per second). This must be set with the first canvas created. <b>[default: 64]</b>}
+		* @param {load}{Function}{(OPTIONAL) function to complete while <a href="virtuosity.engine2d.html">engine2d</a> is automatically loading assets}
+		* @param {create}{Function}{(OPTIONAL) function to complete while <a href="virtuosity.engine2d.html">engine2d</a> has finisished automatically loading assets}
 		* @param {x}{Int}{(OPTIONAL) X position of the canvas <b>[default: 0]</b>}
 		* @param {y}{Int}{(OPTIONAL) Y position of the canvas <b>[default: 0]</b>}
 		* @param {width}{Int}{(OPTIONAL) Width of the canvas <b>[default: screen width]</b>}
