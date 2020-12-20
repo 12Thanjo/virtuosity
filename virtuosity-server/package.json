@@ -1,6 +1,6 @@
 {
   "name": "virtuosity-server",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Virtuosity game engine without rendering",
   "main": "index.js",
   "scripts": {
