@@ -135,6 +135,8 @@
 {"trigger":"virtuosity.files.createDirectory","contents":"virtuosity.files.createDirectory(\"${1:path}\");"},
 {"trigger":"virtuosity.files.getFileExtention","contents":"virtuosity.files.getFileExtention(\"${1:path}\");"},
 {"trigger":"virtuosity.files.getFileName","contents":"virtuosity.files.getFileName(\"${1:path}\");"},
+{"trigger":"virtuosity.files.getFileNameWithoutExtention","contents":"virtuosity.files.getFileNameWithoutExtention(\"${1:path}\");"},
+{"trigger":"virtuosity.files.getFiles","contents":"virtuosity.files.getFiles(\"${1:path}\");"},
 {"trigger":"virtuosity.files.getFilePath","contents":"virtuosity.files.getFilePath(\"${1:path}\");"},
 {"trigger":"virtuosity.files.deleteFolder","contents":"virtuosity.files.deleteFolder(\"${1:location}\");"},
 {"trigger":"virtuosity.files.renameFile","contents":"virtuosity.files.renameFile(\"${1:path}\");"},

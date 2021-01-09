@@ -39,7 +39,6 @@ var setup_css = function(){
 		tag.webkitTapHighlightColor = "rgba(255, 255, 255, 0) !important;";
 		tag.outline = "none !important";
 	}
-	
 }
 
 module.exports = {

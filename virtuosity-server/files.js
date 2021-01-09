@@ -51,13 +51,69 @@ var get_file_extention = function(path){
     return str.slice(1, str.length);
 }
 
-
 var get_file_name = function(path){
     return path.replace(/\//g,"\\").replace(/^.*[\\\/]/, '');;
 }
 
+var get_file_name_without_extention = function(path){
+    var name = get_file_name(path);
+    var ext = get_file_extention(path);
+    if(ext != ""){
+        return name.slice(0, name.length - ext.length - 1);
+    }else{
+        return name;
+    }
+}
+
 var get_file_path = function(path){
-    return path.slice(0, path.length - get_file_name(path).length-1);
+    return path.slice(0, path.length - get_file_name(path).length);
+}
+
+
+
+var get_files = function(path, depth){
+    if(depth == null){
+        depth = Infinity;
+    }
+    return get_files_recursive(path, depth);
+}
+
+var get_files_recursive = function(path, depth){
+    try{
+        if(depth > -1){
+            var output = [];
+
+            fs.readdirSync(path, {
+                withFileTypes: true
+            }).forEach((file)=>{
+                if(!file.isFile()){//folder
+                    output.push({
+                        name: file.name,
+                        type: "folder",
+                        dir: get_files_recursive(path + "/" + file.name, depth-1)
+                    });
+                }else{//file
+                    output.push({
+                        name: get_file_name_without_extention(file.name),
+                        type: "." + get_file_extention(file.name)
+                    });
+                }
+            });
+
+            if(output.length != 0){
+                return output;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }catch(e){
+        return {
+            type: "error",
+            name: e
+        }
+    }
 }
 
 
@@ -238,6 +294,30 @@ module.exports = {
     getFileName: function(path){
         return get_file_name(path);
     },
+
+    /*
+    * @name getFileNameWithoutExtention
+    * @type method
+    * @description getFileNameWithoutExtention 
+    * @param {path}{String}{path}
+    */
+    getFileNameWithoutExtention: function(path, depth){
+        return get_file_name_without_extention(path, depth);
+    },
+
+
+
+    /*
+    * @name getFiles
+    * @type method
+    * @description getFiles
+    * @param {path}{String}{path}
+    */
+    getFiles: function(path, depth){
+        return get_files(path, depth);
+    },
+
+
     /*
     * @name getFilePath
     * @type method
