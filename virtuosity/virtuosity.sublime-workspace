@@ -523,7 +523,7 @@
 			"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/files.js",
 			"settings":
 			{
-				"buffer_size": 8285,
+				"buffer_size": 8380,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -1036,15 +1036,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8285,
+						"buffer_size": 8380,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1431,
-								1431
+								1820,
+								1820
 							]
 						],
 						"settings":

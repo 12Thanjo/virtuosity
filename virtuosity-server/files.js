@@ -70,10 +70,12 @@ var get_file_path = function(path){
 }
 
 var get_file_path_up_directory = function(path){
+    if(path[path.length-1] == ("/" || "\\" )){
+        path = path.slice(0, path.length-1);
+    }
     var current_dir = path.split('/').pop();
-    return path.slice(0, path.length - current_dir.length);
+    return path.slice(0, path.length-current_dir.length);
 }
-
 
 
 var get_files = function(path, depth){
