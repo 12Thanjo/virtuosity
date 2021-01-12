@@ -69,6 +69,11 @@ var get_file_path = function(path){
     return path.slice(0, path.length - get_file_name(path).length);
 }
 
+var get_file_path_up_directory = function(path){
+    var current_dir = current_dir.split('/').pop();
+    return path.slice(0, path.length - current_dir.length);
+}
+
 
 
 var get_files = function(path, depth){
@@ -326,6 +331,17 @@ module.exports = {
     */
     getFilePath: function(path){
         return get_file_path(path);
+    },
+
+
+    /*
+    * @name getFilePathUpDirectory
+    * @type method
+    * @description getFilePathUpDirectory 
+    * @param {path}{String}{path}
+    */
+    getFilePathUpDirectory: function(path){
+        return get_file_path_up_directory(path);
     },
 
     /*
