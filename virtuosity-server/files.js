@@ -70,7 +70,7 @@ var get_file_path = function(path){
 }
 
 var get_file_path_up_directory = function(path){
-    var current_dir = current_dir.split('/').pop();
+    var current_dir = path.split('/').pop();
     return path.slice(0, path.length - current_dir.length);
 }
 

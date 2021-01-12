@@ -523,7 +523,7 @@
 			"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/files.js",
 			"settings":
 			{
-				"buffer_size": 7881,
+				"buffer_size": 8285,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -737,12 +737,13 @@
 	},
 	"file_history":
 	[
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
+		"/C/Users/andre/node_modules/scrybe/scrybe.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/index.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/scrybe/scrybe.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/Neutrino/package.json",
 		"/C/Users/andre/OneDrive/programming/nodejs/scrybe/bin/shell.js",
 		"/C/Users/andre/node_modules/scrybe/package.json",
-		"/C/Users/andre/node_modules/scrybe/scrybe.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/Neutrino/bin/shell.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/.gitignore",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/package.json",
@@ -863,8 +864,7 @@
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/InputManager.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/engine2d graphics.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/time.js",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/index.js",
-		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/start save.html"
+		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/node_modules/virtuosity/index.js"
 	],
 	"find":
 	{
@@ -882,6 +882,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"get_file_path_up_directory",
+			"file_path_up_directory",
+			"getFilePath",
+			"get_file_path",
+			"rootFolder",
 			"\\",
 			"head = ",
 			"get_file_path",
@@ -1004,12 +1009,7 @@
 			"c",
 			"line_line",
 			"x1, y1, x2, y2,",
-			"lineLine",
-			"boxPoint",
-			"p",
-			"2",
-			"aa",
-			"1"
+			"lineLine"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1036,15 +1036,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7881,
+						"buffer_size": 8285,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3105,
-								3105
+								1431,
+								1431
 							]
 						],
 						"settings":
@@ -1054,7 +1054,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 924.0,
+						"translation.y": 330.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
