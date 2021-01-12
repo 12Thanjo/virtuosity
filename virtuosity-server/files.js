@@ -74,6 +74,9 @@ var get_file_path_up_directory = function(path){
         path = path.slice(0, path.length-1);
     }
     var current_dir = path.split('/').pop();
+    if(current_dir == path){
+        current_dir = path.split('\\').pop();
+    }
     return path.slice(0, path.length-current_dir.length);
 }
 

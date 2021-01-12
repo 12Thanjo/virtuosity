@@ -523,9 +523,18 @@
 			"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/files.js",
 			"settings":
 			{
-				"buffer_size": 8380,
+				"buffer_size": 8461,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
+			"settings":
+			{
+				"buffer_size": 262,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -1027,7 +1036,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1036,15 +1045,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8380,
+						"buffer_size": 8461,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1820,
-								1820
+								895,
+								895
 							]
 						],
 						"settings":
@@ -1055,6 +1064,34 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 330.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 262,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								52,
+								52
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/zzz A File Icon zzz/aliases/JSON (NPM).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
