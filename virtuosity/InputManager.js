@@ -1056,9 +1056,20 @@ exports = {
 			return get_connected_controllers();
 		}
 	},
+	/*
+	* @name enable
+	* @type method
+	* @description enables inputManager
+	*/
 	enable: ()=>{
 		add_listeners();
 	},
+
+	/*
+	* @name disable
+	* @type method
+	* @description disables inputManager
+	*/
 	disable: ()=>{
 		remove_listeners();
 	}

@@ -9,6 +9,7 @@ const pixi = require("./pixi.js");
 const inputManager = require("./inputManager.js");
 const virtuosity_server = require('../virtuosity-server/index.js');
 const audioManager = require("./audioManager.js");
+const babylon = require('./babylon.js');
 
 
 module.exports = {
@@ -19,6 +20,9 @@ module.exports = {
 	* @path pixi.js
 	*/
 	engine2d: pixi,
+
+	
+	engine3d: babylon,
 
 	/*
 	* @name audioManager
