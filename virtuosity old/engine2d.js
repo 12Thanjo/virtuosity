@@ -1068,7 +1068,7 @@ returnObj = {
 
 		/*
 		* @name options
-		* @type param
+		* @type config
 		* @parent canvas.create
 		* @param {poll}{Int}{(OPTIONAL) polling rate of the update function for <a href="virtuosity.engine2d.html">engine2d</a> (times per second). This must be set with the first canvas created. <b>[default: 64]</b>}
 		* @param {load}{Function}{(OPTIONAL) function to complete while <a href="virtuosity.engine2d.html">engine2d</a> is automatically loading assets}
@@ -1180,7 +1180,7 @@ returnObj = {
 	* @name onFinishLoading
 	* @type method
 	* @description Adds a function to run when <a href="virtuosity.engine2d.html">engine2d</a> has finished <a href="#load">loading</a>.
-	* @param {func}{function}{function to run after finished loading}
+	* @param {func}{Function}{function to run after finished loading}
 	*/
 	onFinishLoading: function(func){
 		add_to_on_finish_loading(func);

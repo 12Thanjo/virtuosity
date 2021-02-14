@@ -1,400 +1,469 @@
-var DOWN = [140]; //make an array to cover all the keypresses you should need with a normal keyboard
-var DOWN_MAP = new Map([["A",65],["B",66],["C",67],["D",68],["E",69],["F",70],["G",71],["H",72],["I",73],["J",74],["K",75],["L",76],["M",77],["N",78],["O",79],["P",80],["Q",81],["R",82],["S",83],["T",84],["U",85],["V",86],["W",87],["X",88],["Y",89],["Z",90],["ZERO",48],["ONE",49],["TWO",50],["THREE",51],["FOUR",52],["FIVE",53],["SIX",54],["SEVEN",55],["EIGHT",56],["NINE",57],["NUMPAD_0",96],["NUMPAD_1",97],["NUMPAD_2",98],["NUMPAD_3",99],["NUMPAD_4",100],["NUMPAD_5",101],["NUMPAD_6",102],["NUMPAD_7",103],["NUMPAD_8",104],["NUMPAD_9",105],["NUMPAD_MULTIPLY",106],["NUMPAD_ADD",107],["NUMPAD_ENTER",108],["NUMPAD_SUBTRACT",109],["NUMPAD_DECIMAL",110],["NUMPAD_DIVIDE",111],["F1",112],["F2",113],["F3",114],["F4",115],["F5",116],["F6",117],["F7",118],["F8",119],["F9",120],["F10",121],["F11",122],["F12",123],["F13",124],["F14",125],["F15",126],["COLON",186],["EQUALS",187],["COMMA",188],["UNDERSCORE",189],["PERIOD",190],["QUESTION_MARK",191],["TILDE",192],["OPEN_BRACKET",219],["BACKWARD_SLASH",220],["CLOSED_BRACKET",221],["QUOTES",222],["BACKSPACE",8],["TAB",9],["CLEAR",12],["ENTER",13],["SHIFT",16],["CONTROL",17],["ALT",18],["CAPS_LOCK",20],["ESC",27],["SPACEBAR",32],["PAGE_UP",33],["PAGE_DOWN",34],["END",35],["HOME",36],["LEFT",37],["UP",38],["RIGHT",39],["DOWN",40],["PLUS",43],["MINUS",44],["INSERT",45],["DELETE",46],["HELP",47],["NUM_LOCK",144]]);//used for key strings
-var mouse_x = 0;
-var mouse_y = 0;
-var left_down = false;
-var right_down = false;
-var middle_down = false;
-var scroll_x = 0;
-var scroll_y = 0;
+var debug = require('./debug.js');
 
-var keydown_event = function(event){
+
+var DOWN = [255]; //make an array to cover all the keypresses you should need with a normal keyboard
+var DOWN_MAP = new Map([["A",65],["B",66],["C",67],["D",68],["E",69],["F",70],["G",71],["H",72],["I",73],["J",74],["K",75],["L",76],["M",77],["N",78],["O",79],["P",80],["Q",81],["R",82],["S",83],["T",84],["U",85],["V",86],["W",87],["X",88],["Y",89],["Z",90],["ZERO",48],["ONE",49],["TWO",50],["THREE",51],["FOUR",52],["FIVE",53],["SIX",54],["SEVEN",55],["EIGHT",56],["NINE",57],["NUMPAD_0",96],["NUMPAD_1",97],["NUMPAD_2",98],["NUMPAD_3",99],["NUMPAD_4",100],["NUMPAD_5",101],["NUMPAD_6",102],["NUMPAD_7",103],["NUMPAD_8",104],["NUMPAD_9",105],["NUMPAD_MULTIPLY",106],["NUMPAD_ADD",107],["NUMPAD_ENTER",108],["NUMPAD_SUBTRACT",109],["NUMPAD_DECIMAL",110],["NUMPAD_DIVIDE",111],["F1",112],["F2",113],["F3",114],["F4",115],["F5",116],["F6",117],["F7",118],["F8",119],["F9",120],["F10",121],["F11",122],["F12",123],["F13",124],["F14",125],["F15",126],["COLON",186],["EQUALS",187],["COMMA",188],["UNDERSCORE",189],["PERIOD",190],["QUESTION_MARK",191],["TILDE",192],["OPEN_BRACKET",219],["BACKWARD_SLASH",220],["CLOSED_BRACKET",221],["QUOTES",222],["BACKSPACE",8],["TAB",9],["CLEAR",12],["ENTER",13],["SHIFT",16],["CONTROL",17],["ALT",18],["CAPS_LOCK",20],["ESC",27],["SPACEBAR",32],["PAGE_UP",33],["PAGE_DOWN",34],["END",35],["HOME",36],["LEFT",37],["UP",38],["RIGHT",39],["DOWN",40],["PLUS",43],["MINUS",44],["INSERT",45],["DELETE",46],["HELP",47],["NUM_LOCK",144]]);//used for key strings
+
+var check_down = function(arr){
+	var down = true;
+	for(var i = arr.length - 1; i>=0; i--){
+		if(!DOWN[arr[i]]){
+			down = false;
+			break;
+		}
+	}
+	return down;
+}
+
+var keydown_listener = function(event){
 	if(!DOWN[event.keyCode]){
   		DOWN[event.keyCode] = true;
+
+  		var keydown_lookup_events = keydown_lookup[event.keyCode];
+  		if(keydown_lookup_events != null){
+	  		keydown_lookup_events.forEach((event)=>{
+	  			if(check_down(event.keys)){
+	  				event.event();
+	  			}
+	  		});
+  		}
   	}
 }
 
-var keyup_event = function(event){
+var keyup_listener = function(event){
+	var keyup_lookup_events = keyup_lookup[event.keyCode];
+	if(keyup_lookup_events != null){
+		keyup_lookup_events.forEach((event)=>{
+			if(check_down(event.keys)){
+				event.event();
+			}
+		});
+	}
+
 	DOWN[event.keyCode] = false;
 }
 
-var onmousedown_event = function(event){
-	if(event.button == 0){
-		left_down = true;
-	}else if(event.button == 2){
-		right_down = true;
-	}else if(event.button == 1){
-		middle_down = true;
-		event.preventDefault();
+var keydown_events = new Map();
+var keydown_lookup = [255];
+var Keydown_Event = function(name, keys, event){
+	this.name = name;
+
+	if(typeof keys == "string"){
+		keys = [keys];
 	}
-}
 
-var onmouseup_event = function(event){
-	if(event.button == 0){
-		left_down = false;
-	}else if(event.button == 2){
-		right_down = false;
-	}else if(event.button == 1){
-		middle_down = false;
-	}
-}
-
-var onmousemove_event = function(event){
-	mouse_x = event.clientX;
-	mouse_y = event.clientY;
-}
-
-var onwheel_event = function(event){
-	scroll_x += event.deltax;
-	scroll_y += event.deltaY;
-}
-
-
-var input_div = document.createElement('div');
-input_div.style.width = '0';
-input_div.style.overflowX = "hidden";
-input_div.style.overflowY = "hidden";
-input_div.style.top = "0px";
-input_div.style.left = "0px";
-input_div.style.position = 'absolute';
-input = document.createElement("input");
-input.type = "text";
-input.focused = false;
-input_div.appendChild(input);
-document.getElementsByTagName('html')[0].appendChild(input_div);
-
-focusInput = {
-	focus: (func)=>{
-		focusTextInput(func);
-	},
-	blur: ()=>{
-		blurTextInput();
-	},
-	clear: ()=>{
-		clearTextInput();
-	},
-	set: (val)=>{
-		setTextInput(val);
-	}
-};
-
-Object.defineProperty(focusInput, 'isFocused', {
-	get: ()=>{
-		return input.focused;
-	}
-});
-
-Object.defineProperty(focusInput, 'cursorStart', {
-	get: ()=>{
-		return input.selectionStart;
-	}
-});
-
-Object.defineProperty(focusInput, 'cursorEnd', {
-	get: ()=>{
-		return input.selectionEnd;
-	}
-});
-
-
-var text_input_func = ()=>{};
-
-
-var focusTextInput = function(func){
-	text_input_func = func;
-	input.focused = true;
-	input.oninput = function(){
-		if(func != null){
-			func(input.value);
-		}
-	}
-	input.focus();
-}
-
-
-
-
-var blurTextInput = function(){
-	input.focused = false;
-	input.blur();
-	input.oninput = ()=>{};
-}
-
-
-var clearTextInput = function(){
-	input.value = "";
-}
-
-var setTextInput = function(val){
-	input.value = val;
-}
-
-
-
-var events_working = true;
-document.addEventListener('keydown', keydown_event);
-document.addEventListener('keyup', keyup_event);
-document.addEventListener('mousedown', onmousedown_event);
-document.addEventListener('mouseup', onmouseup_event);
-document.addEventListener('mousemove', onmousemove_event);
-document.addEventListener('wheel', onwheel_event);
-
-var key_presses = new Map();
-var Key_Press = function(keys){
 	this.keys = keys;
-	this.down = false;
+	this.event = event;
 
-	this.triggered = function(){
-		if(this.down){
-			this.keys.forEach((key)=>{
-				if(!DOWN[DOWN_MAP.get(key)]){
-					this.down = false;
-				}
-			});
-			return false;
-		}else{
-			this.down = true;
-			this.keys.forEach((key)=>{
-				if(!DOWN[DOWN_MAP.get(key)]){
-					this.down = false;
-				}
-			});
-			return this.down;
-		}
+	for(var i = this.keys.length - 1; i>=0; i--){
+		this.keys[i] = DOWN_MAP.get(this.keys[i]);
 	}
+
+	keys.forEach((key)=>{
+		var lookup_location = keydown_lookup[key];
+		if(lookup_location == null){
+			lookup_location = keydown_lookup[key] = new Map();
+		}
+		lookup_location.set(name, this);
+	});
+
+
+	keydown_events.set(name, this);
 }
 
-var code_key_presses = new Map();
-var Code_Key_Press = function(keys){
-	this.keys = keys;
-	this.down = false;
+delete_keydown = function(name){
+	// get event
+	var event_target = keydown_events.get(name);
 
-	this.triggered = function(){
-		if(this.down){
-			this.keys.forEach((key)=>{
-				if(!DOWN[key]){
-					this.down = false;
-				}
-			});
-			return false;
-		}else{
-			this.down = true;
-			this.keys.forEach((key)=>{
-				if(!DOWN[key]){
-					this.down = false;
-				}
-			});
-			return this.down;
-		}
-	}
-}
-
-
-var key_releases = new Map();
-var Key_Release = function(keys){
-	this.keys = keys;
-	this.all_down = false;
-	this._triggered = false;
-
-	this.triggered = function(){
-		if(!this.all_down){
-			if(this._triggered){
-				this._triggered = false;
-				return true;
-			}else{
-				this.all_down = true;
-				this.keys.forEach((key)=>{
-					if(!DOWN[DOWN_MAP.get(key)]){
-						this.all_down = false;
-					}
-				});
-				return false;
+	if(event_target != null){// check if exists
+		// delete event from lookup
+		event_target.keys.forEach((key)=>{
+			var lookup_location = keydown_lookup[key];
+			if(lookup_location == null){
+				lookup_location = keydown_lookup[key] = new Map();
 			}
-		}else if(this._triggered){
-			this.all_down = false;
-			this.keys.forEach((key)=>{
-				if(DOWN[DOWN_MAP.get(key)]){
-					this.all_down = true;
-				}
-			});
-			return false;
-		}else if(!this._triggered){
-			this._triggered = true;
-			return false;
-		}
+			lookup_location.delete(name);
+		});
+	}else{
+		debug.error("ReferenceError", `keyDown event "${name}" doesn't exist`);
 	}
 }
 
 
-var code_key_releases = new Map();
-var Code_Key_Release = function(keys){
+var keyup_events = new Map();
+var keyup_lookup = [255];
+var Keyup_Event = function(name, keys, event){
+	this.name = name;
+
+	if(typeof keys == "string"){
+		keys = [keys];
+	}
+
 	this.keys = keys;
-	this.all_down = false;
-	this._triggered = false;
+	this.event = event;
 
-	this.triggered = function(){
-		if(!this.all_down){
-			if(this._triggered){
-				this._triggered = false;
-				return true;
-			}else{
-				this.all_down = true;
-				this.keys.forEach((key)=>{
-					if(!DOWN[0]){
-						this.all_down = false;
-					}
-				});
-				return false;
+	for(var i = this.keys.length - 1; i>=0; i--){
+		this.keys[i] = DOWN_MAP.get(this.keys[i]);
+	}
+
+	keys.forEach((key)=>{
+		var lookup_location = keyup_lookup[key];
+		if(lookup_location == null){
+			lookup_location = keyup_lookup[key] = new Map();
+		}
+		lookup_location.set(name, this);
+	});
+
+
+	keyup_events.set(name, this);
+}
+
+delete_keyup = function(name){
+	// get event
+	var event_target = keyup_events.get(name);
+
+	if(event_target != null){// check if exists
+		// delete event from lookup
+		event_target.keys.forEach((key)=>{
+			var lookup_location = keyup_lookup[key];
+			if(lookup_location == null){
+				lookup_location = keyup_lookup[key] = new Map();
 			}
-		}else if(this._triggered){
-			this.all_down = false;
-			this.keys.forEach((key)=>{
-				if(DOWN[0]){
-					this.all_down = true;
-				}
+			lookup_location.delete(name);
+		});
+	}else{
+		debug.error("ReferenceError", `keyUp event "${name}" doesn't exist`);
+	}
+}
+
+
+// mouse //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var mouse_x = 0;
+var mouse_y = 0;
+var dx = 0;
+var dy = 0;
+var screen_x = 0;
+var screen_y = 0;
+
+var mouse_position_offset_x = 0;
+var mouse_position_offset_y = 0;
+
+var left_down = false;
+var middle_down = false;
+var right_down = false;
+var back_down = false;
+var forward_down = false;
+
+var scroll_x = 0;
+var scroll_y = 0;
+
+
+// left down
+var leftDown_events = new Map();
+var add_LeftDown_Event = function(name, event){
+	if(!leftDown_events.has(name)){
+		leftDown_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `leftDown event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_LeftDown_Event = function(name){
+	if(leftDown_events.has(name)){
+		leftDown_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `leftDown event "${name}" doesn't exist`);
+	}
+}
+
+// middle
+var middleDown_events = new Map();
+var add_MiddleDown_Event = function(name, event){
+	if(!middleDown_events.has(name)){
+		middleDown_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `middleDown event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_MiddleDown_Event = function(name){
+	if(middleDown_events.has(name)){
+		middleDown_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `middleDown event "${name}" doesn't exist`);
+	}
+}
+
+// right down
+var rightDown_events = new Map();
+var add_RightDown_Event = function(name, event){
+	if(!rightDown_events.has(name)){
+		rightDown_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `rightDown event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_RightDown_Event = function(name){
+	if(rightDown_events.has(name)){
+		rightDown_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `rightDown event "${name}" doesn't exist`);
+	}
+}
+
+// back
+var backDown_events = new Map();
+var add_BackDown_Event = function(name, event){
+	if(!backDown_events.has(name)){
+		backDown_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `backDown event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_BackDown_Event = function(name){
+	if(backDown_events.has(name)){
+		backDown_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `backDown event "${name}" doesn't exist`);
+	}
+}
+
+// forward
+var forwardDown_events = new Map();
+var add_ForwardDown_Event = function(name, event){
+	if(!forwardDown_events.has(name)){
+		forwardDown_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `forwardDown event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_ForwardDown_Event = function(name){
+	if(forwardDown_events.has(name)){
+		forwardDown_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `forwardDown event "${name}" doesn't exist`);
+	}
+}
+
+var mousedown_listener = function(e){
+	switch(e.button){
+		case 0:
+			left_down = true;
+			leftDown_events.forEach((event)=>{
+				event();
 			});
-			return false;
-		}else if(!this._triggered){
-			this._triggered = true;
-			return false;
-		}
+			break;
+		case 1:
+			middle_down = true;
+			middleDown_events.forEach((event)=>{
+				event();
+			});
+			event.preventDefault();
+			break;
+		case 2:
+			right_down = true;
+			rightDown_events.forEach((event)=>{
+				event();
+			});
+			break;
+		case 3:
+			back_down = true;
+			backDown_events.forEach((event)=>{
+				event();
+			});
+			break;
+		case 4:
+			forward_down = true;
+			forwardDown_events.forEach((event)=>{
+				event();
+			});
+			break;
 	}
 }
 
-var left_pressed = false;
-var triggered_left_press = false;
-var left_press = function(){
-	if(!triggered_left_press){
-		if(left_down){
-			triggered_left_press = true;
-			left_pressed = true;
-		}else{
-			left_pressed = false;
-		}
+
+// left down
+var leftUp_events = new Map();
+var add_LeftUp_Event = function(name, event){
+	if(!leftUp_events.has(name)){
+		leftUp_events.set(name, event);
 	}else{
-		if(!left_down){
-			triggered_left_press = false;
-		}
-		left_pressed = false;
+		debug.warn("Overwrite", `leftUp event "${name}" already exists
+	"${name}" has now been overwritten`);
 	}
 }
-
-var left_released = false;
-var triggered_left_release = false;
-var left_release = function(){
-	if(!triggered_left_release){
-		if(left_down){
-			triggered_left_release = true;
-		}
-		left_released = false;
+var delete_LeftUp_Event = function(name){
+	if(leftUp_events.has(name)){
+		leftUp_events.delete(name);
 	}else{
-		if(!left_down){
-			triggered_left_release = false;
-			left_released = true;
-		}else{
-			left_released = false;
-		}
+		debug.error("ReferenceError", `leftUp event "${name}" doesn't exist`);
 	}
 }
 
-
-var right_pressed = false;
-var triggered_right_press = false;
-var right_press = function(){
-	if(!triggered_right_press){
-		if(right_down){
-			triggered_right_press = true;
-			right_pressed = true;
-		}else{
-			right_pressed = false;
-		}
+// middle
+var middleUp_events = new Map();
+var add_MiddleUp_Event = function(name, event){
+	if(!middleUp_events.has(name)){
+		middleUp_events.set(name, event);
 	}else{
-		if(!right_down){
-			triggered_right_press = false;
-		}
-		right_pressed = false;
+		debug.warn("Overwrite", `middleUp event "${name}" already exists
+	"${name}" has now been overwritten`);
 	}
 }
-
-var right_released = false;
-var triggered_right_release = false;
-var right_release = function(){
-	if(!triggered_right_release){
-		if(right_down){
-			triggered_right_release = true;
-		}
-		right_released = false;
+var delete_MiddleUp_Event = function(name){
+	if(middleUp_events.has(name)){
+		middleUp_events.delete(name);
 	}else{
-		if(!right_down){
-			triggered_right_release = false;
-			right_released = true;
-		}else{
-			right_released = false;
-		}
+		debug.error("ReferenceError", `middleUp event "${name}" doesn't exist`);
 	}
 }
 
-
-var middle_pressed = false;
-var triggered_middle_press = false;
-var middle_press = function(){
-	if(!triggered_middle_press){
-		if(middle_down){
-			triggered_middle_press = true;
-			middle_pressed = true;
-		}else{
-			middle_pressed = false;
-		}
+// right down
+var rightUp_events = new Map();
+var add_RightUp_Event = function(name, event){
+	if(!rightUp_events.has(name)){
+		rightUp_events.set(name, event);
 	}else{
-		if(!middle_down){
-			triggered_middle_press = false;
-		}
-		middle_pressed = false;
+		debug.warn("Overwrite", `rightUp event "${name}" already exists
+	"${name}" has now been overwritten`);
 	}
 }
-
-var middle_released = false;
-var triggered_middle_release = false;
-var middle_release = function(){
-	if(!triggered_middle_release){
-		if(middle_down){
-			triggered_middle_release = true;
-		}
-		middle_released = false;
+var delete_RightUp_Event = function(name){
+	if(rightUp_events.has(name)){
+		rightUp_events.delete(name);
 	}else{
-		if(!middle_down){
-			triggered_middle_release = false;
-			middle_released = true;
-		}else{
-			middle_released = false;
-		}
+		debug.error("ReferenceError", `rightUp event "${name}" doesn't exist`);
 	}
 }
 
-var scroll_deltaX = function(){
-	var output = scroll_x;
-	scroll_x = 0;
-	return output;
+// back
+var backUp_events = new Map();
+var add_BackUp_Event = function(name, event){
+	if(!backUp_events.has(name)){
+		backUp_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `backUp event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_BackUp_Event = function(name){
+	if(backUp_events.has(name)){
+		backUp_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `backUp event "${name}" doesn't exist`);
+	}
 }
 
-var scroll_deltaY = function(){
-	var output = scroll_y;
-	scroll_y = 0;
-	return output;
+// forward
+var forwardUp_events = new Map();
+var add_ForwardUp_Event = function(name, event){
+	if(!forwardUp_events.has(name)){
+		forwardUp_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `forwardUp event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_ForwardUp_Event = function(name){
+	if(forwardUp_events.has(name)){
+		forwardUp_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `forwardUp event "${name}" doesn't exist`);
+	}
 }
 
-var clear_scroll_x = function(){
-	scroll_x = 0;
+// move
+var mouseMove_events = new Map();
+var add_mouseMove_Event = function(name, event){
+	if(!mouseMove_events.has(name)){
+		mouseMove_events.set(name, event);
+	}else{
+		debug.warn("Overwrite", `mouseMove event "${name}" already exists
+	"${name}" has now been overwritten`);
+	}
+}
+var delete_mouseMove_Event = function(name){
+	if(mouseMove_events.has(name)){
+		mouseMove_events.delete(name);
+	}else{
+		debug.error("ReferenceError", `mouseMove event "${name}" doesn't exist`);
+	}
 }
 
-var clear_scroll_y = function(){
-	scroll_y = 0;
+
+var mouseup_listener = function(e){
+	switch(e.button){
+		case 0:
+			left_down = false;
+			leftUp_events.forEach((event)=>{
+				event();
+			});
+			break;
+		case 1:
+			middle_down = false;
+			middleUp_events.forEach((event)=>{
+				event();
+			});
+			event.preventDefault();
+			break;
+		case 2:
+			right_down = false;
+			rightUp_events.forEach((event)=>{
+				event();
+			});
+			break;
+		case 3:
+			back_down = false;
+			backUp_events.forEach((event)=>{
+				event();
+			});
+			break;
+		case 4:
+			forward_down = false;
+			forwardUp_events.forEach((event)=>{
+				event();
+			});
+			break;
+	}
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
+var mousemove_listener = function(e){
+	mouse_x = e.clientX;
+	mouse_y = e.clientY;
+	dx = e.movementX;
+	dy = e.movementY;
+	screen_x = e.screenX;
+	screen_y = e.screenY;
+	mouse_move_events.forEach((event)=>{
+		event();
+	});
+}
+
+var clear_deltas = function(){
+	dx = 0;
+	dy = 0;
+}
+
+var scroll_events = new Map();
+var add_scroll_event = function(name, event){
+	scroll_events.set(name, event);
+}
+var delete_scroll_event = function(name){
+	scroll_events.delete(name);
+}
+
+var wheel_listener = function(e){
+	scroll_events.forEach((event)=>{
+		event(e.wheelDeltaX, e.wheelDeltaY);
+	});
+}
 
 
+// controller ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var controllerMap = new Map();
 controllerMap.set('A', 0);
@@ -415,674 +484,546 @@ controllerMap.set('Left', 14);
 controllerMap.set('Right', 15);
 controllerMap.set('Home', 16);
 
-var controller = {
-	connected: false,
-	connect: (evt)=>{
-		console.log("connected controller");
-		controller.connected = true;
-	},
-	disconnect: (evt)=>{
-		console.log("disconnected controller");
-		controller.connected = false;
-	},
-	buttonPressed: (btn)=>{
-		if(controller.connected){
-			return navigator.getGamepads()[0].buttons[controllerMap.get(btn)].value;
-		}
-	},
-	joystick: {
-		leftX: ()=>{
-			if(controller.connected){
-				return navigator.getGamepads()[0].axes[0];	
-			}
-		},
-		leftY: ()=>{
-			if(controller.connected){
-				return navigator.getGamepads()[0].axes[1];	
-			}
-		},
-		rightX: ()=>{
-			if(controller.connected){
-				return navigator.getGamepads()[0].axes[2];
-			}
-		},
-		rightY: ()=>{
-			if(controller.connected){
-				return navigator.getGamepads()[0].axes[3];	
-			}
-		},
+var get_connected_controllers = function(){
+	var connected = [];
+	for(var i=0; i<4;i++){
+		connected.push( navigator.getGamepads()[i] != null);
+	}
+	return connected;
+}
+
+
+var controller_connect = function(evt){
+	console.log("connected controller " + evt.gamepad.index);
+}
+var controller_disconnect = function(evt){
+	console.log("disconnected controller " + evt.gamepad.index);
+}
+var controller_buttonPressed = function(id, btn){
+	var cntrlr =  navigator.getGamepads()[id];
+	if(cntrlr){
+		return cntrlr.buttons[controllerMap.get(btn)].value;
+	}
+}
+	
+var joystick_leftX = function(id){
+	var cntrlr =  navigator.getGamepads()[id];
+	if(cntrlr){
+		return cntrlr.axes[0];	
+	}
+}
+var joystick_leftY = function(id){
+	var cntrlr =  navigator.getGamepads()[id];
+	if(cntrlr){
+		return cntrlr.axes[1];	
+	}
+}
+var joystick_rightX = function(id){
+	var cntrlr =  navigator.getGamepads()[id];
+	if(cntrlr){
+		return cntrlr.axes[2];
+	}
+}
+var joystick_rightY = function(id){
+	var cntrlr =  navigator.getGamepads()[id];
+	if(cntrlr){
+		return cntrlr.axes[3];	
 	}
 }
 
-window.addEventListener("gamepadconnected", controller.connect);
-window.addEventListener("gamepaddisconnected", controller.disconnect);
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
 
-// prevents bugs where the lib tries to access values from the actual engine2d before it has been imported
-var engine2d = {
-	scaling: 0
-};
-var import_engine2d = function(e2d){
-	engine2d = e2d;
-	e2d.add_to_internal_update('input', ()=>{
-		if(input.focused){
-			text_input_func(input.value);
-		}
 
-		left_press();
-		left_release();
-		right_press();
-		right_release();
-		middle_press();
-		middle_release();
-		
-	});
+//  listeners ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+add_listeners = function(){
+	document.addEventListener('keydown', keydown_listener);
+	document.addEventListener('keyup', keyup_listener);
+	document.addEventListener('mousedown', mousedown_listener);
+	document.addEventListener('mouseup', mouseup_listener);
+	document.addEventListener('mousemove', mousemove_listener);
+	document.addEventListener('wheel', wheel_listener);
+	window.addEventListener("gamepadconnected", controller_connect);
+	window.addEventListener("gamepaddisconnected", controller_disconnect);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
+remove_listeners = function(){
+	document.removeEventListener('keydown', keydown_listener);
+	document.removeEventListener('keyup', keyup_listener);
+	document.removeEventListener('mousedown', mousedown_listener);
+	document.removeEventListener('mouseup', mouseup_listener);
+	document.removeEventListener('mousemove', mousemove_listener);
+	document.removeEventListener('wheel', onwheel_listener);
+	window.removeEventListener("gamepadconnected", controller_connect);
+	window.removeEventListener("gamepaddisconnected", controller_disconnect);
+}
 
 
-var exporter = {
+exports = {
 	/*
 	* @name keyboard
 	* @type obj
-	* @description Manages inputs from keyboard
-	*/
-
-	/*
-	* @name supported keys
-	* @type options
-	* @parent keyboard
-	* @description These are all the keys that are supported.
-	* @option {"A"}{A Button}
-	* @option {"A"}{65}
-	* @option {"B"}{66}
-	* @option {"C"}{67}
-	* @option {"D"}{68}
-	* @option {"E"}{69}
-	* @option {"F"}{70}
-	* @option {"G"}{71}
-	* @option {"H"}{72}
-	* @option {"I"}{73}
-	* @option {"J"}{74}
-	* @option {"K"}{75}
-	* @option {"L"}{76}
-	* @option {"M"}{77}
-	* @option {"N"}{78}
-	* @option {"O"}{79}
-	* @option {"P"}{80}
-	* @option {"Q"}{81}
-	* @option {"R"}{82}
-	* @option {"S"}{83}
-	* @option {"T"}{84}
-	* @option {"U"}{85}
-	* @option {"V"}{86}
-	* @option {"W"}{87}
-	* @option {"X"}{88}
-	* @option {"Y"}{89}
-	* @option {"Z"}{90}
-	* @option {"ZERO"}{48}
-	* @option {"ONE"}{49}
-	* @option {"TWO"}{50}
-	* @option {"THREE"}{51}
-	* @option {"FOUR"}{52}
-	* @option {"FIVE"}{53}
-	* @option {"SIX"}{54}
-	* @option {"SEVEN"}{55}
-	* @option {"EIGHT"}{56}
-	* @option {"NINE"}{57}
-	* @option {"NUMPAD_0"}{96}
-	* @option {"NUMPAD_1"}{97}
-	* @option {"NUMPAD_2"}{98}
-	* @option {"NUMPAD_3"}{99}
-	* @option {"NUMPAD_4"}{100}
-	* @option {"NUMPAD_5"}{101}
-	* @option {"NUMPAD_6"}{102}
-	* @option {"NUMPAD_7"}{103}
-	* @option {"NUMPAD_8"}{104}
-	* @option {"NUMPAD_9"}{105}
-	* @option {"NUMPAD_MULTIPLY"}{106}
-	* @option {"NUMPAD_ADD"}{107}
-	* @option {"NUMPAD_ENTER"}{108}
-	* @option {"NUMPAD_SUBTRACT"}{109}
-	* @option {"NUMPAD_DECIMAL"}{110}
-	* @option {"NUMPAD_DIVIDE"}{111}
-	* @option {"F1"}{112}
-	* @option {"F2"}{113}
-	* @option {"F3"}{114}
-	* @option {"F4"}{115}
-	* @option {"F5"}{116}
-	* @option {"F6"}{117}
-	* @option {"F7"}{118}
-	* @option {"F8"}{119}
-	* @option {"F9"}{120}
-	* @option {"F10"}{121}
-	* @option {"F11"}{122}
-	* @option {"F12"}{123}
-	* @option {"F13"}{124}
-	* @option {"F14"}{125}
-	* @option {"F15"}{126}
-	* @option {"COLON"}{186}
-	* @option {"EQUALS"}{187}
-	* @option {"COMMA"}{188}
-	* @option {"UNDERSCORE"}{189}
-	* @option {"PERIOD"}{190}
-	* @option {"QUESTION_MARK"}{191}
-	* @option {"TILDE"}{192}
-	* @option {"OPEN_BRACKET"}{219}
-	* @option {"BACKWARD_SLASH"}{220}
-	* @option {"CLOSED_BRACKET"}{221}
-	* @option {"QUOTES"}{222}
-	* @option {"BACKSPACE"}{8}
-	* @option {"TAB"}{9}
-	* @option {"CLEAR"}{12}
-	* @option {"ENTER"}{13}
-	* @option {"SHIFT"}{16}
-	* @option {"CONTROL"}{17}
-	* @option {"ALT"}{18}
-	* @option {"CAPS_LOCK"}{20}
-	* @option {"ESC"}{27}
-	* @option {"SPACEBAR"}{32}
-	* @option {"PAGE_UP"}{33}
-	* @option {"PAGE_DOWN"}{34}
-	* @option {"END"}{35}
-	* @option {"HOME"}{36}
-	* @option {"LEFT"}{37}
-	* @option {"UP"}{38}
-	* @option {"RIGHT"}{39}
-	* @option {"DOWN"}{40}
-	* @option {"PLUS"}{43}
-	* @option {"MINUS"}{44}
-	* @option {"INSERT"}{45}
-	* @option {"DELETE"}{46}
-	* @option {"HELP"}{47}
-	* @option {"NUM_LOCK"}{144}
-
+	* @description manages input from the keyboard. Supported keys are:<br> <div class="code yellow">"A"</div><div class="code yellow">"B"</div><div class="code yellow">"C"</div><div class="code yellow">"D"</div><div class="code yellow">"E"</div><div class="code yellow">"F"</div><div class="code yellow">"G"</div><div class="code yellow">"H"</div><div class="code yellow">"I"</div><div class="code yellow">"J"</div><div class="code yellow">"K"</div><div class="code yellow">"L"</div><div class="code yellow">"M"</div><div class="code yellow">"N"</div><div class="code yellow">"O"</div><div class="code yellow">"P"</div><div class="code yellow">"Q"</div><div class="code yellow">"R"</div><div class="code yellow">"S"</div><div class="code yellow">"T"</div><div class="code yellow">"U"</div><div class="code yellow">"V"</div><div class="code yellow">"W"</div><div class="code yellow">"X"</div><div class="code yellow">"Y"</div><div class="code yellow">"Z"</div><div class="code yellow">"ZERO"</div><div class="code yellow">"ONE"</div><div class="code yellow">"TWO"</div><div class="code yellow">"THREE"</div><div class="code yellow">"FOUR"</div><div class="code yellow">"FIVE"</div><div class="code yellow">"SIX"</div><div class="code yellow">"SEVEN"</div><div class="code yellow">"EIGHT"</div><div class="code yellow">"NINE"</div><div class="code yellow">"NUMPAD_0"</div><div class="code yellow">"NUMPAD_1"</div><div class="code yellow">"NUMPAD_2"</div><div class="code yellow">"NUMPAD_3"</div><div class="code yellow">"NUMPAD_4"</div><div class="code yellow">"NUMPAD_5"</div><div class="code yellow">"NUMPAD_6"</div><div class="code yellow">"NUMPAD_7"</div><div class="code yellow">"NUMPAD_8"</div><div class="code yellow">"NUMPAD_9"</div><div class="code yellow">"NUMPAD_MULTIPLY"</div><div class="code yellow">"NUMPAD_ADD"</div><div class="code yellow">"NUMPAD_ENTER"</div><div class="code yellow">"NUMPAD_SUBTRACT"</div><div class="code yellow">"NUMPAD_DECIMAL"</div><div class="code yellow">"NUMPAD_DIVIDE"</div><div class="code yellow">"F1"</div><div class="code yellow">"F2"</div><div class="code yellow">"F3"</div><div class="code yellow">"F4"</div><div class="code yellow">"F5"</div><div class="code yellow">"F6"</div><div class="code yellow">"F7"</div><div class="code yellow">"F8"</div><div class="code yellow">"F9"</div><div class="code yellow">"F10"</div><div class="code yellow">"F11"</div><div class="code yellow">"F12"</div><div class="code yellow">"F13"</div><div class="code yellow">"F14"</div><div class="code yellow">"F15"</div><div class="code yellow">"COLON"</div><div class="code yellow">"EQUALS"</div><div class="code yellow">"COMMA"</div><div class="code yellow">"UNDERSCORE"</div><div class="code yellow">"PERIOD"</div><div class="code yellow">"QUESTION_MARK"</div><div class="code yellow">"TILDE"</div><div class="code yellow">"OPEN_BRACKET"</div><div class="code yellow">"BACKWARD_SLASH"</div><div class="code yellow">"CLOSED_BRACKET"</div><div class="code yellow">"QUOTES"</div><div class="code yellow">"BACKSPACE"</div><div class="code yellow">"TAB"</div><div class="code yellow">"CLEAR"</div><div class="code yellow">"ENTER"</div><div class="code yellow">"SHIFT"</div><div class="code yellow">"CONTROL"</div><div class="code yellow">"ALT"</div><div class="code yellow">"CAPS_LOCK"</div><div class="code yellow">"ESC"</div><div class="code yellow">"SPACEBAR"</div><div class="code yellow">"PAGE_UP"</div><div class="code yellow">"PAGE_DOWN"</div><div class="code yellow">"END"</div><div class="code yellow">"HOME"</div><div class="code yellow">"LEFT"</div><div class="code yellow">"UP"</div><div class="code yellow">"RIGHT"</div><div class="code yellow">"DOWN"</div><div class="code yellow">"PLUS"</div><div class="code yellow">"MINUS"</div><div class="code yellow">"INSERT"</div><div class="code yellow">"DELETE"</div><div class="code yellow">"HELP"</div><div class="code yellow">"NUM_LOCK"</div>
 	*/
 	keyboard: {
 		/*
-		* @name down
-		* @type method
-		* @parent keyboard
-		* @description Returns true if given key on keyboard is down.
-		* @param {key}{String}{the key which you want to check is down}
-		*/
-		down: function(key){
-			var key = DOWN[DOWN_MAP.get(key)];
-			return key == true;
-		},
-
-		/*
-		* @name codeDown
-		* @type method
-		* @parent keyboard
-		* @description Returns true if given key on keyboard is down.
-		* @param {key}{Int}{the ascii code which you want to check is down}
-		*/
-		codeDown: function(code){
-			return DOWN[code];
-		},
-
-		/*
 		* @name add
 		* @type obj
+		* @description add keyboard events
 		* @parent keyboard
-		* @description Adds keyboard input events.
 		*/
 		add: {
-
 			/*
-			* @name press
+			* @name keyDown
 			* @type method
+			* @description key down event (non-repeated)
 			* @parent keyboard.add
-			* @description Adds key press event.
-			* @param {name}{String}{the name of the event}
-			* @param {keys}{[String]}{list of keys to be checked for press event}
+			* @param {name}{String}{unique name of the event}
+			* @param {keys}{String,[String]}{array of keys that need to be down for the event to run}
+			* @param {event}{Function}{event to run}
 			*/
-			press: function(name, keys){
-				key_presses.set(name, new Key_Press(keys));
+			keyDown: (name, keys, event)=>{
+				new Keydown_Event(name, keys, event);
 			},
 
 			/*
-			* @name codePress
+			* @name keyUp
 			* @type method
+			* @description key up event (non-repeated)
 			* @parent keyboard.add
-			* @description Adds code press event.
-			* @param {name}{String}{the name of the event}
-			* @param {keys}{[Int]}{list of ascii codes to be checked for codePress event}
+			* @param {name}{String}{unique name of the event}
+			* @param {keys}{String,[String]}{array of keys that need to be down for the event to fire}
+			* @param {event}{Function}{event to run}
 			*/
-			codePress: function(name, keys){
-				code_key_presses.set(name, new Code_Key_Press(keys));
-			},
-
-			/*
-			* @name release
-			* @type method
-			* @parent keyboard.add
-			* @description Adds key release event.
-			* @param {name}{String}{the name of the event}
-			* @param {keys}{[String]}{list of keys to be checked for release event}
-			*/
-			release: function(name, keys){
-				key_releases.set(name, new Key_Release(keys));
-			},
-
-			/*
-			* @name codeRelease
-			* @type method
-			* @parent keyboard.add
-			* @description Adds code release event.
-			* @param {name}{String}{the name of the event}
-			* @param {keys}{[Int]}{list of ascii codes to be checked for codeRelease event}
-			*/
-			codeRelease: function(name, keys){
-				key_releases.set(name, new Key_Release(keys));
-			}
-		},
-
-		/*
-		* @name check
-		* @type obj
-		* @description Checks keyboard input events set with the <a href="virtuosity.inputManager.keyboard.add.html">add</a> function. To be intended to use in an update or render function (runs multiple times a second).
-		* @parent keyboard
-		*/
-		check: {
-
-			/*
-			* @name press
-			* @type method
-			* @parent keyboard.check
-			* @description Checks keyboard press events set with the add function. To be intended to use in an update or render function (runs multiple times a second). Returns true when the keys are first pressed down.
-			* @param {name}{String}{the name of the event}
-			*/
-			press: function(name){
-				try{
-					return key_presses.get(name).triggered();
-				}catch(e){
-					if(key_presses.get(name) == null){
-						e.name = "InputManager";
-						e.message = "'" + name + "' is not a valid {press} event name (InputManager)";
-					}
-					throw e;
-				}
-			},
-
-			/*
-			* @name codePress
-			* @type method
-			* @parent keyboard.check
-			* @description Checks keyboard codePress events set with the add function. To be intended to use in an update or render function (runs multiple times a second). Returns true when the keys are first pressed down.
-			* @param {name}{String}{the name of the event}
-			*/
-			codePress: function(name){
-				try{
-					return code_key_presses.get(name).triggered();
-				}catch(e){
-					if(code_key_presses.get(name) == null){
-						e.name = "ReferenceError";
-						e.message = "'" + name + "' is not a valid {codePress} event name (InputManager)";
-					}
-					throw e;
-				}
-			},
-
-			/*
-			* @name release
-			* @type method
-			* @parent keyboard.check
-			* @description Checks keyboard release events set with the add function. To be intended to use in an update or render function (runs multiple times a second). Returns true when the keys are first pressed down.
-			* @param {name}{String}{the name of the event}
-			*/
-			release: function(name){
-				try{
-					return key_releases.get(name).triggered();
-				}catch(e){
-					if(key_releases.get(name) == null){
-						e.name = "InputManager";
-						e.message = "'" + name + "' is not a valid {release} event name (InputManager)";
-					}
-					throw e;
-				}
-			},
-
-			/*
-			* @name codeRelease
-			* @type method
-			* @parent keyboard.check
-			* @description Checks keyboard codeRelease events set with the add function. To be intended to use in an update or render function (runs multiple times a second). Returns true when the keys are first pressed down.
-			* @param {name}{String}{the name of the event}
-			*/
-			codeRelease: function(name){
-				try{
-					return key_releases.get(name).triggered();
-				}catch(e){
-					if(key_releases.get(name) == null){
-						e.name = "InputManager";
-						e.message = "'" + name + "' is not a valid {codeRelease} event name (InputManager)";
-					}
-					throw e;
-				}
+			keyUp: (name, keys, event)=>{
+				new Keyup_Event(name, keys, event);	
 			}
 		},
 
 		/*
 		* @name delete
 		* @type obj
-		* @description Deletes keyboard input events. See <a href="virtuosity.inputManager.keyboard.check.html">check</a>.
+		* @description delete keyboard events
 		* @parent keyboard
 		*/
 		delete: {
-
 			/*
-			* @name press
+			* @name keyDown
 			* @type method
+			* @description delete keyDown event
 			* @parent keyboard.delete
-			* @description Deletes key press event. See <a href="virtuosity.inputManager.keyboard.check.html#press">check.press</a>.
-			* @param {name}{String}{the name of the event}
+			* @param {name}{String}{name of keyDown event to delete}
 			*/
-			press: function(name){
-				if(key_releases.get(name) == null){
-					throw ReferenceError("'" + name + "' is not a valid {press} event name (InputManager)");
-				}
-				key_presses.delete(name);
+			keyDown: (name)=>{
+				delete_keydown(name);
 			},
 
 			/*
-			* @name codePress
+			* @name keyUp
 			* @type method
+			* @description delete keyUp event
 			* @parent keyboard.delete
-			* @description Deletes key codePress event. See <a href="virtuosity.inputManager.keyboard.check.html#codePress">check.codePress</a>.
-			* @param {name}{String}{the name of the event}
+			* @param {name}{String}{name of keyUp event to delete}
 			*/
-			codePress: function(name){
-				if(key_releases.get(name) == null){
-					throw ReferenceError("'" + name + "' is not a valid {codePress} event name (InputManager)");
-				}
-				code_key_presses.delete(name);
-			},
-
-			/*
-			* @name release
-			* @type method
-			* @parent keyboard.delete
-			* @description Deletes key release event. See <a href="virtuosity.inputManager.keyboard.check.html#release">check.release</a>.
-			* @param {name}{String}{the name of the event}
-			*/
-			release: function(name){
-				if(key_releases.get(name) == null){
-					throw ReferenceError("'" + name + "' is not a valid {release} event name (InputManager)");
-				}
-				key_releases.delete(name);
-			},
-
-			/*
-			* @name codeRelease
-			* @type method
-			* @parent keyboard.delete
-			* @description Deletes key codeRelease event. See <a href="virtuosity.inputManager.keyboard.check.html#codeRelease">check.codeRelease</a>.
-			* @param {name}{String}{the name of the event}
-			*/
-			codeRelease: function(name){
-				if(key_releases.get(name) == null){
-					throw ReferenceError("'" + name + "' is not a valid {codeRelease} event name (InputManager)");
-				}
-				key_releases.delete(name);
+			keyUp: (name)=>{
+				delete_keyup(name);
 			}
 		},
 
 		/*
-		* @name textInput
-		* @type obj
-		* @description Manages keyboard input for use in text boxes.
+		* @name down
+		* @type method
+		* @description returns <span class="code purple">Boolean</span> if given keys is down
 		* @parent keyboard
+		* @param {keys}{String,[String]}{keys to check if down (all must be down to return <span class="code purple">True</span>)}
 		*/
+		down: (keys)=>{
+			if(typeof keys == "string"){
+				keys = [keys];
+			}
 
-		/*
-		* @name focus
-		* @type method
-		* @description Starts getting input from textInput
-		* @parent keyboard.textInput
-		* @param {func}{Function}{function to complete when there is a change in the text (takes curent text as input)}
-		*/
+			for(var i = keys.length - 1; i>=0; i--){
+				keys[i] = DOWN_MAP.get(keys[i]);
+			}
 
-		/*
-		* @name blur
-		* @type method
-		* @description Stops getting input from textInput
-		* @parent keyboard.textInput
-		*/
-
-		/*
-		* @name clear
-		* @type method
-		* @description Clears the input from textInput
-		* @parent keyboard.textInput
-		*/
-
-		/*
-		* @name set
-		* @type method
-		* @description sets the input from textInput
-		* @parent keyboard.textInput
-		*/
-
-		/*
-		* @name isFocused
-		* @type property
-		* @description returns if textInput is focused
-		* @parent keyboard.textInput
-		*/
-
-		/*
-		* @name cursorStart
-		* @type property
-		* @description Gets the starting position of the cursor
-		* @parent keyboard.textInput
-		*/
-
-		/*
-		* @name cursorEnd
-		* @type property
-		* @description Gets the end position of the cursor
-		* @parent keyboard.textInput
-		*/
-		textInput: focusInput
+			return check_down(keys);
+		}
 	},
 
 	/*
 	* @name mouse
 	* @type obj
-	* @description Manages inputs from mouse
+	* @description manages input from the mouse
 	*/
-	mouse:{
+	mouse: {
 		/*
-		* @name left
+		* @name add
 		* @type obj
+		* @description add mouse events
 		* @parent mouse
-		* @description Manages inputs from the left mouse button
 		*/
-		left: {
+		add: {
 
 			/*
-			* @name down
+			* @name leftDown
 			* @type method
-			* @parent mouse.left
-			* @description Returns true if left mouse button is down
+			* @description add a left mouse button down event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
 			*/
-			down: function(){
-				return left_down;
+			leftDown: (name, event)=>{
+				add_LeftDown_Event(name, event);
 			},
 
 			/*
-			* @name press
+			* @name middleDown
 			* @type method
-			* @parent mouse.left
-			* @description Returns true when left mouse button is first down
+			* @description add a middle mouse button down event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
 			*/
-			press: function(){
-				return left_pressed;
+			middleDown: (name, event)=>{
+				add_MiddleDown_Event(name, event);
 			},
 
 			/*
-			* @name release
+			* @name rightDown
 			* @type method
-			* @parent mouse.left
-			* @description Returns true when left mouse button is first released
+			* @description add a right mouse button down event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
 			*/
-			release: function(){
-				return left_released;
+			rightDown: (name, event)=>{
+				add_RightDown_Event(name, event);
+			},
+
+			/*
+			* @name backDown
+			* @type method
+			* @description add a back mouse button down event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			backDown: (name, event)=>{
+				add_BackDown_Event(name, event);
+			},
+
+			/*
+			* @name forwardDown
+			* @type method
+			* @description add a forward mouse button down event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			forwardDown: (name, event)=>{
+				add_ForwardDown_Event(name, event);
+			},
+
+			/*
+			* @name leftUp
+			* @type method
+			* @description add a left mouse button up event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			leftUp: (name, event)=>{
+				add_LeftUp_Event(name, event);
+			},
+
+			/*
+			* @name middleUp
+			* @type method
+			* @description add a middle mouse button up event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			middleUp: (name, event)=>{
+				add_MiddleUp_Event(name, event);
+			},
+
+			/*
+			* @name rightUp
+			* @type method
+			* @description add a right mouse button up event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			rightUp: (name, event)=>{
+				add_RightUp_Event(name, event);
+			},
+
+			/*
+			* @name backUp
+			* @type method
+			* @description add a back mouse button up event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			backUp: (name, event)=>{
+				add_BackUp_Event(name, event);
+			},
+
+			/*
+			* @name forwardUp
+			* @type method
+			* @description add a forward mouse button up event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			forwardUp: (name, event)=>{
+				add_ForwardUp_Event(name, event);
+			},
+
+			/*
+			* @name scroll
+			* @type method
+			* @description add a scroll event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			scroll: (name, event)=>{
+				add_scroll_event(name, event);
+			},
+
+			/*
+			* @name mouseMove
+			* @type method
+			* @description add a mouse move event 
+			* @parent mouse.add
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			mouseMove: (name, event)=>{
+				add_mouseMove_event(name, event);
+			}
+		},
+		/*
+		* @name delete
+		* @type obj
+		* @description delete mouse events
+		* @parent mouse
+		*/
+		delete: {
+
+			/*
+			* @name leftDown
+			* @type method
+			* @description deletes a left mouse button down event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			leftDown: (name)=>{
+				delete_LeftDown_Event(name);
+			},
+
+			/*
+			* @name middleDown
+			* @type method
+			* @description deletes a middle mouse button down event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			middleDown: (name)=>{
+				delete_MiddleDown_Event(name);
+			},
+
+			/*
+			* @name rightDown
+			* @type method
+			* @description deletes a right mouse button down event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			rightDown: (name)=>{
+				delete_RightDown_Event(name);
+			},
+
+			/*
+			* @name backDown
+			* @type method
+			* @description deletes a back mouse button down event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			backDown: (name)=>{
+				delete_BackDown_Event(name);
+			},
+
+			/*
+			* @name forwardDown
+			* @type method
+			* @description deletes a forward mouse button down event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			forwardDown: (name)=>{
+				delete_ForwardDown_Event(name);
+			},
+
+			/*
+			* @name leftUp
+			* @type method
+			* @description deletes a left button up event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			leftUp: (name)=>{
+				delete_LeftUp_Event(name);
+			},
+
+			/*
+			* @name middleUp
+			* @type method
+			* @description deletes a middle button up event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			middleUp: (name)=>{
+				delete_MiddleUp_Event(name);
+			},
+
+			/*
+			* @name rightUp
+			* @type method
+			* @description deletes a right button up event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			rightUp: (name)=>{
+				delete_RightUp_Event(name);
+			},
+
+			/*
+			* @name backUp
+			* @type method
+			* @description deletes a back button up event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			backUp: (name)=>{
+				delete_BackUp_Event(name);
+			},
+
+			/*
+			* @name forwardUp
+			* @type method
+			* @description deletes a forward button up event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			forwardUp: (name)=>{
+				delete_ForwardUp_Event(name);
+			},
+
+			/*
+			* @name scroll
+			* @type method
+			* @description deletes a scroll event
+			* @parent mouse.delete
+			* @param {name}{String}{name of the event to delete}
+			*/
+			scroll: (name)=>{
+				delete_scroll_event(name);
+			},
+
+			/*
+			* @name mouseMove
+			* @type method
+			* @description add a mouse move event 
+			* @parent mouse.delete
+			* @param {name}{String}{unique name of the event}
+			* @param {event}{Function}{event to run}
+			*/
+			mouseMove: (name, event)=>{
+				add_mouseMove_event(name, event);
 			}
 		},
 
 		/*
-		* @name right
-		* @type obj
+		* @name clearDeltas
+		* @type method
+		* @description clear mouse deltas
 		* @parent mouse
-		* @description Manages inputs from the right mouse button
 		*/
-		right: {
-
-			/*
-			* @name down
-			* @type method
-			* @parent mouse.right
-			* @description Returns true if right mouse button is down
-			*/
-			down: function(){
-				return right_down;
-			},
-
-			/*
-			* @name press
-			* @type method
-			* @parent mouse.right
-			* @description Returns true when right mouse button is first down
-			*/
-			press: function(){
-				return right_pressed;
-			},
-
-			/*
-			* @name release
-			* @type method
-			* @parent mouse.right
-			* @description Returns true when right mouse button is first released
-			*/
-			release: function(){
-				return right_released;
-			}
-		},
-
-		/*
-		* @name middle
-		* @type obj
-		* @parent mouse
-		* @description Manages inputs from the right mouse button
-		*/
-		middle: {
-
-			/*
-			* @name down
-			* @type method
-			* @parent mouse.middle
-			* @description Returns true if middle mouse button is down
-			*/
-			down: function(){
-				return middle_down;
-			},
-
-			/*
-			* @name press
-			* @type method
-			* @parent mouse.middle
-			* @description Returns true when middle mouse button is first down
-			*/
-			press: function(){
-				return middle_pressed;
-			},
-
-			/*
-			* @name release
-			* @type method
-			* @parent mouse.middle
-			* @description Returns true when middle mouse button is first released
-			*/
-			release: function(){
-				return middle_released;
-			}
-		},
-
-		/*
-		* @name scroll
-		* @type obj
-		* @parent mouse
-		* @description Manages inputs from the mouse scroll wheel
-		*/
-		scroll: {
-			/*
-			* @name deltaX
-			* @type method
-			* @parent mouse.scroll
-			* @description Gets the scroll deltaX since last polled.
-			*/
-			deltaX: function(){
-				return scroll_deltaX();
-			},
-
-			/*
-			* @name deltaY
-			* @type method
-			* @parent mouse.scroll
-			* @description Gets the scroll deltaY since last polled.
-			*/
-			deltaY: function(){
-				return scroll_deltaY();	
-			},
-
-			/*
-			* @name reset
-			* @type method
-			* @parent mouse.scroll
-			* @description Resets the scroll deltaX and deltaY.
-			*/
-			reset: function(){
-				clear_scroll_x();
-				clear_scroll_y();
-			}
+		clearDeltas: ()=>{
+			clear_deltas();
 		}
 	},
 
 	/*
 	* @name gamepad
 	* @type obj
-	* @description Manages inputs from a gamepad
+	* @description manages input from up to gamepad 4
 	*/
 	gamepad: {
 		/*
-		* @name connected
+		* @name leftX
 		* @type method
+		* @description get the left joystick current X position
 		* @parent gamepad
-		* @description Returns true if a controller is connected
+		* @param {id}{Int}{id of the gamepad (0-3)}
 		*/
-		connected: ()=>{
-			return controller.connected;
+		leftX: (id)=>{
+			return joystick_leftX(id);
+		},
+		
+		/*
+		* @name leftY
+		* @type method
+		* @description get the left joystick current Y position
+		* @parent gamepad
+		* @param {id}{Int}{id of the gamepad (0-3)}
+		*/
+		leftY: (id)=>{
+			return joystick_leftY(id);
+		},
+		
+		/*
+		* @name rightX
+		* @type method
+		* @description get the right joystick current X position
+		* @parent gamepad
+		* @param {id}{Int}{id of the gamepad (0-3)}
+		*/
+		rightX: (id)=>{
+			return joystick_rightX(id);
+		},
+		
+		/*
+		* @name rightY
+		* @type method
+		* @description get the right joystick current Y position
+		* @parent gamepad
+		* @param {id}{Int}{id of the gamepad (0-3)}
+		*/
+		rightY: (id)=>{
+			return joystick_rightY(id);
 		},
 
 		/*
-		* @name buttonPressed
+		* @name button
 		* @type method
+		* @description return value of a controller button
 		* @parent gamepad
-		* @description Returns down value of given gamepad button (between 0 - 1).
-		* @param {btn}{String}{button to check}
+		* @param {id}{Int}{id of the gamepad (0-3)}
+		* @param {btn}{String}{which button to check}
 		*/
-
 		/*
 		* @name btn
 		* @type options
-		* @parent gamepad.buttonPressed
-		* @description Available button types
+		* @description button types
+		* @parent gamepad.button
 		* @option {"A"}{A Button}
     	* @option {"B"}{B Button}
     	* @option {"X"}{X Button}
@@ -1101,120 +1042,196 @@ var exporter = {
     	* @option {"Right"}{D-pad Right Button}
     	* @option {"Home"}{Home Button (Xbox button)}
 		*/
-
-		buttonPressed: (btn)=>{
-			return controller.buttonPressed(btn);
+		button: (id, btn)=>{
+			return controller_buttonPressed(id, btn);
 		},
 
 		/*
-		* @name joystick
-		* @type obj
-		* @description Manages inputs from the joysticks
+		* @name getConnected
+		* @type method
+		* @description returns <span class="code">[<span class="purple">Boolean</span>]</span> of which controllers are connected
 		* @parent gamepad
 		*/
-		joystick: {
-
-			/*
-			* @name leftX
-			* @type method
-			* @description Returns the X value of the left joystick on the gamepad (bewteen [-1,1])
-			* @parent gamepad.joystick
-			*/
-			leftX: ()=>{
-				return controller.joystick.leftX();
-			},
-
-			/*
-			* @name leftY
-			* @type method
-			* @description Returns the Y value of the left joystick on the gamepad (bewteen [-1,1])
-			* @parent gamepad.joystick
-			*/
-			leftY: ()=>{
-				return controller.joystick.leftY();
-			},
-
-			/*
-			* @name rightX
-			* @type method
-			* @description Returns the X value of the right joystick on the gamepad (bewteen [-1,1])
-			* @parent gamepad.joystick
-			*/
-			rightX: ()=>{
-				return controller.joystick.rightX();
-			},
-
-			/*
-			* @name rightY
-			* @type method
-			* @description Returns the Y value of the right joystick on the gamepad (bewteen [-1,1])
-			* @parent gamepad.joystick
-			*/
-			rightY: ()=>{
-				return controller.joystick.rightY();
-			},
+		getConnected: ()=>{
+			return get_connected_controllers();
 		}
 	},
-	/*
-	* @name addEvents
-	* @type method
-	* @description Adds the events that the inputManager uses to run (they are automatically started)
-	*/
-	addEvents: function(){
-		if(!events_working){
-			document.addEventListener('keydown', keydown_event);
-			document.addEventListener('keyup', keyup_event);
-			document.addEventListener('onmousedown', onmousedown_event);
-			document.addEventListener('onmouseup', onmouseup_event);
-			document.addEventListener('onmousemove', onmousemove_event);
-			document.addEventListener('wheel', onwheel_event);
-			window.addEventListener("gamepadconnected", controller.connect);
-			window.addEventListener("gamepaddisconnected", controller.disconnect);
-		}else{
-			throw Error("InputManager events already added");
-		}
+	enable: ()=>{
+		add_listeners();
 	},
-
-	/*
-	* @name removeEvents
-	* @type method
-	* @description Ends the events that the inputManager uses to run
-	*/
-	removeEvents: function(){
-		if(events_working){
-			document.removeEventListener('keydown', keydown_event);
-			document.removeEventListener('keyup', keyup_event);
-			document.removeEventListener('onmousedown', onmousedown_event);
-			document.removeEventListener('onmouseup', onmouseup_event);
-			document.removeEventListener('onmousemove', onmousemove_event);
-			document.removeEventListener('wheel', onwheel_event);
-			window.removeEventListener("gamepadconnected", controller.connect);
-			window.removeEventListener("gamepaddisconnected", controller.disconnect);
-		}else{
-			throw Error("InputManager events already removed");
-		}
-	},
-
-	import_engine2d: function(e2d){
-		import_engine2d(e2d);
+	disable: ()=>{
+		remove_listeners();
 	}
-};
+}
 
-var offset_x = 0;
-var offset_y = 0;
+// mouse x constants
 
+/*
+* @name x
+* @type property
+* @description current mouse x position
+* @parent mouse
+* @proto Int
+*/
+Object.defineProperty(exports.mouse, "x", {
+	get: ()=>{
+		return mouse_x;
+	}
+});
+
+/*
+* @name dx
+* @type property
+* @description change in mouse x position
+* @parent mouse
+* @proto Int
+*/
+Object.defineProperty(exports.mouse, "dx", {
+	get: ()=>{
+		return dx;
+	}
+});
+
+/*
+* @name screenX
+* @type property
+* @description current relative mouse x position
+* @parent mouse
+* @proto Int
+*/
+Object.defineProperty(exports.mouse, "screenX", {
+	get: ()=>{
+		return screen_x;
+	}
+});
+
+
+// mouse y constants
+
+/*
+* @name y
+* @type property
+* @description current mouse y position
+* @parent mouse
+* @proto Int
+*/
+Object.defineProperty(exports.mouse, "y", {
+	get: ()=>{
+		return mouse_y;
+	}
+});
+
+/*
+* @name dy
+* @type property
+* @description change in mouse y position
+* @parent mouse
+* @proto Int
+*/
+Object.defineProperty(exports.mouse, "dy", {
+	get: ()=>{
+		return dy;
+	}
+});
+
+/*
+* @name screenY
+* @type property
+* @description current relative mouse y position
+* @parent mouse
+* @proto 
+*/
+Object.defineProperty(exports.mouse, "screenY", {
+	get: ()=>{
+		return screen_y;
+	}
+});
+
+
+// mouse button constants
+
+/*
+* @name left
+* @type property
+* @description left mouse button currently down
+* @parent mouse
+* @proto Boolean
+*/
+Object.defineProperty(exports.mouse, "left", {
+	get: ()=>{
+		return left_down;
+	}
+});
+
+/*
+* @name middle
+* @type property
+* @description middle mouse button currently down
+* @parent mouse
+* @proto Boolean
+*/
+Object.defineProperty(exports.mouse, "middle", {
+	get: ()=>{
+		return middle_down;
+	}
+});
+
+/*
+* @name right
+* @type property
+* @description right mouse button currently down
+* @parent mouse
+* @proto Boolean
+*/
+Object.defineProperty(exports.mouse, "right", {
+	get: ()=>{
+		return right_down;
+	}
+});
+
+/*
+* @name back
+* @type property
+* @description back mouse button currently down
+* @parent mouse
+* @proto Boolean
+*/
+Object.defineProperty(exports.mouse, "back", {
+	get: ()=>{
+		return back_down;
+	}
+})
+
+
+/*
+* @name forward
+* @type property
+* @description forward mouse button currently down
+* @parent mouse
+* @proto Boolean
+*/
+Object.defineProperty(exports.mouse, "forward", {
+	get: ()=>{
+		return forward_down;
+	}
+});
+
+
+// mouse position offset
 
 /*
 * @name offsetX
 * @type property
-* @description X offset of the mouse position
+* @description mouse x offset
 * @parent mouse
+* @proto Number
 */
-Object.defineProperty(exporter.mouse, 'offsetX', {
+Object.defineProperty(exports.mouse, "offsetX", {
 	get: ()=>{
-		return offset_x;
-	}, set: (val)=>{
-		offset_x = val;
+		return mouse_position_offset_x;
+	},
+	set: (val)=>{
+		mouse_position_offset_x = val;
 	}
 });
 
@@ -1222,41 +1239,19 @@ Object.defineProperty(exporter.mouse, 'offsetX', {
 /*
 * @name offsetY
 * @type property
-* @description Y offset of the mouse position
+* @description mouse y offset
 * @parent mouse
+* @proto Number
 */
-Object.defineProperty(exporter.mouse, 'offsetY', {
+Object.defineProperty(exports.mouse, "offsetY", {
 	get: ()=>{
-		return offset_y;
-	}, set: (val)=>{
-		offset_y = val;
+		return mouse_position_offset_y;
+	},
+	set: (val)=>{
+		mouse_position_offset_y = val;
 	}
 });
 
 
-/*
-* @name x
-* @type property
-* @parent mouse
-* @description Returns the x psoition of the mouse cursor.
-*/
-Object.defineProperty(exporter.mouse, "x", {
-	get: ()=>{
-		return (mouse_x - offset_x) / engine2d.scaling;
-	}
-});
 
-/*
-* @name y
-* @type property
-* @parent mouse
-* @description Returns the y psoition of the mouse cursor.
-*/
-Object.defineProperty(exporter.mouse, "y", {
-	get: ()=>{
-		return (mouse_y - offset_y) / engine2d.scaling;
-	}
-});
-
-
-module.exports = exporter;
+module.exports = exports;

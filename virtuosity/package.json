@@ -1,22 +1,21 @@
 {
   "name": "virtuosity",
-  "version": "0.7.0",
+  "version": "0.11.0",
   "description": "a free, open source game engine",
   "browser": "index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "game",
-    "engine"
-  ],
+  "author": "12andrewf@gmail.com",
+  "license": "ISC",
   "dependencies": {
-    "babylonjs": "^4.1.0",
-    "phaser-ce": "^2.15.1",
+    "@pixi/graphics-extras": "^5.3.7",
+    "escs": "^1.1.5",
+    "howler": "^2.2.1",
+    "pixi.js": "^5.3.7",
     "virtuosity-server": "*"
   },
-  "author": "12andrewf",
-  "license": "ISC",
   "homepage": "https://12thanjo.github.io/virtuosity/documentation/virtuosity.html",
     "repository": {
     "type" : "git",

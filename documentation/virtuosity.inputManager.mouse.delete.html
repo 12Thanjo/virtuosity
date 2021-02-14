@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="icon" href="favicon.ico">
+		<title>virtuosity Documentation | virtuosity.inputManager.mouse.delete</title>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+	</head>
+	<header>
+		<datalist id="entities"></datalist>
+		<div class="menu-bar" id="desktop-navbar">
+		    <div class="left">
+		        <!-- <button class="menubar-btn">Home</button>
+		        <button class="menubar-btn">Button1</button> -->
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.inputManager.html'">inputManager</button><button class="menubar-btn" onclick="location.href='./virtuosity.inputManager.mouse.html'">mouse</button>
+		    </div>
+		    <div class="right">
+		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
+		        <button id="search-button" onclick="search();">Search</button>
+		    </div>
+		</div>
+
+		<div class="menu-bar" id="mobile-navbar">
+			<button class="menubar-btn" id="mobile-path-button">Path</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
+			<button class="menubar-btn" id='mobile-search-button'>Search</button>
+		</div>
+		<div class="menu-bar mobile-interactive" id="path-navbar">
+			<div class="right">
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.inputManager.html'">inputManager</button><button class="menubar-btn" onclick="location.href='./virtuosity.inputManager.mouse.html'">mouse</button><script type="text/javascript">var path = "virtuosity.inputManager.mouse.delete";</script
+			</div>
+		</div>
+		<div class="menu-bar mobile-interactive" id="search-navbar">
+			<div style="float: right">
+				<input id="search-mobile" placeholder="Search..." list="entities">
+				<button id="search-button-mobile" onclick="search();">Search</button>
+			</div>
+		</div>https://vidhealth.com/christopher-murphy-lcsw
+		<script type="text/javascript" src="./entity list.JSON"></script>
+		<script type="text/javascript">
+			var path_navbar = document.getElementById('path-navbar');
+			path_navbar.style.visibility = "hidden";
+			var search_navbar = document.getElementById('search-navbar');
+			search_navbar.style.visibility = "hidden";
+
+
+			document.getElementById('mobile-path-button').onclick = ()=>{
+				if(path_navbar.style.visibility == 'hidden'){
+					path_navbar.style.visibility = "visible";
+					search_navbar.style.visibility = "hidden";
+				}else{
+					path_navbar.style.visibility = "hidden";
+				}
+			}
+
+			document.getElementById('mobile-search-button').onclick = ()=>{
+				if(search_navbar.style.visibility == 'hidden'){
+					search_navbar.style.visibility = "visible";
+					path_navbar.style.visibility = "hidden";
+				}else{
+					search_navbar.style.visibility = "hidden";
+				}
+			}
+
+
+			var path_arr = path.split('.');
+			var head = path_arr[0];
+
+
+			var datalist = document.getElementById('entities');
+			entity_search_list.forEach((entity)=>{
+				datalist.innerHTML += `<option value="${entity}">`
+			});
+			var entity_list_set = new Set(entity_list);
+			var entity_search_list_set = new Set(entity_list);
+
+			search = function(){
+				var desktop = document.getElementById('search').value;
+				var mobile = document.getElementById('search-mobile').value;
+				var query = "";
+				if(desktop != ""){
+					query = desktop;
+				}else{
+					query = mobile;
+				}
+
+				if(entity_list_set.has(query)){
+					location.href = `./${head}.${query}.html`;
+				}else{
+					var arr = query.split('.');
+					var last = arr[arr.length-1];
+					var href = query.substr(0, query.length - last.length - 1);
+
+					if(entity_list_set.has(href)){
+						location.href = `./${head}.${href}.html#${last}`;
+					}
+				}
+			}
+
+
+			document.addEventListener('keydown', (event)=>{
+				if(event.keyCode == 13){
+					search();
+				}
+			});
+
+
+
+
+			create_cookie = function(cname, cvalue){
+			    document.cookie = cname + ' =' + cvalue + "; path=/; SameSite=None; Secure";
+			}
+
+			delete_cookie = function(cname){
+			    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			}
+
+
+			get_cookie = function(cname){
+			    var name = cname + "=";
+			    var ca = document.cookie.split(';');
+			    for(var i = 0; i < ca.length; i++){
+			        var c = ca[i];
+			        while(c.charAt(0) == ' '){
+			            c = c.substring(1);
+			        }
+			        if(c.indexOf(name) == 0){
+			            return c.substring(name.length, c.length);
+			        }
+			    }
+			    return "";
+			}
+
+			var forEach = function(arr, event){
+				var length = arr.length;
+				for(var i=0; i<arr.length;i++){
+					event(arr[i]);
+				}
+			}
+
+			var mode = "light";
+			toggle_mode = function(){
+				if(mode == "light"){
+					set_mode('dark');
+				}else{
+					set_mode('light');
+				}
+			}
+
+			set_mode = function(_mode){
+				console.log(_mode);
+				if(_mode == "dark"){
+					mode = "dark";
+					create_cookie('viewmode', 'dark');
+					document.getElementById('dark-mode').innerHTML = "Light Mode";
+					document.getElementById('dark-mode-mobile').innerHTML = "Light Mode";
+
+					// css
+					document.body.classList.toggle('dark');
+					forEach(document.getElementsByClassName('code'), (div)=>{
+						div.classList.add('dark-code');
+					});
+					forEach(document.getElementsByTagName('a'), (div)=>{
+						div.classList.add('dark');
+					});
+					forEach(document.getElementsByClassName('menu-bar'), (div)=>{
+						div.classList.add('menu-bar-dark');
+					});
+					forEach(document.getElementsByTagName('th'), (div)=>{
+						div.classList.add('dark');
+					});
+					forEach(document.getElementsByTagName('tr'), (div)=>{
+						div.classList.add('dark');
+					});
+				}else{
+					mode = "light";
+					create_cookie('viewmode', 'light');
+					document.getElementById('dark-mode').innerHTML = "Dark Mode";
+					document.getElementById('dark-mode-mobile').innerHTML = "Dark Mode";
+
+					// css
+					document.body.classList.toggle('dark');
+					forEach(document.getElementsByClassName('code'), (div)=>{
+						div.classList.remove('dark-code');
+					});
+					forEach(document.getElementsByTagName('a'), (div)=>{
+						div.classList.remove('dark');
+					});
+					forEach(document.getElementsByClassName('menu-bar'), (div)=>{
+						div.classList.remove('menu-bar-dark');
+					});
+					forEach(document.getElementsByTagName('th'), (div)=>{
+						div.classList.remove('dark');
+					});
+					forEach(document.getElementsByTagName('tr'), (div)=>{
+						div.classList.remove('dark');
+					});
+				}
+			}
+
+			if(get_cookie('viewmode') != ""){
+				mode = get_cookie('viewmode');
+				document.addEventListener("DOMContentLoaded", ()=>{
+					set_mode(mode);
+				});
+			}else{
+				create_cookie('viewmode', 'light');
+			}
+		</script>
+	</header>
+	<body>
+		<div id="container">
+			<div id="header-spacing"></div><h1>delete</h1><p>delete mouse events</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="blue">delete</span></div><h4>Methods</h4><ul><li><a href="#leftDown">leftDown</a></li><li><a href="#middleDown">middleDown</a></li><li><a href="#rightDown">rightDown</a></li><li><a href="#backDown">backDown</a></li><li><a href="#forwardDown">forwardDown</a></li><li><a href="#leftUp">leftUp</a></li><li><a href="#middleUp">middleUp</a></li><li><a href="#rightUp">rightUp</a></li><li><a href="#backUp">backUp</a></li><li><a href="#forwardUp">forwardUp</a></li><li><a href="#scroll">scroll</a></li><li><a href="#mouseMove">mouseMove</a></li></ul><hr><h2>Methods</h2><h3 id="leftDown" style="margin-top: 0px;">leftDown</a></h3><p style="margin-top: 0px;">deletes a left mouse button down event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">leftDown</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="middleDown">middleDown</a></h3><p style="margin-top: 0px;">deletes a middle mouse button down event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">middleDown</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="rightDown">rightDown</a></h3><p style="margin-top: 0px;">deletes a right mouse button down event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">rightDown</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="backDown">backDown</a></h3><p style="margin-top: 0px;">deletes a back mouse button down event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">backDown</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="forwardDown">forwardDown</a></h3><p style="margin-top: 0px;">deletes a forward mouse button down event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">forwardDown</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="leftUp">leftUp</a></h3><p style="margin-top: 0px;">deletes a left button up event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">leftUp</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="middleUp">middleUp</a></h3><p style="margin-top: 0px;">deletes a middle button up event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">middleUp</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="rightUp">rightUp</a></h3><p style="margin-top: 0px;">deletes a right button up event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">rightUp</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="backUp">backUp</a></h3><p style="margin-top: 0px;">deletes a back button up event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">backUp</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="forwardUp">forwardUp</a></h3><p style="margin-top: 0px;">deletes a forward button up event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">forwardUp</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="scroll">scroll</a></h3><p style="margin-top: 0px;">deletes a scroll event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">scroll</span>(<span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the event to delete</td>
+											</tr></table><h3 id="mouseMove">mouseMove</a></h3><p style="margin-top: 0px;">add a mouse move event </p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">mouse</span>.<span class="green">delete</span>.<span class="blue">mouseMove</span>(<span class="orange">name</span>, <span class="orange">event</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>unique name of the event</td>
+											</tr><tr>
+												<td><var>event</var></td>
+												<td><var><span class="blue">Function</span></var></td>
+												<td>event to run</td>
+											</tr></table><br><br>
+		</div>
+	</body>
+	<footer>
+		<p>Documentation Generated by <a href="https://www.npmjs.com/package/scrybe">Scrybe</a></p>
+	</footer>
+</html>

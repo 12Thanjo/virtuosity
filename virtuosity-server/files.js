@@ -45,14 +45,13 @@ var create_directory = function(path){
     }
 }
 
-
 var get_file_extention = function(path){
     var str = node_path.extname(path);
     return str.slice(1, str.length);
 }
 
 var get_file_name = function(path){
-    return path.replace(/\//g,"\\").replace(/^.*[\\\/]/, '');;
+    return path.replace(/\//g,"\\").replace(/^.*[\\\/]/, '');
 }
 
 var get_file_name_without_extention = function(path){
@@ -167,6 +166,7 @@ var WriteStream = function(path){
     /*
     * @name path
     * @type property
+    * @proto String
     * @description path of the WriteStream
     * @parent WriteStream
     */
@@ -179,6 +179,7 @@ var WriteStream = function(path){
     /*
     * @name open
     * @type property
+    * @proto Boolean
     * @description if the WriteStream is open
     * @parent WriteStream
     */
@@ -212,6 +213,25 @@ var WriteStream = function(path){
     this.close = function(){
         this.DATA.stream.close();
         this.open = false;
+    }
+}
+
+
+
+var ReadStream = function(path){
+    this.DATA = fs.createReadStream(path);
+
+
+    Object.defineProperty(this, 'open', {
+        get: ()=>{
+            return this.DATA.open;
+        }
+    })
+
+    this.read = function(){
+        if(this.open){
+            return this.DATA.read();
+        }
     }
 }
 
@@ -380,5 +400,6 @@ module.exports = {
         rename_file(path, name);
     },
 
-    WriteStream: WriteStream
+    WriteStream: WriteStream,
+    ReadStream: ReadStream
 }

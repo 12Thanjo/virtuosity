@@ -523,18 +523,17 @@
 			"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/files.js",
 			"settings":
 			{
-				"buffer_size": 8461,
+				"buffer_size": 8788,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
+			"file": "engine2d.js",
 			"settings":
 			{
-				"buffer_size": 262,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 35320,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -746,6 +745,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/engine2d.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
 		"/C/Users/andre/node_modules/scrybe/scrybe.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/index.js",
@@ -756,7 +756,6 @@
 		"/C/Users/andre/OneDrive/programming/nodejs/Neutrino/bin/shell.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/.gitignore",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/package.json",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/engine2d.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/files.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/time.js",
 		"/C/Users/andre/OneDrive/Faction/Virtuosity/resources/app/virtuosity building/virtuosity-server/collisionManager.js",
@@ -891,6 +890,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"addToLoadQueue",
 			"get_file_path_up_directory",
 			"file_path_up_directory",
 			"getFilePath",
@@ -1017,8 +1017,7 @@
 			"1",
 			"c",
 			"line_line",
-			"x1, y1, x2, y2,",
-			"lineLine"
+			"x1, y1, x2, y2,"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1045,15 +1044,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8461,
+						"buffer_size": 8788,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								895,
-								895
+								941,
+								941
 							]
 						],
 						"settings":
@@ -1071,24 +1070,24 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
+					"file": "engine2d.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 262,
+						"buffer_size": 35320,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								52,
-								52
+								191,
+								191
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/zzz A File Icon zzz/aliases/JSON (NPM).sublime-syntax"
+							"syntax": "Packages/tscript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1097,11 +1096,6 @@
 					"stack_index": 0,
 					"type": "text"
 				}
-			]
-		},
-		{
-			"sheets":
-			[
 			]
 		}
 	],
@@ -1122,18 +1116,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
