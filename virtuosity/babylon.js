@@ -45,6 +45,8 @@ var new_canvas = function(name, config){
 
 
 	canvases.set(name, new_ctx);
+
+	return new_ctx;
 }
 
 
@@ -55,7 +57,7 @@ var new_canvas = function(name, config){
 
 module.exports = {
 	newCanvas: function(name, config){
-		new_canvas(name, config);
+		return new_canvas(name, config);
 	},
 	expose: BABYLON
 }
