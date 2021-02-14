@@ -1019,7 +1019,7 @@ module.exports = {
         remove: function(canvas, name){
             canvases.get(canvas).render_events.delete(name);
         }
-    }
+    },
 
     /*
     * @name expose
