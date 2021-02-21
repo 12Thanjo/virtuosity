@@ -8,7 +8,7 @@ var new_canvas = function(name, config){
     if(config.resolution == null){
         config.resolution = 1;
     }else{
-        config.resolution /= screen.height;
+        config.resolution /= window.outerHeight;
     }
 
     if(config.antialias == null){
@@ -22,12 +22,12 @@ var new_canvas = function(name, config){
     var scale = 1;
 
     if(config.defaultResolution){
-        scale = screen.height / config.defaultResolution;
+        scale = window.outerHeight / config.defaultResolution;
     }
 
     var new_ctx = new PIXI.Application({
-        width: screen.width / scale,
-        height: screen.height / scale, 
+        width: window.outerWidth / scale,
+        height: window.outerHeight / scale, 
         backgroundAlpha: 0,
         powerPreference: config.powerPreference,
         antialias: config.antialias,
@@ -35,15 +35,27 @@ var new_canvas = function(name, config){
         resolution: config.resolution
     });
     document.body.appendChild(new_ctx.view);
-    new_ctx.view.style.width = screen.width + "px";
-    new_ctx.view.style.height = screen.height + 'px';
-    new_ctx.view.style.top = "0px";
+    new_ctx.view.style.width = window.outerWidth + "px";
+    new_ctx.view.style.height = window.outerHeight + 'px';
+    if(config.y != null){
+        new_ctx.view.style.top = config.y+"px";
+    }else{
+        new_ctx.view.style.top = "0px";
+    }
+
+    if(config.x != null){
+        new_ctx.view.style.left = config.x+"px";
+    }else{
+        new_ctx.view.style.left = "0px";
+    }
+
     canvases.set(name, new_ctx);
 
     new_ctx.started = false;
 
     if(config.preload != null){
         config.preload();
+        start_load(name);
     }
     if(config.create != null){
         config.create();
@@ -151,24 +163,26 @@ var new_canvas = function(name, config){
 var load_queue = 0;
 var textures = new Map();
 var loading_textures = new Map();
-load_image = function(key, path, onComplete){
+var load_image = function(canvas, key, path){
     load_queue += 1;
-    var ctx = canvases.entries().next().value[1];
+    var ctx = canvases.get(canvas);
     loading_textures.set(key, []);
-    ctx.loader.add(key, path).load((loader, resources)=>{
-        textures.set(key, resources[key].texture)
-        loading_textures.get(key).forEach((action)=>{
-            action();
-        });
-        loading_textures.delete(key);
-        load_queue -= 1;
-        console.log(`engine2d succesfully loaded: ${key}`);
-        if(onComplete){
-            onComplete(loader, resources);
+    ctx.loader.add(key, path);
+}
+
+var start_load = function(canvas){
+    canvases.get(canvas).loader.load((loader, resources)=>{
+        for(var prop in resources){
+            textures.set(prop, resources[prop].texture);
+            loading_textures.get(prop).forEach((action)=>{
+                action();
+            });
+            loading_textures.delete(prop);
+            load_queue -= 1;
+            console.log(`engine2d succesfully loaded: ${prop}`);
         }
     });
 }
-
 
 
 
@@ -704,6 +718,8 @@ module.exports = {
     * @parent newCanvas
     * @param {resolution}{Int}{height resolution of the canvas}{actual client screen resolution}
     * @param {defaultResolution}{Int}{sets the resolution for auto scaling. Common practise is to use the screen resolution used in development}{actual client screen resolution}
+    * @param {x}{Int}{x position of the canvas}{0}
+    * @param {y}{Int}{y position of the canvas}{0}
     * @param {powerPreference}{String}{chooses which GPU to run on if client has multiple. 'low-power' for dedicated GPU or 'high-performance' for Discrete GPU}{'low-power'}
     * @param {antialias}{Boolean}{whether to use antialiasing}{true}
     * @param {poll}{Int}{Polling rate of the update function. The update function will run this many times per second}{64}
@@ -719,22 +735,32 @@ module.exports = {
     },
 
     /*
-    * @name addToLoadQueue
+    * @name loadQueue
     * @type obj
     * @description adds an asset to the load queue
     */
-    addToLoadQueue: {
+    loadQueue: {
         /*
         * @name image
         * @type method
         * @description adds an immage to the load queue
-        * @parent addToLoadQueue
+        * @parent loadQueue
+        * @param {canvas}{String}{Name of the canvas to add to}
         * @param {key}{String}{unique name of the image asset}
         * @param {path}{String}{path of the image asset}
-        * @param {onComplete}{Function}{function to complete when the image asset is loaded}
         */
-        image: function(key, path, onComplete){
-            load_image(key, path, onComplete);
+        image: function(canvas, key, path){
+            load_image(canvas, key, path);
+        },
+
+        /*
+        * @name load
+        * @type method
+        * @description begin loading (automatiacally run at the end of the the canvas's preload function)
+        * @parent loadQueue
+        */
+        load: (canvas)=>{
+            start_load(canvas);
         }
     },
 
