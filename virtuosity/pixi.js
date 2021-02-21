@@ -37,6 +37,7 @@ var new_canvas = function(name, config){
     document.body.appendChild(new_ctx.view);
     new_ctx.view.style.width = screen.width + "px";
     new_ctx.view.style.height = screen.height + 'px';
+    new_ctx.view.style.top = "0px";
     canvases.set(name, new_ctx);
 
     new_ctx.started = false;
@@ -48,8 +49,22 @@ var new_canvas = function(name, config){
         config.create();
     }
 
+    if(config.update == null){
+        config.update = ()=>{};
+    }
     if(config.render == null){
         config.render = ()=>{};
+    }
+
+    new_ctx.update_events = new Map();
+    new_ctx.render_events = new Map();
+
+    if(config.update != null){
+        new_ctx.update_events.set('config', config.update);
+    }
+
+    if(config.render != null){
+        new_ctx.render_events.set('config', config.render);
     }
 
 
@@ -63,25 +78,11 @@ var new_canvas = function(name, config){
     })
 
 
-
     new_ctx.fpsTimer = process.hrtime();
     new_ctx.fpsMax = -Infinity;
     new_ctx.fpsMin = Infinity;
     new_ctx.fpsBoundsWaitCounter = 120;
     new_ctx.fps = 0;
-
-
-    new_ctx.update_events = new Map();
-    new_ctx.render_events = new Map();
-
-    if(config.update != null){
-        new_ctx.update_events.set('config', config.update);
-    }
-
-    if(config.render != null){
-        new_ctx.render_events.set('config', config.render);
-    }
-
 
     var MAXSAMPLES = config.fpsBuffer || 1000;
 
@@ -117,7 +118,7 @@ var new_canvas = function(name, config){
         new_ctx.update_events.forEach((event)=>{
             event();
         });
-    }, 1000/(config.poll || 64))
+    }, 1000/(config.poll || 64));
 
 
     new_ctx.ticker.add(()=>{
@@ -161,6 +162,7 @@ load_image = function(key, path, onComplete){
         });
         loading_textures.delete(key);
         load_queue -= 1;
+        console.log(`engine2d succesfully loaded: ${key}`);
         if(onComplete){
             onComplete(loader, resources);
         }
@@ -282,7 +284,7 @@ scale.setOnChange((entity, key, val)=>{
 
 
 /*
-* @name image
+* @name Image
 * @type entity
 * @description An image using a loaded texture created by <a href="./virtuosity.engine2d.add.html#method-image">add.image</a>
 * @env engine2d
@@ -396,7 +398,7 @@ style.setOnChange((entity, key, val)=>{
 
 
 /*
-* @name text
+* @name Text
 * @type entity
 * @description A text entity created by <a href="./virtuosity.engine2d.add.html#method-text">add.text</a>
 * @env engine2d
@@ -416,6 +418,9 @@ var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
         fill: 0xffffff,
         fontFamily: "Trebuchet"
     });
+
+    new_txt.x = x;
+    new_txt.y = y;
 
     var new_entity = escs.add.entity(name, 'engine2d')
         .addComponent('pixi', new_txt)
@@ -576,7 +581,7 @@ var textbox_events = escs.add.component('events', 'engine2d-textbox', ()=>{
 
 
 /*
-* @name textbox
+* @name Textbox
 * @type entity
 * @description A textbox entity created by <a href="./virtuosity.engine2d.add.html#method-textbox">add.textbox</a>
 * @env engine2d-textbox
@@ -688,7 +693,7 @@ module.exports = {
     /*
     * @name newCanvas
     * @type method
-    * @description creates a new canvas
+    * @description creates a new engine 2d canvas
     * @param {name}{String}{unique name of the canvas}
     * @param {config}{Object}{options to configure the canvas}
     */
@@ -826,6 +831,17 @@ module.exports = {
         */
         textbox: function(name){
             return get_textbox(name);
+        },
+
+        /*
+        * @name canvas
+        * @type method
+        * @description get the DOM canvas
+        * @parent get
+        * @param {name}{String}{name of the canvas}
+        */
+        canvas: function(name){
+            return canvases.get(name).view;
         }
     },
 
@@ -1021,6 +1037,20 @@ module.exports = {
         }
     },
 
+    /*
+    * @name zIndex
+    * @type method
+    * @description get / set the zIndex of a canvas
+    * @param {canvas}{String}{name of the canvas}
+    * @param {zIndex}{Int}{<b>(Optional)</b> the value to set the z index}
+    */
+    zIndex: function(canvas, zIndex){
+        var ctx = canvases.get(canvas);
+        if(zIndex != null){
+            ctx.zIndex = zIndex;
+        }
+        return ctx.zIndex;
+    },
     /*
     * @name expose
     * @type method

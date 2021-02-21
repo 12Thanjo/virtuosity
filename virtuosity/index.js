@@ -21,7 +21,12 @@ module.exports = {
 	*/
 	engine2d: pixi,
 
-	
+	/*
+	* @name engine3d
+	* @type obj
+	* @description engine2d manages all of the graphics rendered in 2D. It uses <a href="https://www.npmjs.com/package/babylonjs">Babylonjs 4.1</a> for rendering. engine2d uses Babylonjs as a base and builds off of it to automatically interact with the rest of the engine, as well as adding custom functions for added features and ease of use for the already existing ones.
+	* @path babylon.js
+	*/
 	engine3d: babylon,
 
 	/*
@@ -55,6 +60,14 @@ module.exports = {
 	* @path ../virtuosity-server/collisionManager.js
 	*/
 	collisionManager: virtuosity_server.collisionManager,
+
+	/*
+	* @name structures
+	* @type obj
+	* @description some data structures not built into Javascript Natively
+	* @path ../virtuosity-server/structures.js
+	*/
+	structures: virtuosity_server.structures,
 
 	/*
 	* @name files

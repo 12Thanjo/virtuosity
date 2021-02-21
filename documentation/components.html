@@ -12,16 +12,22 @@
 		</style>
 	</head>
 	<header>
+		<datalist id="entities"></datalist>
+
+
+
 		<div class="menu-bar" id="desktop-navbar">
 		    <div class="left">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><script type="text/javascript">var path = "undefined";</script
+                <button class="menubar-btn" onclick="location.href='./virtuosity.html'">Home</button>
 		    </div>
 		    <div class="right">
-		        <button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
-		        <input id="search" placeholder="Search...">
-		        <button id="search-button">Search</button>
+		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
+		    	
+		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
+		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
 		</div>
+W
 
 		<div class="menu-bar" id="mobile-navbar">
 	        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">Home</button>
@@ -35,7 +41,21 @@
 				<button id="search-button-mobile">Search</button>
 			</div>
 		</div>
+
+		<div class="menu-bar" id="mobile-navbar">
+	        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">Home</button>
+			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
+			<button class="menubar-btn" id='mobile-search-button'>Search</button>
+		</div>
+
+		<div class="menu-bar mobile-interactive" id="search-navbar">
+			<div style="float: right">
+				<input id="search-mobile" placeholder="Search..." list="entities">
+				<button id="search-button-mobile" onclick="search();">Search</button>
+			</div>
+		</div>
 		
+		<script type="text/javascript" src="./entity list.JSON"></script>
 		<script type="text/javascript">
 			var search_navbar = document.getElementById('search-navbar');
 			search_navbar.style.visibility = "hidden";
@@ -44,9 +64,150 @@
 			document.getElementById('mobile-search-button').onclick = ()=>{
 				if(search_navbar.style.visibility == 'hidden'){
 					search_navbar.style.visibility = "visible";
+					path_navbar.style.visibility = "hidden";
 				}else{
 					search_navbar.style.visibility = "hidden";
 				}
+			}
+
+			var datalist = document.getElementById('entities');
+			entity_search_list.forEach((entity)=>{
+				datalist.innerHTML += `<option value="${entity}">`
+			});
+			var entity_list_set = new Set(entity_list);
+			var entity_search_list_set = new Set(entity_list);
+
+			search = function(){
+				var desktop = document.getElementById('search').value;
+				var mobile = document.getElementById('search-mobile').value;
+				var query = "";
+				if(desktop != ""){
+					query = desktop;
+				}else{
+					query = mobile;
+				}
+
+				if(entity_list_set.has(query)){
+					location.href = `./virtuosity.${query}.html`;
+				}else{
+					var arr = query.split('.');
+					var last = arr[arr.length-1];
+					var href = query.substr(0, query.length - last.length - 1);
+
+					if(entity_list_set.has(href)){
+						location.href = `./virtuosity.html#${last}`;
+					}
+				}
+			}
+
+
+			document.addEventListener('keydown', (event)=>{
+				if(event.keyCode == 13){
+					search();
+				}
+			});
+
+
+
+
+			create_cookie = function(cname, cvalue){
+			    document.cookie = cname + ' =' + cvalue + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=path;domain=domain; secure";
+			}
+
+			delete_cookie = function(cname){
+			    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			}
+
+
+			get_cookie = function(cname){
+			    var name = cname + "=";
+			    var ca = document.cookie.split(';');
+			    for(var i = 0; i < ca.length; i++){
+			        var c = ca[i];
+			        while(c.charAt(0) == ' '){
+			            c = c.substring(1);
+			        }
+			        if(c.indexOf(name) == 0){
+			            return c.substring(name.length, c.length);
+			        }
+			    }
+			    return "";
+			}
+
+			var forEach = function(arr, event){
+				var length = arr.length;
+				for(var i=0; i<arr.length;i++){
+					event(arr[i]);
+				}
+			}
+
+			var mode = "light";
+			toggle_mode = function(){
+				if(mode == "light"){
+					set_mode('dark');
+				}else{
+					set_mode('light');
+				}
+			}
+
+			set_mode = function(_mode){
+				console.log(_mode);
+				if(_mode == "dark"){
+					mode = "dark";
+					create_cookie('viewmode', 'dark');
+					document.getElementById('dark-mode').innerHTML = "Light Mode";
+					document.getElementById('dark-mode-mobile').innerHTML = "Light Mode";
+
+					// css
+					document.body.classList.toggle('dark');
+					forEach(document.getElementsByClassName('code'), (div)=>{
+						div.classList.add('dark-code');
+					});
+					forEach(document.getElementsByTagName('a'), (div)=>{
+						div.classList.add('dark');
+					});
+					forEach(document.getElementsByClassName('menu-bar'), (div)=>{
+						div.classList.add('menu-bar-dark');
+					});
+					forEach(document.getElementsByTagName('th'), (div)=>{
+						div.classList.add('dark');
+					});
+					forEach(document.getElementsByTagName('tr'), (div)=>{
+						div.classList.add('dark');
+					});
+				}else{
+					mode = "light";
+					create_cookie('viewmode', 'light');
+					document.getElementById('dark-mode').innerHTML = "Dark Mode";
+					document.getElementById('dark-mode-mobile').innerHTML = "Dark Mode";
+
+					// css
+					document.body.classList.toggle('dark');
+					forEach(document.getElementsByClassName('code'), (div)=>{
+						div.classList.remove('dark-code');
+					});
+					forEach(document.getElementsByTagName('a'), (div)=>{
+						div.classList.remove('dark');
+					});
+					forEach(document.getElementsByClassName('menu-bar'), (div)=>{
+						div.classList.remove('menu-bar-dark');
+					});
+					forEach(document.getElementsByTagName('th'), (div)=>{
+						div.classList.remove('dark');
+					});
+					forEach(document.getElementsByTagName('tr'), (div)=>{
+						div.classList.remove('dark');
+					});
+				}
+			}
+
+			if(get_cookie('viewmode') != ""){
+				mode = get_cookie('viewmode');
+				document.addEventListener("DOMContentLoaded", ()=>{
+					set_mode(mode);
+				});
+			}else{
+				create_cookie('viewmode', 'light');
 			}
 		</script>
 	</header>
@@ -57,7 +218,7 @@
 			<p>ESCS is an adaptation of an entity component system. escs (pronounced "essex") stands for Entity, Singleton, Component, System. Documentation for ESCS can be found <a href="https://www.npmjs.com/package/escs">here</a>.</p>
 			<h3>Environments:</h3>
 			<ul>
-				<li><a href=#engine2d>engine2d</a></li><li><a href=#engine2d-textbox>engine2d-textbox</a></li>
+				<li><a href=#engine2d>engine2d</a></li><li><a href=#engine2d-textbox>engine2d-textbox</a></li><li><a href=#engine2d-graphics>engine2d-graphics</a></li><li><a href=#engine3d>engine3d</a></li>
 			</ul>
 			<hr>
 			<h2 id="engine2d">engine2d</h2><ul></ul><h3 id='pixi'>pixi</h3><br><br><table>
@@ -260,6 +421,197 @@
 												<td><var>onkeypress</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>event to run when a key is pressed while the textbox is focused</td>
+											</tr></table><h2 id="engine2d-graphics">engine2d-graphics</h2><ul></ul><h3 id='position'>position</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x coordinate of the graphics object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y coordinate of the graphics object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='color'>color</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Hex</span></var></td>
+												<td>color of the graphics object</td>
+												<td><var><span class="purple">0xffffff</span></var></td>
+											</tr></table><h3 id='alpha'>alpha</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>alpha</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>alpha of the graphics object</td>
+											</tr></table><h3 id='container'>container</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>container</var></td>
+												<td><var><span class="white">Container</span></var></td>
+												<td>container of the render object</td>
+											</tr></table><h3 id='radius'>radius</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>radius</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>radius of the render object</td>
+											</tr></table><h3 id='scale'>scale</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>width</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>width of the graphics object</td>
+												<td><var><span class="purple">10</span></var></td>
+											</tr><tr>
+												<td><var>height</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>height of the graphics object</td>
+												<td><var><span class="purple">10</span></var></td>
+											</tr></table><h3 id='borderRadius'>borderRadius</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>radius</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>border radius of the graphics object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='position2'>position2</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x2 coordinate of the graphics object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y2 coordinate of the graphics object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='thickness'>thickness</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>thickness</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>thickness of the graphics object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='points'>points</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>points</var></td>
+												<td><var><span class="white">[</span><span class="white">Point</span><span class="white">]</span></var></td>
+												<td>x coordinate of the graphics object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h2 id="engine3d">engine3d</h2><ul></ul><h3 id='babylon'>babylon</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>babylon</var></td>
+												<td>Babylonjs object</td>
+												<td>reference to the babylon render object (internal)</td>
+											</tr></table><h3 id='position'>position</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x coordinate of the render object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y coordinate of the render object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr><tr>
+												<td><var>z</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>z coordinate of the render object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='rotation'>rotation</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x rotation of the render object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y rotation of the render object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr><tr>
+												<td><var>z</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>z rotation of the render object</td>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='scale'>scale</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>width</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>width of the render object</td>
+												<td><var><span class="purple">1</span></var></td>
+											</tr><tr>
+												<td><var>lenght</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>lenght of the render object</td>
+												<td><var><span class="purple">1</span></var></td>
+											</tr><tr>
+												<td><var>height</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>height of the render object</td>
+												<td><var><span class="purple">1</span></var></td>
 											</tr></table>
 		</div>
 	</body>

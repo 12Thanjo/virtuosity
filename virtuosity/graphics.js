@@ -5,10 +5,21 @@ require('@pixi/graphics-extras');
 
 
 module.exports = function(PIXI, canvases){
-	var env = "engine2d graphics";
+	/*
+	* @name engine2d-graphics
+	* @type environment
+	*/
+	var env = "engine2d-graphics";
 	escs.add.environment(env);
 
-
+	/*
+	* @name position
+	* @type component
+	* @description position of the graphics object
+	* @env engine2d-graphics
+	* @param {x}{Number}{x coordinate of the graphics object}{0}
+	* @param {y}{Number}{y coordinate of the graphics object}{0}
+	*/
 	var pos = escs.add.component('position', env, (x, y)=>{
 		return {
 			x: x || 0,
@@ -19,17 +30,29 @@ module.exports = function(PIXI, canvases){
 		containers.get(entity.getComponent('container').container).draw();
 	});
 
-
+	/*
+	* @name color
+	* @type component
+	* @description color of the graphics object
+	* @env engine2d-graphics
+	* @param {x}{Hex}{color of the graphics object}{0xffffff}
+	*/
 	var color = escs.add.component('color', env, (color)=>{
 		return {
-			color: color || 0x999999
+			color: color || 0xffffff
 		}
 	});
 	color.setOnChange((entity)=>{
 		containers.get(entity.getComponent('container').container).draw();
 	});
 
-
+	/*
+	* @name alpha
+	* @type component
+	* @description alpha of the graphics object
+	* @env engine2d-graphics
+	* @param {alpha}{Number}{alpha of the graphics object}
+	*/
 	var alpha = escs.add.component('alpha', env, (alpha)=>{
 		return {
 			alpha: alpha || 1
@@ -39,7 +62,13 @@ module.exports = function(PIXI, canvases){
 		containers.get(entity.getComponent('container').container).draw();
 	});
 
-
+	/*
+	* @name container
+	* @type component
+	* @description container of the render object
+	* @env engine2d-graphics
+	* @param {container}{Container}{container of the render object}
+	*/
 	var container = escs.add.component('container', env, (container)=>{
 		return {
 			container: container
@@ -113,7 +142,13 @@ module.exports = function(PIXI, canvases){
 		escs.add.tag(name, env);
 	}
 
-
+	/*
+	* @name radius
+	* @type component
+	* @description radius of the render object
+	* @env engine2d-graphics
+	* @param {radius}{Number}{radius of the render object}
+	*/
 	var radius = escs.add.component('radius', env, (r, r2)=>{
 		return {
 			radius: r || 10,
@@ -123,6 +158,17 @@ module.exports = function(PIXI, canvases){
 	radius.setOnChange((entity)=>{
 		containers.get(entity.getComponent('container').container).draw();
 	});
+	/*
+	* @name Circle
+	* @type entity
+	* @description A procedurally generated engine2d circle
+	* @env engine2d-graphics
+	* @component container
+	* @component position
+	* @component radius
+	* @component color
+	* @component alpha
+	*/
 	escs.add.tag('circle', env);
 	var new_circle = function(name, container, x, y, radius, color){
 		var new_circle = escs.add.entity(name, env)
@@ -136,6 +182,14 @@ module.exports = function(PIXI, canvases){
 		containers.get(container).add(new_circle);
 	}
 
+	/*
+	* @name scale
+	* @type component
+	* @description scale of the graphics object
+	* @env engine2d-graphics
+	* @param {width}{Number}{width of the graphics object}{10}
+	* @param {height}{Number}{height of the graphics object}{10}
+	*/
 	var scale = escs.add.component('scale', env, (width, height)=>{
 		return {
 			width: width || 10,
@@ -146,6 +200,18 @@ module.exports = function(PIXI, canvases){
 	scale.setOnChange((entity)=>{
 		containers.get(entity.getComponent('container').container).draw();
 	});
+
+	/*
+	* @name Rectange
+	* @type entity
+	* @description A procedurally generated engine2d rectangle
+	* @env engine2d-graphics
+	* @component container
+	* @component position
+	* @component scale
+	* @component color
+	* @component alpha
+	*/
 	escs.add.tag('rectangle', env);
 	var new_rectangle = function(name, container, x, y, width, height, color){
 		var new_rectangle = escs.add.entity(name, env)
@@ -159,7 +225,13 @@ module.exports = function(PIXI, canvases){
 		containers.get(container).add(new_rectangle);
 	}
 
-
+	/*
+	* @name borderRadius
+	* @type component
+	* @description border radius of the graphics object
+	* @env engine2d-graphics
+	* @param {radius}{Number}{border radius of the graphics object}{0}
+	*/
 	var borderRadius = escs.add.component('borderRadius', env, (radius)=>{
 		return {
 			radius: radius || 0
@@ -169,6 +241,19 @@ module.exports = function(PIXI, canvases){
 	borderRadius.setOnChange((entity)=>{
 		containers.get(entity.getComponent('container').container).draw();
 	});
+
+	/*
+	* @name Box
+	* @type entity
+	* @description A procedurally generated engine2d box
+	* @env engine2d-graphics
+	* @component container
+	* @component position
+	* @component scale
+	* @component color
+	* @component borderRadius
+	* @component alpha
+	*/
 	escs.add.tag('box', env);
 	var new_box = function(name, container, x, y, width, height, color, borderRadius){
 		var new_box = escs.add.entity(name, env)
@@ -183,7 +268,14 @@ module.exports = function(PIXI, canvases){
 		containers.get(container).add(new_box);
 	}
 
-
+	/*
+	* @name position2
+	* @type component
+	* @description position2 of the graphics object
+	* @env engine2d-graphics
+	* @param {x}{Number}{x2 coordinate of the graphics object}{0}
+	* @param {y}{Number}{y2 coordinate of the graphics object}{0}
+	*/
 	var pos2 = escs.add.component('position2', env, (x, y)=>{
 		return {
 			x: x || 0,
@@ -194,6 +286,13 @@ module.exports = function(PIXI, canvases){
 		containers.get(entity.getComponent('container').container).draw();
 	});
 
+	/*
+	* @name thickness
+	* @type component
+	* @description thickness of the graphics object
+	* @env engine2d-graphics
+	* @param {thickness}{Number}{thickness of the graphics object}{0}
+	*/
 	var thickness = escs.add.component('thickness', env, (thickness)=>{
 		return {
 			thickness: thickness || 1
@@ -203,6 +302,18 @@ module.exports = function(PIXI, canvases){
 		containers.get(entity.getComponent('container').container).draw();
 	});
 
+	/*
+	* @name Line
+	* @type entity
+	* @description A procedurally generated engine2d line
+	* @env engine2d-graphics
+	* @component container
+	* @component position
+	* @component position2
+	* @component color
+	* @component thickness
+	* @component alpha
+	*/
 	escs.add.tag('line', env);
 	var new_line = function(name, container, x1, y1, x2, y2, color){
 		var new_line = escs.add.entity(name, env)
@@ -243,7 +354,13 @@ module.exports = function(PIXI, canvases){
 		containers.get(container).add(new_torus);
 	}
 
-
+	/*
+	* @name points
+	* @type component
+	* @description points of the graphics object
+	* @env engine2d-graphics
+	* @param {points}{[Point]}{x coordinate of the graphics object}{0}
+	*/
 	var points = escs.add.component('points', env, (points)=>{
 		return {
 			points: points || [new PIXI.Point(0,0), new PIXI.Point(10, 0), new PIXI.Point(10, 10)]
@@ -252,6 +369,17 @@ module.exports = function(PIXI, canvases){
 	points.setOnChange((entity)=>{
 		containers.get(entity.getComponent('container').container).draw();
 	});
+
+	/*
+	* @name Polygon
+	* @type entity
+	* @description A procedurally generated engine2d line
+	* @env engine2d-graphics
+	* @component container
+	* @component color
+	* @component alpha
+	* @component points
+	*/
 	escs.add.tag('polygon', env);
 	var new_polygon = function(name, container, color, points){
 		var new_polygon = escs.add.entity(name, env)

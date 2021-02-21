@@ -23,7 +23,7 @@ var keydown_listener = function(event){
   		if(keydown_lookup_events != null){
 	  		keydown_lookup_events.forEach((event)=>{
 	  			if(check_down(event.keys)){
-	  				event.event();
+	  				event.event(event);
 	  			}
 	  		});
   		}
@@ -35,7 +35,7 @@ var keyup_listener = function(event){
 	if(keyup_lookup_events != null){
 		keyup_lookup_events.forEach((event)=>{
 			if(check_down(event.keys)){
-				event.event();
+				event.event(event);
 			}
 		});
 	}
@@ -377,7 +377,7 @@ var delete_ForwardUp_Event = function(name){
 
 // move
 var mouseMove_events = new Map();
-var add_mouseMove_Event = function(name, event){
+var add_mouseMove_event = function(name, event){
 	if(!mouseMove_events.has(name)){
 		mouseMove_events.set(name, event);
 	}else{
@@ -385,7 +385,7 @@ var add_mouseMove_Event = function(name, event){
 	"${name}" has now been overwritten`);
 	}
 }
-var delete_mouseMove_Event = function(name){
+var delete_mouseMove_event = function(name){
 	if(mouseMove_events.has(name)){
 		mouseMove_events.delete(name);
 	}else{
@@ -558,7 +558,7 @@ remove_listeners = function(){
 	window.removeEventListener("gamepaddisconnected", controller_disconnect);
 }
 
-
+var pointerLocked = false;
 exports = {
 	/*
 	* @name keyboard
@@ -946,7 +946,7 @@ exports = {
 			* @param {event}{Function}{event to run}
 			*/
 			mouseMove: (name, event)=>{
-				add_mouseMove_event(name, event);
+				delete_mouseMove_event(name, event);
 			}
 		},
 
@@ -958,6 +958,28 @@ exports = {
 		*/
 		clearDeltas: ()=>{
 			clear_deltas();
+		},
+
+		/*
+		* @name pointerLock
+		* @type method
+		* @description hide the cursor for infinite movement (like in an FPS game)
+		* @parent mouse
+		*/
+		pointerLock: ()=>{
+			pointerLocked = true;
+			document.getElementsByTagName('body')[0].requestPointerLock();
+		},
+
+		/*
+		* @name releasePointerLock
+		* @type method
+		* @description unhide the cursor that was hidden from pointerLock
+		* @parent mouse
+		*/
+		releasePointerLock: ()=>{
+			pointerLocked = false;
+			document.exitPointerLock();
 		}
 	},
 
@@ -1260,6 +1282,19 @@ Object.defineProperty(exports.mouse, "offsetY", {
 	},
 	set: (val)=>{
 		mouse_position_offset_y = val;
+	}
+});
+
+/*
+* @name pointerLocked
+* @type property
+* @description if the pointer is currently locked
+* @parent mouse
+* @proto String
+*/
+Object.defineProperty(exports.mouse, "pointerLocked", {
+	get: ()=>{
+		return pointerLocked;
 	}
 });
 

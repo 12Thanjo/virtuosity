@@ -5,12 +5,14 @@ var time = require('./time.js');
 var string = require('./string.js');
 var cmd = require('./cmd.js');
 var escs = require('escs');
+var structures = require('./structures.js');
 
 
 
 module.exports = {
 	escs: escs,
 	collisionManager: collisionManager,
+	structures: structures,
 	multiThreading: multiThreading,
 	files: files,
 	time: time,
