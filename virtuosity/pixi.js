@@ -551,7 +551,7 @@ textbox_width.setOnChange((entity, key, val)=>{
 * @type component
 * @description value of the textbox
 * @env engine2d-textbox
-* @param {value}{Int}{value of the textbox}
+* @param {value}{String}{value of the textbox}
 */
 var textbox_value = escs.add.component('value', 'engine2d-textbox', (value)=>{
     return {
@@ -672,14 +672,14 @@ var add_textbox = function(canvas, name, x, y, onComplete){
         new_textbox.getComponent('events').onfocus();
     }
     input.onblur = ()=>{
-        new_textbox.getComponent('value').value = input.value;
-        console.log("value:", new_textbox.getComponent('value').value);
         new_textbox.getComponent('events').onblur();
     }
 
     textboxes.set(name, new_textbox);
 
-    onComplete(new_textbox);
+    if(onComplete != null){
+        onComplete(new_textbox);
+    }
 }
 
 var get_textbox = function(name){

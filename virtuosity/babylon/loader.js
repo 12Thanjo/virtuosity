@@ -30,9 +30,12 @@ var setup_assetsManager = function(new_ctx, config, onComplete){
 
 	new_ctx.mesh_cache = new Map();
 
-	if(config.preload != null){
+	if(config.preload != null && new_ctx.load_queue.size != 0){
 	    config.preload();
 		new_ctx.assetsManager.loadAsync();
+	}else{
+		new_ctx.assetsManager.first_load_batch = true;
+		onComplete();
 	}
 
 	new_ctx.assetsManager.onFinish = function(tasks){

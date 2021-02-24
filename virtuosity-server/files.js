@@ -245,7 +245,7 @@ module.exports = {
     * @type method
     * @description readFile 
     * @param {path}{String}{path}
-    * @param {asyncronous}{Boolean}{(OPTIONAL) read file asyncronously}
+    * @param {asyncronous}{Boolean}{(OPTIONAL) read file asyncronously}{false}
     */
     readFile: function(path, asyncronous){
         return read_file(path, asyncronous);
@@ -257,7 +257,7 @@ module.exports = {
     * @description writeFile 
     * @param {path}{String}{path}
     * @param {output}{String}{output}
-    * @param {asyncronous}{Boolean}{(OPTIONAL) write file asyncronously}
+    * @param {asyncronous}{Boolean}{(OPTIONAL) write file asyncronously}{false}
     */
     writeFile: function(path, output, asyncronous){
         write_file(path, output, asyncronous);
