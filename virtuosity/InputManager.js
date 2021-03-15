@@ -47,10 +47,11 @@ var keydown_events = new Map();
 var keydown_lookup = [255];
 var Keydown_Event = function(name, keys, event){
 	this.name = name;
-
+	
 	if(typeof keys == "string"){
 		keys = [keys];
 	}
+	keys = [...keys];
 
 	this.keys = keys;
 	this.event = event;

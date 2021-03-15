@@ -89,6 +89,7 @@ module.exports = function(PIXI, canvases){
 		this.graphics = new PIXI.Graphics();
 		this.clear = true;
 		canvas.stage.addChild(this.graphics);
+		canvas.containers.add(name);
 
 		this.draw = function(){
 			if(this.clear) this.graphics.clear();
@@ -171,7 +172,7 @@ module.exports = function(PIXI, canvases){
 	*/
 	escs.add.tag('circle', env);
 	var new_circle = function(name, container, x, y, radius, color){
-		var new_circle = escs.add.entity(name, env)
+		var new_circle = escs.add.entity(`${name}╎${container}`, env)
 			.addComponent('container', container)
 			.addComponent('position', x, y)
 			.addComponent('radius', radius)
@@ -214,7 +215,7 @@ module.exports = function(PIXI, canvases){
 	*/
 	escs.add.tag('rectangle', env);
 	var new_rectangle = function(name, container, x, y, width, height, color){
-		var new_rectangle = escs.add.entity(name, env)
+		var new_rectangle = escs.add.entity(`${name}╎${container}`, env)
 			.addComponent('container', container)
 			.addComponent('position', x, y)
 			.addComponent('scale', width, height)
@@ -256,7 +257,7 @@ module.exports = function(PIXI, canvases){
 	*/
 	escs.add.tag('box', env);
 	var new_box = function(name, container, x, y, width, height, color, borderRadius){
-		var new_box = escs.add.entity(name, env)
+		var new_box = escs.add.entity(`${name}╎${container}`, env)
 			.addComponent('container', container)
 			.addComponent('position', x, y)
 			.addComponent('scale', width, height)
@@ -316,7 +317,7 @@ module.exports = function(PIXI, canvases){
 	*/
 	escs.add.tag('line', env);
 	var new_line = function(name, container, x1, y1, x2, y2, color){
-		var new_line = escs.add.entity(name, env)
+		var new_line = escs.add.entity(`${name}╎${container}`, env)
 			.addComponent('container', container)
 			.addComponent('position', x1, y1)
 			.addComponent('position2', x2, y2)
@@ -330,7 +331,7 @@ module.exports = function(PIXI, canvases){
 
 	escs.add.tag('ellipse', env);
 	var new_ellipse = function(name, container, x, y, width, height, color){
-		var new_ellipse = escs.add.entity(name, env)
+		var new_ellipse = escs.add.entity(`${name}╎${container}`, env)
 			.addComponent('container', container)
 			.addComponent('position', x, y)
 			.addComponent('scale', width, height)
@@ -343,7 +344,7 @@ module.exports = function(PIXI, canvases){
 
 	escs.add.tag('torus', env);
 	var new_torus = function(name, container, x, y, innerRadius, outerRadius, color){
-		var new_torus = escs.add.entity(name, env)
+		var new_torus = escs.add.entity(`${name}╎${container}`, env)
 			.addComponent('container', container)
 			.addComponent('position', x, y)
 			.addComponent('radius', outerRadius, innerRadius)
@@ -382,7 +383,7 @@ module.exports = function(PIXI, canvases){
 	*/
 	escs.add.tag('polygon', env);
 	var new_polygon = function(name, container, color, points){
-		var new_polygon = escs.add.entity(name, env)
+		var new_polygon = escs.add.entity(`${name}╎${container}`, env)
 			.addComponent('container', container)
 			.addComponent('color', color)
 			.addComponent('alpha')
@@ -547,8 +548,25 @@ module.exports = function(PIXI, canvases){
 		*/
 		get: (name, container)=>{
 			return container_check(container, (cntnr)=>{
-				return cntnr.shapes.get(name);
+				return cntnr.shapes.get(`${name}╎${container}`);
 			});
+		},
+
+		delete: {
+			container: (container)=>{
+				return container_check(container, (cntnr)=>{
+					cntnr.shapes.forEach((shape)=>{
+						escs.delete.entity(shape.name, env);
+					});
+					cntnr.graphics.clear();
+					cntnr.graphics.destroy();
+				});	
+			},
+			shape: (name, container)=>{
+				return container_check(container, (cntnr)=>{
+					cntnr.shapes.get(`${name}╎${container}`).getComponent('pixi').pixi.destroy();
+				});	
+			}
 		},
 
 		/*

@@ -25,9 +25,17 @@ var new_canvas = function(name, config){
         scale = window.outerHeight / config.defaultResolution;
     }
 
+    if(config.width == null){
+        config.width = window.outerWidth;
+    }
+
+    if(config.height == null){
+        config.height = window.outerHeight;
+    }
+
     var new_ctx = new PIXI.Application({
-        width: window.outerWidth / scale,
-        height: window.outerHeight / scale, 
+        width: config.width / scale,
+        height: config.height / scale, 
         backgroundAlpha: 0,
         powerPreference: config.powerPreference,
         antialias: config.antialias,
@@ -35,8 +43,8 @@ var new_canvas = function(name, config){
         resolution: config.resolution
     });
     document.body.appendChild(new_ctx.view);
-    new_ctx.view.style.width = window.outerWidth + "px";
-    new_ctx.view.style.height = window.outerHeight + 'px';
+    new_ctx.view.style.width = config.width + "px";
+    new_ctx.view.style.height = config.height + 'px';
     if(config.y != null){
         new_ctx.view.style.top = config.y+"px";
     }else{
@@ -57,6 +65,14 @@ var new_canvas = function(name, config){
         config.preload();
         start_load(name);
     }
+
+    ///////////////////////////////////////////
+    new_ctx.images = new Map();
+    new_ctx.texts = new Map();
+    new_ctx.textboxes = new Map();
+    new_ctx.containers = new Set();
+    //////////////////////////////////////////
+
     if(config.create != null){
         config.create();
     }
@@ -309,13 +325,12 @@ scale.setOnChange((entity, key, val)=>{
 * @component alpha
 * @component scale
 */
-var images = new Map();
 var add_image = function(canvas, name, x, y, key, onComplete){
     if(textures.has(key)){
         var ctx = canvases.get(canvas);
         var new_img = new PIXI.Sprite(ctx.loader.resources[key].texture);
 
-        var new_entity = escs.add.entity(name, 'engine2d')
+        var new_entity = escs.add.entity(`${name}╎${canvas}╎image`, 'engine2d')
             .addComponent('pixi', new_img)
             .addComponent('position', x, y)
             .addComponent('rotation')
@@ -331,7 +346,7 @@ var add_image = function(canvas, name, x, y, key, onComplete){
         if(onComplete!=null){
             onComplete(new_entity);
         }
-        images.set(name, new_entity)
+        ctx.images.set(name, new_entity)
     }else if(loading_textures.has(key)){
         console.log(`waiting for texture (${key}) to load`);
         loading_textures.get(key).push(()=>{add_image(canvas, name, x, y, key, onComplete);});
@@ -341,20 +356,23 @@ var add_image = function(canvas, name, x, y, key, onComplete){
 }
 
 
-var get_image = function(name){
-    if(images.has(name)){
-        return images.get(name);
+var get_image = function(canvas, name){
+    var ctx = canvases.get(canvas);
+    if(ctx.images.has(name)){
+        return ctx.images.get(name);
     }else{
-        debug.warn('ReferenceError', `image (${name}) does not exist`);
+        debug.warn('ReferenceError', `image (${name}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
 
 
-var delete_image = function(name){
-    if(images.has(name)){
-        images.get(name).getComponent('pixi').pixi.destroy();
-        images.delete(name);
+var delete_image = function(canvas, name){
+    var ctx = canvases.get(canvas);
+    if(ctx.images.has(name)){
+        escs.delete.entity(`${name}╎${canvas}╎image`, 'engine2d');
+        ctx.images.get(name).getComponent('pixi').pixi.destroy();
+        ctx.images.delete(name);
     }else{
         debug.warn('ReferenceError', `image (${name}) does not exist`);
     }
@@ -418,13 +436,13 @@ style.setOnChange((entity, key, val)=>{
 * @env engine2d
 * @component pixi
 * @component position
+* @component scale
 * @component rotation
 * @component anchor
 * @component alpha
 * @component style
 * @component text
 */
-var texts = new Map();
 var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
     var ctx = canvases.get(canvas);
     var new_txt = new PIXI.Text(text, {
@@ -436,9 +454,10 @@ var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
     new_txt.x = x;
     new_txt.y = y;
 
-    var new_entity = escs.add.entity(name, 'engine2d')
+    var new_entity = escs.add.entity(`${name}╎${canvas}╎text`, 'engine2d')
         .addComponent('pixi', new_txt)
         .addComponent('position', x, y)
+        .addComponent('scale', new_txt.width, new_txt.height)
         .addComponent('rotation')
         .addComponent('anchor')
         .addComponent('alpha')
@@ -450,24 +469,27 @@ var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
     if(onComplete!=null){
         onComplete(new_entity);
     }
-    texts.set(name, new_entity);
+    ctx.texts.set(name, new_entity);
 }
 
-var get_text = function(name){
-    if(texts.has(name)){
-        return texts.get(name);
+var get_text = function(canvas, name){
+    var ctx = canvases.get(canvas);
+    if(ctx.texts.has(name)){
+        return ctx.texts.get(name);
     }else{
-        debug.warn('ReferenceError', `text (${name}) does not exist`);
+        debug.warn('ReferenceError', `text (${name}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
 
-var delete_text = function(name){
-    if(texts.has(name)){
-        texts.get(name).getComponent('pixi').pixi.destroy();
-        texts.delete(name);
+var delete_text = function(canvas, name){
+    var ctx = canvases.get(canvas);
+    if(ctx.texts.has(name)){
+        escs.delete.entity(`${name}╎${canvas}╎text`, 'engine2d');
+        ctx.texts.get(name).getComponent('pixi').pixi.destroy();
+        ctx.texts.delete(name);
     }else{
-        debug.warn('ReferenceError', `text (${name}) does not exist`);
+        debug.warn('ReferenceError', `text (${name}) in canvas (${canvas}) does not exist`);
     }
 }
 
@@ -607,7 +629,6 @@ var textbox_events = escs.add.component('events', 'engine2d-textbox', ()=>{
 * @component style
 * @component events
 */
-var textboxes = new Map();
 var add_textbox = function(canvas, name, x, y, onComplete){
     var input = document.createElement("input");
     var style = input.style;
@@ -628,7 +649,7 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     Object.defineProperty(input, "x", {
         get: ()=>{
             var left = input.style.left;
-            return JSON.parse(left.substr(0, left.lengt-3));
+            return JSON.parse(left.substring(0, left.lengt-3));
         },
         set: (val)=>{
             input.style.left = val + "px";
@@ -638,7 +659,7 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     Object.defineProperty(input, "y", {
         get: ()=>{
             var top = input.style.top;
-            return JSON.parse(top.substr(0, top.lengt-3));
+            return JSON.parse(top.substring(0, top.lengt-3));
         },
         set: (val)=>{
             input.style.top = val + "px";
@@ -646,7 +667,7 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     });
 
 
-    var new_textbox = escs.add.entity(name, 'engine2d-textbox')
+    var new_textbox = escs.add.entity(`${name}╎${canvas}╎textbox`, 'engine2d-textbox')
         .addComponent('textbox', input)
         .addComponent('style', input.style)
         .addComponent('position', x, y)
@@ -675,28 +696,32 @@ var add_textbox = function(canvas, name, x, y, onComplete){
         new_textbox.getComponent('events').onblur();
     }
 
-    textboxes.set(name, new_textbox);
+
+    canvases.get(canvas).textboxes.set(name, new_textbox);
 
     if(onComplete != null){
         onComplete(new_textbox);
     }
 }
 
-var get_textbox = function(name){
-    if(textboxes.has(name)){
-        return textboxes.get(name);
+var get_textbox = function(canvas, name){
+    var ctx = canvases.get(canvas);
+    if(ctx.textboxes.has(name)){
+        return ctx.textboxes.get(name);
     }else{
-        debug.warn('ReferenceError', `textbox (${name}) does not exist`);
+        debug.warn('ReferenceError', `textbox (${name}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
 
-var delete_textbox = function(name){
-    if(textboxes.has(name)){
-        textboxes.get(name).getComponent('pixi').pixi.destroy();
-        textboxes.delete(name);
+var delete_textbox = function(canvas, name){
+    var ctx = canvases.get(canvas);
+    if(ctx.textboxes.has(name)){
+        escs.delete.entity(`${name}╎${canvas}╎textbox`, 'engine2d textbox');
+        ctx.textboxes.get(name).getComponent('pixi').pixi.destroy();
+        ctx.textboxes.delete(name);
     }else{
-        debug.warn('ReferenceError', `textbox (${name}) does not exist`);
+        debug.warn('ReferenceError', `textbox (${name}) in canvas (${canvas}) does not exist`);
     }
 }
 
@@ -720,6 +745,8 @@ module.exports = {
     * @param {defaultResolution}{Int}{sets the resolution for auto scaling. Common practise is to use the screen resolution used in development}{actual client screen resolution}
     * @param {x}{Int}{x position of the canvas}{0}
     * @param {y}{Int}{y position of the canvas}{0}
+    * @param {width}{Int}{width of the canvas}{window actual width}
+    * @param {height}{Int}{height of the canvas}{window actual height}
     * @param {powerPreference}{String}{chooses which GPU to run on if client has multiple. 'low-power' for dedicated GPU or 'high-performance' for Discrete GPU}{'low-power'}
     * @param {antialias}{Boolean}{whether to use antialiasing}{true}
     * @param {poll}{Int}{Polling rate of the update function. The update function will run this many times per second}{64}
@@ -831,10 +858,11 @@ module.exports = {
         * @type method
         * @description gets an image
         * @parent get
+        * @param {canvas}{String}{name of the canvas}
         * @param {name}{String}{name of the image}
         */
-        image: function(name){
-            return get_image(name);
+        image: function(canvas, name){
+            return get_image(canvas, name);
         },
 
         /*
@@ -842,10 +870,11 @@ module.exports = {
         * @type method
         * @description gets text
         * @parent get
+        * @param {canvas}{String}{name of the canvas}
         * @param {name}{String}{name of the text}
         */
-        text: function(name){
-            return get_text(name);
+        text: function(canvas, name){
+            return get_text(canvas, name);
         },
 
         /*
@@ -853,10 +882,11 @@ module.exports = {
         * @type method
         * @description gets a textbox
         * @parent get
+        * @param {canvas}{String}{name of the canvas}
         * @param {name}{String}{name of the textbox}
         */
-        textbox: function(name){
-            return get_textbox(name);
+        textbox: function(canvas, name){
+            return get_textbox(canvas, name);
         },
 
         /*
@@ -882,9 +912,10 @@ module.exports = {
         * @type method
         * @description deletes an image
         * @parent delete
+        * @param {canvas}{String}{name of the canvas}
         * @param {name}{String}{name of the image}
         */
-        image: function(name){
+        image: function(canvas, name){
             return delete_image(name);
         },
 
@@ -893,10 +924,11 @@ module.exports = {
         * @type method
         * @description deletes text
         * @parent delete
+        * @param {canvas}{String}{name of the canvas}
         * @param {name}{String}{name of the text}
         */
-        text: function(name){
-            return delete_text(name);
+        text: function(canvas, name){
+            return delete_text(canvas, name);
         },
 
         /*
@@ -904,10 +936,11 @@ module.exports = {
         * @type method
         * @description deletes a textbox
         * @parent delete
+        * @param {canvas}{String}{name of the canvas}
         * @param {name}{String}{name of the textbox}
         */
-        textbox: function(name){
-            return delete_textbox(name);
+        textbox: function(canvas, name){
+            return delete_textbox(canvas, name);
         }
     },
 
@@ -1064,19 +1097,133 @@ module.exports = {
     },
 
     /*
-    * @name zIndex
-    * @type method
-    * @description get / set the zIndex of a canvas
-    * @param {canvas}{String}{name of the canvas}
-    * @param {zIndex}{Int}{<b>(Optional)</b> the value to set the z index}
+    * @name canvas
+    * @type obj
+    * @description properties of a canvas
     */
-    zIndex: function(canvas, zIndex){
-        var ctx = canvases.get(canvas);
-        if(zIndex != null){
-            ctx.zIndex = zIndex;
+    canvas: {
+        /*
+        * @name xPos
+        * @type method
+        * @description set the x position of a canvas
+        * @parent canvas
+        * @param {canvas}{String}{name of the canvas}
+        * @param {x}{Int}{x position of the canvas}
+        */
+        xPos: function(canvas, x){
+            var ctx = canvases.get(canvas);
+            if(x != null){
+                ctx.view.style.left = x + "px";
+                return x;
+            }else{
+                var str = ctx.view.style.left;
+                return JSON.parse(str.substring(0, str.length-2))
+            }
+        },
+
+        /*
+        * @name yPos
+        * @type method
+        * @description set the y position of a canvas
+        * @parent canvas
+        * @param {canvas}{String}{name of the canvas}
+        * @param {y}{Int}{y position of the canvas}
+        */
+        yPos: function(canvas, y){
+            var ctx = canvases.get(canvas);
+            if(y != null){
+                ctx.view.style.top = y + "px";
+                return y;
+            }else{
+                var str = ctx.view.style.top;
+                return JSON.parse(str.substring(0, str.length-2))
+            }
+        },
+
+        /*
+        * @name width
+        * @type method
+        * @description set the width of a canvas
+        * @parent canvas
+        * @param {canvas}{String}{name of the canvas}
+        * @param {width}{Int}{width of the canvas}
+        */
+        width: function(canvas, width){
+            var ctx = canvases.get(canvas);
+            if(width != null){
+                ctx.view.style.width = width + "px";
+                var height_str = ctx.view.style.height;
+                ctx.renderer.resize(width, JSON.parse(height_str.substring(0, height_str.length-2)));
+                return width;
+            }else{
+                var str = ctx.view.style.width;
+                return JSON.parse(str.substring(0, str.length-2))
+            }
+        },
+
+        /*
+        * @name height
+        * @type method
+        * @description set the height of a canvas
+        * @parent canvas
+        * @param {canvas}{String}{name of the canvas}
+        * @param {height}{Int}{height of the canvas}
+        */
+        height: function(canvas, height){
+            var ctx = canvases.get(canvas);
+            if(height != null){
+                ctx.view.style.height = height + "px";
+                var width_str = ctx.view.style.width;
+                ctx.renderer.resize(JSON.parse(width_str.substring(0, width_str.length-2)), height);
+                return height;
+            }else{
+                var str = ctx.view.style.height;
+                return JSON.parse(str.substring(0, str.length-2))
+            }
+        },
+
+
+        /*
+        * @name zIndex
+        * @type method
+        * @description get / set the zIndex of a canvas
+        * @parent canvas
+        * @param {canvas}{String}{name of the canvas}
+        * @param {zIndex}{Int}{<b>(Optional)</b> the value to set the z index}
+        */
+        zIndex: function(canvas, zIndex){
+            var ctx = canvases.get(canvas);
+            if(zIndex != null){
+                ctx.zIndex = zIndex;
+            }
+            return ctx.zIndex;
+        },
+
+        get: function(canvas){
+            return canvases.get(canvas);
+        },
+
+        destroy: function(canvas){
+            var ctx = canvases.get(canvas);
+            clearInterval(ctx.update);
+            ctx.images.forEach((image)=>{
+                delete_image(canvas, image.name.substring(0, image.name.indexOf("╎")));
+            });
+            ctx.texts.forEach((text)=>{
+                delete_text(canvas, text.name.substring(0, text.name.indexOf("╎")));
+            });
+            ctx.textboxes.forEach((textbox)=>{
+                delete_textbox(canvas, textbox.name.substring(0, textbox.name.indexOf("╎")));
+            })
+            ctx.containers.forEach((container)=>{
+                graphics.delete.container(container);
+            });
+
+            canvases.delete(canvas);
+            ctx.destroy(true, {stageOptions: true});
         }
-        return ctx.zIndex;
     },
+
     /*
     * @name expose
     * @type method

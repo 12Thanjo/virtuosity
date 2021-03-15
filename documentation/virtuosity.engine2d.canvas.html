@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="icon" href="favicon.ico">
-		<title>virtuosity Documentation | virtuosity.engine2d.delete</title>
+		<title>virtuosity Documentation | virtuosity.engine2d.canvas</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<header>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.delete";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.canvas";</script
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -211,7 +211,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>delete</h1><p>delete engine2d assets</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">delete</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#text">text</a></li><li><a href="#textbox">textbox</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">deletes an image</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">delete</span>.<span class="blue">image</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>canvas</h1><p>properties of a canvas</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">canvas</span></div><h4>Methods</h4><ul><li><a href="#xPos">xPos</a></li><li><a href="#yPos">yPos</a></li><li><a href="#width">width</a></li><li><a href="#height">height</a></li><li><a href="#zIndex">zIndex</a></li></ul><hr><h2>Methods</h2><h3 id="xPos" style="margin-top: 0px;">xPos</a></h3><p style="margin-top: 0px;">set the x position of a canvas</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">canvas</span>.<span class="blue">xPos</span>(<span class="orange">canvas</span>, <span class="orange">x</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -221,10 +221,10 @@
 												<td><var><span class="yellow">String</span></var></td>
 												<td>name of the canvas</td>
 											</tr><tr>
-												<td><var>name</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the image</td>
-											</tr></table><h3 id="text">text</a></h3><p style="margin-top: 0px;">deletes text</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">delete</span>.<span class="blue">text</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>x position of the canvas</td>
+											</tr></table><h3 id="yPos">yPos</a></h3><p style="margin-top: 0px;">set the y position of a canvas</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">canvas</span>.<span class="blue">yPos</span>(<span class="orange">canvas</span>, <span class="orange">y</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -234,10 +234,10 @@
 												<td><var><span class="yellow">String</span></var></td>
 												<td>name of the canvas</td>
 											</tr><tr>
-												<td><var>name</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the text</td>
-											</tr></table><h3 id="textbox">textbox</a></h3><p style="margin-top: 0px;">deletes a textbox</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">delete</span>.<span class="blue">textbox</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>y position of the canvas</td>
+											</tr></table><h3 id="width">width</a></h3><p style="margin-top: 0px;">set the width of a canvas</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">canvas</span>.<span class="blue">width</span>(<span class="orange">canvas</span>, <span class="orange">width</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -247,9 +247,35 @@
 												<td><var><span class="yellow">String</span></var></td>
 												<td>name of the canvas</td>
 											</tr><tr>
-												<td><var>name</var></td>
+												<td><var>width</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>width of the canvas</td>
+											</tr></table><h3 id="height">height</a></h3><p style="margin-top: 0px;">set the height of a canvas</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">canvas</span>.<span class="blue">height</span>(<span class="orange">canvas</span>, <span class="orange">height</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the textbox</td>
+												<td>name of the canvas</td>
+											</tr><tr>
+												<td><var>height</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>height of the canvas</td>
+											</tr></table><h3 id="zIndex">zIndex</a></h3><p style="margin-top: 0px;">get / set the zIndex of a canvas</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">canvas</span>.<span class="blue">zIndex</span>(<span class="orange">canvas</span>, <span class="orange">zIndex</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the canvas</td>
+											</tr><tr>
+												<td><var>zIndex</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td><b>(Optional)</b> the value to set the z index</td>
 											</tr></table><br><br>
 		</div>
 	</body>

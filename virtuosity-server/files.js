@@ -37,7 +37,7 @@ var create_directory = function(path){
     try{
         fs.mkdirSync(path);
     }catch(e){
-        if(e.message.substr(0, 34) == "EEXIST: file already exists, mkdir"){
+        if(e.message.substring(0, 34) == "EEXIST: file already exists, mkdir"){
             console.info("Directory already exists (" + path + ")");
         }else{
             throw Error(e);
@@ -342,6 +342,7 @@ module.exports = {
     * @type method
     * @description getFiles
     * @param {path}{String}{path}
+    * @param {path}{Int}{depth}
     */
     getFiles: function(path, depth){
         return get_files(path, depth);
