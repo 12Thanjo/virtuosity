@@ -630,11 +630,15 @@ var textbox_events = escs.add.component('events', 'engine2d-textbox', ()=>{
 * @component events
 */
 var add_textbox = function(canvas, name, x, y, onComplete){
+    new_ctx = canvases.get(canvas);
+    var new_ctx_x = engine2d.canvas.xPos(canvas);
+    var new_ctx_y = engine2d.canvas.yPos(canvas);
+
     var input = document.createElement("input");
     var style = input.style;
     style.position = 'absolute';
-    style.top = y + "px";
-    style.left = x + "px";
+    style.top = (y + new_ctx_y) + "px";
+    style.left = (x + new_ctx_x) + "px";
     style.border = "3px solid #666666";
     style.backgroundColor = "#333333";
     style.color = "#ffffff";
@@ -646,23 +650,26 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     style.fontFamily = "Trebuchet";
     document.getElementsByTagName('html')[0].appendChild(input);
 
+
+    console.log(x + new_ctx_x, y + new_ctx_y);
+
     Object.defineProperty(input, "x", {
         get: ()=>{
             var left = input.style.left;
-            return JSON.parse(left.substring(0, left.lengt-3));
+            return JSON.parse(left.substring(0, left.lengt-3) - new_ctx_x);
         },
         set: (val)=>{
-            input.style.left = val + "px";
+            input.style.left = (val + new_ctx_x) + "px";
         }
     });
 
     Object.defineProperty(input, "y", {
         get: ()=>{
             var top = input.style.top;
-            return JSON.parse(top.substring(0, top.lengt-3));
+            return JSON.parse(top.substring(0, top.lengt-3) - new_ctx_y);
         },
         set: (val)=>{
-            input.style.top = val + "px";
+            input.style.top = (val + new_ctx_y) + "px";
         }
     });
 
@@ -670,7 +677,7 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     var new_textbox = escs.add.entity(`${name}╎${canvas}╎textbox`, 'engine2d-textbox')
         .addComponent('textbox', input)
         .addComponent('style', input.style)
-        .addComponent('position', x, y)
+        .addComponent('position', x + new_ctx_x, y + new_ctx_y)
         .addComponent('fontSize', 19)
         .addComponent('width', 100)
         .addComponent('value', input.value)
@@ -697,7 +704,7 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     }
 
 
-    canvases.get(canvas).textboxes.set(name, new_textbox);
+    new_ctx.textboxes.set(name, new_textbox);
 
     if(onComplete != null){
         onComplete(new_textbox);
@@ -1105,7 +1112,7 @@ module.exports = {
         /*
         * @name xPos
         * @type method
-        * @description set the x position of a canvas
+        * @description get / set the x position of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
         * @param {x}{Int}{x position of the canvas}
@@ -1124,7 +1131,7 @@ module.exports = {
         /*
         * @name yPos
         * @type method
-        * @description set the y position of a canvas
+        * @description get / set the y position of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
         * @param {y}{Int}{y position of the canvas}
@@ -1143,7 +1150,7 @@ module.exports = {
         /*
         * @name width
         * @type method
-        * @description set the width of a canvas
+        * @description get / set the width of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
         * @param {width}{Int}{width of the canvas}
@@ -1164,7 +1171,7 @@ module.exports = {
         /*
         * @name height
         * @type method
-        * @description set the height of a canvas
+        * @description get / set the height of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
         * @param {height}{Int}{height of the canvas}

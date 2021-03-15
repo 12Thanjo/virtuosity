@@ -1,5 +1,5 @@
 # Virtuosity (WORK IN PROGRESS)
-If you find any bugs, please open an issue on the [github page](https://github.com/12Thanjo/virtuosity/issues)
+If you find any bugs, please open an issue on the [github page](https://github.com/12Thanjo/virtuosity/issues).
 
 
 Virtuosity is a free, open source game engine that is puts all of the systems that I have built / found together in one easy place. It is designed to make game development faster and easer by automatically doing all of the annoying stuff. Virtuosity is designed for the intended use in [Electron](https://www.electronjs.org/), although other environments could work (see [requirements](#requirements)). 
