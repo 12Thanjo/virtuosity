@@ -1,8 +1,9 @@
 var PIXI = require('pixi.js');
-var escs = require("../virtuosity-server/node_modules/escs/index.js");
+var ocs = require("ocs");
 var debug = require('./debug.js');
+var {time} = require('../virtuosity-server/index.js');
 
-
+var load_canvas = null;
 var canvases = new Map();
 var new_canvas = function(name, config){
     if(config.resolution == null){
@@ -45,6 +46,7 @@ var new_canvas = function(name, config){
     document.body.appendChild(new_ctx.view);
     new_ctx.view.style.width = config.width + "px";
     new_ctx.view.style.height = config.height + 'px';
+    new_ctx.view.style.position = "absolute";
     if(config.y != null){
         new_ctx.view.style.top = config.y+"px";
     }else{
@@ -58,6 +60,7 @@ var new_canvas = function(name, config){
     }
 
     canvases.set(name, new_ctx);
+    load_canvas = new_ctx;
 
     new_ctx.started = false;
 
@@ -179,35 +182,86 @@ var new_canvas = function(name, config){
 var load_queue = 0;
 var textures = new Map();
 var loading_textures = new Map();
-var load_image = function(canvas, key, path){
-    load_queue += 1;
-    var ctx = canvases.get(canvas);
-    loading_textures.set(key, []);
-    ctx.loader.add(key, path);
+var load_image = function(key, path){
+    if(!textures.has(key)){
+        load_queue += 1;
+        loading_textures.set(key, []);
+        load_canvas.loader.add(key, path);
+    }else{
+        debug.warn("SyntaxError", `engine2d already loaded: ${key}`);
+    }
+}
+
+var spritesheet_textures = new Map();
+var load_spritesheet = function(key, path, frameWidth, frameHeight){
+    if(!textures.has(key)){
+        // load image
+        loading_textures.set(key, []);
+
+        // deal with it being a spritesheet
+        loading_textures.get(key).push((resources)=>{
+            var texture = resources[key].texture;
+            var frames = [];
+            var frames_wide = Math.floor(texture.width / frameWidth);
+            var frames_tall = Math.floor(texture.height / frameHeight);
+            for(var i=0; i<frames_tall; i += 1){
+                for(var j=0; j<frames_wide;j += 1){
+                    frames.push(
+                        new PIXI.Texture(texture, new PIXI.Rectangle(j * frameWidth, i * frameHeight, frameWidth, frameHeight))
+                    )
+                }
+            }
+
+
+            spritesheet_textures.set(key, frames);
+            textures.set(key, texture);
+        });
+
+        // add to loadqueue
+        load_canvas.loader.add(key, path);
+    }else{
+        debug.warn("SyntaxError", `engine2d already loaded: ${key}`);
+    }
 }
 
 var start_load = function(canvas){
-    canvases.get(canvas).loader.load((loader, resources)=>{
+    load_canvas.loader.load((loader, resources)=>{
         for(var prop in resources){
-            textures.set(prop, resources[prop].texture);
-            loading_textures.get(prop).forEach((action)=>{
-                action();
-            });
-            loading_textures.delete(prop);
-            load_queue -= 1;
-            console.log(`engine2d succesfully loaded: ${prop}`);
+            var key = prop;//just for my better understanding
+            if(resources[key].error == null){
+                textures.set(key, resources[key].texture);
+                loading_textures.get(key).forEach((action)=>{
+                    action(resources);
+                });
+                loading_textures.delete(key);
+                load_queue -= 1;
+                console.log(`engine2d succesfully loaded: ${key}`);
+                delete loader.resources[key];
+            }else{
+                console.error(`error while loading: ${key}\n\n`, resources[key].error);
+            }
         }
     });
 }
 
+var unload_image = function(key){
+    if(textures.has(key)){
+        textures.get(key).baseTexture.destroy();
+        textures.delete(key);
+        console.log(`engine2d succesfully unloaded: ${key}`);
+    }else{
+        debug.error("SyntaxError", `engine2d has not loaded: ${key}`);
+    }
+}
 
 
-// escs ///////////////////////////////////////////////////
+
+// ocs ///////////////////////////////////////////////////
 /*
 * @name engine2d
 * @type environment
 */
-var env = escs.add.environment('engine2d');
+var env = new ocs.Environment('engine2d');
 
 /*
 * @name pixi
@@ -216,7 +270,7 @@ var env = escs.add.environment('engine2d');
 * @env engine2d
 * @param {pixi}{Pixi.js object}{reference to the pixi render object (internal)}
 */
-escs.add.component('pixi', 'engine2d', (pixi)=>{
+new ocs.Component('engine2d', 'pixi', (pixi)=>{
     return{
         pixi: pixi
     }
@@ -231,14 +285,13 @@ escs.add.component('pixi', 'engine2d', (pixi)=>{
 * @param {x}{Number}{x coordinate of the render object}
 * @param {y}{Number}{y coordinate of the render object}
 */
-var position = escs.add.component("position", 'engine2d', (x, y)=>{
-    return{
+var position = new ocs.Component('engine2d', "position", (x, y)=>{
+    return new ocs.EEO({
         x: x || 0,
         y: y || 0
-    }
-});
-position.setOnChange((entity, key, val)=>{
-    entity.getComponent('pixi').pixi[key] = val;
+    }, (entity, key, val)=>{
+        entity.pixi[key] = val;
+    });
 });
 
 
@@ -249,13 +302,12 @@ position.setOnChange((entity, key, val)=>{
 * @env engine2d
 * @param {rotation}{Number}{rotation of the render object}
 */
-var rotation = escs.add.component("rotation", 'engine2d', (r)=>{
-    return{
+var rotation = new ocs.Component('engine2d', "rotation", (r)=>{
+    return new ocs.EEO({
         rotation: r || 0
-    }
-});
-rotation.setOnChange((entity, key, val)=>{
-    entity.getComponent('pixi').pixi.rotation = val;
+    }, (entity, key, val)=>{
+        entity.pixi.rotation = val;
+    });
 });
 
 /*
@@ -266,14 +318,15 @@ rotation.setOnChange((entity, key, val)=>{
 * @param {x}{Number}{x coordinate of the anchor point}
 * @param {y}{Number}{y coordinate of the anchor point}
 */
-var anchor = escs.add.component("anchor", 'engine2d', (x, y)=>{
-    return{
-        x: x || 0,
-        y: y || 0
+var anchor = new ocs.Component('engine2d', "anchor", (x, y)=>{
+    return {
+        anchor: new ocs.EEO({
+                x: x || 0,
+                y: y || 0
+            }, (entity, key, val)=>{
+                entity.pixi.anchor[key] = val;
+            })
     }
-});
-anchor.setOnChange((entity, key, val)=>{
-    entity.getComponent('pixi').pixi.anchor[key] = val;
 });
 
 
@@ -284,13 +337,12 @@ anchor.setOnChange((entity, key, val)=>{
 * @env engine2d
 * @param {alpha}{Number}{alpha of the render object}
 */
-var alpha = escs.add.component("alpha", 'engine2d', (alpha)=>{
-    return{
+var alpha = new ocs.Component('engine2d', "alpha", (alpha)=>{
+    return new ocs.EEO({
         alpha: 1 || alpha
-    }
-});
-alpha.setOnChange((entity, key, val)=>{
-    entity.getComponent('pixi').pixi.alpha = val;
+    }, (entity, key, val)=>{
+        entity.pixi.alpha = val;
+    });
 });
 
 /*
@@ -301,14 +353,29 @@ alpha.setOnChange((entity, key, val)=>{
 * @param {width}{Number}{width of the render object}
 * @param {height}{Number}{height of the render object}
 */
-var scale = escs.add.component("scale", 'engine2d', (width, height)=>{
-    return{
+var scale = new ocs.Component('engine2d', "scale", (width, height)=>{
+    return new ocs.EEO({
         width: width,
         height: height
-    }
+    }, (entity, key, val)=>{
+        entity.pixi[key] = val;
+    });
 });
-scale.setOnChange((entity, key, val)=>{
-    entity.getComponent('pixi').pixi[key] = val;
+
+
+/*
+* @name tint
+* @type component
+* @description tint of the render object
+* @env engine2d
+* @param {tint}{Hex}{tint of the render object}{0xffffff}
+*/
+var tint = new ocs.Component('engine2d', 'tint', (tint)=>{
+    return new ocs.EEO({
+        tint: 16777215
+    }, (entity, key, val)=>{
+        entity.pixi.tint = val;
+    });
 });
 
 
@@ -316,7 +383,7 @@ scale.setOnChange((entity, key, val)=>{
 /*
 * @name Image
 * @type entity
-* @description An image using a loaded texture created by <a href="./virtuosity.engine2d.add.html#method-image">add.image</a>
+* @description An image using a loaded texture created by <a href="./virtuosity.engine2d.add.html#image">add.image</a>
 * @env engine2d
 * @component pixi
 * @component position
@@ -324,23 +391,25 @@ scale.setOnChange((entity, key, val)=>{
 * @component anchor
 * @component alpha
 * @component scale
+* @component tint
 */
 var add_image = function(canvas, name, x, y, key, onComplete){
     if(textures.has(key)){
         var ctx = canvases.get(canvas);
-        var new_img = new PIXI.Sprite(ctx.loader.resources[key].texture);
+        // var new_img = new PIXI.Sprite(ctx.loader.resources[key].texture);
+        var new_img = new PIXI.Sprite(textures.get(key));
 
-        var new_entity = escs.add.entity(`${name}╎${canvas}╎image`, 'engine2d')
-            .addComponent('pixi', new_img)
-            .addComponent('position', x, y)
-            .addComponent('rotation')
-            .addComponent('anchor')
-            .addComponent('alpha')
-            .addComponent('scale', new_img.width, new_img.height)
+        var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎image`)
+        new_entity.addComponent('pixi', new_img)
+                  .addComponent('position', x, y)
+                  .addComponent('rotation')
+                  .addComponent('anchor')
+                  .addComponent('alpha')
+                  .addComponent('tint')
+                  .addComponent('scale', new_img.width, new_img.height);
 
-        var pos = new_entity.getComponent('position');
-        pos.x = x;
-        pos.y = y;
+        new_entity.pixi.x = x;
+        new_entity.pixi.y = y;
 
         ctx.stage.addChild(new_img);
         if(onComplete!=null){
@@ -351,7 +420,160 @@ var add_image = function(canvas, name, x, y, key, onComplete){
         console.log(`waiting for texture (${key}) to load`);
         loading_textures.get(key).push(()=>{add_image(canvas, name, x, y, key, onComplete);});
     }else{
-        debug.warn("ReferenceError", `texture (${key}) is not loaded or in load queue`);
+        debug.error("ReferenceError", `texture (${key}) is not loaded or in load queue`);
+    }
+}
+
+
+class Animation{
+    #i;
+    #timer;
+    #frameTime;
+
+    constructor(entity, name, frames, frameTime){
+        this.name = name;
+        this.frames = frames;
+
+        this.#frameTime = frameTime;
+        Object.defineProperty(this, "frameTime", {
+            get: ()=>{
+                return this.#frameTime;
+            },
+            set: (val)=>{
+                this.#frameTime = val;
+                this.#timer.duration = frameTime;
+            }
+        });
+
+        this.#i = 0;
+        this.#timer = new time.AdvancedInterval(frameTime, ()=>{
+            if(this.#i < this.length - 1){
+                this.#i += 1;
+            }else{
+                this.#i = 0;
+            }
+            entity.frame = this.frames[this.#i];
+        });
+
+        Object.defineProperty(this, "running", {
+            get: ()=>{
+                return this.#timer.running;
+            }
+        });
+
+        Object.defineProperty(this, "paused", {
+            get: ()=>{
+                return this.#timer.paused;
+            }
+        });
+
+        Object.defineProperty(this, "length", {
+            get: ()=>{
+                return this.frames.length;
+            }
+        });
+    }
+
+    start(){
+        this.#i = 0;
+        if(!this.#timer.running){
+            this.#timer.start();
+        }else{
+            this.#timer.restart();
+        }
+    }
+
+    stop(){
+        this.#timer.stop();
+    }
+
+    pause(){
+        this.#timer.pause();
+    }
+}
+
+/*
+* @name sprite
+* @type component
+* @description frame management of a sprite
+* @env engine2d
+* @param {frame}{Number}{frame the sprite is using}
+* @param {totalFrames}{Number}{totalFrames the sprite has}
+* @param {addAnimation}{Function}{add an animation <var><span class="white">(</span>name<span class="white">,</span> frames<span class="white">,</span> frameTime<span class="white">)</span></var>}
+* @param {deleteAnimation}{Function}{delete an animation <var><span class="white">(</span>name<span class="white">)</span></var>}
+* @param {getAnimation}{Function}{get an animation <var><span class="white">(</span>name<span class="white">)</span></var>}
+*/
+
+new ocs.Component('engine2d', 'sprite', (self, pixi)=>{
+    return new ocs.EEO({
+        frame: 0,
+        totalFrames: pixi.totalFrames,
+        animations: new Map(),
+        addAnimation: (name, frames, frameTime)=>{
+            self.animations.set(name, new Animation(self, name, frames, frameTime));
+        },
+        deleteAnimation: (name)=>{
+            self.animations.delete(name);
+        },
+        getAnimation: (name)=>{
+            return self.animations.get(name);
+        }
+    }, (entity, key, val)=>{
+        if(key == "frame"){
+            entity.pixi.gotoAndStop(val);
+        }else if(key == "totalFrames"){
+            if(entity.totalFrames != pixi.totalFrames){
+                entity.totalFrames = pixi.totalFrames;
+            }
+        }
+    });
+});
+
+/*
+* @name Sprite
+* @type entity
+* @description An sprite using a loaded srpite texture created by <a href="./virtuosity.engine2d.add.html#sprite">add.sprite</a>
+* @env engine2d
+* @component pixi
+* @component position
+* @component rotation
+* @component anchor
+* @component alpha
+* @component scale
+* @component tint
+* @component sprite
+*/
+var add_sprite = function(canvas, name, x, y, key, onComplete){
+    if(spritesheet_textures.has(key)){
+        var ctx = canvases.get(canvas);
+        // var new_img = new PIXI.Sprite(ctx.loader.resources[key].texture);
+        var new_img = new PIXI.AnimatedSprite(spritesheet_textures.get(key));
+        new_img.updateAnchor = true;
+
+        var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎image`)
+        new_entity.addComponent('pixi', new_img)
+                  .addComponent('position', x, y)
+                  .addComponent('rotation')
+                  .addComponent('anchor')
+                  .addComponent('alpha')
+                  .addComponent('tint')
+                  .addComponent('scale', new_img.width, new_img.height)
+                  .addComponent('sprite', new_entity, new_img);
+
+        new_entity.pixi.x = x;
+        new_entity.pixi.y = y;
+
+
+        ctx.stage.addChild(new_img);
+        if(onComplete!=null){
+            onComplete(new_entity);
+        }
+        ctx.images.set(name, new_entity)
+    }else if(loading_textures.has(key)){
+        console.log(`waiting for texture (${key}) to load`);
+        loading_textures.get(key).push(()=>{add_sprite(canvas, name, x, y, key, onComplete);});
+    }else{
+        debug.error("ReferenceError", `texture (${key}) is not loaded or in load queue`);
     }
 }
 
@@ -361,7 +583,7 @@ var get_image = function(canvas, name){
     if(ctx.images.has(name)){
         return ctx.images.get(name);
     }else{
-        debug.warn('ReferenceError', `image (${name}) in canvas (${canvas}) does not exist`);
+        debug.error('ReferenceError', `image (${name}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
@@ -370,11 +592,11 @@ var get_image = function(canvas, name){
 var delete_image = function(canvas, name){
     var ctx = canvases.get(canvas);
     if(ctx.images.has(name)){
-        escs.delete.entity(`${name}╎${canvas}╎image`, 'engine2d');
-        ctx.images.get(name).getComponent('pixi').pixi.destroy();
+        ocs.getEntity('engine2d', `${name}╎${canvas}╎image`).destroy();
+        ctx.images.get(name).pixi.destroy();
         ctx.images.delete(name);
     }else{
-        debug.warn('ReferenceError', `image (${name}) does not exist`);
+        debug.error('ReferenceError', `image (${name}) does not exist`);
     }
 }
 
@@ -389,13 +611,12 @@ var delete_image = function(canvas, name){
 * @env engine2d
 * @param {text}{String}{value of the text shown}
 */
-var text = escs.add.component("text", 'engine2d', (text)=>{
-    return{
+var text = new ocs.Component('engine2d', "text", (text)=>{
+    return new ocs.EEO({
         text: text
-    }
-});
-text.setOnChange((entity, key, val)=>{
-    entity.getComponent('pixi').pixi.text = val;
+    }, (entity, key, val)=>{
+        entity.pixi.text = val;
+    });
 });
 
 /*
@@ -406,14 +627,16 @@ text.setOnChange((entity, key, val)=>{
 * @param {fontSize}{Int}{size of the font in pixels}
 * @param {fontFamily}{String}{font type of the text}{"Trebuchet"}
 * @param {fill}{Hex}{color of the text}{0xffffff}
-* @param {align}{String}{alignment of the text}{'left'}
+* @param {align}{String}{alignment of the text}{"left"}
 * @param {stroke}{Hex}{color of the text outline}{"black"}
 * @param {strokeThickness}{Int}{thickness of the text outline}{0}
 * @param {letterSpacing}{Int}{spacing between the letters}{0}
 * @param {lineHeight}{Int}{line height of the text}{fontSize + 2}
+* @param {fontWeight}{Int}{thickness of the text (increments of 100, 100-900)}{400}
+* @param {fontStyle}{String}{style of the text, (normal|italic|oblique)}{"normal"}
 */
-var style = escs.add.component("style", 'engine2d', (fontSize, color)=>{
-    return{
+var style = new ocs.Component('engine2d', "style", (fontSize, color)=>{
+    return new ocs.EEO({
         fontSize: fontSize,
         fontFamily: "Trebuchet",
         fill: 0xffffff,
@@ -421,18 +644,19 @@ var style = escs.add.component("style", 'engine2d', (fontSize, color)=>{
         stroke: color || "black",
         strokeThickness: 0,
         letterSpacing: 0,
-        lineHeight: fontSize + 2
-    }
-});
-style.setOnChange((entity, key, val)=>{
-    entity.getComponent('pixi').pixi.style[key] = val;
+        lineHeight: fontSize + 2,
+        fontWeight: 400,
+        fontStyle: "normal"
+    }, (entity, key, val)=>{
+        entity.pixi.style[key] = val;
+    });
 });
 
 
 /*
 * @name Text
 * @type entity
-* @description A text entity created by <a href="./virtuosity.engine2d.add.html#method-text">add.text</a>
+* @description A text entity created by <a href="./virtuosity.engine2d.add.html#text">add.text</a>
 * @env engine2d
 * @component pixi
 * @component position
@@ -454,15 +678,27 @@ var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
     new_txt.x = x;
     new_txt.y = y;
 
-    var new_entity = escs.add.entity(`${name}╎${canvas}╎text`, 'engine2d')
-        .addComponent('pixi', new_txt)
-        .addComponent('position', x, y)
-        .addComponent('scale', new_txt.width, new_txt.height)
-        .addComponent('rotation')
-        .addComponent('anchor')
-        .addComponent('alpha')
-        .addComponent('style', fontSize)
-        .addComponent('text', text)
+    var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎text`)
+    new_entity.addComponent('pixi', new_txt)
+              .addComponent('position', x, y)
+              .addComponent('rotation')
+              .addComponent('anchor')
+              .addComponent('alpha')
+              .addComponent('style', fontSize)
+              .addComponent('text', text);
+
+
+    Object.defineProperty(new_entity, "width", {
+        get: ()=>{
+            return new_entity.pixi.width;
+        }
+    });
+
+    Object.defineProperty(new_entity, "height", {
+        get: ()=>{
+            return new_entity.pixi.height;
+        }
+    });
 
 
     ctx.stage.addChild(new_txt);
@@ -485,8 +721,8 @@ var get_text = function(canvas, name){
 var delete_text = function(canvas, name){
     var ctx = canvases.get(canvas);
     if(ctx.texts.has(name)){
-        escs.delete.entity(`${name}╎${canvas}╎text`, 'engine2d');
-        ctx.texts.get(name).getComponent('pixi').pixi.destroy();
+        ocs.getEntity('engine2d', `${name}╎${canvas}╎text`).destroy();
+        ctx.texts.get(name).pixi.destroy();
         ctx.texts.delete(name);
     }else{
         debug.warn('ReferenceError', `text (${name}) in canvas (${canvas}) does not exist`);
@@ -498,7 +734,7 @@ var delete_text = function(canvas, name){
 * @name engine2d-textbox
 * @type environment
 */
-var textbox_env = escs.add.environment('engine2d-textbox');
+var textbox_env = new ocs.Environment('engine2d-textbox');
 
 
 /*
@@ -508,7 +744,7 @@ var textbox_env = escs.add.environment('engine2d-textbox');
 * @env engine2d-textbox
 * @param {textbox}{DOM}{reference to the DOM textbox entity}
 */
-escs.add.component('textbox', 'engine2d-textbox', (textbox)=>{
+new ocs.Component('engine2d-textbox', 'textbox', (textbox)=>{
     return {
         textbox: textbox
     }
@@ -522,19 +758,19 @@ escs.add.component('textbox', 'engine2d-textbox', (textbox)=>{
 * @param {x}{Int}{x position of the textbox}
 * @param {y}{Int}{y position of the textbox}
 */
-var textbox_position = escs.add.component('position', 'engine2d-textbox', (x, y)=>{
-    return {
+var textbox_position = new ocs.Component('engine2d-textbox', 'position', (x, y)=>{
+    return new ocs.EEO({
         x: x,
         y: y
-    }
+    }, (entity, key, val)=>{
+        if(key == "x"){
+            entity.style.left = val + "px";
+        }else{
+            entity.style.top = val + "px";
+        }
+    });
 });
-textbox_position.setOnChange((entity, key, val)=>{
-    if(key == "x"){
-        entity.getComponent('style').style.left = val + "px";
-    }else{
-        entity.getComponent('style').style.top = val + "px";
-    }
-});
+
 
 /*
 * @name fontSize
@@ -543,13 +779,12 @@ textbox_position.setOnChange((entity, key, val)=>{
 * @env engine2d-textbox
 * @param {fontSize}{Int}{fontSize of the textbox}{19}
 */
-var textbox_fontSize = escs.add.component('fontSize', 'engine2d-textbox', (fontSize)=>{
-    return {
+var textbox_fontSize = new ocs.Component('engine2d-textbox', 'fontSize', (fontSize)=>{
+    return new ocs.EEO({
         fontSize: fontSize
-    }
-});
-textbox_fontSize.setOnChange((entity, key, val)=>{
-    entity.getComponent('style').style.fontSize = val + "px";
+    }, (entity, key, val)=>{
+        entity.style.fontSize = val + "px";
+    });
 });
 
 /*
@@ -559,13 +794,12 @@ textbox_fontSize.setOnChange((entity, key, val)=>{
 * @env engine2d-textbox
 * @param {width}{Int}{width of the textbox}{100}
 */
-var textbox_width = escs.add.component('width', 'engine2d-textbox', (width)=>{
-    return {
+var textbox_width = new ocs.Component('engine2d-textbox', 'width', (width)=>{
+    return new ocs.EEO({
         width: width
-    }
-});
-textbox_width.setOnChange((entity, key, val)=>{
-    entity.getComponent('style').style.width = val + "px";
+    }, (entity, key, val)=>{
+        entity.style.width = val + "px";
+    });
 });
 
 /*
@@ -575,13 +809,12 @@ textbox_width.setOnChange((entity, key, val)=>{
 * @env engine2d-textbox
 * @param {value}{String}{value of the textbox}
 */
-var textbox_value = escs.add.component('value', 'engine2d-textbox', (value)=>{
-    return {
+var textbox_value = new ocs.Component('engine2d-textbox', 'value', (value)=>{
+    return new ocs.EEO({
         value: value
-    }
-});
-textbox_value.setOnChange((entity, key, val)=>{
-    entity.getComponent('textbox').textbox.value = val;
+    }, (entity, key, val)=>{
+        entity.textbox.value = val;
+    });
 });
 
 /*
@@ -591,7 +824,7 @@ textbox_value.setOnChange((entity, key, val)=>{
 * @env engine2d-textbox
 * @param {textbox}{DOM}{reference to the style property DOM textbox entity}
 */
-var textbox_style = escs.add.component('style', 'engine2d-textbox', (textbox)=>{
+var textbox_style = new ocs.Component('engine2d-textbox', 'style', (textbox)=>{
     return {
         style: textbox
     }
@@ -607,7 +840,7 @@ var textbox_style = escs.add.component('style', 'engine2d-textbox', (textbox)=>{
 * @param {onblur}{Function}{event to run the textbox is blurred (clicked out of / press ENTER or ESC)}
 * @param {onkeypress}{Function}{event to run when a key is pressed while the textbox is focused}
 */
-var textbox_events = escs.add.component('events', 'engine2d-textbox', ()=>{
+var textbox_events = new ocs.Component('engine2d-textbox', 'events', ()=>{
     return {
         onkeypress: ()=>{},
         onfocus: ()=>{},
@@ -619,7 +852,7 @@ var textbox_events = escs.add.component('events', 'engine2d-textbox', ()=>{
 /*
 * @name Textbox
 * @type entity
-* @description A textbox entity created by <a href="./virtuosity.engine2d.add.html#method-textbox">add.textbox</a>
+* @description A textbox entity created by <a href="./virtuosity.engine2d.add.html#textbox">add.textbox</a>
 * @env engine2d-textbox
 * @component textbox
 * @component position
@@ -650,9 +883,6 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     style.fontFamily = "Trebuchet";
     document.getElementsByTagName('html')[0].appendChild(input);
 
-
-    console.log(x + new_ctx_x, y + new_ctx_y);
-
     Object.defineProperty(input, "x", {
         get: ()=>{
             var left = input.style.left;
@@ -674,33 +904,42 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     });
 
 
-    var new_textbox = escs.add.entity(`${name}╎${canvas}╎textbox`, 'engine2d-textbox')
-        .addComponent('textbox', input)
-        .addComponent('style', input.style)
-        .addComponent('position', x + new_ctx_x, y + new_ctx_y)
-        .addComponent('fontSize', 19)
-        .addComponent('width', 100)
-        .addComponent('value', input.value)
-        .addComponent('events')
+    var new_textbox = new ocs.Entity('engine2d-textbox', `${name}╎${canvas}╎textbox`)
+    new_textbox.addComponent('textbox', input)
+               .addComponent('style', input.style)
+               .addComponent('position', x + new_ctx_x, y + new_ctx_y)
+               .addComponent('fontSize', 19)
+               .addComponent('width', 100)
+               .addComponent('events');
+
+    Object.defineProperty(new_textbox, "value", {
+        get: ()=>{
+            return input.value;
+        },
+        set: (val)=>{
+            input.value = val;
+        }
+    });
+
 
     input.starting_value = "";
     input.onkeydown = (e)=>{
-        new_textbox.getComponent('value').value = input.value;
-        new_textbox.getComponent('events').onkeypress();
+        new_textbox.value = input.value;
+        new_textbox.onkeypress();
         if(e.key == "Enter"){
             input.starting_value = input.value;
             input.blur();
         }else if(e.key == "Escape"){
             input.value = input.starting_value;
-            new_textbox.getComponent('value').value = input.value;
+            new_textbox.value = input.value;
             input.blur();
         }
     }
     input.onfocus = ()=>{
-        new_textbox.getComponent('events').onfocus();
+        new_textbox.onfocus();
     }
     input.onblur = ()=>{
-        new_textbox.getComponent('events').onblur();
+        new_textbox.onblur();
     }
 
 
@@ -724,8 +963,8 @@ var get_textbox = function(canvas, name){
 var delete_textbox = function(canvas, name){
     var ctx = canvases.get(canvas);
     if(ctx.textboxes.has(name)){
-        escs.delete.entity(`${name}╎${canvas}╎textbox`, 'engine2d textbox');
-        ctx.textboxes.get(name).getComponent('pixi').pixi.destroy();
+        ocs.getEntity('engine2d textbox', `${name}╎${canvas}╎textbox`).destroy();
+        ctx.textboxes.get(name).pixi.destroy();
         ctx.textboxes.delete(name);
     }else{
         debug.warn('ReferenceError', `textbox (${name}) in canvas (${canvas}) does not exist`);
@@ -769,33 +1008,56 @@ module.exports = {
     },
 
     /*
-    * @name loadQueue
+    * @name load
     * @type obj
     * @description adds an asset to the load queue
     */
-    loadQueue: {
+    load: {
         /*
         * @name image
         * @type method
-        * @description adds an immage to the load queue
-        * @parent loadQueue
-        * @param {canvas}{String}{Name of the canvas to add to}
+        * @description adds an image to the load queue
+        * @parent load
         * @param {key}{String}{unique name of the image asset}
         * @param {path}{String}{path of the image asset}
         */
-        image: function(canvas, key, path){
-            load_image(canvas, key, path);
+        image: function(key, path){
+            load_image(key, path);
         },
 
         /*
-        * @name load
+        * @name spritesheet
         * @type method
-        * @description begin loading (automatiacally run at the end of the the canvas's preload function)
-        * @parent loadQueue
+        * @description adds a spritesheet to the load queue
+        * @parent load
+        * @param {key}{String}{unique name of the spritesheet asset}
+        * @param {path}{String}{path of the spritesheet asset}
+        * @param {frameWidth}{Int}{width of the frames in the spritesheet}
+        * @param {frameHeight}{Int}{height of the frames in the spritesheet}
         */
-        load: (canvas)=>{
-            start_load(canvas);
+        spritesheet: function(key, path, frameWidth, frameHeight){
+            load_spritesheet(key, path, frameWidth, frameHeight);
         }
+    },
+
+    /*
+    * @name unload
+    * @type method
+    * @description unload an image asset from cache
+    * @param {key}{String}{unique name of the image asset}
+    */
+    unload: function(key){
+        unload_image(key);
+    },
+
+
+    /*
+    * @name beginLoading
+    * @type method
+    * @description begin loading (automatiacally run at the end of the the canvas's preload function)
+    */
+    beginLoading: (canvas)=>{
+        start_load(canvas);
     },
 
     /*
@@ -807,7 +1069,7 @@ module.exports = {
         /*
         * @name image
         * @type method
-        * @description adds an image to the scene
+        * @description adds an <a href="virtuosity.engine2d.Image.html">image</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
         * @param {name}{String}{unique name of the image}
@@ -821,9 +1083,25 @@ module.exports = {
         },
 
         /*
+        * @name sprite
+        * @type method
+        * @description adds a <a href="virtuosity.engine2d.Sprite.html">sprite</a> to the scene
+        * @parent add
+        * @param {canvas}{String}{Name of the canvas to add to}
+        * @param {name}{String}{unique name of the sprite}
+        * @param {x}{Number}{x position of the sprite}
+        * @param {y}{Number}{y position of the sprite}
+        * @param {key}{String}{name of the sprite asset to use}
+        * @param {onComplete}{Function}{function to run after adding the sprite (takes the newly create sprite as a parameter)}
+        */
+        sprite: function(canvas, name, x, y, key, onComplete){
+            add_sprite(canvas, name, x, y, key, onComplete);
+        },
+
+        /*
         * @name text
         * @type method
-        * @description adds text to the scene
+        * @description adds <a href="virtuosity.engine2d.Text.html">text</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
         * @param {name}{String}{unique name of the text}
@@ -833,7 +1111,6 @@ module.exports = {
         * @param {fontSize}{Int}{font size of the text}
         * @param {onComplete}{Function}{function to run after adding the text (takes the newly create text as a parameter)}
         */
-
         text: function(canvas, name, x, y, text, fontSize, onComplete){
             add_text(canvas, name, x, y, text, fontSize, onComplete);
         },
@@ -841,7 +1118,7 @@ module.exports = {
         /*
         * @name textbox
         * @type method
-        * @description adds a textbox to the scene
+        * @description adds a <a href="virtuosity.engine2d.Textbox.html">textbox</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
         * @param {name}{String}{unique name of the textbox}
@@ -863,10 +1140,10 @@ module.exports = {
         /*
         * @name image
         * @type method
-        * @description gets an image
+        * @description gets an <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>
         * @parent get
         * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the image}
+        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>}
         */
         image: function(canvas, name){
             return get_image(canvas, name);
@@ -875,10 +1152,10 @@ module.exports = {
         /*
         * @name text
         * @type method
-        * @description gets text
+        * @description gets <a href="virtuosity.engine2d.Text.html">text</a>
         * @parent get
         * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the text}
+        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Text.html">text</a>}
         */
         text: function(canvas, name){
             return get_text(canvas, name);
@@ -887,10 +1164,10 @@ module.exports = {
         /*
         * @name textbox
         * @type method
-        * @description gets a textbox
+        * @description gets a <a href="virtuosity.engine2d.Textbox.html">textbox</a>
         * @parent get
         * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the textbox}
+        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Textbox.html">textbox</a>}
         */
         textbox: function(canvas, name){
             return get_textbox(canvas, name);
@@ -917,22 +1194,22 @@ module.exports = {
         /*
         * @name image
         * @type method
-        * @description deletes an image
+        * @description deletes an <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>
         * @parent delete
         * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the image}
+        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>}
         */
         image: function(canvas, name){
-            return delete_image(name);
+            return delete_image(canvas, name);
         },
 
         /*
         * @name text
         * @type method
-        * @description deletes text
+        * @description deletes <a href="virtuosity.engine2d.Text.html">text</a>
         * @parent delete
         * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the text}
+        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Text.html">text</a>}
         */
         text: function(canvas, name){
             return delete_text(canvas, name);
@@ -941,10 +1218,10 @@ module.exports = {
         /*
         * @name textbox
         * @type method
-        * @description deletes a textbox
+        * @description deletes a <a href="virtuosity.engine2d.Textbox.html">textbox</a>
         * @parent delete
         * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the textbox}
+        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Textbox.html">textbox</a>}
         */
         textbox: function(canvas, name){
             return delete_textbox(canvas, name);
@@ -1036,6 +1313,7 @@ module.exports = {
             },
         },
         get: graphics.get,
+        delete: graphics.delete,
         containerClear: graphics.containerClear
     },
 

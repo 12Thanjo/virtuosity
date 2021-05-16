@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,28 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Line</h1><p>Returns a Line collision shape object</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="blue">Line</span>(<span class="orange">x1</span>, <span class="orange">y1</span>, <span class="orange">x2</span>, <span class="orange">y2</span>);</div><h4>Methods</h4><ul><li><a href="#position1">position1</a></li><li><a href="#position2">position2</a></li><li><a href="#scaling">scaling</a></li></ul><h4>Properties</h4><ul><li><a href="#x1">x1</a></li><li><a href="#y1">y1</a></li><li><a href="#x2">x2</a></li><li><a href="#y2">y2</a></li><li><a href="#width">width</a></li></ul><hr><h2>Methods</h2><h3 id="position1" style="margin-top: 0px;">position1</a></h3><p style="margin-top: 0px;">Sets the position of the box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">position1</span>(<span class="orange">x1</span>, <span class="orange">y1</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>Line</h1><p>Returns a Line collision shape object</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="green">Line</span>(<span class="orange">x1</span>, <span class="orange">y1</span>, <span class="orange">x2</span>, <span class="orange">y2</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>x1</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x position of the first point of the Line</td>
+											</tr><tr>
+												<td><var>y1</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y position of the first point of the Line</td>
+											</tr><tr>
+												<td><var>x2</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x position of the second point of the Line</td>
+											</tr><tr>
+												<td><var>y2</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y position of the second point of the Line</td>
+											</tr></table><h4>Methods</h4><ul><li><a href="#position1">position1</a></li><li><a href="#position2">position2</a></li><li><a href="#scaling">scaling</a></li></ul><h4>Properties</h4><ul><li><a href="#x1">x1</a></li><li><a href="#y1">y1</a></li><li><a href="#x2">x2</a></li><li><a href="#y2">y2</a></li><li><a href="#width">width</a></li></ul><hr><h2>Methods</h2><h3 id="position1" style="margin-top: 0px;">position1</a></h3><p style="margin-top: 0px;">Sets the position of the box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">position1</span>(<span class="orange">x1</span>, <span class="orange">y1</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -224,7 +244,7 @@
 												<td><var>y1</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>y1 position of the Line</td>
-											</tr></table><h3 id="position2">position2</a></h3><p style="margin-top: 0px;">Sets the position of the box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">position2</span>(<span class="orange">x2</span>, <span class="orange">y2</span>);</div><br><br><table>
+											</tr></table><h3 id="position2">position2</a></h3><p style="margin-top: 0px;">Sets the position of the box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">position2</span>(<span class="orange">x2</span>, <span class="orange">y2</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -237,7 +257,7 @@
 												<td><var>y2</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>y2 position of the Line</td>
-											</tr></table><h3 id="scaling">scaling</a></h3><p style="margin-top: 0px;">Sets the width of the line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">scaling</span>(<span class="orange">width</span>);</div><br><br><table>
+											</tr></table><h3 id="scaling">scaling</a></h3><p style="margin-top: 0px;">Sets the width of the line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">scaling</span>(<span class="orange">width</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -246,7 +266,7 @@
 												<td><var>width</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td>width of the Line</td>
-											</tr></table><br><br><h2>Properties</h2><h3 id="x1" style="margin-top: 0px;">x1</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x1 position of the Line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">x1</span></div><h3 id="y1">y1</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y1 position of the Line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">y1</span></div><h3 id="x2">x2</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x2 position of the Line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">x2</span></div><h3 id="y2">y2</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y2 position of the Line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">y2</span></div><h3 id="width">width</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">width of the Line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Line</span>.<span class="blue">width</span></div><br><br>
+											</tr></table><br><br><h2>Properties</h2><h3 id="x1" style="margin-top: 0px;">x1</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x1 position of the Line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">x1</span></div><h3 id="y1">y1</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y1 position of the Line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">y1</span></div><h3 id="x2">x2</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x2 position of the Line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">x2</span></div><h3 id="y2">y2</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y2 position of the Line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">y2</span></div><h3 id="width">width</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">width of the Line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Line</span>.<span class="green">width</span></div><br><br>
 		</div>
 	</body>
 	<footer>

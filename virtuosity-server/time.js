@@ -10,86 +10,90 @@ var timer = function(duration, func){
 }
 
 /*
-* @name advancedTimer
+* @name AdvancedTimer
 * @type class
 * @description Timer with extra functionality
-* @param {duration}{Int}{duration of the advancedTimer}
-* @param {func}{Function}{Funciton for the advancedTimer to run when completed}
+* @param {duration}{Int}{duration of the AdvancedTimer}
+* @param {func}{Function}{Funciton for the AdvancedTimer to run when completed}
 */
-var advancedTimer = function(duration, func){
-	this.func = func;
-	this.DATA = {
-		started: 0,
-		duration: duration,
-		replay: 0,
-		running: false,
-		paused: false
-	}
-
-	/*
-	* @name running
-	* @type property
-	* @proto Boolean
-	* @description True if the advancedTimer is running
-	* @parent advancedTimer
-	*/
-	Object.defineProperty(this, 'running', {
-		get: ()=>{
-			return this.DATA.running;
+class AdvancedTimer{
+	#DATA;
+	constructor(duration, func){
+		this.func = func;
+		this.#DATA = {
+			started: 0,
+			duration: duration,
+			replay: 0,
+			running: false,
+			paused: false
 		}
-	});
 
-	/*
-	* @name paused
-	* @type property
-	* @proto Boolean
-	* @description True if the advancedTimer is paused
-	* @parent advancedTimer
-	*/
-	Object.defineProperty(this, 'paused', {
-		get: ()=>{
-			return this.DATA.paused;
-		}
-	});
+		/*
+		* @name running
+		* @type property
+		* @proto Boolean
+		* @description True if the AdvancedTimer is running
+		* @parent AdvancedTimer
+		*/
+		Object.defineProperty(this, 'running', {
+			get: ()=>{
+				return this.#DATA.running;
+			}
+		});
 
-	/*
-	* @name duration
-	* @type property
-	* @proto Number
-	* @description Sets the duration of the advancedTimer. If advancedTimer is running while the duration is changed, and it is changed to a time less than what has elapsed already, the advancedTimer ends.
-	* @parent advancedTimer
-	*/
-	Object.defineProperty(this, "duration", {
-		get: ()=>{
-			return this.DATA.duration;
-		},
-		set: (val)=>{
-			this.DATA.duration = val;
-			if(this.running){
-				var now = new Date();
-				if(now - this.DATA.started > val){
-					clearTimeout(this.timer);
-					this.func();
+		/*
+		* @name paused
+		* @type property
+		* @proto Boolean
+		* @description True if the AdvancedTimer is paused
+		* @parent AdvancedTimer
+		*/
+		Object.defineProperty(this, 'paused', {
+			get: ()=>{
+				return this.#DATA.paused;
+			}
+		});
+
+		/*
+		* @name duration
+		* @type property
+		* @proto Number
+		* @description Sets the duration of the AdvancedTimer. If AdvancedTimer is running while the duration is changed, and it is changed to a time less than what has elapsed already, the AdvancedTimer ends.
+		* @parent AdvancedTimer
+		*/
+		Object.defineProperty(this, "duration", {
+			get: ()=>{
+				return this.#DATA.duration;
+			},
+			set: (val)=>{
+				this.#DATA.duration = val;
+				if(this.#DATA.running){
+					var now = new Date();
+					if(now - this.#DATA.started > val){
+						clearTimeout(this.timer);
+						this.func();
+					}
 				}
 			}
-		}
-	});
+		});
+	}
+
 
 	/*
 	* @name start
 	* @type method
-	* @description Starts the advancedTimer, or continues the advancedTimer (if it had been paused).
-	* @parent advancedTimer
+	* @description Starts the AdvancedTimer, or continues the AdvancedTimer (if it had been paused).
+	* @parent AdvancedTimer
 	*/
-	this.start = function(){
-		if(this.DATA.replay != 0){
-			this.DATA.replay = 0;
-			this.DATA.started = new Date();
-			this.running = true;
+	start = function(){
+		if(this.#DATA.replay != 0){
+			this.#DATA.replay = 0;
+			this.#DATA.started = new Date();
+			this.#DATA.running = true;
 			this.timer = setTimeout(this.func, this.duration);
 		}else{
-			this.DATA.started = new Date();
-			this.running = true;
+			this.#DATA.started = new Date();
+			this.#DATA.running = true;
 			this.timer = setTimeout(this.func,this.duration);
 		}
 	}
@@ -97,36 +101,47 @@ var advancedTimer = function(duration, func){
 	/*
 	* @name stop
 	* @type method
-	* @description Stops the advancedTimer
-	* @parent advancedTimer
+	* @description Stops the AdvancedTimer
+	* @parent AdvancedTimer
 	*/
-	this.stop = function(){
+	stop = function(){
 		clearTimeout(this.timer);
-		this.running = false;
+		this.#DATA.running = false;
+	}
+
+	/*
+	* @name restart
+	* @type method
+	* @description Restarts the AdvancedTimer
+	* @parent AdvancedTimer
+	*/
+	restart = function(){
+		this.stop();
+		this.start();
 	}
 
 	/*
 	* @name pause
 	* @type method
-	* @description Pauses the advancedTimer
-	* @parent advancedTimer
+	* @description Pauses the AdvancedTimer
+	* @parent AdvancedTimer
 	*/
-	this.pause = function(){
+	pause = function(){
 		this.paused = true;
 		var now = new Date();
-		this.DATA.replay = this.duration - (now - this.DATA.started);
+		this.#DATA.replay = this.duration - (now - this.#DATA.started);
 	}
 
 	/*
 	* @name getTimeLeft
 	* @type method
 	* @description Gets the time left until the timer finishes
-	* @parent advancedTimer
+	* @parent AdvancedTimer
 	*/
-	this.getTimeLeft = function(){
-		if(this.running){
+	getTimeLeft = function(){
+		if(this.#DATA.running){
 			var now = new Date();
-			return this.duration - (now - this.DATA.started);
+			return this.duration - (now - this.#DATA.started);
 		}else{
 			return 0;
 		}
@@ -145,78 +160,80 @@ var interval = function(duration, func){
 }
 
 /*
-* @name advancedInterval
+* @name AdvancedInterval
 * @type class
 * @description Runs a function at a set interval, with some extra functionality.
 * @param {duration}{Int}{duration of the Interval}
 * @param {func}{Function}{Funciton for the Interval to run when completed}
 */
-var advancedInterval = function(duration, func){
-	this.func = func;
-	this.DATA = {
-		duration: duration,
-		running: false
+class AdvancedInterval{
+	#DATA;
+	constructor(duration, func){
+		this.func = func;
+		this.#DATA = {
+			duration: duration,
+			running: false
+		}
+		/*
+		* @name duration
+		* @type property
+		* @description The duration of the interval of the AdvancedInterval.
+		* @parent AdvancedInterval
+		*/
+		Object.defineProperty(this, "duration", {
+			get: ()=>{
+				return this.#DATA.duration;
+			},
+			set: (val)=>{
+				this.#DATA.duration = val;
+				if(this.running){
+					clearInterval(this.timer);
+					this.timer = setInterval(this.func, this.#DATA.duration);
+				}
+			}
+		});
+
+		/*
+		* @name running
+		* @type property
+		* @description True if the AdvancedInterval is currently running.
+		* @parent AdvancedInterval
+		*/
+		Object.defineProperty(this, "running", {
+			get: ()=>{
+				return this.#DATA.running;
+			}
+		});
 	}
 
-	/*
-	* @name duration
-	* @type property
-	* @description The duration of the interval of the advancedInterval.
-	* @parent advancedInterval
-	*/
-	Object.defineProperty(this, "duration", {
-		get: ()=>{
-			return this.DATA.duration;
-		},
-		set: (val)=>{
-			this.DATA.duration = val;
-			if(this.running){
-				clearInterval(this.timer);
-				this.timer = setInterval(this.func, this.DATA.duration);
-			}
-		}
-	});
-
-	/*
-	* @name running
-	* @type property
-	* @description True if the advancedInterval is currently running.
-	* @parent advancedInterval
-	*/
-	Object.defineProperty(this, "running", {
-		get: ()=>{
-			return this.DATA.running;
-		}
-	});
 
 	/*
 	* @name start
 	* @type method
-	* @description Starts the advancedInterval.
-	* @parent advancedInterval
+	* @description Starts the AdvancedInterval.
+	* @parent AdvancedInterval
 	*/
-	this.start = function(){
-		this.running = true;
+	start = function(){
+		this.#DATA.running = true;
 		this.timer = setInterval(this.func,this.duration);
 	}
 
 	/*
 	* @name stop
 	* @type method
-	* @description Stops the advancedInterval.
-	* @parent advancedInterval
+	* @description Stops the AdvancedInterval.
+	* @parent AdvancedInterval
 	*/
-	this.stop = function(){
+	stop = function(){
 		clearInterval(this.timer);
 		this.running = false;
 	}
 }
 
 
-
 module.exports = {
 	timer: timer,
-	advancedTimer: advancedTimer,
+	AdvancedTimer: AdvancedTimer,
 	interval: interval,
-	advancedInterval: advancedInterval
+	AdvancedInterval: AdvancedInterval
 }

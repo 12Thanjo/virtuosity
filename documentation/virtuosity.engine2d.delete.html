@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>delete</h1><p>delete engine2d assets</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">delete</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#text">text</a></li><li><a href="#textbox">textbox</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">deletes an image</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">delete</span>.<span class="blue">image</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>delete</h1><p>delete engine2d assets</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">delete</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#text">text</a></li><li><a href="#textbox">textbox</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">deletes an <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">delete</span>.<span class="green">image</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -223,8 +222,8 @@
 											</tr><tr>
 												<td><var>name</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the image</td>
-											</tr></table><h3 id="text">text</a></h3><p style="margin-top: 0px;">deletes text</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">delete</span>.<span class="blue">text</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+												<td>name of the <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a></td>
+											</tr></table><h3 id="text">text</a></h3><p style="margin-top: 0px;">deletes <a href="virtuosity.engine2d.Text.html">text</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">delete</span>.<span class="green">text</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -236,8 +235,8 @@
 											</tr><tr>
 												<td><var>name</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the text</td>
-											</tr></table><h3 id="textbox">textbox</a></h3><p style="margin-top: 0px;">deletes a textbox</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">delete</span>.<span class="blue">textbox</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+												<td>name of the <a href="virtuosity.engine2d.Text.html">text</a></td>
+											</tr></table><h3 id="textbox">textbox</a></h3><p style="margin-top: 0px;">deletes a <a href="virtuosity.engine2d.Textbox.html">textbox</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">delete</span>.<span class="green">textbox</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -249,7 +248,7 @@
 											</tr><tr>
 												<td><var>name</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the textbox</td>
+												<td>name of the <a href="virtuosity.engine2d.Textbox.html">textbox</a></td>
 											</tr></table><br><br>
 		</div>
 	</body>

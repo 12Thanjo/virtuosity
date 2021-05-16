@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>add</h1><p>add engine3d entities</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="blue">add</span></div><h4>Objects</h4><ul><li><a href='./virtuosity.engine3d.add.material.html'>material</a></li></ul><h4>Methods</h4><ul><li><a href="#box">box</a></li><li><a href="#sphere">sphere</a></li><li><a href="#plane">plane</a></li><li><a href="#light">light</a></li><li><a href="#mesh">mesh</a></li></ul><hr><h2>Objects</h2><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.html'>material</a></h3><p style="margin-top: 0px;">create a material to add to visibile engine3d entities</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="blue">material</span></div><br><br><h2>Methods</h2><h3 id="box" style="margin-top: 0px;">box</a></h3><p style="margin-top: 0px;">add a box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="blue">box</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>add</h1><p>add engine3d entities</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="green">add</span></div><h4>Objects</h4><ul><li><a href='./virtuosity.engine3d.add.material.html'>material</a></li></ul><h4>Methods</h4><ul><li><a href="#box">box</a></li><li><a href="#sphere">sphere</a></li><li><a href="#plane">plane</a></li><li><a href="#light">light</a></li><li><a href="#mesh">mesh</a></li></ul><hr><h2>Objects</h2><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.html'>material</a></h3><p style="margin-top: 0px;">create a material to add to visibile engine3d entities</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="green">material</span></div><br><br><h2>Methods</h2><h3 id="box" style="margin-top: 0px;">box</a></h3><p style="margin-top: 0px;">add a box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="green">box</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -240,7 +239,7 @@
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>function to run after adding the canvas (takes the newly create canvas as a parameter)</td>
-											</tr></table><h3 id="sphere">sphere</a></h3><p style="margin-top: 0px;">add a sphere</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="blue">sphere</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">indicies</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+											</tr></table><h3 id="sphere">sphere</a></h3><p style="margin-top: 0px;">add a sphere</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="green">sphere</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">indicies</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -273,7 +272,7 @@
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>function to run after adding the sphere (takes the newly create sphere as a parameter)</td>
-											</tr></table><h3 id="plane">plane</a></h3><p style="margin-top: 0px;">add a plane</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="blue">plane</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+											</tr></table><h3 id="plane">plane</a></h3><p style="margin-top: 0px;">add a plane</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="green">plane</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -302,7 +301,7 @@
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>function to run after adding the plane (takes the newly create plane as a parameter)</td>
-											</tr></table><h3 id="light">light</a></h3><p style="margin-top: 0px;">add a light</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="blue">light</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+											</tr></table><h3 id="light">light</a></h3><p style="margin-top: 0px;">add a light</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="green">light</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -331,7 +330,7 @@
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>function to run after adding the light (takes the newly create light as a parameter)</td>
-											</tr></table><h3 id="mesh">mesh</a></h3><p style="margin-top: 0px;">add a mesh </p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="blue">mesh</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">key</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+											</tr></table><h3 id="mesh">mesh</a></h3><p style="margin-top: 0px;">add a mesh </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="green">mesh</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">z</span>, <span class="orange">key</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

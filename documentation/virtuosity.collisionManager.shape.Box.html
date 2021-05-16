@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,28 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Box</h1><p>Returns a Box collision shape object</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="blue">Box</span>(<span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>);</div><h4>Methods</h4><ul><li><a href="#position">position</a></li><li><a href="#scaling">scaling</a></li></ul><h4>Properties</h4><ul><li><a href="#x">x</a></li><li><a href="#y">y</a></li><li><a href="#width">width</a></li><li><a href="#height">height</a></li></ul><hr><h2>Methods</h2><h3 id="position" style="margin-top: 0px;">position</a></h3><p style="margin-top: 0px;">Sets the position of the box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Box</span>.<span class="blue">position</span>(<span class="orange">x</span>, <span class="orange">y</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>Box</h1><p>Returns a Box collision shape object</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="green">Box</span>(<span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x position of the Box</td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y position of the Box</td>
+											</tr><tr>
+												<td><var>width</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>width of the Box</td>
+											</tr><tr>
+												<td><var>height</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>height of the Box</td>
+											</tr></table><h4>Methods</h4><ul><li><a href="#position">position</a></li><li><a href="#scaling">scaling</a></li></ul><h4>Properties</h4><ul><li><a href="#x">x</a></li><li><a href="#y">y</a></li><li><a href="#width">width</a></li><li><a href="#height">height</a></li></ul><hr><h2>Methods</h2><h3 id="position" style="margin-top: 0px;">position</a></h3><p style="margin-top: 0px;">Sets the position of the box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Box</span>.<span class="green">position</span>(<span class="orange">x</span>, <span class="orange">y</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -224,7 +244,7 @@
 												<td><var>y</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>y position of the Point</td>
-											</tr></table><h3 id="scaling">scaling</a></h3><p style="margin-top: 0px;">Sets the scaling of the box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Box</span>.<span class="blue">scaling</span>(<span class="orange">width</span>, <span class="orange">height</span>);</div><br><br><table>
+											</tr></table><h3 id="scaling">scaling</a></h3><p style="margin-top: 0px;">Sets the scaling of the box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Box</span>.<span class="green">scaling</span>(<span class="orange">width</span>, <span class="orange">height</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -237,7 +257,7 @@
 												<td><var>height</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>height of the box</td>
-											</tr></table><br><br><h2>Properties</h2><h3 id="x" style="margin-top: 0px;">x</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x position of the Box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Box</span>.<span class="blue">x</span></div><h3 id="y">y</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y position of the Box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Box</span>.<span class="blue">y</span></div><h3 id="width">width</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">width of the Box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Box</span>.<span class="blue">width</span></div><h3 id="height">height</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">height of the Box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">shape</span>.<span class="green">Box</span>.<span class="blue">height</span></div><br><br>
+											</tr></table><br><br><h2>Properties</h2><h3 id="x" style="margin-top: 0px;">x</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x position of the Box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Box</span>.<span class="green">x</span></div><h3 id="y">y</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y position of the Box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Box</span>.<span class="green">y</span></div><h3 id="width">width</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">width of the Box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Box</span>.<span class="green">width</span></div><h3 id="height">height</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">height of the Box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">shape</span>.<span class="blue">Box</span>.<span class="green">height</span></div><br><br>
 		</div>
 	</body>
 	<footer>

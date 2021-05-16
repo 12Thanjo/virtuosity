@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,12 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Heap</h1><p>tree-like automatic ordering of a set for the purpose of getting the lowest value quickly. This is faster than a normal binary search tree as it actually uses an array</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">structures</span>.<span class="blue">Heap</span>();</div><h4>Methods</h4><ul><li><a href="#size">size</a></li><li><a href="#push">push</a></li><li><a href="#print">print</a></li><li><a href="#peek">peek</a></li><li><a href="#pop">pop</a></li><li><a href="#remove">remove</a></li></ul><hr><h2>Methods</h2><h3 id="size" style="margin-top: 0px;">size</a></h3><p style="margin-top: 0px;">get the size of the heap</p><div class="code"><span class="green">virtuosity</span>.<span class="green">structures</span>.<span class="green">Heap</span>.<span class="blue">size</span>();</div><h3 id="push">push</a></h3><p style="margin-top: 0px;">add a value to the heap</p><div class="code"><span class="green">virtuosity</span>.<span class="green">structures</span>.<span class="green">Heap</span>.<span class="blue">push</span>(<span class="orange">val</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>Heap</h1><p>tree-like automatic ordering of a set for the purpose of getting the lowest value quickly. This is faster than a normal binary search tree as it actually uses an array</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="green">Heap</span>();</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr></table><h4>Methods</h4><ul><li><a href="#size">size</a></li><li><a href="#push">push</a></li><li><a href="#print">print</a></li><li><a href="#peek">peek</a></li><li><a href="#pop">pop</a></li><li><a href="#remove">remove</a></li></ul><hr><h2>Methods</h2><h3 id="size" style="margin-top: 0px;">size</a></h3><p style="margin-top: 0px;">get the size of the heap</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Heap</span>.<span class="green">size</span>();</div><h3 id="push">push</a></h3><p style="margin-top: 0px;">add a value to the heap</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Heap</span>.<span class="green">push</span>(<span class="orange">val</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -220,7 +224,7 @@
 												<td><var>val</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>vale to add to the heap</td>
-											</tr></table><h3 id="print">print</a></h3><p style="margin-top: 0px;">print the array of the heap</p><div class="code"><span class="green">virtuosity</span>.<span class="green">structures</span>.<span class="green">Heap</span>.<span class="blue">print</span>();</div><h3 id="peek">peek</a></h3><p style="margin-top: 0px;">get the lowest value</p><div class="code"><span class="green">virtuosity</span>.<span class="green">structures</span>.<span class="green">Heap</span>.<span class="blue">peek</span>();</div><h3 id="pop">pop</a></h3><p style="margin-top: 0px;">get and remove the lowest value</p><div class="code"><span class="green">virtuosity</span>.<span class="green">structures</span>.<span class="green">Heap</span>.<span class="blue">pop</span>();</div><h3 id="remove">remove</a></h3><p style="margin-top: 0px;">get and remove a value from a specific index</p><div class="code"><span class="green">virtuosity</span>.<span class="green">structures</span>.<span class="green">Heap</span>.<span class="blue">remove</span>(<span class="orange">i</span>);</div><br><br><table>
+											</tr></table><h3 id="print">print</a></h3><p style="margin-top: 0px;">print the array of the heap</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Heap</span>.<span class="green">print</span>();</div><h3 id="peek">peek</a></h3><p style="margin-top: 0px;">get the lowest value</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Heap</span>.<span class="green">peek</span>();</div><h3 id="pop">pop</a></h3><p style="margin-top: 0px;">get and remove the lowest value</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Heap</span>.<span class="green">pop</span>();</div><h3 id="remove">remove</a></h3><p style="margin-top: 0px;">get and remove a value from a specific index</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Heap</span>.<span class="green">remove</span>(<span class="orange">i</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

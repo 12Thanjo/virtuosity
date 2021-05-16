@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>add</h1><p>add graphics</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">add</span></div><h4>Methods</h4><ul><li><a href="#container">container</a></li><li><a href="#circle">circle</a></li><li><a href="#rectangle">rectangle</a></li><li><a href="#box">box</a></li><li><a href="#line">line</a></li><li><a href="#ellipse">ellipse</a></li><li><a href="#torus">torus</a></li><li><a href="#polygon">polygon</a></li></ul><hr><h2>Methods</h2><h3 id="container" style="margin-top: 0px;">container</a></h3><p style="margin-top: 0px;">Adds a container. A container holds graphics entities. This increases performance because when a property of an asset inside the container is changed, only that container needs to be redrawn. It is also faster to redraw the entities in batches as opposed to having each graphics entity seperate.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">container</span>(<span class="orange">name</span>, <span class="orange">canvas</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>add</h1><p>add graphics</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">add</span></div><h4>Methods</h4><ul><li><a href="#container">container</a></li><li><a href="#circle">circle</a></li><li><a href="#rectangle">rectangle</a></li><li><a href="#box">box</a></li><li><a href="#line">line</a></li><li><a href="#ellipse">ellipse</a></li><li><a href="#torus">torus</a></li><li><a href="#polygon">polygon</a></li></ul><hr><h2>Methods</h2><h3 id="container" style="margin-top: 0px;">container</a></h3><p style="margin-top: 0px;">Adds a container. A container holds graphics entities. This increases performance because when a property of an asset inside the container is changed, only that container needs to be redrawn. It is also faster to redraw the entities in batches as opposed to having each graphics entity seperate.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">container</span>(<span class="orange">name</span>, <span class="orange">canvas</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -224,7 +223,7 @@
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>name of the canvas the container should be a part of</td>
-											</tr></table><h3 id="circle">circle</a></h3><p style="margin-top: 0px;">adds a circle</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">circle</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">r</span>, <span class="orange">color</span>);</div><br><br><table>
+											</tr></table><h3 id="circle">circle</a></h3><p style="margin-top: 0px;">adds a circle</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">circle</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">r</span>, <span class="orange">color</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -253,7 +252,7 @@
 												<td><var>color</var></td>
 												<td><var><span class="purple">Hex</span></var></td>
 												<td>color of the circle</td>
-											</tr></table><h3 id="rectangle">rectangle</a></h3><p style="margin-top: 0px;">adds a rectangle</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">rectangle</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>);</div><br><br><table>
+											</tr></table><h3 id="rectangle">rectangle</a></h3><p style="margin-top: 0px;">adds a rectangle</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">rectangle</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -286,7 +285,7 @@
 												<td><var>color</var></td>
 												<td><var><span class="purple">Hex</span></var></td>
 												<td>color of the rectangle</td>
-											</tr></table><h3 id="box">box</a></h3><p style="margin-top: 0px;">adds a box</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">box</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>, <span class="orange">borderRadius</span>);</div><br><br><table>
+											</tr></table><h3 id="box">box</a></h3><p style="margin-top: 0px;">adds a box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">box</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>, <span class="orange">borderRadius</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -323,7 +322,7 @@
 												<td><var>borderRadius</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td>radius of the corners of the box</td>
-											</tr></table><h3 id="line">line</a></h3><p style="margin-top: 0px;">adds a line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">line</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x1</span>, <span class="orange">y1</span>, <span class="orange">x2</span>, <span class="orange">y2</span>, <span class="orange">color</span>);</div><br><br><table>
+											</tr></table><h3 id="line">line</a></h3><p style="margin-top: 0px;">adds a line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">line</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x1</span>, <span class="orange">y1</span>, <span class="orange">x2</span>, <span class="orange">y2</span>, <span class="orange">color</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -356,7 +355,7 @@
 												<td><var>color</var></td>
 												<td><var><span class="purple">Hex</span></var></td>
 												<td>color of the line</td>
-											</tr></table><h3 id="ellipse">ellipse</a></h3><p style="margin-top: 0px;">adds a ellipse</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">ellipse</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>);</div><br><br><table>
+											</tr></table><h3 id="ellipse">ellipse</a></h3><p style="margin-top: 0px;">adds a ellipse</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">ellipse</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -389,7 +388,7 @@
 												<td><var>color</var></td>
 												<td><var><span class="purple">Hex</span></var></td>
 												<td>color of the ellipse</td>
-											</tr></table><h3 id="torus">torus</a></h3><p style="margin-top: 0px;">adds a torus</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">torus</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>);</div><br><br><table>
+											</tr></table><h3 id="torus">torus</a></h3><p style="margin-top: 0px;">adds a torus</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">torus</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">width</span>, <span class="orange">height</span>, <span class="orange">color</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -422,7 +421,7 @@
 												<td><var>color</var></td>
 												<td><var><span class="purple">Hex</span></var></td>
 												<td>color of the torus</td>
-											</tr></table><h3 id="polygon">polygon</a></h3><p style="margin-top: 0px;">adds a polygon</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="green">add</span>.<span class="blue">polygon</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">points</span>, <span class="orange">color</span>);</div><br><br><table>
+											</tr></table><h3 id="polygon">polygon</a></h3><p style="margin-top: 0px;">adds a polygon</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="blue">add</span>.<span class="green">polygon</span>(<span class="orange">name</span>, <span class="orange">container</span>, <span class="orange">points</span>, <span class="orange">color</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

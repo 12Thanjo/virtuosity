@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,12 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>cluster-worker</h1><p>This is an object passed to the cluster worker. A cluster worker should be structured: <div class="code"><span class="blue">module</span>.<span class="green">exports</span><span class="red">=</span>(<span class="orange">worker</span>)<span class="blue">=></span>{};</div></p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">multiThreading</span>.<span class="blue">cluster-worker</span>();</div><h4>Methods</h4><ul><li><a href="#output">output</a></li></ul><h4>Properties</h4><ul><li><a href="#input">input</a></li><li><a href="#id">id</a></li><li><a href="#pid">pid</a></li></ul><hr><h2>Methods</h2><h3 id="output" style="margin-top: 0px;">output</a></h3><p style="margin-top: 0px;">Sends output back to the thread. Can be called as many times a you would like.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">multiThreading</span>.<span class="green">cluster-worker</span>.<span class="blue">output</span>();</div><br><br><h2>Properties</h2><h3 id="input" style="margin-top: 0px;">input</h3><p ><var><span class="white">Any</span></var></p><p style="margin-top: 0px;">input to the cluster-worker</p><div class="code"><span class="green">virtuosity</span>.<span class="green">multiThreading</span>.<span class="green">cluster-worker</span>.<span class="blue">input</span></div><h3 id="id">id</h3><p ><var><span class="purple">Int</span></var></p><p style="margin-top: 0px;">id of the cluster-worker</p><div class="code"><span class="green">virtuosity</span>.<span class="green">multiThreading</span>.<span class="green">cluster-worker</span>.<span class="blue">id</span></div><h3 id="pid">pid</h3><p ><var><span class="purple">Int</span></var></p><p style="margin-top: 0px;">pid of the cluster-worker</p><div class="code"><span class="green">virtuosity</span>.<span class="green">multiThreading</span>.<span class="green">cluster-worker</span>.<span class="blue">pid</span></div><br><br>
+			<div id="header-spacing"></div><h1>cluster-worker</h1><p>This is an object passed to the cluster worker. A cluster worker should be structured: <div class="code"><span class="blue">module</span>.<span class="green">exports</span><span class="red">=</span>(<span class="orange">worker</span>)<span class="blue">=></span>{};</div></p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">multiThreading</span>.<span class="green">cluster-worker</span>();</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr></table><h4>Methods</h4><ul><li><a href="#output">output</a></li></ul><h4>Properties</h4><ul><li><a href="#input">input</a></li><li><a href="#id">id</a></li><li><a href="#pid">pid</a></li></ul><hr><h2>Methods</h2><h3 id="output" style="margin-top: 0px;">output</a></h3><p style="margin-top: 0px;">Sends output back to the thread. Can be called as many times a you would like.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">multiThreading</span>.<span class="blue">cluster-worker</span>.<span class="green">output</span>();</div><br><br><h2>Properties</h2><h3 id="input" style="margin-top: 0px;">input</h3><p ><var><span class="white">Any</span></var></p><p style="margin-top: 0px;">input to the cluster-worker</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">multiThreading</span>.<span class="blue">cluster-worker</span>.<span class="green">input</span></div><h3 id="id">id</h3><p ><var><span class="purple">Int</span></var></p><p style="margin-top: 0px;">id of the cluster-worker</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">multiThreading</span>.<span class="blue">cluster-worker</span>.<span class="green">id</span></div><h3 id="pid">pid</h3><p ><var><span class="purple">Int</span></var></p><p style="margin-top: 0px;">pid of the cluster-worker</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">multiThreading</span>.<span class="blue">cluster-worker</span>.<span class="green">pid</span></div><br><br>
 		</div>
 	</body>
 	<footer>

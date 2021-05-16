@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>render</h1><p>render function</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">render</span></div><h4>Methods</h4><ul><li><a href="#add">add</a></li><li><a href="#remove">remove</a></li></ul><hr><h2>Methods</h2><h3 id="add" style="margin-top: 0px;">add</a></h3><p style="margin-top: 0px;">add an event to the render function</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">render</span>.<span class="blue">add</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">event</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>render</h1><p>render function</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">render</span></div><h4>Methods</h4><ul><li><a href="#add">add</a></li><li><a href="#remove">remove</a></li></ul><hr><h2>Methods</h2><h3 id="add" style="margin-top: 0px;">add</a></h3><p style="margin-top: 0px;">add an event to the render function</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">render</span>.<span class="green">add</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">event</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -228,7 +227,7 @@
 												<td><var>event</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>event to add to render function</td>
-											</tr></table><h3 id="remove">remove</a></h3><p style="margin-top: 0px;">remove an event from the render function</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">render</span>.<span class="blue">remove</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+											</tr></table><h3 id="remove">remove</a></h3><p style="margin-top: 0px;">remove an event from the render function</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">render</span>.<span class="green">remove</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Light</h1><p>engine3d point light source</p><h4>Properties</h4><ul><li><a href="#x">x</a></li><li><a href="#y">y</a></li><li><a href="#z">z</a></li><li><a href="#color">color</a></li><li><a href="#intesity">intesity</a></li></ul><hr><h2>Properties</h2><h3 id="x" style="margin-top: 0px;">x</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x position of the Light</p><div class="code"><span class="green">Light</span>.<span class="blue">x</span></div><h3 id="y">y</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y position of the Light</p><div class="code"><span class="green">Light</span>.<span class="blue">y</span></div><h3 id="z">z</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">z position of the Light</p><div class="code"><span class="green">Light</span>.<span class="blue">z</span></div><h3 id="color">color</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">color of the light</p><div class="code"><span class="green">Light</span>.<span class="blue">color</span></div><h3 id="intesity">intesity</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">intesity (wattage) of the Light</p><div class="code"><span class="green">Light</span>.<span class="blue">intesity</span></div><br><br>
+			<div id="header-spacing"></div><h1>Light</h1><p>engine3d point light source</p><h4>Properties</h4><ul><li><a href="#x">x</a></li><li><a href="#y">y</a></li><li><a href="#z">z</a></li><li><a href="#color">color</a></li><li><a href="#intesity">intesity</a></li></ul><hr><h2>Properties</h2><h3 id="x" style="margin-top: 0px;">x</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">x position of the Light</p><div class="code"><span class="blue">Light</span>.<span class="green">x</span></div><h3 id="y">y</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">y position of the Light</p><div class="code"><span class="blue">Light</span>.<span class="green">y</span></div><h3 id="z">z</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">z position of the Light</p><div class="code"><span class="blue">Light</span>.<span class="green">z</span></div><h3 id="color">color</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">color of the light</p><div class="code"><span class="blue">Light</span>.<span class="green">color</span></div><h3 id="intesity">intesity</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">intesity (wattage) of the Light</p><div class="code"><span class="blue">Light</span>.<span class="green">intesity</span></div><br><br>
 		</div>
 	</body>
 	<footer>

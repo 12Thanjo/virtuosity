@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>gamepad</h1><p>manages input from up to gamepad 4</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="blue">gamepad</span></div><h4>Methods</h4><ul><li><a href="#leftX">leftX</a></li><li><a href="#leftY">leftY</a></li><li><a href="#rightX">rightX</a></li><li><a href="#rightY">rightY</a></li><li><a href="#button">button</a></li><li><a href="#getConnected">getConnected</a></li></ul><hr><h2>Methods</h2><h3 id="leftX" style="margin-top: 0px;">leftX</a></h3><p style="margin-top: 0px;">get the left joystick current X position</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">gamepad</span>.<span class="blue">leftX</span>(<span class="orange">id</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>gamepad</h1><p>manages input from up to gamepad 4</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="green">gamepad</span></div><h4>Methods</h4><ul><li><a href="#leftX">leftX</a></li><li><a href="#leftY">leftY</a></li><li><a href="#rightX">rightX</a></li><li><a href="#rightY">rightY</a></li><li><a href="#button">button</a></li><li><a href="#getConnected">getConnected</a></li></ul><hr><h2>Methods</h2><h3 id="leftX" style="margin-top: 0px;">leftX</a></h3><p style="margin-top: 0px;">get the left joystick current X position</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">gamepad</span>.<span class="green">leftX</span>(<span class="orange">id</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -220,7 +219,7 @@
 												<td><var>id</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td>id of the gamepad (0-3)</td>
-											</tr></table><h3 id="leftY">leftY</a></h3><p style="margin-top: 0px;">get the left joystick current Y position</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">gamepad</span>.<span class="blue">leftY</span>(<span class="orange">id</span>);</div><br><br><table>
+											</tr></table><h3 id="leftY">leftY</a></h3><p style="margin-top: 0px;">get the left joystick current Y position</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">gamepad</span>.<span class="green">leftY</span>(<span class="orange">id</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -229,7 +228,7 @@
 												<td><var>id</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td>id of the gamepad (0-3)</td>
-											</tr></table><h3 id="rightX">rightX</a></h3><p style="margin-top: 0px;">get the right joystick current X position</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">gamepad</span>.<span class="blue">rightX</span>(<span class="orange">id</span>);</div><br><br><table>
+											</tr></table><h3 id="rightX">rightX</a></h3><p style="margin-top: 0px;">get the right joystick current X position</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">gamepad</span>.<span class="green">rightX</span>(<span class="orange">id</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -238,7 +237,7 @@
 												<td><var>id</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td>id of the gamepad (0-3)</td>
-											</tr></table><h3 id="rightY">rightY</a></h3><p style="margin-top: 0px;">get the right joystick current Y position</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">gamepad</span>.<span class="blue">rightY</span>(<span class="orange">id</span>);</div><br><br><table>
+											</tr></table><h3 id="rightY">rightY</a></h3><p style="margin-top: 0px;">get the right joystick current Y position</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">gamepad</span>.<span class="green">rightY</span>(<span class="orange">id</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -247,7 +246,7 @@
 												<td><var>id</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td>id of the gamepad (0-3)</td>
-											</tr></table><h3 id="button">button</a></h3><p style="margin-top: 0px;">return value of a controller button</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">gamepad</span>.<span class="blue">button</span>(<span class="orange">id</span>, <span class="orange">btn</span>);</div><br><br><table>
+											</tr></table><h3 id="button">button</a></h3><p style="margin-top: 0px;">return value of a controller button</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">gamepad</span>.<span class="green">button</span>(<span class="orange">id</span>, <span class="orange">btn</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -315,7 +314,7 @@
 													</tr><tr>
 														<td><var><span class="yellow">"Home"</span></var></td>
 														<td>Home Button (Xbox button)</td>
-													</tr></table><h3 id="getConnected">getConnected</a></h3><p style="margin-top: 0px;">returns <span class="code">[<span class="purple">Boolean</span>]</span> of which controllers are connected</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">gamepad</span>.<span class="blue">getConnected</span>();</div><br><br>
+													</tr></table><h3 id="getConnected">getConnected</a></h3><p style="margin-top: 0px;">returns <span class="code">[<span class="purple">Boolean</span>]</span> of which controllers are connected</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">gamepad</span>.<span class="green">getConnected</span>();</div><br><br>
 		</div>
 	</body>
 	<footer>

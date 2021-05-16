@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>color</h1><p>set console text color. Add to the stringh to change the color.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="blue">color</span></div><h4>Properties</h4><ul><li><a href="#black">black</a></li><li><a href="#red">red</a></li><li><a href="#yellow">yellow</a></li><li><a href="#green">green</a></li><li><a href="#blue">blue</a></li><li><a href="#magenta">magenta</a></li><li><a href="#cyan">cyan</a></li><li><a href="#white">white</a></li></ul><hr><h2>Properties</h2><h3 id="black" style="margin-top: 0px;">black</h3><p ></p><p style="margin-top: 0px;">text color black</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">black</span></div><h3 id="red">red</h3><p ></p><p style="margin-top: 0px;">text color red</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">red</span></div><h3 id="yellow">yellow</h3><p ></p><p style="margin-top: 0px;">text color yellow</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">yellow</span></div><h3 id="green">green</h3><p ></p><p style="margin-top: 0px;">text color green</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">green</span></div><h3 id="blue">blue</h3><p ></p><p style="margin-top: 0px;">text color blue</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">blue</span></div><h3 id="magenta">magenta</h3><p ></p><p style="margin-top: 0px;">text color magenta</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">magenta</span></div><h3 id="cyan">cyan</h3><p ></p><p style="margin-top: 0px;">text color cyan</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">cyan</span></div><h3 id="white">white</h3><p ></p><p style="margin-top: 0px;">text color white</p><div class="code"><span class="green">virtuosity</span>.<span class="green">cmd</span>.<span class="green">color</span>.<span class="blue">white</span></div><br><br>
+			<div id="header-spacing"></div><h1>color</h1><p>set console text color. Add to the stringh to change the color.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="green">color</span></div><h4>Properties</h4><ul><li><a href="#black">black</a></li><li><a href="#red">red</a></li><li><a href="#yellow">yellow</a></li><li><a href="#green">green</a></li><li><a href="#blue">blue</a></li><li><a href="#magenta">magenta</a></li><li><a href="#cyan">cyan</a></li><li><a href="#white">white</a></li></ul><hr><h2>Properties</h2><h3 id="black" style="margin-top: 0px;">black</h3><p ></p><p style="margin-top: 0px;">text color black</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">black</span></div><h3 id="red">red</h3><p ></p><p style="margin-top: 0px;">text color red</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">red</span></div><h3 id="yellow">yellow</h3><p ></p><p style="margin-top: 0px;">text color yellow</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">yellow</span></div><h3 id="green">green</h3><p ></p><p style="margin-top: 0px;">text color green</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">green</span></div><h3 id="blue">blue</h3><p ></p><p style="margin-top: 0px;">text color blue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">blue</span></div><h3 id="magenta">magenta</h3><p ></p><p style="margin-top: 0px;">text color magenta</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">magenta</span></div><h3 id="cyan">cyan</h3><p ></p><p style="margin-top: 0px;">text color cyan</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">cyan</span></div><h3 id="white">white</h3><p ></p><p style="margin-top: 0px;">text color white</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">cmd</span>.<span class="blue">color</span>.<span class="green">white</span></div><br><br>
 		</div>
 	</body>
 	<footer>

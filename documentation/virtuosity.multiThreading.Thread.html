@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,24 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Thread</h1><p>Creates a separate run thread (multithreading)</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">multiThreading</span>.<span class="blue">Thread</span>(<span class="orange">path</span>, <span class="orange">onMessage</span>, <span class="orange">onExit</span>);</div><h4>Methods</h4><ul><li><a href="#send">send</a></li></ul><hr><h2>Methods</h2><h3 id="send" style="margin-top: 0px;">send</a></h3><p style="margin-top: 0px;">Semds data to the thread</p><div class="code"><span class="green">virtuosity</span>.<span class="green">multiThreading</span>.<span class="green">Thread</span>.<span class="blue">send</span>(<span class="orange">data</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>Thread</h1><p>Creates a separate run thread (multithreading)</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">multiThreading</span>.<span class="green">Thread</span>(<span class="orange">path</span>, <span class="orange">onMessage</span>, <span class="orange">onExit</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>path</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>path to the file to run in the thread</td>
+											</tr><tr>
+												<td><var>onMessage</var></td>
+												<td><var><span class="blue">Function</span></var></td>
+												<td>action to complete when the thread sends a message using process.send(data)</td>
+											</tr><tr>
+												<td><var>onExit</var></td>
+												<td><var><span class="blue">Function</span></var></td>
+												<td>action to complete when the thread exits</td>
+											</tr></table><h4>Methods</h4><ul><li><a href="#send">send</a></li></ul><hr><h2>Methods</h2><h3 id="send" style="margin-top: 0px;">send</a></h3><p style="margin-top: 0px;">Semds data to the thread</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">multiThreading</span>.<span class="blue">Thread</span>.<span class="green">send</span>(<span class="orange">data</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

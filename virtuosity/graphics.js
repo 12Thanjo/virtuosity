@@ -1,4 +1,4 @@
-var escs = require("../virtuosity-server/node_modules/escs/index.js");
+var ocs = require('ocs');
 // var escs = require('../../escs/index.js');
 var debug = require('./debug.js');
 require('@pixi/graphics-extras');
@@ -10,7 +10,7 @@ module.exports = function(PIXI, canvases){
 	* @type environment
 	*/
 	var env = "engine2d-graphics";
-	escs.add.environment(env);
+	new ocs.Environment(env);
 
 	/*
 	* @name position
@@ -20,14 +20,13 @@ module.exports = function(PIXI, canvases){
 	* @param {x}{Number}{x coordinate of the graphics object}{0}
 	* @param {y}{Number}{y coordinate of the graphics object}{0}
 	*/
-	var pos = escs.add.component('position', env, (x, y)=>{
-		return {
+	var pos = new ocs.Component(env, 'position', (x, y)=>{
+		return new ocs.EEO({
 			x: x || 0,
 			y: y || 0
-		}
-	});
-	pos.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
 
 	/*
@@ -37,13 +36,12 @@ module.exports = function(PIXI, canvases){
 	* @env engine2d-graphics
 	* @param {x}{Hex}{color of the graphics object}{0xffffff}
 	*/
-	var color = escs.add.component('color', env, (color)=>{
-		return {
+	var color = new ocs.Component(env, 'color', (color)=>{
+		return new ocs.EEO({
 			color: color || 0xffffff
-		}
-	});
-	color.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
+		}, (entity)=>{
+			containers.get(entity.container).draw();	
+		});
 	});
 
 	/*
@@ -51,15 +49,14 @@ module.exports = function(PIXI, canvases){
 	* @type component
 	* @description alpha of the graphics object
 	* @env engine2d-graphics
-	* @param {alpha}{Number}{alpha of the graphics object}
+	* @param {alpha}{Number}{alpha of the graphics object}{1}
 	*/
-	var alpha = escs.add.component('alpha', env, (alpha)=>{
-		return {
+	var alpha = new ocs.Component(env, 'alpha', (alpha)=>{
+		return new ocs.EEO({
 			alpha: alpha || 1
-		}
-	});
-	alpha.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
 
 	/*
@@ -69,13 +66,12 @@ module.exports = function(PIXI, canvases){
 	* @env engine2d-graphics
 	* @param {container}{Container}{container of the render object}
 	*/
-	var container = escs.add.component('container', env, (container)=>{
-		return {
+	var container = new ocs.Component(env, 'container', (container)=>{
+		return new ocs.EEO({
 			container: container
-		}
-	});
-	container.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
 
 
@@ -96,39 +92,31 @@ module.exports = function(PIXI, canvases){
 
 			this.shapes.forEach((shape)=>{
 				if(shape.hasTag('circle')){
-					var pos = shape.getComponent('position');
-					this.graphics.beginFill(shape.getComponent('color').color, shape.getComponent('alpha').alpha);
-					this.graphics.drawCircle(pos.x, pos.y, shape.getComponent('radius').radius);
+					this.graphics.beginFill(shape.color, shape.alpha);
+					this.graphics.drawCircle(shape.x, shape.y, shape.radius);
 					this.graphics.endFill();
 				}else if(shape.hasTag('rectangle')){
-					var pos = shape.getComponent('position');
-					this.graphics.beginFill(shape.getComponent('color').color, shape.getComponent('alpha').alpha);
-					this.graphics.drawRect(pos.x, pos.y, shape.getComponent('scale').width, shape.getComponent('scale').height);
+					this.graphics.beginFill(shape.color, shape.alpha);
+					this.graphics.drawRect(shape.x, shape.y, shape.width, shape.height);
 				}else if(shape.hasTag('box')){
-					var pos = shape.getComponent('position');
-					var scale = shape.getComponent('scale');
-					this.graphics.beginFill(shape.getComponent('color').color, shape.getComponent('alpha').alpha);
-					this.graphics.drawRoundedRect(pos.x, pos.y, scale.width, scale.height, shape.getComponent('borderRadius').radius);
+					this.graphics.beginFill(shape.color, shape.alpha);
+					this.graphics.drawRoundedRect(shape.x, shape.y, shape.width, shape.height, shape.radius);
 				}else if(shape.hasTag('line')){
-					var pos = shape.getComponent('position');
-					this.graphics.lineStyle(shape.getComponent('thickness').thickness, shape.getComponent('color').color, shape.getComponent('alpha').alpha);
-					this.graphics.moveTo(pos.x, pos.y);
-					this.graphics.lineTo(shape.getComponent('position2').x, shape.getComponent('position2').y);
+					this.graphics.lineStyle(shape.thickness, shape.color, shape.alpha);
+					this.graphics.moveTo(shape.x, shape.y);
+					this.graphics.lineTo(shape.x2, shape.y2);
 				}else if(shape.hasTag('ellipse')){
-					var pos = shape.getComponent('position');
-					var scale = shape.getComponent('scale');
-					this.graphics.beginFill(shape.getComponent('color').color, shape.getComponent('alpha').alpha);
-					this.graphics.drawEllipse(pos.x, pos.y, scale.width, scale.height);
+					this.graphics.beginFill(shape.color, shape.alpha);
+					this.graphics.drawEllipse(shape.x, shape.y, shape.width, shape.height);
 					this.graphics.endFill();
 				}else if(shape.hasTag('torus')){
-					var pos = shape.getComponent('position');
-					var radius = shape.getComponent('radius');
-					this.graphics.beginFill(shape.getComponent('color').color, shape.getComponent('alpha').alpha);
-					this.graphics.drawTorus(pos.x, pos.y, radius.innerRadius, radius.radius);
+					var radius = shape;
+					this.graphics.beginFill(shape.color, shape.alpha);
+					this.graphics.drawTorus(shape.x, shape.y, radius.innerRadius, radius.radius);
 					this.graphics.endFill();
 				}else if(shape.hasTag('polygon')){
-					this.graphics.beginFill(shape.getComponent('color').color, shape.getComponent('alpha').alpha);
-					this.graphics.drawPolygon(shape.getComponent('points').points);
+					this.graphics.beginFill(shape.color, shape.alpha);
+					this.graphics.drawPolygon(shape.points);
 					this.graphics.endFill();
 				}
 			});
@@ -140,7 +128,7 @@ module.exports = function(PIXI, canvases){
 			this.draw();
 		}
 
-		escs.add.tag(name, env);
+		new ocs.Tag(name);
 	}
 
 	/*
@@ -150,15 +138,15 @@ module.exports = function(PIXI, canvases){
 	* @env engine2d-graphics
 	* @param {radius}{Number}{radius of the render object}
 	*/
-	var radius = escs.add.component('radius', env, (r, r2)=>{
-		return {
+	var radius = new ocs.Component(env, 'radius', (r, r2)=>{
+		return new ocs.EEO({
 			radius: r || 10,
 			innerRadius: r2 || null
-		}
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
-	radius.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
-	});
+
 	/*
 	* @name Circle
 	* @type entity
@@ -170,15 +158,15 @@ module.exports = function(PIXI, canvases){
 	* @component color
 	* @component alpha
 	*/
-	escs.add.tag('circle', env);
+	new ocs.Tag('circle');
 	var new_circle = function(name, container, x, y, radius, color){
-		var new_circle = escs.add.entity(`${name}╎${container}`, env)
-			.addComponent('container', container)
-			.addComponent('position', x, y)
-			.addComponent('radius', radius)
-			.addComponent('color', color)
-			.addComponent('alpha')
-			.addTag('circle');
+		var new_circle = new ocs.Entity(env, `${name}╎${container}`)
+		new_circle.addComponent('container', container)
+			      .addComponent('position', x, y)
+				  .addComponent('radius', radius)
+				  .addComponent('color', color)
+				  .addComponent('alpha')
+				  .addTag('circle');
 
 		containers.get(container).add(new_circle);
 	}
@@ -191,16 +179,15 @@ module.exports = function(PIXI, canvases){
 	* @param {width}{Number}{width of the graphics object}{10}
 	* @param {height}{Number}{height of the graphics object}{10}
 	*/
-	var scale = escs.add.component('scale', env, (width, height)=>{
-		return {
+	var scale = new ocs.Component(env, 'scale', (width, height)=>{
+		return new ocs.EEO({
 			width: width || 10,
 			height: height || 10
-		}
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
 
-	scale.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
-	});
 
 	/*
 	* @name Rectange
@@ -213,15 +200,15 @@ module.exports = function(PIXI, canvases){
 	* @component color
 	* @component alpha
 	*/
-	escs.add.tag('rectangle', env);
+	new ocs.Tag('rectangle');
 	var new_rectangle = function(name, container, x, y, width, height, color){
-		var new_rectangle = escs.add.entity(`${name}╎${container}`, env)
-			.addComponent('container', container)
-			.addComponent('position', x, y)
-			.addComponent('scale', width, height)
-			.addComponent('color', color)
-			.addComponent('alpha')
-			.addTag('rectangle');
+		var new_rectangle = new ocs.Entity(env, `${name}╎${container}`)
+		new_rectangle.addComponent('container', container)
+			    	 .addComponent('position', x, y)
+					 .addComponent('scale', width, height)
+					 .addComponent('color', color)
+				 	 .addComponent('alpha')
+				 	 .addTag('rectangle');
 
 		containers.get(container).add(new_rectangle);
 	}
@@ -233,15 +220,14 @@ module.exports = function(PIXI, canvases){
 	* @env engine2d-graphics
 	* @param {radius}{Number}{border radius of the graphics object}{0}
 	*/
-	var borderRadius = escs.add.component('borderRadius', env, (radius)=>{
-		return {
-			radius: radius || 0
-		}
+	var borderRadius = new ocs.Component(env, 'borderRadius', (radius)=>{
+		return new ocs.EEO({
+			borderRadius: radius || 0
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		})
 	});
 
-	borderRadius.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
-	});
 
 	/*
 	* @name Box
@@ -255,16 +241,16 @@ module.exports = function(PIXI, canvases){
 	* @component borderRadius
 	* @component alpha
 	*/
-	escs.add.tag('box', env);
+	new ocs.Tag('box');
 	var new_box = function(name, container, x, y, width, height, color, borderRadius){
-		var new_box = escs.add.entity(`${name}╎${container}`, env)
-			.addComponent('container', container)
-			.addComponent('position', x, y)
-			.addComponent('scale', width, height)
-			.addComponent('color', color)
-			.addComponent('borderRadius', borderRadius)
-			.addComponent('alpha')
-			.addTag('box');
+		var new_box = new ocs.Entity(env, `${name}╎${container}`)
+		new_box.addComponent('container', container)
+			   .addComponent('position', x, y)
+			   .addComponent('scale', width, height)
+			   .addComponent('color', color)
+			   .addComponent('borderRadius', borderRadius)
+			   .addComponent('alpha')
+			   .addTag('box');
 
 		containers.get(container).add(new_box);
 	}
@@ -277,14 +263,13 @@ module.exports = function(PIXI, canvases){
 	* @param {x}{Number}{x2 coordinate of the graphics object}{0}
 	* @param {y}{Number}{y2 coordinate of the graphics object}{0}
 	*/
-	var pos2 = escs.add.component('position2', env, (x, y)=>{
-		return {
-			x: x || 0,
-			y: y || 0
-		}
-	});
-	pos2.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
+	var pos2 = new ocs.Component(env, 'position2', (x, y)=>{
+		return new ocs.EEO({
+			x2: x || 0,
+			y2: y || 0
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
 
 	/*
@@ -294,13 +279,12 @@ module.exports = function(PIXI, canvases){
 	* @env engine2d-graphics
 	* @param {thickness}{Number}{thickness of the graphics object}{0}
 	*/
-	var thickness = escs.add.component('thickness', env, (thickness)=>{
-		return {
+	var thickness = new ocs.Component(env, 'thickness', (thickness)=>{
+		return new ocs.EEO({
 			thickness: thickness || 1
-		}
-	});
-	thickness.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
 
 	/*
@@ -315,42 +299,42 @@ module.exports = function(PIXI, canvases){
 	* @component thickness
 	* @component alpha
 	*/
-	escs.add.tag('line', env);
+	new ocs.Tag('line');
 	var new_line = function(name, container, x1, y1, x2, y2, color){
-		var new_line = escs.add.entity(`${name}╎${container}`, env)
-			.addComponent('container', container)
-			.addComponent('position', x1, y1)
-			.addComponent('position2', x2, y2)
-			.addComponent('color', color)
-			.addComponent('thickness')
-			.addComponent('alpha')
-			.addTag('line');
+		var new_line = new ocs.Entity(env, `${name}╎${container}`)
+		new_line.addComponent('container', container)
+			    .addComponent('position', x1, y1)
+				.addComponent('position2', x2, y2)
+				.addComponent('color', color)
+				.addComponent('thickness')
+				.addComponent('alpha')
+				.addTag('line');
 
 		containers.get(container).add(new_line);
 	}
 
-	escs.add.tag('ellipse', env);
+	new ocs.Tag('ellipse');
 	var new_ellipse = function(name, container, x, y, width, height, color){
-		var new_ellipse = escs.add.entity(`${name}╎${container}`, env)
-			.addComponent('container', container)
-			.addComponent('position', x, y)
-			.addComponent('scale', width, height)
-			.addComponent('color', color)
-			.addComponent('alpha')
-			.addTag('ellipse')
+		var new_ellipse = new ocs.Entity(env, `${name}╎${container}`)
+		new_ellipse.addComponent('container', container)
+			       .addComponent('position', x, y)
+				   .addComponent('scale', width, height)
+				   .addComponent('color', color)
+				   .addComponent('alpha')
+				   .addTag('ellipse');
 
 		containers.get(container).add(new_ellipse);
 	}
 
-	escs.add.tag('torus', env);
+	new ocs.Tag('torus');
 	var new_torus = function(name, container, x, y, innerRadius, outerRadius, color){
-		var new_torus = escs.add.entity(`${name}╎${container}`, env)
-			.addComponent('container', container)
-			.addComponent('position', x, y)
-			.addComponent('radius', outerRadius, innerRadius)
-			.addComponent('color', color)
-			.addComponent('alpha')
-			.addTag('torus')
+		var new_torus = new ocs.Entity(env, `${name}╎${container}`)
+		new_torus.addComponent('container', container)
+			     .addComponent('position', x, y)
+				 .addComponent('radius', outerRadius, innerRadius)
+				 .addComponent('color', color)
+				 .addComponent('alpha')
+				 .addTag('torus');
 
 		containers.get(container).add(new_torus);
 	}
@@ -362,13 +346,12 @@ module.exports = function(PIXI, canvases){
 	* @env engine2d-graphics
 	* @param {points}{[Point]}{x coordinate of the graphics object}{0}
 	*/
-	var points = escs.add.component('points', env, (points)=>{
-		return {
+	var points = new ocs.Component(env, 'points', (points)=>{
+		return new ocs.EEO({
 			points: points || [new PIXI.Point(0,0), new PIXI.Point(10, 0), new PIXI.Point(10, 10)]
-		}
-	});
-	points.setOnChange((entity)=>{
-		containers.get(entity.getComponent('container').container).draw();
+		}, (entity)=>{
+			containers.get(entity.container).draw();
+		});
 	});
 
 	/*
@@ -381,15 +364,15 @@ module.exports = function(PIXI, canvases){
 	* @component alpha
 	* @component points
 	*/
-	escs.add.tag('polygon', env);
+	new ocs.Tag('polygon');
 	var new_polygon = function(name, container, color, points){
-		var new_polygon = escs.add.entity(`${name}╎${container}`, env)
-			.addComponent('container', container)
-			.addComponent('color', color)
-			.addComponent('alpha')
-			.addComponent('points', points)
-			.addTag('polygon')
-
+		var new_polygon = new ocs.Entity(env, `${name}╎${container}`)
+		new_polygon.addComponent('container', container)
+			       .addComponent('color', color)
+				   .addComponent('alpha')
+				   .addComponent('points', points)
+				   .addTag('polygon');
+	 
 		containers.get(container).add(new_polygon);
 	}
 
@@ -552,19 +535,43 @@ module.exports = function(PIXI, canvases){
 			});
 		},
 
+
+
+
+		/*
+		* @name delete
+		* @type obj
+		* @description delete a graphics entity
+		*/
 		delete: {
+			/*
+			* @name container
+			* @type method
+			* @description delete a graphics container
+			* @parent delete
+			* @param {container}{String}{name of the container to delete}
+			*/
 			container: (container)=>{
 				return container_check(container, (cntnr)=>{
 					cntnr.shapes.forEach((shape)=>{
-						escs.delete.entity(shape.name, env);
+						ocs.getEntity(env, shape.name).destroy();
 					});
 					cntnr.graphics.clear();
 					cntnr.graphics.destroy();
 				});	
 			},
+
+			/*
+			* @name shape
+			* @type method
+			* @description delete a graphics shape
+			* @parent delete
+			* @param {name}{String}{name of the graphics shape to delete}
+			* @param {container}{String}{name of the container to delete}
+			*/
 			shape: (name, container)=>{
 				return container_check(container, (cntnr)=>{
-					cntnr.shapes.get(`${name}╎${container}`).getComponent('pixi').pixi.destroy();
+					cntnr.shapes.delete(`${name}╎${container}`);
 				});	
 			}
 		},

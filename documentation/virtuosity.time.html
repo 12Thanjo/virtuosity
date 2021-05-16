@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,33 +210,33 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>time</h1><p>Time</p><div class="code"><span class="green">virtuosity</span>.<span class="blue">time</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.time.advancedTimer.html'>advancedTimer*</a></li><li><a href='./virtuosity.time.advancedInterval.html'>advancedInterval*</a></li></ul><h4>Methods</h4><ul><li><a href="#Timer">Timer</a></li><li><a href="#Interval">Interval</a></li></ul><hr><h2>Classes</h2><h3 id="advancedTimer" style="margin-top: 0px;"><a href='./virtuosity.time.advancedTimer.html'>advancedTimer</a></h3><p style="margin-top: 0px;">Timer with extra functionality</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">time</span>.<span class="blue">advancedTimer</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
+			<div id="header-spacing"></div><h1>time</h1><p>Time</p><div class="code"><span class="blue">virtuosity</span>.<span class="green">time</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.time.AdvancedTimer.html'>AdvancedTimer</a></li><li><a href='./virtuosity.time.AdvancedInterval.html'>AdvancedInterval</a></li></ul><h4>Methods</h4><ul><li><a href="#Timer">Timer</a></li><li><a href="#Interval">Interval</a></li></ul><hr><h2>Classes</h2><h3 id="AdvancedTimer" style="margin-top: 0px;"><a href='./virtuosity.time.AdvancedTimer.html'>AdvancedTimer</a></h3><p style="margin-top: 0px;">Timer with extra functionality</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="green">AdvancedTimer</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>duration</var></td>
+													<td><var><span class="purple">Int</span></var></td>
+													<td>duration of the AdvancedTimer</td>
 												</tr><tr>
-												<td><var>duration</var></td>
-												<td><var><span class="purple">Int</span></var></td>
-												<td>duration of the advancedTimer</td>
-											</tr><tr>
-												<td><var>func</var></td>
-												<td><var><span class="blue">Function</span></var></td>
-												<td>Funciton for the advancedTimer to run when completed</td>
-											</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.time.advancedInterval.html'>advancedInterval</a></h3><p style="margin-top: 0px;">Runs a function at a set interval, with some extra functionality.</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">time</span>.<span class="blue">advancedInterval</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
+													<td><var>func</var></td>
+													<td><var><span class="blue">Function</span></var></td>
+													<td>Funciton for the AdvancedTimer to run when completed</td>
+												</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.time.AdvancedInterval.html'>AdvancedInterval</a></h3><p style="margin-top: 0px;">Runs a function at a set interval, with some extra functionality.</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="green">AdvancedInterval</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>duration</var></td>
+													<td><var><span class="purple">Int</span></var></td>
+													<td>duration of the Interval</td>
 												</tr><tr>
-												<td><var>duration</var></td>
-												<td><var><span class="purple">Int</span></var></td>
-												<td>duration of the Interval</td>
-											</tr><tr>
-												<td><var>func</var></td>
-												<td><var><span class="blue">Function</span></var></td>
-												<td>Funciton for the Interval to run when completed</td>
-											</tr></table><br><br><h2>Methods</h2><h3 id="Timer" style="margin-top: 0px;">Timer</a></h3><p style="margin-top: 0px;">Runs a function after a set duration.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="blue">Timer</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
+													<td><var>func</var></td>
+													<td><var><span class="blue">Function</span></var></td>
+													<td>Funciton for the Interval to run when completed</td>
+												</tr></table><br><br><h2>Methods</h2><h3 id="Timer" style="margin-top: 0px;">Timer</a></h3><p style="margin-top: 0px;">Runs a function after a set duration.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="green">Timer</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -250,7 +249,7 @@
 												<td><var>func</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>Funciton for the timer to run when completed</td>
-											</tr></table><h3 id="Interval">Interval</a></h3><p style="margin-top: 0px;">Runs a function at a set interval.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="blue">Interval</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
+											</tr></table><h3 id="Interval">Interval</a></h3><p style="margin-top: 0px;">Runs a function at a set interval.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="green">Interval</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

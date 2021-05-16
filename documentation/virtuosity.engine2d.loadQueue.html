@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,16 +210,12 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>loadQueue</h1><p>adds an asset to the load queue</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">loadQueue</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#load">load</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">adds an immage to the load queue</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">loadQueue</span>.<span class="blue">image</span>(<span class="orange">canvas</span>, <span class="orange">key</span>, <span class="orange">path</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>loadQueue</h1><p>adds an asset to the load queue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">loadQueue</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#load">load</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">adds an image to the load queue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">loadQueue</span>.<span class="green">image</span>(<span class="orange">key</span>, <span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
 												</tr><tr>
-												<td><var>canvas</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>Name of the canvas to add to</td>
-											</tr><tr>
 												<td><var>key</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>unique name of the image asset</td>
@@ -228,7 +223,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path of the image asset</td>
-											</tr></table><h3 id="load">load</a></h3><p style="margin-top: 0px;">begin loading (automatiacally run at the end of the the canvas's preload function)</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">loadQueue</span>.<span class="blue">load</span>();</div><br><br>
+											</tr></table><h3 id="load">load</a></h3><p style="margin-top: 0px;">begin loading (automatiacally run at the end of the the canvas's preload function)</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">loadQueue</span>.<span class="green">load</span>();</div><br><br>
 		</div>
 	</body>
 	<footer>

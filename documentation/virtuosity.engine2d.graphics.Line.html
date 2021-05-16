@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Line</h1><p>A procedurally generated engine2d line</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">Line</span></div><h4>Components</h4><ul><li ><a href=#container>container</a></li><li ><a href=#position>position</a></li><li ><a href=#position2>position2</a></li><li ><a href=#color>color</a></li><li ><a href=#thickness>thickness</a></li><li ><a href=#alpha>alpha</a></li></ul><hr><h3 id='container'>container</h3><p >container of the render object</p><br><br><table>
+			<div id="header-spacing"></div><h1>Line</h1><p>A procedurally generated engine2d line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">Line</span></div><h4>Components</h4><ul><li ><a href=#container>container</a></li><li ><a href=#position>position</a></li><li ><a href=#position2>position2</a></li><li ><a href=#color>color</a></li><li ><a href=#thickness>thickness</a></li><li ><a href=#alpha>alpha</a></li></ul><hr><h3 id='container'>container</h3><p >container of the render object</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -274,15 +273,17 @@
 												<td><var><span class="purple">Number</span></var></td>
 												<td>thickness of the graphics object</td>
 												<td><var><span class="purple">0</span></var></td>
-											</tr></table><h3 id='alpha'>alpha</h3><p >alpha of the graphics object</p><br><br><table>
+											</tr></table><h3 id='alpha'>alpha</h3><p >alpha of the graphics object</p><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
+													<th>Default</th>
 												</tr><tr>
 												<td><var>alpha</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>alpha of the graphics object</td>
+												<td><var><span class="purple">1</span></var></td>
 											</tr></table>
 		</div>
 	</body>

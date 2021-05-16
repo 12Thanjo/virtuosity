@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,16 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>WriteStream</h1><p>file write stream</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">WriteStream</span>(<span class="orange">path</span>);</div><h4>Methods</h4><ul><li><a href="#write">write</a></li><li><a href="#close">close</a></li></ul><h4>Properties</h4><ul><li><a href="#path">path</a></li><li><a href="#open">open</a></li></ul><hr><h2>Methods</h2><h3 id="write" style="margin-top: 0px;">write</a></h3><p style="margin-top: 0px;">writes to the WriteStream</p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="green">WriteStream</span>.<span class="blue">write</span>();</div><h3 id="close">close</a></h3><p style="margin-top: 0px;">closes to the WriteStream</p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="green">WriteStream</span>.<span class="blue">close</span>();</div><br><br><h2>Properties</h2><h3 id="path" style="margin-top: 0px;">path</h3><p ><var><span class="yellow">String</span></var></p><p style="margin-top: 0px;">path of the WriteStream</p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="green">WriteStream</span>.<span class="blue">path</span></div><h3 id="open">open</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">if the WriteStream is open</p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="green">WriteStream</span>.<span class="blue">open</span></div><br><br>
+			<div id="header-spacing"></div><h1>WriteStream</h1><p>file write stream</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">WriteStream</span>(<span class="orange">path</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>path</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>path</td>
+											</tr></table><h4>Methods</h4><ul><li><a href="#write">write</a></li><li><a href="#close">close</a></li></ul><h4>Properties</h4><ul><li><a href="#path">path</a></li><li><a href="#open">open</a></li></ul><hr><h2>Methods</h2><h3 id="write" style="margin-top: 0px;">write</a></h3><p style="margin-top: 0px;">writes to the WriteStream</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="blue">WriteStream</span>.<span class="green">write</span>();</div><h3 id="close">close</a></h3><p style="margin-top: 0px;">closes to the WriteStream</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="blue">WriteStream</span>.<span class="green">close</span>();</div><br><br><h2>Properties</h2><h3 id="path" style="margin-top: 0px;">path</h3><p ><var><span class="yellow">String</span></var></p><p style="margin-top: 0px;">path of the WriteStream</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="blue">WriteStream</span>.<span class="green">path</span></div><h3 id="open">open</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">if the WriteStream is open</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="blue">WriteStream</span>.<span class="green">open</span></div><br><br>
 		</div>
 	</body>
 	<footer>

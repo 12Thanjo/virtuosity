@@ -1,14 +1,11 @@
 {
   "name": "virtuosity-server",
-  "version": "0.6.0",
+  "version": "0.6.3",
   "description": "Virtuosity game engine without rendering",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "12andrewf",
-  "license": "ISC",
-  "dependencies": {
-    "escs": "^1.1.4"
-  }
+  "license": "ISC"
 }

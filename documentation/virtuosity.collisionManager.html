@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>collisionManager</h1><p>Manages collisions</p><div class="code"><span class="green">virtuosity</span>.<span class="blue">collisionManager</span></div><h4>Objects</h4><ul><li><a href='./virtuosity.collisionManager.shape.html'>shape</a></li><li><a href='./virtuosity.collisionManager.collision.html'>collision</a></li></ul><hr><h2>Objects</h2><h3 style="margin-top: 0px;"><a href='./virtuosity.collisionManager.shape.html'>shape</a></h3><p style="margin-top: 0px;">Creating shapes for calculating collision</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="blue">shape</span></div><h3><a href='./virtuosity.collisionManager.collision.html'>collision</a></h3><p style="margin-top: 0px;">returns collision betweens shapes two shapes</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="blue">collision</span></div><br><br>
+			<div id="header-spacing"></div><h1>collisionManager</h1><p>Manages collisions</p><div class="code"><span class="blue">virtuosity</span>.<span class="green">collisionManager</span></div><h4>Objects</h4><ul><li><a href='./virtuosity.collisionManager.shape.html'>shape</a></li><li><a href='./virtuosity.collisionManager.collision.html'>collision</a></li></ul><hr><h2>Objects</h2><h3 style="margin-top: 0px;"><a href='./virtuosity.collisionManager.shape.html'>shape</a></h3><p style="margin-top: 0px;">Creating shapes for calculating collision</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="green">shape</span></div><h3><a href='./virtuosity.collisionManager.collision.html'>collision</a></h3><p style="margin-top: 0px;">returns collision betweens shapes two shapes</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="green">collision</span></div><br><br>
 		</div>
 	</body>
 	<footer>

@@ -11,11 +11,10 @@ const virtuosity_server = require('../virtuosity-server/index.js');
 const audioManager = require("./audioManager.js");
 const babylon = require('./babylon.js');
 
-
 module.exports = {
 	/*
 	* @name engine2d
-	* @type obj
+	* @type object
 	* @description engine2d manages all of the graphics rendered in 2D. It uses <a href="https://www.npmjs.com/package/pixi.js">Pixi 5.3.7</a> for rendering. engine2d uses Pixi.js as a base and builds off of it to automatically interact with the rest of the engine, as well as adding custom functions for added features and ease of use for the already existing ones.
 	* @path pixi.js
 	*/
@@ -44,14 +43,6 @@ module.exports = {
 	* @path InputManager.js
 	*/
 	inputManager: inputManager,
-
-	/*
-	* @name escs
-	* @type obj
-	* @description <a href="https://www.npmjs.com/package/escs">escs</a> is a custom implimentation of an entity component system.
-	* @path ../../escs/index.js
-	*/
-	escs: virtuosity_server.escs,
 
 	/*
 	* @name collisionManager

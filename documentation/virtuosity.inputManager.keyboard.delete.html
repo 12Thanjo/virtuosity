@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>delete</h1><p>delete keyboard events</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">keyboard</span>.<span class="blue">delete</span></div><h4>Methods</h4><ul><li><a href="#keyDown">keyDown</a></li><li><a href="#keyUp">keyUp</a></li></ul><hr><h2>Methods</h2><h3 id="keyDown" style="margin-top: 0px;">keyDown</a></h3><p style="margin-top: 0px;">delete keyDown event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">keyboard</span>.<span class="green">delete</span>.<span class="blue">keyDown</span>(<span class="orange">name</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>delete</h1><p>delete keyboard events</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">keyboard</span>.<span class="green">delete</span></div><h4>Methods</h4><ul><li><a href="#keyDown">keyDown</a></li><li><a href="#keyUp">keyUp</a></li></ul><hr><h2>Methods</h2><h3 id="keyDown" style="margin-top: 0px;">keyDown</a></h3><p style="margin-top: 0px;">delete keyDown event</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">keyboard</span>.<span class="blue">delete</span>.<span class="green">keyDown</span>(<span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -220,7 +219,7 @@
 												<td><var>name</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>name of keyDown event to delete</td>
-											</tr></table><h3 id="keyUp">keyUp</a></h3><p style="margin-top: 0px;">delete keyUp event</p><div class="code"><span class="green">virtuosity</span>.<span class="green">inputManager</span>.<span class="green">keyboard</span>.<span class="green">delete</span>.<span class="blue">keyUp</span>(<span class="orange">name</span>);</div><br><br><table>
+											</tr></table><h3 id="keyUp">keyUp</a></h3><p style="margin-top: 0px;">delete keyUp event</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">inputManager</span>.<span class="blue">keyboard</span>.<span class="blue">delete</span>.<span class="green">keyUp</span>(<span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

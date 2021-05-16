@@ -1,6 +1,6 @@
 {
   "name": "virtuosity",
-  "version": "0.12.3",
+  "version": "0.14.0",
   "description": "a free, open source game engine",
   "browser": "index.js",
   "main": "index.js",
@@ -13,8 +13,8 @@
     "@pixi/graphics-extras": "^5.3.7",
     "babylonjs": "^4.2.0",
     "babylonjs-loaders": "^4.2.0",
-    "escs": "^1.1.5",
     "howler": "^2.2.1",
+    "ocs": "^1.0.0",
     "pixi.js": "^5.3.7",
     "virtuosity-server": "*"
   },

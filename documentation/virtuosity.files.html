@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,16 +210,16 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>files</h1><p>files (documentation is a work in progress)</p><div class="code"><span class="green">virtuosity</span>.<span class="blue">files</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.files.WriteStream.html'>WriteStream*</a></li></ul><h4>Methods</h4><ul><li><a href="#readFile">readFile</a></li><li><a href="#writeFile">writeFile</a></li><li><a href="#deleteFile">deleteFile</a></li><li><a href="#copyFile">copyFile</a></li><li><a href="#fileExists">fileExists</a></li><li><a href="#createDirectory">createDirectory</a></li><li><a href="#getFileExtention">getFileExtention</a></li><li><a href="#getFileName">getFileName</a></li><li><a href="#getFileNameWithoutExtention">getFileNameWithoutExtention</a></li><li><a href="#getFiles">getFiles</a></li><li><a href="#getFilePath">getFilePath</a></li><li><a href="#getFilePathUpDirectory">getFilePathUpDirectory</a></li><li><a href="#deleteFolder">deleteFolder</a></li><li><a href="#renameFile">renameFile</a></li><li><a href="#renameDirectory">renameDirectory</a></li></ul><hr><h2>Classes</h2><h3 id="WriteStream" style="margin-top: 0px;"><a href='./virtuosity.files.WriteStream.html'>WriteStream</a></h3><p style="margin-top: 0px;">file write stream</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">WriteStream</span>(<span class="orange">path</span>);</div><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-												</tr><tr>
-												<td><var>path</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>path</td>
-											</tr></table><br><br><h2>Methods</h2><h3 id="readFile" style="margin-top: 0px;">readFile</a></h3><p style="margin-top: 0px;">readFile </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">readFile</span>(<span class="orange">path</span>, <span class="orange">asyncronous</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>files</h1><p>files (documentation is a work in progress)</p><div class="code"><span class="blue">virtuosity</span>.<span class="green">files</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.files.WriteStream.html'>WriteStream</a></li></ul><h4>Methods</h4><ul><li><a href="#readFile">readFile</a></li><li><a href="#writeFile">writeFile</a></li><li><a href="#deleteFile">deleteFile</a></li><li><a href="#copyFile">copyFile</a></li><li><a href="#fileExists">fileExists</a></li><li><a href="#createDirectory">createDirectory</a></li><li><a href="#getFileExtention">getFileExtention</a></li><li><a href="#getFileName">getFileName</a></li><li><a href="#getFileNameWithoutExtention">getFileNameWithoutExtention</a></li><li><a href="#getFiles">getFiles</a></li><li><a href="#getFilePath">getFilePath</a></li><li><a href="#getFilePathUpDirectory">getFilePathUpDirectory</a></li><li><a href="#deleteFolder">deleteFolder</a></li><li><a href="#renameFile">renameFile</a></li><li><a href="#renameDirectory">renameDirectory</a></li></ul><hr><h2>Classes</h2><h3 id="WriteStream" style="margin-top: 0px;"><a href='./virtuosity.files.WriteStream.html'>WriteStream</a></h3><p style="margin-top: 0px;">file write stream</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">WriteStream</span>(<span class="orange">path</span>);</div><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>path</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>path</td>
+												</tr></table><br><br><h2>Methods</h2><h3 id="readFile" style="margin-top: 0px;">readFile</a></h3><p style="margin-top: 0px;">readFile </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">readFile</span>(<span class="orange">path</span>, <span class="orange">asyncronous</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -233,7 +232,7 @@
 												<td><var>asyncronous</var></td>
 												<td><var><span class="purple">Boolean</span></var></td>
 												<td>(OPTIONAL) read file asyncronously</td>
-											</tr></table><h3 id="writeFile">writeFile</a></h3><p style="margin-top: 0px;">writeFile </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">writeFile</span>(<span class="orange">path</span>, <span class="orange">output</span>, <span class="orange">asyncronous</span>);</div><br><br><table>
+											</tr></table><h3 id="writeFile">writeFile</a></h3><p style="margin-top: 0px;">writeFile </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">writeFile</span>(<span class="orange">path</span>, <span class="orange">output</span>, <span class="orange">asyncronous</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -250,7 +249,7 @@
 												<td><var>asyncronous</var></td>
 												<td><var><span class="purple">Boolean</span></var></td>
 												<td>(OPTIONAL) write file asyncronously</td>
-											</tr></table><h3 id="deleteFile">deleteFile</a></h3><p style="margin-top: 0px;">deleteFile </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">deleteFile</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="deleteFile">deleteFile</a></h3><p style="margin-top: 0px;">deleteFile </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">deleteFile</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -259,7 +258,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="copyFile">copyFile</a></h3><p style="margin-top: 0px;">copyFile</p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">copyFile</span>(<span class="orange">path</span>, <span class="orange">destination</span>);</div><br><br><table>
+											</tr></table><h3 id="copyFile">copyFile</a></h3><p style="margin-top: 0px;">copyFile</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">copyFile</span>(<span class="orange">path</span>, <span class="orange">destination</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -272,7 +271,7 @@
 												<td><var>destination</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>desination</td>
-											</tr></table><h3 id="fileExists">fileExists</a></h3><p style="margin-top: 0px;">fileExists </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">fileExists</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="fileExists">fileExists</a></h3><p style="margin-top: 0px;">fileExists </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">fileExists</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -281,7 +280,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="createDirectory">createDirectory</a></h3><p style="margin-top: 0px;">createDirectory </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">createDirectory</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="createDirectory">createDirectory</a></h3><p style="margin-top: 0px;">createDirectory </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">createDirectory</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -290,7 +289,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="getFileExtention">getFileExtention</a></h3><p style="margin-top: 0px;">getFileExtention </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFileExtention</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="getFileExtention">getFileExtention</a></h3><p style="margin-top: 0px;">getFileExtention </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">getFileExtention</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -299,7 +298,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="getFileName">getFileName</a></h3><p style="margin-top: 0px;">getFileName </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFileName</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="getFileName">getFileName</a></h3><p style="margin-top: 0px;">getFileName </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">getFileName</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -308,7 +307,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="getFileNameWithoutExtention">getFileNameWithoutExtention</a></h3><p style="margin-top: 0px;">getFileNameWithoutExtention </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFileNameWithoutExtention</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="getFileNameWithoutExtention">getFileNameWithoutExtention</a></h3><p style="margin-top: 0px;">getFileNameWithoutExtention </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">getFileNameWithoutExtention</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -317,7 +316,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="getFiles">getFiles</a></h3><p style="margin-top: 0px;">getFiles</p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFiles</span>(<span class="orange">path</span>, <span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="getFiles">getFiles</a></h3><p style="margin-top: 0px;">getFiles</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">getFiles</span>(<span class="orange">path</span>, <span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -330,7 +329,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td>depth</td>
-											</tr></table><h3 id="getFilePath">getFilePath</a></h3><p style="margin-top: 0px;">getFilePath </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFilePath</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="getFilePath">getFilePath</a></h3><p style="margin-top: 0px;">getFilePath </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">getFilePath</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -339,7 +338,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="getFilePathUpDirectory">getFilePathUpDirectory</a></h3><p style="margin-top: 0px;">getFilePathUpDirectory </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">getFilePathUpDirectory</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="getFilePathUpDirectory">getFilePathUpDirectory</a></h3><p style="margin-top: 0px;">getFilePathUpDirectory </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">getFilePathUpDirectory</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -348,7 +347,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="deleteFolder">deleteFolder</a></h3><p style="margin-top: 0px;">deleteFolder </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">deleteFolder</span>(<span class="orange">location</span>);</div><br><br><table>
+											</tr></table><h3 id="deleteFolder">deleteFolder</a></h3><p style="margin-top: 0px;">deleteFolder </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">deleteFolder</span>(<span class="orange">location</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -357,7 +356,7 @@
 												<td><var>location</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>location</td>
-											</tr></table><h3 id="renameFile">renameFile</a></h3><p style="margin-top: 0px;">renameFile </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">renameFile</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="renameFile">renameFile</a></h3><p style="margin-top: 0px;">renameFile </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">renameFile</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -366,7 +365,7 @@
 												<td><var>path</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>path</td>
-											</tr></table><h3 id="renameDirectory">renameDirectory</a></h3><p style="margin-top: 0px;">renameDirectory </p><div class="code"><span class="green">virtuosity</span>.<span class="green">files</span>.<span class="blue">renameDirectory</span>(<span class="orange">path</span>);</div><br><br><table>
+											</tr></table><h3 id="renameDirectory">renameDirectory</a></h3><p style="margin-top: 0px;">renameDirectory </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">files</span>.<span class="green">renameDirectory</span>(<span class="orange">path</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

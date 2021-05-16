@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>graphics</h1><p>procedural graphics</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="blue">graphics</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.engine2d.graphics.Circle.html'>Circle*</a></li><li><a href='./virtuosity.engine2d.graphics.Rectange.html'>Rectange*</a></li><li><a href='./virtuosity.engine2d.graphics.Box.html'>Box*</a></li><li><a href='./virtuosity.engine2d.graphics.Line.html'>Line*</a></li><li><a href='./virtuosity.engine2d.graphics.Polygon.html'>Polygon*</a></li></ul><h4>Objects</h4><ul><li><a href='./virtuosity.engine2d.graphics.add.html'>add</a></li></ul><h4>Methods</h4><ul><li><a href="#get">get</a></li><li><a href="#containerClear">containerClear</a></li></ul><hr><h2>Classes</h2><h3 id="Circle" style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Circle.html'>Circle*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d circle</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Rectange.html'>Rectange*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d rectangle</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Box.html'>Box*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d box</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Line.html'>Line*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d line</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Polygon.html'>Polygon*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d line</p><br><br><h2>Objects</h2><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.add.html'>add</a></h3><p style="margin-top: 0px;">add graphics</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">add</span></div><br><br><h2>Methods</h2><h3 id="get" style="margin-top: 0px;">get</a></h3><p style="margin-top: 0px;">get a specific graphics entity</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">get</span>(<span class="orange">name</span>, <span class="orange">container</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>graphics</h1><p>procedural graphics</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">graphics</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.engine2d.graphics.Circle.html'>Circle</a></li><li><a href='./virtuosity.engine2d.graphics.Rectange.html'>Rectange</a></li><li><a href='./virtuosity.engine2d.graphics.Box.html'>Box</a></li><li><a href='./virtuosity.engine2d.graphics.Line.html'>Line</a></li><li><a href='./virtuosity.engine2d.graphics.Polygon.html'>Polygon</a></li></ul><h4>Objects</h4><ul><li><a href='./virtuosity.engine2d.graphics.add.html'>add</a></li><li><a href='./virtuosity.engine2d.graphics.delete.html'>delete</a></li></ul><h4>Methods</h4><ul><li><a href="#get">get</a></li><li><a href="#containerClear">containerClear</a></li></ul><hr><h2>Classes</h2><h3 id="Circle" style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Circle.html'>Circle*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d circle</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Rectange.html'>Rectange*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d rectangle</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Box.html'>Box*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d box</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Line.html'>Line*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d line</p><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.Polygon.html'>Polygon*</a></h3><p style="margin-top: 0px;">A procedurally generated engine2d line</p><br><br><h2>Objects</h2><h3 style="margin-top: 0px;"><a href='./virtuosity.engine2d.graphics.add.html'>add</a></h3><p style="margin-top: 0px;">add graphics</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">add</span></div><h3><a href='./virtuosity.engine2d.graphics.delete.html'>delete</a></h3><p style="margin-top: 0px;">delete a graphics entity</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">delete</span></div><br><br><h2>Methods</h2><h3 id="get" style="margin-top: 0px;">get</a></h3><p style="margin-top: 0px;">get a specific graphics entity</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">get</span>(<span class="orange">name</span>, <span class="orange">container</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -224,7 +223,7 @@
 												<td><var>container</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>name of the container the graphics entity is in</td>
-											</tr></table><h3 id="containerClear">containerClear</a></h3><p style="margin-top: 0px;">tells the container whether to clear canvas on redraw </p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine2d</span>.<span class="green">graphics</span>.<span class="blue">containerClear</span>(<span class="orange">container</span>, <span class="orange">clear</span>);</div><br><br><table>
+											</tr></table><h3 id="containerClear">containerClear</a></h3><p style="margin-top: 0px;">tells the container whether to clear canvas on redraw </p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">containerClear</span>(<span class="orange">container</span>, <span class="orange">clear</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>MaterialMetallic</h1><p>engine3d material that can be added to multiple meshes and dynamically changed</p><h4>Methods</h4><ul><li><a href="#addTo">addTo</a></li></ul><h4>Properties</h4><ul><li><a href="#color">color</a></li><li><a href="#specular">specular</a></li><li><a href="#emissive">emissive</a></li><li><a href="#metallic">metallic</a></li><li><a href="#roughness">roughness</a></li><li><a href="#wireframe">wireframe</a></li><li><a href="#alpha">alpha</a></li></ul><hr><h2>Methods</h2><h3 id="addTo" style="margin-top: 0px;">addTo</a></h3><p style="margin-top: 0px;">add this material to a mesh</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="green">material</span>.<span class="green">MaterialMetallic</span>.<span class="blue">addTo</span>(<span class="orange">obj</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>MaterialMetallic</h1><p>engine3d material that can be added to multiple meshes and dynamically changed</p><h4>Methods</h4><ul><li><a href="#addTo">addTo</a></li></ul><h4>Properties</h4><ul><li><a href="#color">color</a></li><li><a href="#specular">specular</a></li><li><a href="#emissive">emissive</a></li><li><a href="#metallic">metallic</a></li><li><a href="#roughness">roughness</a></li><li><a href="#wireframe">wireframe</a></li><li><a href="#alpha">alpha</a></li></ul><hr><h2>Methods</h2><h3 id="addTo" style="margin-top: 0px;">addTo</a></h3><p style="margin-top: 0px;">add this material to a mesh</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="blue">material</span>.<span class="blue">MaterialMetallic</span>.<span class="green">addTo</span>(<span class="orange">obj</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -220,7 +219,7 @@
 												<td><var>obj</var></td>
 												<td>any engine3d mesh</td>
 												<td>object to add the material to</td>
-											</tr></table><br><br><h2>Properties</h2><h3 id="color" style="margin-top: 0px;">color</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">color of the material</p><div class="code"><span class="green">MaterialMetallic</span>.<span class="blue">color</span></div><h3 id="specular">specular</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">specular of the material</p><div class="code"><span class="green">MaterialMetallic</span>.<span class="blue">specular</span></div><h3 id="emissive">emissive</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">emissive of the material</p><div class="code"><span class="green">MaterialMetallic</span>.<span class="blue">emissive</span></div><h3 id="metallic">metallic</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">metallic of the material (0-1)</p><div class="code"><span class="green">MaterialMetallic</span>.<span class="blue">metallic</span></div><h3 id="roughness">roughness</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">roughness of the material (0-1)</p><div class="code"><span class="green">MaterialMetallic</span>.<span class="blue">roughness</span></div><h3 id="wireframe">wireframe</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">meshes using this material are wireframe</p><div class="code"><span class="green">MaterialMetallic</span>.<span class="blue">wireframe</span></div><h3 id="alpha">alpha</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">set alpha of the material (0-1)</p><div class="code"><span class="green">MaterialMetallic</span>.<span class="blue">alpha</span></div><br><br>
+											</tr></table><br><br><h2>Properties</h2><h3 id="color" style="margin-top: 0px;">color</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">color of the material</p><div class="code"><span class="blue">MaterialMetallic</span>.<span class="green">color</span></div><h3 id="specular">specular</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">specular of the material</p><div class="code"><span class="blue">MaterialMetallic</span>.<span class="green">specular</span></div><h3 id="emissive">emissive</h3><p ><var><span class="purple">Hex</span></var></p><p style="margin-top: 0px;">emissive of the material</p><div class="code"><span class="blue">MaterialMetallic</span>.<span class="green">emissive</span></div><h3 id="metallic">metallic</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">metallic of the material (0-1)</p><div class="code"><span class="blue">MaterialMetallic</span>.<span class="green">metallic</span></div><h3 id="roughness">roughness</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">roughness of the material (0-1)</p><div class="code"><span class="blue">MaterialMetallic</span>.<span class="green">roughness</span></div><h3 id="wireframe">wireframe</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">meshes using this material are wireframe</p><div class="code"><span class="blue">MaterialMetallic</span>.<span class="green">wireframe</span></div><h3 id="alpha">alpha</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">set alpha of the material (0-1)</p><div class="code"><span class="blue">MaterialMetallic</span>.<span class="green">alpha</span></div><br><br>
 		</div>
 	</body>
 	<footer>

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="icon" href="favicon.ico">
-		<title>virtuosity Documentation | virtuosity.time.advancedTimer</title>
+		<title>virtuosity Documentation | virtuosity.time.AdvancedTimer</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<header>
@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,13 +22,13 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.time.html'">time</button><script type="text/javascript">var path = "virtuosity.time.advancedTimer";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.time.html'">time</button><script type="text/javascript">var path = "virtuosity.time.AdvancedTimer";</script
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,20 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>advancedTimer</h1><p>Timer with extra functionality</p><div class="code"><span class="red">new</span> <span class="green">virtuosity</span>.<span class="green">time</span>.<span class="blue">advancedTimer</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><h4>Methods</h4><ul><li><a href="#start">start</a></li><li><a href="#stop">stop</a></li><li><a href="#pause">pause</a></li><li><a href="#getTimeLeft">getTimeLeft</a></li></ul><h4>Properties</h4><ul><li><a href="#running">running</a></li><li><a href="#paused">paused</a></li><li><a href="#duration">duration</a></li></ul><hr><h2>Methods</h2><h3 id="start" style="margin-top: 0px;">start</a></h3><p style="margin-top: 0px;">Starts the advancedTimer, or continues the advancedTimer (if it had been paused).</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="green">advancedTimer</span>.<span class="blue">start</span>();</div><h3 id="stop">stop</a></h3><p style="margin-top: 0px;">Stops the advancedTimer</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="green">advancedTimer</span>.<span class="blue">stop</span>();</div><h3 id="pause">pause</a></h3><p style="margin-top: 0px;">Pauses the advancedTimer</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="green">advancedTimer</span>.<span class="blue">pause</span>();</div><h3 id="getTimeLeft">getTimeLeft</a></h3><p style="margin-top: 0px;">Gets the time left until the timer finishes</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="green">advancedTimer</span>.<span class="blue">getTimeLeft</span>();</div><br><br><h2>Properties</h2><h3 id="running" style="margin-top: 0px;">running</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">True if the advancedTimer is running</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="green">advancedTimer</span>.<span class="blue">running</span></div><h3 id="paused">paused</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">True if the advancedTimer is paused</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="green">advancedTimer</span>.<span class="blue">paused</span></div><h3 id="duration">duration</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">Sets the duration of the advancedTimer. If advancedTimer is running while the duration is changed, and it is changed to a time less than what has elapsed already, the advancedTimer ends.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">time</span>.<span class="green">advancedTimer</span>.<span class="blue">duration</span></div><br><br>
+			<div id="header-spacing"></div><h1>AdvancedTimer</h1><p>Timer with extra functionality</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="green">AdvancedTimer</span>(<span class="orange">duration</span>, <span class="orange">func</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>duration</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>duration of the AdvancedTimer</td>
+											</tr><tr>
+												<td><var>func</var></td>
+												<td><var><span class="blue">Function</span></var></td>
+												<td>Funciton for the AdvancedTimer to run when completed</td>
+											</tr></table><h4>Methods</h4><ul><li><a href="#start">start</a></li><li><a href="#stop">stop</a></li><li><a href="#restart">restart</a></li><li><a href="#pause">pause</a></li><li><a href="#getTimeLeft">getTimeLeft</a></li></ul><h4>Properties</h4><ul><li><a href="#running">running</a></li><li><a href="#paused">paused</a></li><li><a href="#duration">duration</a></li></ul><hr><h2>Methods</h2><h3 id="start" style="margin-top: 0px;">start</a></h3><p style="margin-top: 0px;">Starts the AdvancedTimer, or continues the AdvancedTimer (if it had been paused).</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">start</span>();</div><h3 id="stop">stop</a></h3><p style="margin-top: 0px;">Stops the AdvancedTimer</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">stop</span>();</div><h3 id="restart">restart</a></h3><p style="margin-top: 0px;">Restarts the AdvancedTimer</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">restart</span>();</div><h3 id="pause">pause</a></h3><p style="margin-top: 0px;">Pauses the AdvancedTimer</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">pause</span>();</div><h3 id="getTimeLeft">getTimeLeft</a></h3><p style="margin-top: 0px;">Gets the time left until the timer finishes</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">getTimeLeft</span>();</div><br><br><h2>Properties</h2><h3 id="running" style="margin-top: 0px;">running</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">True if the AdvancedTimer is running</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">running</span></div><h3 id="paused">paused</h3><p ><var><span class="purple">Boolean</span></var></p><p style="margin-top: 0px;">True if the AdvancedTimer is paused</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">paused</span></div><h3 id="duration">duration</h3><p ><var><span class="purple">Number</span></var></p><p style="margin-top: 0px;">Sets the duration of the AdvancedTimer. If AdvancedTimer is running while the duration is changed, and it is changed to a time less than what has elapsed already, the AdvancedTimer ends.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">time</span>.<span class="blue">AdvancedTimer</span>.<span class="green">duration</span></div><br><br>
 		</div>
 	</body>
 	<footer>

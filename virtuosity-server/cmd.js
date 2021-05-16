@@ -185,12 +185,20 @@ module.exports = {
 	backgroundColor: background_color,
 	style: style,
 	enableInput: enable_input,
-	log: (string, color)=>{
-		if(color != null){
-			console.log(color + string + colors.white + background_color.black);
-		}else{
-			console.log(string + colors.white + background_color.black);
-		}
+
+	/*
+	* @name log
+	* @type method
+	* @description console.log() with stylizations with preventing overflow
+	* @param {string}{String}{string to output}
+	* @param {color}{String}{color of text (cmd.color)}{NONE}
+	* @param {backgroundColor}{String}{bacground color of text (cmd.backgroundColor)}{NONE}
+	*/
+	log: (string, color, backgroundColor)=>{
+		string = string || "";
+		color = color || "";
+		backgroundColor = backgroundColor || "";
+		console.log(color + backgroundColor + string + colors.white + background_color.black + style.reset);
 	},
 	specialLog: (data)=>{
 		if(typeof data != "string"){

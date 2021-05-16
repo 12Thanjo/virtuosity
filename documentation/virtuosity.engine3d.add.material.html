@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,79 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>material</h1><p>create a material to add to visibile engine3d entities</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="blue">material</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.engine3d.add.material.MaterialBasic.html'>MaterialBasic</a></li><li><a href='./virtuosity.engine3d.add.material.MaterialMetallic.html'>MaterialMetallic</a></li><li><a href='./virtuosity.engine3d.add.material.MaterialGlossy.html'>MaterialGlossy</a></li><li><a href='./virtuosity.engine3d.add.material.MaterialCanvas.html'>MaterialCanvas</a></li></ul><h4>Methods</h4><ul><li><a href="#basic">basic</a></li><li><a href="#metalic">metalic</a></li><li><a href="#glossy">glossy</a></li></ul><hr><h2>Classes</h2><h3 id="MaterialBasic" style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialBasic.html'>MaterialBasic</a></h3><p style="margin-top: 0px;">engine3d material that can be added to multiple meshes and dynamically changed</p><br><br><table>
+			<div id="header-spacing"></div><h1>material</h1><p>create a material to add to visibile engine3d entities</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="green">material</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.engine3d.add.material.MaterialBasic.html'>MaterialBasic</a></li><li><a href='./virtuosity.engine3d.add.material.MaterialMetallic.html'>MaterialMetallic</a></li><li><a href='./virtuosity.engine3d.add.material.MaterialGlossy.html'>MaterialGlossy</a></li><li><a href='./virtuosity.engine3d.add.material.MaterialCanvas.html'>MaterialCanvas</a></li></ul><h4>Methods</h4><ul><li><a href="#basic">basic</a></li><li><a href="#metalic">metalic</a></li><li><a href="#glossy">glossy</a></li></ul><hr><h2>Classes</h2><h3 id="MaterialBasic" style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialBasic.html'>MaterialBasic</a></h3><p style="margin-top: 0px;">engine3d material that can be added to multiple meshes and dynamically changed</p><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>canvas</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>Name of the canvas to add to</td>
+												</tr><tr>
+													<td><var>name</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>unique name of the material</td>
+												</tr><tr>
+													<td><var>onComplete</var></td>
+													<td><var><span class="blue">Function</span></var></td>
+													<td>function to run after adding the image (takes the newly create image as a parameter)</td>
+												</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialMetallic.html'>MaterialMetallic</a></h3><p style="margin-top: 0px;">engine3d material that can be added to multiple meshes and dynamically changed</p><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>canvas</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>Name of the canvas to add to</td>
+												</tr><tr>
+													<td><var>name</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>unique name of the material</td>
+												</tr><tr>
+													<td><var>onComplete</var></td>
+													<td><var><span class="blue">Function</span></var></td>
+													<td>function to run after adding the image (takes the newly create image as a parameter)</td>
+												</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialGlossy.html'>MaterialGlossy</a></h3><p style="margin-top: 0px;">engine3d material that can be added to multiple meshes and dynamically changed</p><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>canvas</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>Name of the canvas to add to</td>
+												</tr><tr>
+													<td><var>name</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>unique name of the material</td>
+												</tr><tr>
+													<td><var>onComplete</var></td>
+													<td><var><span class="blue">Function</span></var></td>
+													<td>function to run after adding the image (takes the newly create image as a parameter)</td>
+												</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialCanvas.html'>MaterialCanvas</a></h3><p style="margin-top: 0px;">engine3d material using a 2d canvas, that can be added to multiple meshes and dynamically changed</p><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>canvas</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>Name of the canvas to add to</td>
+												</tr><tr>
+													<td><var>name</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>unique name of the material</td>
+												</tr><tr>
+													<td><var>targetCanvas</var></td>
+													<td>DOM Canvas</td>
+													<td>2d canvas target to render from</td>
+												</tr><tr>
+													<td><var>onComplete</var></td>
+													<td><var><span class="blue">Function</span></var></td>
+													<td>function to run after adding the image (takes the newly create image as a parameter)</td>
+												</tr></table><br><br><h2>Methods</h2><h3 id="basic" style="margin-top: 0px;">basic</a></h3><p style="margin-top: 0px;">add basic material</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="blue">material</span>.<span class="green">basic</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -228,7 +299,7 @@
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>function to run after adding the image (takes the newly create image as a parameter)</td>
-											</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialMetallic.html'>MaterialMetallic</a></h3><p style="margin-top: 0px;">engine3d material that can be added to multiple meshes and dynamically changed</p><br><br><table>
+											</tr></table><h3 id="metalic">metalic</a></h3><p style="margin-top: 0px;">add metalic material</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="blue">material</span>.<span class="green">metalic</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -245,79 +316,7 @@
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>function to run after adding the image (takes the newly create image as a parameter)</td>
-											</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialGlossy.html'>MaterialGlossy</a></h3><p style="margin-top: 0px;">engine3d material that can be added to multiple meshes and dynamically changed</p><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-												</tr><tr>
-												<td><var>canvas</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>Name of the canvas to add to</td>
-											</tr><tr>
-												<td><var>name</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>unique name of the material</td>
-											</tr><tr>
-												<td><var>onComplete</var></td>
-												<td><var><span class="blue">Function</span></var></td>
-												<td>function to run after adding the image (takes the newly create image as a parameter)</td>
-											</tr></table><h3 style="margin-top: 0px;"><a href='./virtuosity.engine3d.add.material.MaterialCanvas.html'>MaterialCanvas</a></h3><p style="margin-top: 0px;">engine3d material using a 2d canvas, that can be added to multiple meshes and dynamically changed</p><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-												</tr><tr>
-												<td><var>canvas</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>Name of the canvas to add to</td>
-											</tr><tr>
-												<td><var>name</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>unique name of the material</td>
-											</tr><tr>
-												<td><var>targetCanvas</var></td>
-												<td>DOM Canvas</td>
-												<td>2d canvas target to render from</td>
-											</tr><tr>
-												<td><var>onComplete</var></td>
-												<td><var><span class="blue">Function</span></var></td>
-												<td>function to run after adding the image (takes the newly create image as a parameter)</td>
-											</tr></table><br><br><h2>Methods</h2><h3 id="basic" style="margin-top: 0px;">basic</a></h3><p style="margin-top: 0px;">add basic material</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="green">material</span>.<span class="blue">basic</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">onComplete</span>);</div><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-												</tr><tr>
-												<td><var>canvas</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>Name of the canvas to add to</td>
-											</tr><tr>
-												<td><var>name</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>unique name of the material</td>
-											</tr><tr>
-												<td><var>onComplete</var></td>
-												<td><var><span class="blue">Function</span></var></td>
-												<td>function to run after adding the image (takes the newly create image as a parameter)</td>
-											</tr></table><h3 id="metalic">metalic</a></h3><p style="margin-top: 0px;">add metalic material</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="green">material</span>.<span class="blue">metalic</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">onComplete</span>);</div><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-												</tr><tr>
-												<td><var>canvas</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>Name of the canvas to add to</td>
-											</tr><tr>
-												<td><var>name</var></td>
-												<td><var><span class="yellow">String</span></var></td>
-												<td>unique name of the material</td>
-											</tr><tr>
-												<td><var>onComplete</var></td>
-												<td><var><span class="blue">Function</span></var></td>
-												<td>function to run after adding the image (takes the newly create image as a parameter)</td>
-											</tr></table><h3 id="glossy">glossy</a></h3><p style="margin-top: 0px;">add glossy material</p><div class="code"><span class="green">virtuosity</span>.<span class="green">engine3d</span>.<span class="green">add</span>.<span class="green">material</span>.<span class="blue">glossy</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+											</tr></table><h3 id="glossy">glossy</a></h3><p style="margin-top: 0px;">add glossy material</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine3d</span>.<span class="blue">add</span>.<span class="blue">material</span>.<span class="green">glossy</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

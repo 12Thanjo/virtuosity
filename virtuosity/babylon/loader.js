@@ -1,4 +1,4 @@
-var files = require('../../virtuosity-server/index.js').files;
+var {files} = require('../../virtuosity-server/index.js');
 
 BABYLON.DefaultLoadingScreen.prototype.displayLoadingUI = ()=>{};
 

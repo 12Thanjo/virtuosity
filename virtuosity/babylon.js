@@ -1,7 +1,7 @@
 var BABYLON = require('babylonjs');
 require('babylonjs-loaders');
-var escs = require("../virtuosity-server/node_modules/escs/index.js");
 var debug = require('./debug.js');
+var ocs = require('ocs');
 
 
 canvases = new Map();
@@ -191,7 +191,7 @@ var new_canvas = function(name, config){
 * @name engine3d
 * @type environment
 */
-var env = escs.add.environment('engine3d');
+var env = new ocs.Environment('engine3d');
 
 /*
 * @name babylon
@@ -200,7 +200,7 @@ var env = escs.add.environment('engine3d');
 * @env engine3d
 * @param {babylon}{Babylonjs object}{reference to the babylon render object (internal)}
 */
-escs.add.component('babylon', 'engine3d', (babylon)=>{
+new ocs.Component('engine3d', 'babylon', (babylon)=>{
     return{
         babylon: babylon
     }
@@ -217,22 +217,16 @@ escs.add.component('babylon', 'engine3d', (babylon)=>{
 * @param {y}{Number}{y coordinate of the render object}{0}
 * @param {z}{Number}{z coordinate of the render object}{0}
 */
-var position = escs.add.component("position", 'engine3d', (x, y, z)=>{
-    return{
+var position = new ocs.Component('engine3d', "position", (x, y, z)=>{
+    return new ocs.EEO({
         x: x || 0,
         y: y || 0,
         z: z || 0
-    }
+    }, (entity, key, val)=>{
+    	entity.babylon.position[key] = val;
+    });
 });
-position.setOnChange((entity, key, val)=>{
-	if(key == "x"){
-    	entity.getComponent('babylon').babylon.position.x = val;
-	}else if(key == "y"){
-		entity.getComponent('babylon').babylon.position.z = val;
-	}else if(key == "z"){
-		entity.getComponent('babylon').babylon.position.y = val;
-	}
-});
+
 
 
 /*
@@ -244,24 +238,17 @@ position.setOnChange((entity, key, val)=>{
 * @param {y}{Number}{y rotation of the render object}{0}
 * @param {z}{Number}{z rotation of the render object}{0}
 */
-var rotation = escs.add.component("rotation", 'engine3d', (x, y, z)=>{
-    return{
-        x: x || 0,
-        y: y || 0,
-        z: z || 0
-    }
+var rotation = new ocs.Component('engine3d', "rotation", (x, y, z)=>{
+    return {
+    	rotation: new EEO({
+		        x: x || 0,
+		        y: y || 0,
+		        z: z || 0
+		    }, (entity, key, val)=>{
+		    	entity.babylon.rotation[key] = val;
+		    })
+    };
 });
-rotation.setOnChange((entity, key, val)=>{
-	if(key == "x"){
-    	entity.getComponent('babylon').babylon.rotation.x = val;
-	}else if(key == "y"){
-		entity.getComponent('babylon').babylon.rotation.z = val;
-	}else if(key == "z"){
-		entity.getComponent('babylon').babylon.rotation.y = val;
-	}
-});
-
-
 
 /*
 * @name scale
@@ -272,23 +259,21 @@ rotation.setOnChange((entity, key, val)=>{
 * @param {lenght}{Number}{lenght of the render object}{1}
 * @param {height}{Number}{height of the render object}{1}
 */
-var scale = escs.add.component("scale", 'engine3d', (width, lenght, height)=>{
-    return{
+var scale = new ocs.Component('engine3d', "scale", (width, lenght, height)=>{
+    return new EEO({
         width: width || 1,
         length: length || 1,
         height: height || 1
-    }
+    }, (entity, key, val)=>{
+		if(key == "width"){
+	    	entity.babylon.scaling.x = val;
+		}else if(key == "height"){
+			entity.babylon.scaling.z = val;
+		}else if(key == "length"){
+			entity.babylon.scaling.y = val;
+		}
+    });
 });
-scale.setOnChange((entity, key, val)=>{
-	if(key == "width"){
-    	entity.getComponent('babylon').babylon.scaling.x = val;
-	}else if(key == "height"){
-		entity.getComponent('babylon').babylon.scaling.z = val;
-	}else if(key == "length"){
-		entity.getComponent('babylon').babylon.scaling.y = val;
-	}
-});
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -302,19 +287,19 @@ scale.setOnChange((entity, key, val)=>{
 * @component rotation
 * @component scale
 */
-escs.add.tag('box', 'engine3d');
+new ocs.Tag('box');
 var boxes = new Map();
 var add_box = function(canvas, name, x, y, z, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_box = new BABYLON.Mesh.CreateBox(name, 1, ctx.scene);
 	new_box.position.set(x, z, y);
 
-	var new_entity = escs.add.entity(name, 'engine3d')
-		.addComponent('babylon', new_box)
-		.addComponent('position', x, y, z)
-		.addComponent('rotation')
-		.addComponent('scale')
-		.addTag('box')
+	var new_entity = new ocs.Entity('engine3d', name);
+	new_entity.addComponent('babylon', new_box)
+			  .addComponent('position', x, y, z)
+			  .addComponent('rotation')
+			  .addComponent('scale')
+			  .addTag('box')
 
 
 	boxes.set(name, new_entity);
@@ -334,19 +319,19 @@ var add_box = function(canvas, name, x, y, z, onComplete){
 * @component rotation
 * @component scale
 */
-escs.add.tag('sphere', 'engine3d');
+new ocs.Tag('sphere');
 var spheres = new Map();
 var add_sphere = function(canvas, name, x, y, z, indicies, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_sphere = new BABYLON.Mesh.CreateSphere(name, indicies, 1, ctx.scene);
 	new_sphere.position.set(x, z, y);
 
-	var new_entity = escs.add.entity(name, 'engine3d')
-		.addComponent('babylon', new_sphere)
-		.addComponent('position', x, y, z)
-		.addComponent('rotation')
-		.addComponent('scale')
-		.addTag('sphere')
+	var new_entity = new ocs.Entity('engine3d', name);
+	new_entity.addComponent('babylon', new_sphere)
+			  .addComponent('position', x, y, z)
+			  .addComponent('rotation')
+			  .addComponent('scale')
+			  .addTag('sphere')
 
 
 	spheres.set(name, new_entity);
@@ -366,19 +351,19 @@ var add_sphere = function(canvas, name, x, y, z, indicies, onComplete){
 * @component rotation
 * @component scale
 */
-escs.add.tag('plane', 'engine3d');
+new ocs.Tag('plane');
 var planes = new Map();
 var add_plane = function(canvas, name, x, y, z, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_plane = new BABYLON.Mesh.CreatePlane(name, 1, ctx.scene);
 	new_plane.position.set(x, z, y);
 
-	var new_entity = escs.add.entity(name, 'engine3d')
-		.addComponent('babylon', new_plane)
-		.addComponent('position', x, y, z)
-		.addComponent('rotation')
-		.addComponent('scale')
-		.addTag('plane')
+	var new_entity = new ocs.Entity(name, 'engine3d');
+	new_entity.addComponent('babylon', new_plane)
+			  .addComponent('position', x, y, z)
+			  .addComponent('rotation')
+			  .addComponent('scale')
+			  .addTag('plane')
 
 
 	planes.set(name, new_entity);
@@ -401,23 +386,23 @@ var add_plane = function(canvas, name, x, y, z, onComplete){
 * @component rotation
 * @component scale
 */
-escs.add.tag('mesh', 'engine3d');
-var meshs = new Map();
+new ocs.Tag('mesh');
+var meshes = new Map();
 var add_mesh = function(canvas, name, x, y, z, key, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_mesh = ctx.mesh_cache.get(key).clone();
 	new_mesh.setEnabled(true);
 	new_mesh.position.set(x, z, y);
 
-	var new_entity = escs.add.entity(name, 'engine3d')
-		.addComponent('babylon', new_mesh)
-		.addComponent('position', x, y, z)
-		.addComponent('rotation')
-		.addComponent('scale')
-		.addTag('mesh')
+	var new_entity = new ocs.Entity(name, 'engine3d')
+	new_entity.addComponent('babylon', new_mesh)
+			  .addComponent('position', x, y, z)
+			  .addComponent('rotation')
+			  .addComponent('scale')
+			  .addTag('mesh')
 
 
-	meshs.set(name, new_entity);
+	meshes.set(name, new_entity);
 
 	if(onComplete != null){
 		onComplete(new_entity);

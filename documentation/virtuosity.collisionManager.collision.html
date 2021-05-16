@@ -14,7 +14,7 @@
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
-		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>ESCS Components</button>
+		    	<button class="menubar-btn" id="Components" onclick='location.href="./components.html"'>OCS Components</button>
 		        <input id="search" placeholder="Search..." list="entities" style="width: 250px;">
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
@@ -22,7 +22,7 @@
 
 		<div class="menu-bar" id="mobile-navbar">
 			<button class="menubar-btn" id="mobile-path-button">Path</button>
-			<button class="menubar-btn" onclick='location.href="./components.html"'>ESCS Components</button>
+			<button class="menubar-btn" onclick='location.href="./components.html"'>OCS Components</button>
 			<button class="menubar-btn" id="dark-mode-mobile" onclick="toggle_mode();">Dark Mode</button>
 			<button class="menubar-btn" id='mobile-search-button'>Search</button>
 		</div>
@@ -149,7 +149,6 @@
 			}
 
 			set_mode = function(_mode){
-				console.log(_mode);
 				if(_mode == "dark"){
 					mode = "dark";
 					create_cookie('viewmode', 'dark');
@@ -211,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>collision</h1><p>returns collision betweens shapes two shapes</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="blue">collision</span></div><h4>Methods</h4><ul><li><a href="#auto">auto</a></li><li><a href="#pointPoint">pointPoint</a></li><li><a href="#pointBox">pointBox</a></li><li><a href="#pointCircle">pointCircle</a></li><li><a href="#pointLine">pointLine</a></li><li><a href="#pointPolygon">pointPolygon</a></li><li><a href="#boxPoint">boxPoint</a></li><li><a href="#boxBox">boxBox</a></li><li><a href="#boxCircle">boxCircle</a></li><li><a href="#boxLine">boxLine</a></li><li><a href="#boxPolygon">boxPolygon</a></li><li><a href="#circlePoint">circlePoint</a></li><li><a href="#circleBox">circleBox</a></li><li><a href="#circleCircle">circleCircle</a></li><li><a href="#circleLine">circleLine</a></li><li><a href="#circlePolygon">circlePolygon</a></li><li><a href="#linePoint">linePoint</a></li><li><a href="#lineBox">lineBox</a></li><li><a href="#lineCircle">lineCircle</a></li><li><a href="#lineLine">lineLine</a></li><li><a href="#linePolygon">linePolygon</a></li><li><a href="#polygonPoint">polygonPoint</a></li><li><a href="#polygonBox">polygonBox</a></li><li><a href="#polygonCircle">polygonCircle</a></li><li><a href="#polygonLine">polygonLine</a></li><li><a href="#polygonPolygon">polygonPolygon</a></li></ul><hr><h2>Methods</h2><h3 id="auto" style="margin-top: 0px;">auto</a></h3><p style="margin-top: 0px;">Check if two collision objects are colliding. Automatically decided which collision function to use.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">auto</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>collision</h1><p>returns collision betweens shapes two shapes</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="green">collision</span></div><h4>Methods</h4><ul><li><a href="#auto">auto</a></li><li><a href="#pointPoint">pointPoint</a></li><li><a href="#pointBox">pointBox</a></li><li><a href="#pointCircle">pointCircle</a></li><li><a href="#pointLine">pointLine</a></li><li><a href="#pointPolygon">pointPolygon</a></li><li><a href="#boxPoint">boxPoint</a></li><li><a href="#boxBox">boxBox</a></li><li><a href="#boxCircle">boxCircle</a></li><li><a href="#boxLine">boxLine</a></li><li><a href="#boxPolygon">boxPolygon</a></li><li><a href="#circlePoint">circlePoint</a></li><li><a href="#circleBox">circleBox</a></li><li><a href="#circleCircle">circleCircle</a></li><li><a href="#circleLine">circleLine</a></li><li><a href="#circlePolygon">circlePolygon</a></li><li><a href="#linePoint">linePoint</a></li><li><a href="#lineBox">lineBox</a></li><li><a href="#lineCircle">lineCircle</a></li><li><a href="#lineLine">lineLine</a></li><li><a href="#linePolygon">linePolygon</a></li><li><a href="#polygonPoint">polygonPoint</a></li><li><a href="#polygonBox">polygonBox</a></li><li><a href="#polygonCircle">polygonCircle</a></li><li><a href="#polygonLine">polygonLine</a></li><li><a href="#polygonPolygon">polygonPolygon</a></li></ul><hr><h2>Methods</h2><h3 id="auto" style="margin-top: 0px;">auto</a></h3><p style="margin-top: 0px;">Check if two collision objects are colliding. Automatically decided which collision function to use.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">auto</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -224,7 +223,7 @@
 												<td><var>b</var></td>
 												<td><a href="virtuosity.collisionManager.shape.html">any collision object</a></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="pointPoint">pointPoint</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Point are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">pointPoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="pointPoint">pointPoint</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Point are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">pointPoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -237,7 +236,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Point</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="pointBox">pointBox</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Box are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">pointBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="pointBox">pointBox</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Box are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">pointBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -250,7 +249,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Box</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="pointCircle">pointCircle</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Circle are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">pointCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="pointCircle">pointCircle</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Circle are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">pointCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -263,7 +262,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Circle</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="pointLine">pointLine</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Line are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">pointLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="pointLine">pointLine</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Line are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">pointLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -276,7 +275,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Line</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="pointPolygon">pointPolygon</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Polygon are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">pointPolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="pointPolygon">pointPolygon</a></h3><p style="margin-top: 0px;">Returns true if a Point and a Polygon are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">pointPolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -289,7 +288,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Polygon</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="boxPoint">boxPoint</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Point are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">boxPoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="boxPoint">boxPoint</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Point are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">boxPoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -302,7 +301,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Point</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="boxBox">boxBox</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Box are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">boxBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="boxBox">boxBox</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Box are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">boxBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -315,7 +314,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Box</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="boxCircle">boxCircle</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Circle are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">boxCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="boxCircle">boxCircle</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Circle are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">boxCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -328,7 +327,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Circle</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="boxLine">boxLine</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Line are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">boxLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="boxLine">boxLine</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Line are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">boxLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -341,7 +340,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Line</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="boxPolygon">boxPolygon</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Polygon are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">boxPolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="boxPolygon">boxPolygon</a></h3><p style="margin-top: 0px;">Returns true if a Box and a Polygon are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">boxPolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -354,7 +353,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Polygon</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="circlePoint">circlePoint</a></h3><p style="margin-top: 0px;">Returns true if a Circle and a Point are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">circlePoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="circlePoint">circlePoint</a></h3><p style="margin-top: 0px;">Returns true if a Circle and a Point are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">circlePoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -367,7 +366,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Point</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="circleBox">circleBox</a></h3><p style="margin-top: 0px;">Returns true if a Circle and a Box are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">circleBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="circleBox">circleBox</a></h3><p style="margin-top: 0px;">Returns true if a Circle and a Box are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">circleBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -380,7 +379,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Box</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="circleCircle">circleCircle</a></h3><p style="margin-top: 0px;">Returns true if a Circle and a Circle are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">circleCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="circleCircle">circleCircle</a></h3><p style="margin-top: 0px;">Returns true if a Circle and a Circle are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">circleCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -393,7 +392,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Circle</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="circleLine">circleLine</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Line are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">circleLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="circleLine">circleLine</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Line are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">circleLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -406,7 +405,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Line</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="circlePolygon">circlePolygon</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Polygon are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">circlePolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="circlePolygon">circlePolygon</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Polygon are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">circlePolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -419,7 +418,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Polygon</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="linePoint">linePoint</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Point are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">linePoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="linePoint">linePoint</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Point are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">linePoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -432,7 +431,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Point</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="lineBox">lineBox</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Box are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">lineBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="lineBox">lineBox</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Box are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">lineBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -445,7 +444,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Box</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="lineCircle">lineCircle</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Circle are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">lineCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="lineCircle">lineCircle</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Circle are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">lineCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -458,7 +457,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Circle</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="lineLine">lineLine</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Line are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">lineLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="lineLine">lineLine</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Line are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">lineLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -471,7 +470,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Line</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="linePolygon">linePolygon</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Polygon are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">linePolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="linePolygon">linePolygon</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Polygon are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">linePolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -484,7 +483,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Polygon</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="polygonPoint">polygonPoint</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Point are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">polygonPoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="polygonPoint">polygonPoint</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Point are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">polygonPoint</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -497,7 +496,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Point</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="polygonBox">polygonBox</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Box are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">polygonBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="polygonBox">polygonBox</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Box are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">polygonBox</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -510,7 +509,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Box</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="polygonCircle">polygonCircle</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Circle are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">polygonCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="polygonCircle">polygonCircle</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Circle are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">polygonCircle</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -523,7 +522,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Circle</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="polygonLine">polygonLine</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Line are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">polygonLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="polygonLine">polygonLine</a></h3><p style="margin-top: 0px;">Returns true if a Line and a Line are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">polygonLine</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -536,7 +535,7 @@
 												<td><var>b</var></td>
 												<td><var><span class="white">Line</span></var></td>
 												<td>second object to check collision</td>
-											</tr></table><h3 id="polygonPolygon">polygonPolygon</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Polygon are colliding.</p><div class="code"><span class="green">virtuosity</span>.<span class="green">collisionManager</span>.<span class="green">collision</span>.<span class="blue">polygonPolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
+											</tr></table><h3 id="polygonPolygon">polygonPolygon</a></h3><p style="margin-top: 0px;">Returns true if a Polygon and a Polygon are colliding.</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">collisionManager</span>.<span class="blue">collision</span>.<span class="green">polygonPolygon</span>(<span class="orange">a</span>, <span class="orange">b</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

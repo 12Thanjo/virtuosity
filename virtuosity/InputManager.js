@@ -459,7 +459,7 @@ var delete_scroll_event = function(name){
 
 var wheel_listener = function(e){
 	scroll_events.forEach((event)=>{
-		event(e.wheelDeltaX, e.wheelDeltaY);
+		event(e.wheelDeltaY, e.wheelDeltaX);
 	});
 }
 
@@ -791,7 +791,7 @@ exports = {
 			* @description add a scroll event 
 			* @parent mouse.add
 			* @param {name}{String}{unique name of the event}
-			* @param {event}{Function}{event to run}
+			* @param {event}{Function}{event to run (takes ScrollY, ScrollX as parameters)}
 			*/
 			scroll: (name, event)=>{
 				add_scroll_event(name, event);
@@ -1291,7 +1291,7 @@ Object.defineProperty(exports.mouse, "offsetY", {
 * @type property
 * @description if the pointer is currently locked
 * @parent mouse
-* @proto String
+* @proto Boolean
 */
 Object.defineProperty(exports.mouse, "pointerLocked", {
 	get: ()=>{
