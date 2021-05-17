@@ -43,6 +43,7 @@ var new_canvas = function(name, config){
         transparent: true,
         resolution: config.resolution
     });
+    new_ctx.stage.sortableChildren = true;
     document.body.appendChild(new_ctx.view);
     new_ctx.view.style.width = config.width + "px";
     new_ctx.view.style.height = config.height + 'px';
@@ -300,7 +301,7 @@ var position = new ocs.Component('engine2d', "position", (x, y)=>{
 * @type component
 * @description rotation of the render object
 * @env engine2d
-* @param {rotation}{Number}{rotation of the render object}
+* @param {rotation}{Number}{rotation of the render object}{0}
 */
 var rotation = new ocs.Component('engine2d', "rotation", (r)=>{
     return new ocs.EEO({
@@ -315,8 +316,8 @@ var rotation = new ocs.Component('engine2d', "rotation", (r)=>{
 * @type component
 * @description the position and rotation point of the render object
 * @env engine2d
-* @param {x}{Number}{x coordinate of the anchor point}
-* @param {y}{Number}{y coordinate of the anchor point}
+* @param {x}{Number}{x coordinate of the anchor point}{0}
+* @param {y}{Number}{y coordinate of the anchor point}{0}
 */
 var anchor = new ocs.Component('engine2d', "anchor", (x, y)=>{
     return {
@@ -329,17 +330,55 @@ var anchor = new ocs.Component('engine2d', "anchor", (x, y)=>{
     }
 });
 
+/*
+* @name pivot
+* @type component
+* @description the position and rotation point of the render object
+* @env engine2d
+* @param {x}{Number}{x coordinate of the pivot point}{0}
+* @param {y}{Number}{y coordinate of the pivot point}{0}
+*/
+var pivot = new ocs.Component('engine2d', "pivot", (x, y)=>{
+    return {
+        pivot: new ocs.EEO({
+                x: x || 0,
+                y: y || 0
+            }, (entity, key, val)=>{
+                entity.pixi.pivot[key] = val;
+            })
+    }
+});
+
+/*
+* @name skew
+* @type component
+* @description skew amount of the render object (in radians)
+* @env engine2d
+* @param {x}{Number}{ammount of skew in the x-axis}{0}
+* @param {y}{Number}{ammount of skew in the y-axis}{0}
+*/
+var skew = new ocs.Component('engine2d', "skew", (x, y)=>{
+    return {
+        skew: new ocs.EEO({
+                x: x || 0,
+                y: y || 0
+            }, (entity, key, val)=>{
+                entity.pixi.skew[key] = val;
+            })
+    }
+});
+
 
 /*
 * @name alpha
 * @type component
 * @description alpha of the render object
 * @env engine2d
-* @param {alpha}{Number}{alpha of the render object}
+* @param {alpha}{Number}{alpha of the render object}{1}
 */
 var alpha = new ocs.Component('engine2d', "alpha", (alpha)=>{
     return new ocs.EEO({
-        alpha: 1 || alpha
+        alpha: alpha ?? 0
     }, (entity, key, val)=>{
         entity.pixi.alpha = val;
     });
@@ -362,6 +401,20 @@ var scale = new ocs.Component('engine2d', "scale", (width, height)=>{
     });
 });
 
+/*
+* @name zIndex
+* @type component
+* @description zIndex of the render object
+* @env engine2d
+* @param {zIndex}{Number}{zIndex of the render object}{0}
+*/
+var zIndex = new ocs.Component('engine2d', "zIndex", (zIndex)=>{
+    return new ocs.EEO({
+        zIndex: zIndex ?? 0
+    }, (entity, key, val)=>{
+        entity.pixi.zIndex = val;
+    });
+});
 
 /*
 * @name tint
@@ -389,8 +442,10 @@ var tint = new ocs.Component('engine2d', 'tint', (tint)=>{
 * @component position
 * @component rotation
 * @component anchor
+* @component skew
 * @component alpha
 * @component scale
+* @component zIndex
 * @component tint
 */
 var add_image = function(canvas, name, x, y, key, onComplete){
@@ -403,9 +458,12 @@ var add_image = function(canvas, name, x, y, key, onComplete){
         new_entity.addComponent('pixi', new_img)
                   .addComponent('position', x, y)
                   .addComponent('rotation')
-                  .addComponent('anchor')
                   .addComponent('alpha')
                   .addComponent('tint')
+                  .addComponent('anchor')
+                  .addComponent('pivot')
+                  .addComponent('skew')
+                  .addComponent('zIndex')
                   .addComponent('scale', new_img.width, new_img.height);
 
         new_entity.pixi.x = x;
@@ -461,12 +519,6 @@ class Animation{
             }
         });
 
-        Object.defineProperty(this, "paused", {
-            get: ()=>{
-                return this.#timer.paused;
-            }
-        });
-
         Object.defineProperty(this, "length", {
             get: ()=>{
                 return this.frames.length;
@@ -486,10 +538,6 @@ class Animation{
     stop(){
         this.#timer.stop();
     }
-
-    pause(){
-        this.#timer.pause();
-    }
 }
 
 /*
@@ -508,15 +556,25 @@ new ocs.Component('engine2d', 'sprite', (self, pixi)=>{
     return new ocs.EEO({
         frame: 0,
         totalFrames: pixi.totalFrames,
-        animations: new Map(),
+        _animations: new Map(),
+        _currentAnimation: null,
         addAnimation: (name, frames, frameTime)=>{
-            self.animations.set(name, new Animation(self, name, frames, frameTime));
+            self._animations.set(name, new Animation(self, name, frames, frameTime));
         },
         deleteAnimation: (name)=>{
-            self.animations.delete(name);
+            self._animations.delete(name);
         },
-        getAnimation: (name)=>{
-            return self.animations.get(name);
+        runAnimation: (name)=>{
+            if(self._currentAnimation != null){
+                self._currentAnimation.stop();
+            }
+            if(self._animations.has(name)){
+                self._currentAnimation = self._animations.get(name);
+                self._currentAnimation.start();
+            }else{
+                var sprite_name = self.name.split("╎");
+                debug.error('ReferenceError', `sprite (${sprite_name}) does not have animation (${name})`);
+            }
         }
     }, (entity, key, val)=>{
         if(key == "frame"){
@@ -541,6 +599,7 @@ new ocs.Component('engine2d', 'sprite', (self, pixi)=>{
 * @component alpha
 * @component scale
 * @component tint
+* @component zIndex
 * @component sprite
 */
 var add_sprite = function(canvas, name, x, y, key, onComplete){
@@ -554,9 +613,12 @@ var add_sprite = function(canvas, name, x, y, key, onComplete){
         new_entity.addComponent('pixi', new_img)
                   .addComponent('position', x, y)
                   .addComponent('rotation')
-                  .addComponent('anchor')
                   .addComponent('alpha')
                   .addComponent('tint')
+                  .addComponent('anchor')
+                  .addComponent('pivot')
+                  .addComponent('skew')
+                  .addComponent('zIndex')
                   .addComponent('scale', new_img.width, new_img.height)
                   .addComponent('sprite', new_entity, new_img);
 
@@ -665,6 +727,8 @@ var style = new ocs.Component('engine2d', "style", (fontSize, color)=>{
 * @component anchor
 * @component alpha
 * @component style
+* @component zIndex
+* @component pivot
 * @component text
 */
 var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
@@ -682,8 +746,11 @@ var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
     new_entity.addComponent('pixi', new_txt)
               .addComponent('position', x, y)
               .addComponent('rotation')
-              .addComponent('anchor')
               .addComponent('alpha')
+              .addComponent('anchor')
+              .addComponent('pivot')
+              .addComponent('skew')
+              .addComponent('zIndex')
               .addComponent('style', fontSize)
               .addComponent('text', text);
 
@@ -1288,28 +1355,28 @@ module.exports = {
     graphics: {
         add: {
             container: (name, canvas)=>{
-                graphics.add.container(name, canvases.get(canvas));
+                return graphics.add.container(name, canvases.get(canvas));
             },
             circle: (...params)=>{
-                graphics.add.circle(...params);
+                return graphics.add.circle(...params);
             },
             rectangle: (...params)=>{
-                graphics.add.rectangle(...params);
+                return graphics.add.rectangle(...params);
             },
             box: (...params)=>{
-                graphics.add.box(...params);
+                return graphics.add.box(...params);
             },
             line: (...params)=>{
-                graphics.add.line(...params);
+                return graphics.add.line(...params);
             },
             ellipse: (...params)=>{
-                graphics.add.ellipse(...params);
+                return graphics.add.ellipse(...params);
             },
             torus: (...params)=>{
-                graphics.add.torus(...params);
+                return graphics.add.torus(...params);
             },
             polygon: (...params)=>{
-                graphics.add.polygon(...params);
+                return graphics.add.polygon(...params);
             },
         },
         get: graphics.get,

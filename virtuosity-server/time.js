@@ -17,16 +17,19 @@ var timer = function(duration, func){
 * @param {func}{Function}{Funciton for the AdvancedTimer to run when completed}
 */
 class AdvancedTimer{
-	#DATA;
+	#started;
+	#duration;
+	#replay;
+	#running;
+	#paused;
+	#timer;
 	constructor(duration, func){
 		this.func = func;
-		this.#DATA = {
-			started: 0,
-			duration: duration,
-			replay: 0,
-			running: false,
-			paused: false
-		}
+		this.#started = 0;
+		this.#duration = duration;
+		this.#replay = 0;
+		this.#running = false;
+		this.#paused = false;
 
 		/*
 		* @name running
@@ -37,7 +40,7 @@ class AdvancedTimer{
 		*/
 		Object.defineProperty(this, 'running', {
 			get: ()=>{
-				return this.#DATA.running;
+				return this.#running;
 			}
 		});
 
@@ -50,7 +53,7 @@ class AdvancedTimer{
 		*/
 		Object.defineProperty(this, 'paused', {
 			get: ()=>{
-				return this.#DATA.paused;
+				return this.#paused;
 			}
 		});
 
@@ -63,14 +66,14 @@ class AdvancedTimer{
 		*/
 		Object.defineProperty(this, "duration", {
 			get: ()=>{
-				return this.#DATA.duration;
+				return this.#duration;
 			},
 			set: (val)=>{
-				this.#DATA.duration = val;
-				if(this.#DATA.running){
+				this.#duration = val;
+				if(this.#running){
 					var now = new Date();
-					if(now - this.#DATA.started > val){
-						clearTimeout(this.timer);
+					if(now - this.#started > val){
+						clearTimeout(this.#timer);
 						this.func();
 					}
 				}
@@ -86,15 +89,15 @@ class AdvancedTimer{
 	* @parent AdvancedTimer
 	*/
 	start = function(){
-		if(this.#DATA.replay != 0){
-			this.#DATA.replay = 0;
-			this.#DATA.started = new Date();
-			this.#DATA.running = true;
-			this.timer = setTimeout(this.func, this.duration);
+		if(this.#replay != 0){
+			this.#replay = 0;
+			this.#started = new Date();
+			this.#running = true;
+			this.#timer = setTimeout(this.func, this.#duration);
 		}else{
-			this.#DATA.started = new Date();
-			this.#DATA.running = true;
-			this.timer = setTimeout(this.func,this.duration);
+			this.#started = new Date();
+			this.#running = true;
+			this.#timer = setTimeout(this.func, this.#duration);
 		}
 	}
 
@@ -105,8 +108,8 @@ class AdvancedTimer{
 	* @parent AdvancedTimer
 	*/
 	stop = function(){
-		clearTimeout(this.timer);
-		this.#DATA.running = false;
+		clearTimeout(this.#timer);
+		this.#running = false;
 	}
 
 	/*
@@ -127,9 +130,9 @@ class AdvancedTimer{
 	* @parent AdvancedTimer
 	*/
 	pause = function(){
-		this.paused = true;
+		this.#paused = true;
 		var now = new Date();
-		this.#DATA.replay = this.duration - (now - this.#DATA.started);
+		this.#replay = this.#duration - (now - this.#started);
 	}
 
 	/*
@@ -139,9 +142,9 @@ class AdvancedTimer{
 	* @parent AdvancedTimer
 	*/
 	getTimeLeft = function(){
-		if(this.#DATA.running){
+		if(this.#running){
 			var now = new Date();
-			return this.duration - (now - this.#DATA.started);
+			return this.#duration - (now - this.#started);
 		}else{
 			return 0;
 		}
@@ -167,13 +170,15 @@ var interval = function(duration, func){
 * @param {func}{Function}{Funciton for the Interval to run when completed}
 */
 class AdvancedInterval{
-	#DATA;
+	#duration;
+	#running;
+	#timer;
 	constructor(duration, func){
 		this.func = func;
-		this.#DATA = {
-			duration: duration,
-			running: false
-		}
+
+		this.#duration = duration;
+		this.#running = false;
+
 		/*
 		* @name duration
 		* @type property
@@ -182,13 +187,13 @@ class AdvancedInterval{
 		*/
 		Object.defineProperty(this, "duration", {
 			get: ()=>{
-				return this.#DATA.duration;
+				return this.#duration;
 			},
 			set: (val)=>{
-				this.#DATA.duration = val;
-				if(this.running){
-					clearInterval(this.timer);
-					this.timer = setInterval(this.func, this.#DATA.duration);
+				this.#duration = val;
+				if(this.#running){
+					clearInterval(this.#timer);
+					this.#timer = setInterval(this.func, this.#duration);
 				}
 			}
 		});
@@ -201,7 +206,7 @@ class AdvancedInterval{
 		*/
 		Object.defineProperty(this, "running", {
 			get: ()=>{
-				return this.#DATA.running;
+				return this.#running;
 			}
 		});
 	}
@@ -214,8 +219,8 @@ class AdvancedInterval{
 	* @parent AdvancedInterval
 	*/
 	start = function(){
-		this.#DATA.running = true;
-		this.timer = setInterval(this.func,this.duration);
+		this.#running = true;
+		this.#timer = setInterval(this.func, this.#duration);
 	}
 
 	/*
@@ -225,8 +230,8 @@ class AdvancedInterval{
 	* @parent AdvancedInterval
 	*/
 	stop = function(){
-		clearInterval(this.timer);
-		this.running = false;
+		clearInterval(this.#timer);
+		this.#running = false;
 	}
 }
 

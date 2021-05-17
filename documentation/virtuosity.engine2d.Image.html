@@ -210,7 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Image</h1><p>An image using a loaded texture created by <a href="./virtuosity.engine2d.add.html#image">add.image</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">Image</span></div><h4>Components</h4><ul><li ><a href=#pixi>pixi</a></li><li ><a href=#position>position</a></li><li ><a href=#rotation>rotation</a></li><li ><a href=#anchor>anchor</a></li><li ><a href=#alpha>alpha</a></li><li ><a href=#scale>scale</a></li><li ><a href=#tint>tint</a></li></ul><hr><h3 id='pixi'>pixi</h3><p >reference to the render object</p><br><br><table>
+			<div id="header-spacing"></div><h1>Image</h1><p>An image using a loaded texture created by <a href="./virtuosity.engine2d.add.html#image">add.image</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">Image</span></div><h4>Components</h4><ul><li ><a href=#pixi>pixi</a></li><li ><a href=#position>position</a></li><li ><a href=#rotation>rotation</a></li><li ><a href=#anchor>anchor</a></li><li ><a href=#alpha>alpha</a></li><li ><a href=#scale>scale</a></li><li ><a href=#zIndex>zIndex</a></li><li ><a href=#tint>tint</a></li></ul><hr><h3 id='pixi'>pixi</h3><p >reference to the render object</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -232,37 +232,44 @@
 												<td><var>y</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>y coordinate of the render object</td>
-											</tr></table><h3 id='rotation'>rotation</h3><p >rotation of the render object</p><br><br><table>
+											</tr></table><h3 id='rotation'>rotation</h3><p >rotation of the render object</p><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
+													<th>Default</th>
 												</tr><tr>
 												<td><var>rotation</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>rotation of the render object</td>
-											</tr></table><h3 id='anchor'>anchor</h3><p >the position and rotation point of the render object</p><br><br><table>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='anchor'>anchor</h3><p >the position and rotation point of the render object</p><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
+													<th>Default</th>
 												</tr><tr>
 												<td><var>x</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>x coordinate of the anchor point</td>
+												<td><var><span class="purple">0</span></var></td>
 											</tr><tr>
 												<td><var>y</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>y coordinate of the anchor point</td>
-											</tr></table><h3 id='alpha'>alpha</h3><p >alpha of the render object</p><br><br><table>
+												<td><var><span class="purple">0</span></var></td>
+											</tr></table><h3 id='alpha'>alpha</h3><p >alpha of the render object</p><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
+													<th>Default</th>
 												</tr><tr>
 												<td><var>alpha</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>alpha of the render object</td>
+												<td><var><span class="purple">1</span></var></td>
 											</tr></table><h3 id='scale'>scale</h3><p >the scale of the render object</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
@@ -276,6 +283,17 @@
 												<td><var>height</var></td>
 												<td><var><span class="purple">Number</span></var></td>
 												<td>height of the render object</td>
+											</tr></table><h3 id='zIndex'>zIndex</h3><p >zIndex of the render object</p><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>zIndex</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>zIndex of the render object</td>
+												<td><var><span class="purple">0</span></var></td>
 											</tr></table><h3 id='tint'>tint</h3><p >tint of the render object</p><table>
 												<tr>
 													<th>Parameter</th>

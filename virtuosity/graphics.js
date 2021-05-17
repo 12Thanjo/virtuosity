@@ -100,7 +100,7 @@ module.exports = function(PIXI, canvases){
 					this.graphics.drawRect(shape.x, shape.y, shape.width, shape.height);
 				}else if(shape.hasTag('box')){
 					this.graphics.beginFill(shape.color, shape.alpha);
-					this.graphics.drawRoundedRect(shape.x, shape.y, shape.width, shape.height, shape.radius);
+					this.graphics.drawRoundedRect(shape.x, shape.y, shape.width, shape.height, shape.borderRadius);
 				}else if(shape.hasTag('line')){
 					this.graphics.lineStyle(shape.thickness, shape.color, shape.alpha);
 					this.graphics.moveTo(shape.x, shape.y);
@@ -169,6 +169,7 @@ module.exports = function(PIXI, canvases){
 				  .addTag('circle');
 
 		containers.get(container).add(new_circle);
+		return new_circle;
 	}
 
 	/*
@@ -211,6 +212,7 @@ module.exports = function(PIXI, canvases){
 				 	 .addTag('rectangle');
 
 		containers.get(container).add(new_rectangle);
+		return new_rectangle;
 	}
 
 	/*
@@ -253,6 +255,7 @@ module.exports = function(PIXI, canvases){
 			   .addTag('box');
 
 		containers.get(container).add(new_box);
+		return new_box;
 	}
 
 	/*
@@ -311,6 +314,7 @@ module.exports = function(PIXI, canvases){
 				.addTag('line');
 
 		containers.get(container).add(new_line);
+		return new_line;
 	}
 
 	new ocs.Tag('ellipse');
@@ -324,6 +328,7 @@ module.exports = function(PIXI, canvases){
 				   .addTag('ellipse');
 
 		containers.get(container).add(new_ellipse);
+		return new_ellipse;
 	}
 
 	new ocs.Tag('torus');
@@ -337,6 +342,7 @@ module.exports = function(PIXI, canvases){
 				 .addTag('torus');
 
 		containers.get(container).add(new_torus);
+		return new_torus;
 	}
 
 	/*
@@ -374,6 +380,7 @@ module.exports = function(PIXI, canvases){
 				   .addTag('polygon');
 	 
 		containers.get(container).add(new_polygon);
+		return new_polygon;
 	}
 
 
@@ -402,7 +409,7 @@ module.exports = function(PIXI, canvases){
 			* @param {canvas}{String}{name of the canvas the container should be a part of}
 			*/
 			container: (name, canvas)=>{
-				new Container(name, canvas);
+				return new Container(name, canvas);
 			},
 
 			/*
@@ -418,7 +425,7 @@ module.exports = function(PIXI, canvases){
 			* @param {color}{Hex}{color of the circle}
 			*/
 			circle: (name, container, x, y, radius, color)=>{
-				new_circle(name, container, x, y, radius, color);
+				return new_circle(name, container, x, y, radius, color);
 			},
 
 			/*
@@ -435,7 +442,7 @@ module.exports = function(PIXI, canvases){
 			* @param {color}{Hex}{color of the rectangle}
 			*/
 			rectangle: (name, container, x, y, width, height, color)=>{
-				new_rectangle(name, container, x, y, width, height, color);
+				return new_rectangle(name, container, x, y, width, height, color);
 			},
 
 			/*
@@ -453,7 +460,7 @@ module.exports = function(PIXI, canvases){
 			* @param {borderRadius}{Int}{radius of the corners of the box}
 			*/
 			box: (name, container, x, y, width, height, color, borderRadius)=>{
-				new_box(name, container, x, y, width, height, color, borderRadius);
+				return new_box(name, container, x, y, width, height, color, borderRadius);
 			},
 
 			/*
@@ -470,7 +477,7 @@ module.exports = function(PIXI, canvases){
 			* @param {color}{Hex}{color of the line}
 			*/
 			line: (name, container, x1, y1, x2, y2, color)=>{
-				new_line(name, container, x1, y1, x2, y2, color);
+				return new_line(name, container, x1, y1, x2, y2, color);
 			},
 
 			/*
@@ -487,7 +494,7 @@ module.exports = function(PIXI, canvases){
 			* @param {color}{Hex}{color of the ellipse}
 			*/
 			ellipse: (name, container, x, y, width, height, color)=>{
-				new_ellipse(name, container, x, y, width, height, color);
+				return new_ellipse(name, container, x, y, width, height, color);
 			},
 
 			/*
@@ -504,7 +511,7 @@ module.exports = function(PIXI, canvases){
 			* @param {color}{Hex}{color of the torus}
 			*/
 			torus: (name, container, x, y, width, height, color)=>{
-				new_torus(name, container, x, y, width, height, color);	
+				return new_torus(name, container, x, y, width, height, color);	
 			},
 
 			/*
@@ -518,7 +525,7 @@ module.exports = function(PIXI, canvases){
 			* @param {color}{Hex}{color of the polygon}
 			*/
 			polygon: (name, container, color, points)=>{
-				new_polygon(name, container, color, points);	
+				return new_polygon(name, container, color, points);	
 			}
 		},
 
