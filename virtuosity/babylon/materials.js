@@ -140,7 +140,7 @@ var MaterialBasic = function(canvas, name, onComplete){
 	* @param {obj}{any engine3d mesh}{object to add the material to}
 	*/
 	this.addTo = function(obj){
-		obj.getComponent('babylon').babylon.material = this.material;
+		obj.babylon.material = this.material;
 	}
 
 
@@ -305,7 +305,7 @@ var MaterialMetallic = function(canvas, name, onComplete){
 	* @param {obj}{any engine3d mesh}{object to add the material to}
 	*/
 	this.addTo = function(obj){
-		obj.getComponent('babylon').babylon.material = this.material;
+		obj.babylon.material = this.material;
 	}
 
 
@@ -457,7 +457,7 @@ var MaterialGlossy = function(canvas, name, onComplete){
 	* @param {obj}{any engine3d mesh}{object to add the material to}
 	*/
 	this.addTo = function(obj){
-		obj.getComponent('babylon').babylon.material = this.material;
+		obj.babylon.material = this.material;
 	}
 
 
@@ -532,7 +532,7 @@ var MaterialCanvas = function(canvas, name, targetCanvas, onComplete){
 	* @param {obj}{any engine3d mesh}{object to add the material to}
 	*/
 	this.addTo = function(obj){
-		obj.getComponent('babylon').babylon.material = this.material;
+		obj.babylon.material = this.material;
 		this.material.diffuseTexture.update();
 	}
 

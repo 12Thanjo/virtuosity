@@ -55,7 +55,7 @@ module.exports = {
 	/*
 	* @name structures
 	* @type obj
-	* @description some data structures not built into Javascript Natively
+	* @description some data structures not built into Javascript natively
 	* @path ../virtuosity-server/structures.js
 	*/
 	structures: virtuosity_server.structures,

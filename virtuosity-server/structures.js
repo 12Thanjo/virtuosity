@@ -32,6 +32,14 @@ module.exports = {
 	Queue: require('./structures/Queue.js'),
 
 	/*
+	* @name PriorityQueue
+	* @type class
+	* @description priority queue
+	* @path ../virtuosity-server/structures/PriorityQueue.js
+	*/
+	PriorityQueue: require('./structures/PriorityQueue.js'),
+
+	/*
 	* @name Heap
 	* @type class
 	* @description tree-like automatic ordering of a set for the purpose of getting the lowest value quickly. This is faster than a normal binary search tree as it actually uses an array

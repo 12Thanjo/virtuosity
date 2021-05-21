@@ -118,7 +118,7 @@ var new_canvas = function(name, config){
 	    new_ctx.fps = 0;
 
 
-	    var MAXSAMPLES = config.fpsBuffer || 1000;
+	    var MAXSAMPLES = config.fpsBuffer ?? 1000;
 
 	    new_ctx.tickindex = 0;
 	    new_ctx.ticksum = 0;
@@ -152,7 +152,7 @@ var new_canvas = function(name, config){
 	        new_ctx.update_events.forEach((event)=>{
 	            event();
 	        });
-	    }, 1000/(config.poll || 64));
+	    }, 1000/(config.poll ?? 64));
 
 
 		// run the render loop
@@ -219,9 +219,9 @@ new ocs.Component('engine3d', 'babylon', (babylon)=>{
 */
 var position = new ocs.Component('engine3d', "position", (x, y, z)=>{
     return new ocs.EEO({
-        x: x || 0,
-        y: y || 0,
-        z: z || 0
+        x: x ?? 0,
+        y: y ?? 0,
+        z: z ?? 0
     }, (entity, key, val)=>{
     	entity.babylon.position[key] = val;
     });
@@ -240,10 +240,10 @@ var position = new ocs.Component('engine3d', "position", (x, y, z)=>{
 */
 var rotation = new ocs.Component('engine3d', "rotation", (x, y, z)=>{
     return {
-    	rotation: new EEO({
-		        x: x || 0,
-		        y: y || 0,
-		        z: z || 0
+    	rotation: new ocs.EEO({
+		        x: x ?? 0,
+		        y: y ?? 0,
+		        z: z ?? 0
 		    }, (entity, key, val)=>{
 		    	entity.babylon.rotation[key] = val;
 		    })
@@ -260,10 +260,10 @@ var rotation = new ocs.Component('engine3d', "rotation", (x, y, z)=>{
 * @param {height}{Number}{height of the render object}{1}
 */
 var scale = new ocs.Component('engine3d', "scale", (width, lenght, height)=>{
-    return new EEO({
-        width: width || 1,
-        length: length || 1,
-        height: height || 1
+    return new ocs.EEO({
+        width: width ?? 1,
+        length: length ?? 1,
+        height: height ?? 1
     }, (entity, key, val)=>{
 		if(key == "width"){
 	    	entity.babylon.scaling.x = val;

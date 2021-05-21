@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="icon" href="favicon.ico">
-		<title>virtuosity Documentation | virtuosity.engine2d.graphics.Polygon</title>
+		<title>virtuosity Documentation | virtuosity.structures.PriorityQueue</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<header>
 		<datalist id="entities"></datalist>
 		<div class="menu-bar" id="desktop-navbar">
 		    <div class="left">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.graphics.html'">graphics</button>
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.html'">structures</button>
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.graphics.html'">graphics</button><script type="text/javascript">var path = "virtuosity.engine2d.graphics.Polygon";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.html'">structures</button><script type="text/javascript">var path = "virtuosity.structures.PriorityQueue";</script
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -210,53 +210,70 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Polygon</h1><p>A procedurally generated engine2d line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">Polygon</span></div><h4>Components</h4><ul><li ><a href=#container>container</a></li><li ><a href=#color>color</a></li><li ><a href=#alpha>alpha</a></li><li ><a href=#points>points</a></li></ul><hr><h3 id='container'>container</h3><p >container of the render object</p><br><br><table>
+			<div id="header-spacing"></div><h1>PriorityQueue</h1><p>priority queue</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="green">PriorityQueue</span>();</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr></table><h4>Classes</h4><ul><li><a href='./virtuosity.structures.PriorityQueue.Node.html'>Node</a></li></ul><h4>Methods</h4><ul><li><a href="#push">push</a></li><li><a href="#peek">peek</a></li><li><a href="#pop">pop</a></li><li><a href="#delete">delete</a></li><li><a href="#get">get</a></li><li><a href="#setPriority">setPriority</a></li><li><a href="#size">size</a></li><li><a href="#print">print</a></li><li><a href="#forEach">forEach</a></li><li><a href="#reverseForEach">reverseForEach</a></li></ul><hr><h2>Classes</h2><h3 id="Node" style="margin-top: 0px;"><a href='./virtuosity.structures.PriorityQueue.Node.html'>Node</a></h3><p style="margin-top: 0px;">PriortyQueue node</p><br><br><h2>Methods</h2><h3 id="push" style="margin-top: 0px;">push</a></h3><p style="margin-top: 0px;">add a node to the PriorityQueue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">push</span>(<span class="orange">data</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
 												</tr><tr>
-												<td><var>container</var></td>
-												<td><var><span class="white">Container</span></var></td>
-												<td>container of the render object</td>
+												<td><var>data</var></td>
+												<td><var><span class="white">ANY</span></var></td>
+												<td>data for the new node</td>
+											</tr></table><h3 id="peek">peek</a></h3><p style="margin-top: 0px;">get the front of the PriorityQueue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">peek</span>();</div><h3 id="pop">pop</a></h3><p style="margin-top: 0px;">remove the top node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">pop</span>();</div><h3 id="delete">delete</a></h3><p style="margin-top: 0px;">delete a specific node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">delete</span>(<span class="orange">node</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>node</var></td>
+												<td><var><span class="white">ANY</span></var></td>
+												<td>data of the Node to delete</td>
+											</tr></table><h3 id="get">get</a></h3><p style="margin-top: 0px;">get a specific node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">get</span>(<span class="orange">node</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>node</var></td>
+												<td><var><span class="white">ANY</span></var></td>
+												<td>data of the Node to get</td>
+											</tr></table><h3 id="setPriority">setPriority</a></h3><p style="margin-top: 0px;">change the priority of a specific node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">setPriority</span>(<span class="orange">node</span>, <span class="orange">priority</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>node</var></td>
+												<td><var><span class="white">ANY</span></var></td>
+												<td>data of the Node to change the priority of</td>
 											</tr><tr>
-												<td><var>zIndex</var></td>
+												<td><var>priority</var></td>
 												<td><var><span class="purple">Number</span></var></td>
-												<td>zIndex of the render object</td>
-											</tr></table><h3 id='color'>color</h3><p >color of the graphics object</p><table>
+												<td>the new priority</td>
+											</tr></table><h3 id="size">size</a></h3><p style="margin-top: 0px;">get the size of the PriorityQueue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">size</span>();</div><h3 id="print">print</a></h3><p style="margin-top: 0px;">output an array representation of the PriorityQueue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">print</span>();</div><h3 id="forEach">forEach</a></h3><p style="margin-top: 0px;">enumerate over all nodes in the PriorityQueue</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">forEach</span>(<span class="orange">event</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
-													<th>Default</th>
 												</tr><tr>
-												<td><var>x</var></td>
-												<td><var><span class="purple">Hex</span></var></td>
-												<td>color of the graphics object</td>
-												<td><var><span class="purple">0xffffff</span></var></td>
-											</tr></table><h3 id='alpha'>alpha</h3><p >alpha of the graphics object</p><table>
+												<td><var>event</var></td>
+												<td><var><span class="blue">Function</span></var></td>
+												<td>event to run on all nodes in the PriorityQueue (takes node as a parameter)</td>
+											</tr></table><h3 id="reverseForEach">reverseForEach</a></h3><p style="margin-top: 0px;">enumerate over all nodes in the PriorityQueue in reverse order</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="green">reverseForEach</span>(<span class="orange">event</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
-													<th>Default</th>
 												</tr><tr>
-												<td><var>alpha</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>alpha of the graphics object</td>
-												<td><var><span class="purple">1</span></var></td>
-											</tr></table><h3 id='points'>points</h3><p >points of the graphics object</p><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-													<th>Default</th>
-												</tr><tr>
-												<td><var>points</var></td>
-												<td><var><span class="white">[</span><span class="white">Point</span><span class="white">]</span></var></td>
-												<td>x coordinate of the graphics object</td>
-												<td><var><span class="purple">0</span></var></td>
-											</tr></table>
+												<td><var>event</var></td>
+												<td><var><span class="blue">Function</span></var></td>
+												<td>event to run on all nodes in the PriorityQueue (takes node as a parameter)</td>
+											</tr></table><br><br>
 		</div>
 	</body>
 	<footer>

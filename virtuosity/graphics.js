@@ -2,6 +2,7 @@ var ocs = require('ocs');
 // var escs = require('../../escs/index.js');
 var debug = require('./debug.js');
 require('@pixi/graphics-extras');
+var {structures} = require('../virtuosity-server/index.js');
 
 
 module.exports = function(PIXI, canvases){
@@ -65,12 +66,22 @@ module.exports = function(PIXI, canvases){
 	* @description container of the render object
 	* @env engine2d-graphics
 	* @param {container}{Container}{container of the render object}
+	* @param {zIndex}{Number}{zIndex of the render object}
 	*/
-	var container = new ocs.Component(env, 'container', (container)=>{
+	var container = new ocs.Component(env, 'container', (container, zIndex)=>{
 		return new ocs.EEO({
-			container: container
-		}, (entity)=>{
-			containers.get(entity.container).draw();
+			container: container,
+			zIndex: zIndex ?? 0
+		}, (entity, key, val)=>{
+			if(key == "zIndex"){
+				var target = containers.get(container);
+				target.queue.setPriority(entity, val);
+			}else if(key == "container"){
+				// read only
+				if(val != container){
+					entity.container = container;
+				}
+			}
 		});
 	});
 
@@ -83,6 +94,7 @@ module.exports = function(PIXI, canvases){
 		this.canvas = canvas;
 		this.shapes = new Map();
 		this.graphics = new PIXI.Graphics();
+		this.queue = new structures.PriorityQueue();
 		this.clear = true;
 		canvas.stage.addChild(this.graphics);
 		canvas.containers.add(name);
@@ -90,7 +102,8 @@ module.exports = function(PIXI, canvases){
 		this.draw = function(){
 			if(this.clear) this.graphics.clear();
 
-			this.shapes.forEach((shape)=>{
+			this.queue.reverseForEach((node)=>{
+				var shape = node.getData();
 				if(shape.hasTag('circle')){
 					this.graphics.beginFill(shape.color, shape.alpha);
 					this.graphics.drawCircle(shape.x, shape.y, shape.radius);
@@ -124,6 +137,7 @@ module.exports = function(PIXI, canvases){
 
 		this.add = function(shape){
 			this.shapes.set(shape.name, shape);
+			this.queue.push(0, shape);
 			this.graphics.clear();
 			this.draw();
 		}
@@ -263,8 +277,8 @@ module.exports = function(PIXI, canvases){
 	* @type component
 	* @description position2 of the graphics object
 	* @env engine2d-graphics
-	* @param {x}{Number}{x2 coordinate of the graphics object}{0}
-	* @param {y}{Number}{y2 coordinate of the graphics object}{0}
+	* @param {x2}{Number}{x2 coordinate of the graphics object}{0}
+	* @param {y2}{Number}{y2 coordinate of the graphics object}{0}
 	*/
 	var pos2 = new ocs.Component(env, 'position2', (x, y)=>{
 		return new ocs.EEO({
@@ -578,6 +592,8 @@ module.exports = function(PIXI, canvases){
 			*/
 			shape: (name, container)=>{
 				return container_check(container, (cntnr)=>{
+					var shape = cntnr.shapes.delete(`${name}╎${container}`);
+					cntnr.queue.delete(shape);
 					cntnr.shapes.delete(`${name}╎${container}`);
 				});	
 			}

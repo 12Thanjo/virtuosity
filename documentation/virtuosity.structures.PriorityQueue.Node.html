@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="icon" href="favicon.ico">
-		<title>virtuosity Documentation | virtuosity.engine2d.graphics.Polygon</title>
+		<title>virtuosity Documentation | virtuosity.structures.PriorityQueue.Node</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<header>
 		<datalist id="entities"></datalist>
 		<div class="menu-bar" id="desktop-navbar">
 		    <div class="left">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.graphics.html'">graphics</button>
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.html'">structures</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.PriorityQueue.html'">PriorityQueue</button>
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.graphics.html'">graphics</button><script type="text/javascript">var path = "virtuosity.engine2d.graphics.Polygon";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.html'">structures</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.PriorityQueue.html'">PriorityQueue</button><script type="text/javascript">var path = "virtuosity.structures.PriorityQueue.Node";</script
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -210,53 +210,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Polygon</h1><p>A procedurally generated engine2d line</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">Polygon</span></div><h4>Components</h4><ul><li ><a href=#container>container</a></li><li ><a href=#color>color</a></li><li ><a href=#alpha>alpha</a></li><li ><a href=#points>points</a></li></ul><hr><h3 id='container'>container</h3><p >container of the render object</p><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-												</tr><tr>
-												<td><var>container</var></td>
-												<td><var><span class="white">Container</span></var></td>
-												<td>container of the render object</td>
-											</tr><tr>
-												<td><var>zIndex</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>zIndex of the render object</td>
-											</tr></table><h3 id='color'>color</h3><p >color of the graphics object</p><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-													<th>Default</th>
-												</tr><tr>
-												<td><var>x</var></td>
-												<td><var><span class="purple">Hex</span></var></td>
-												<td>color of the graphics object</td>
-												<td><var><span class="purple">0xffffff</span></var></td>
-											</tr></table><h3 id='alpha'>alpha</h3><p >alpha of the graphics object</p><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-													<th>Default</th>
-												</tr><tr>
-												<td><var>alpha</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>alpha of the graphics object</td>
-												<td><var><span class="purple">1</span></var></td>
-											</tr></table><h3 id='points'>points</h3><p >points of the graphics object</p><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-													<th>Default</th>
-												</tr><tr>
-												<td><var>points</var></td>
-												<td><var><span class="white">[</span><span class="white">Point</span><span class="white">]</span></var></td>
-												<td>x coordinate of the graphics object</td>
-												<td><var><span class="purple">0</span></var></td>
-											</tr></table>
+			<div id="header-spacing"></div><h1>Node</h1><p>PriortyQueue node</p><h4>Methods</h4><ul><li><a href="#getData">getData</a></li><li><a href="#setData">setData</a></li><li><a href="#getNext">getNext</a></li><li><a href="#setNext">setNext</a></li><li><a href="#getPrevious">getPrevious</a></li><li><a href="#setPrevious">setPrevious</a></li><li><a href="#getPriority">getPriority</a></li></ul><hr><h2>Methods</h2><h3 id="getData" style="margin-top: 0px;">getData</a></h3><p style="margin-top: 0px;">get the data of the node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="blue">Node</span>.<span class="green">getData</span>();</div><h3 id="setData">setData</a></h3><p style="margin-top: 0px;">set the data of the node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="blue">Node</span>.<span class="green">setData</span>();</div><h3 id="getNext">getNext</a></h3><p style="margin-top: 0px;">get the next node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="blue">Node</span>.<span class="green">getNext</span>();</div><h3 id="setNext">setNext</a></h3><p style="margin-top: 0px;">set the next node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="blue">Node</span>.<span class="green">setNext</span>();</div><h3 id="getPrevious">getPrevious</a></h3><p style="margin-top: 0px;">get the previous node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="blue">Node</span>.<span class="green">getPrevious</span>();</div><h3 id="setPrevious">setPrevious</a></h3><p style="margin-top: 0px;">set the previous node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="blue">Node</span>.<span class="green">setPrevious</span>();</div><h3 id="getPriority">getPriority</a></h3><p style="margin-top: 0px;">get the priority of the node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">PriorityQueue</span>.<span class="blue">Node</span>.<span class="green">getPriority</span>();</div><br><br>
 		</div>
 	</body>
 	<footer>

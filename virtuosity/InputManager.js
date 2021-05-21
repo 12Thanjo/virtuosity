@@ -3,6 +3,7 @@ var debug = require('./debug.js');
 
 var DOWN = [255]; //make an array to cover all the keypresses you should need with a normal keyboard
 var DOWN_MAP = new Map([["A",65],["B",66],["C",67],["D",68],["E",69],["F",70],["G",71],["H",72],["I",73],["J",74],["K",75],["L",76],["M",77],["N",78],["O",79],["P",80],["Q",81],["R",82],["S",83],["T",84],["U",85],["V",86],["W",87],["X",88],["Y",89],["Z",90],["ZERO",48],["ONE",49],["TWO",50],["THREE",51],["FOUR",52],["FIVE",53],["SIX",54],["SEVEN",55],["EIGHT",56],["NINE",57],["NUMPAD_0",96],["NUMPAD_1",97],["NUMPAD_2",98],["NUMPAD_3",99],["NUMPAD_4",100],["NUMPAD_5",101],["NUMPAD_6",102],["NUMPAD_7",103],["NUMPAD_8",104],["NUMPAD_9",105],["NUMPAD_MULTIPLY",106],["NUMPAD_ADD",107],["NUMPAD_ENTER",108],["NUMPAD_SUBTRACT",109],["NUMPAD_DECIMAL",110],["NUMPAD_DIVIDE",111],["F1",112],["F2",113],["F3",114],["F4",115],["F5",116],["F6",117],["F7",118],["F8",119],["F9",120],["F10",121],["F11",122],["F12",123],["F13",124],["F14",125],["F15",126],["COLON",186],["EQUALS",187],["COMMA",188],["UNDERSCORE",189],["PERIOD",190],["QUESTION_MARK",191],["TILDE",192],["OPEN_BRACKET",219],["BACKWARD_SLASH",220],["CLOSED_BRACKET",221],["QUOTES",222],["BACKSPACE",8],["TAB",9],["CLEAR",12],["ENTER",13],["SHIFT",16],["CONTROL",17],["ALT",18],["CAPS_LOCK",20],["ESC",27],["SPACE",32],["PAGE_UP",33],["PAGE_DOWN",34],["END",35],["HOME",36],["LEFT",37],["UP",38],["RIGHT",39],["DOWN",40],["PLUS",43],["MINUS",44],["INSERT",45],["DELETE",46],["HELP",47],["NUM_LOCK",144]]);//used for key strings
+var KEYCODE_MAP = new Map([[65,"A"],[66,"B"],[67,"C"],[68,"D"],[69,"E"],[70,"F"],[71,"G"],[72,"H"],[73,"I"],[74,"J"],[75,"K"],[76,"L"],[77,"M"],[78,"N"],[79,"O"],[80,"P"],[81,"Q"],[82,"R"],[83,"S"],[84,"T"],[85,"U"],[86,"V"],[87,"W"],[88,"X"],[89,"Y"],[90,"Z"],[48,"ZERO"],[49,"ONE"],[50,"TWO"],[51,"THREE"],[52,"FOUR"],[53,"FIVE"],[54,"SIX"],[55,"SEVEN"],[56,"EIGHT"],[57,"NINE"],[96,"NUMPAD_0"],[97,"NUMPAD_1"],[98,"NUMPAD_2"],[99,"NUMPAD_3"],[100,"NUMPAD_4"],[101,"NUMPAD_5"],[102,"NUMPAD_6"],[103,"NUMPAD_7"],[104,"NUMPAD_8"],[105,"NUMPAD_9"],[106,"NUMPAD_MULTIPLY"],[107,"NUMPAD_ADD"],[108,"NUMPAD_ENTER"],[109,"NUMPAD_SUBTRACT"],[110,"NUMPAD_DECIMAL"],[111,"NUMPAD_DIVIDE"],[112,"F1"],[113,"F2"],[114,"F3"],[115,"F4"],[116,"F5"],[117,"F6"],[118,"F7"],[119,"F8"],[120,"F9"],[121,"F10"],[122,"F11"],[123,"F12"],[124,"F13"],[125,"F14"],[126,"F15"],[186,"COLON"],[187,"EQUALS"],[188,"COMMA"],[189,"UNDERSCORE"],[190,"PERIOD"],[191,"QUESTION_MARK"],[192,"TILDE"],[219,"OPEN_BRACKET"],[220,"BACKWARD_SLASH"],[221,"CLOSED_BRACKET"],[222,"QUOTES"],[8,"BACKSPACE"],[9,"TAB"],[12,"CLEAR"],[13,"ENTER"],[16,"SHIFT"],[17,"CONTROL"],[18,"ALT"],[20,"CAPS_LOCK"],[27,"ESC"],[32,"SPACE"],[33,"PAGE_UP"],[34,"PAGE_DOWN"],[35,"END"],[36,"HOME"],[37,"LEFT"],[38,"UP"],[39,"RIGHT"],[40,"DOWN"],[43,"PLUS"],[44,"MINUS"],[45,"INSERT"],[46,"DELETE"],[47,"HELP"],[144,"NUM_LOCK"]]);//used for key strings
 
 var check_down = function(arr){
 	var down = true;
@@ -15,6 +16,12 @@ var check_down = function(arr){
 	return down;
 }
 
+var command_listener = {
+	down: 0,
+	list: new Set(),
+	event: ()=>{},
+	listening: false
+}
 var keydown_listener = function(event){
 	if(!DOWN[event.keyCode]){
   		DOWN[event.keyCode] = true;
@@ -27,6 +34,9 @@ var keydown_listener = function(event){
 	  			}
 	  		});
   		}
+
+  		command_listener.down += 1;
+  		command_listener.list.add(event.keyCode);
   	}
 }
 
@@ -41,6 +51,19 @@ var keyup_listener = function(event){
 	}
 
 	DOWN[event.keyCode] = false;
+
+	command_listener.down -= 1;
+	if(command_listener.listening){
+		if(command_listener.down == 0){
+			var output = [];
+			command_listener.list.forEach((key)=>{
+				output.push(KEYCODE_MAP.get(key));
+			});
+			command_listener.event(output);
+			command_listener.list = new Set();
+			command_listener.listening = false;
+		}
+	}
 }
 
 var keydown_events = new Map();
@@ -100,11 +123,11 @@ var Keyup_Event = function(name, keys, event){
 		keys = [keys];
 	}
 
-	this.keys = keys;
+	this.keys = [];
 	this.event = event;
 
 	for(var i = this.keys.length - 1; i>=0; i--){
-		this.keys[i] = DOWN_MAP.get(this.keys[i]);
+		this.keys[i] = DOWN_MAP.get(keys[i]);
 	}
 
 	keys.forEach((key)=>{
@@ -648,6 +671,18 @@ exports = {
 			}
 
 			return check_down(keys);
+		},
+
+		/*
+		* @name getCommand
+		* @type method
+		* @description runs an event once after the user inputs a keyboard shortcut
+		* @parent keyboard
+		* @param {event}{Function}{event to run. Takes array of keys as a parameter}
+		*/
+		getCommand: (event)=>{
+			command_listener.event = event;
+			command_listener.listening = true;
 		}
 	},
 

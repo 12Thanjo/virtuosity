@@ -948,7 +948,7 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     style.padding = "3px";
     style.width = "100px";
     style.fontFamily = "Trebuchet";
-    document.getElementsByTagName('html')[0].appendChild(input);
+    document.getElementsByTagName('body')[0].appendChild(input);
 
     Object.defineProperty(input, "x", {
         get: ()=>{

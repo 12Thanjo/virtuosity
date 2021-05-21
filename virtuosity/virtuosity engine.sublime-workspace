@@ -4,6 +4,158 @@
 		"selected_items":
 		[
 			[
+				"main",
+				"mainWindow\tabc"
+			],
+			[
+				"keybo",
+				"keyboard\tabc"
+			],
+			[
+				"export",
+				"export_commands\t(settings.js)"
+			],
+			[
+				"scroll",
+				"scroll_position\tabc"
+			],
+			[
+				"text",
+				"textbox\tabc"
+			],
+			[
+				"tex",
+				"textbox\tabc"
+			],
+			[
+				"lisn",
+				"listening\tabc"
+			],
+			[
+				"lis",
+				"listening\tabc"
+			],
+			[
+				"comman",
+				"command_listener\tabc"
+			],
+			[
+				"num",
+				"number_of_down\tabc"
+			],
+			[
+				"i",
+				"img\t(index.html)"
+			],
+			[
+				"keyboard",
+				"keyboard-shortcut\tabc"
+			],
+			[
+				"panel",
+				"panel_command\tabc"
+			],
+			[
+				"read",
+				"read_settings\tabc"
+			],
+			[
+				"cmd",
+				"commands"
+			],
+			[
+				"comm",
+				"command\tabc"
+			],
+			[
+				"command",
+				"command_list\tabc"
+			],
+			[
+				"prev",
+				"previous_str\tabc"
+			],
+			[
+				"rever",
+				"reverseForEach\t(PriorityQueue.js)"
+			],
+			[
+				"_",
+				"_setPriority\tabc"
+			],
+			[
+				"Pri",
+				"PriorityQueue\t(PriorityQueue.js)"
+			],
+			[
+				"new",
+				"new_node\tabc"
+			],
+			[
+				"def",
+				"defpropset\tObject.defineProperty (get, set)"
+			],
+			[
+				"bind",
+				"bind_window_command\tabc"
+			],
+			[
+				"delte",
+				"delete_window_commmands\t(settings.js)"
+			],
+			[
+				"panle",
+				"panel_commands\tabc"
+			],
+			[
+				"new_pan",
+				"new_panel_command\tabc"
+			],
+			[
+				"panel_target",
+				"panel_targets\tabc"
+			],
+			[
+				"windo",
+				"window_commands\tabc"
+			],
+			[
+				"win",
+				"window_commands\tabc"
+			],
+			[
+				"key",
+				"keyboard\t(menu.js)"
+			],
+			[
+				"left",
+				"leftDown\tabc"
+			],
+			[
+				"input",
+				"inputManager\t(2D.js)"
+			],
+			[
+				"setting",
+				"settings_dir\tabc"
+			],
+			[
+				"edi",
+				"editor.html\tabc"
+			],
+			[
+				"ou",
+				"outline_line\tabc"
+			],
+			[
+				"border",
+				"borderRadius\tabc"
+			],
+			[
+				"sprite",
+				"sprite_name\tabc"
+			],
+			[
 				"de",
 				"defprop\tObject.defineProperty (get)"
 			],
@@ -18,10 +170,6 @@
 			[
 				"virtuo",
 				"virtuosity-server\t(index.html)"
-			],
-			[
-				"sprite",
-				"spritesheet\tabc"
 			],
 			[
 				"fra",
@@ -52,16 +200,8 @@
 				"on_delete\tabc"
 			],
 			[
-				"panel",
-				"panel_types\tabc"
-			],
-			[
 				"expo",
 				"export_project\t(project manager.js)"
-			],
-			[
-				"key",
-				"keyboard-shortcut\tabc"
 			],
 			[
 				"cur",
@@ -168,10 +308,6 @@
 				"close_update\tabc"
 			],
 			[
-				"def",
-				"default_aac\tabc"
-			],
-			[
 				"han",
 				"handleScroll\tabc"
 			],
@@ -208,10 +344,6 @@
 				"shown_cards\tabc"
 			],
 			[
-				"border",
-				"border-color\tproperty"
-			],
-			[
 				"resi",
 				"resize_output\tabc"
 			],
@@ -226,10 +358,6 @@
 			[
 				"curren",
 				"current_map\tabc"
-			],
-			[
-				"input",
-				"inputManager\tabc"
 			],
 			[
 				"copy",
@@ -352,10 +480,6 @@
 				"above_panel\tabc"
 			],
 			[
-				"left",
-				"left_panel\tabc"
-			],
-			[
 				"polling",
 				"polling_rate\tabc"
 			],
@@ -390,140 +514,72 @@
 			[
 				"parent",
 				"parents_array\tabc"
-			],
-			[
-				"child",
-				"children\tabc"
-			],
-			[
-				"ins",
-				"instance\tabc"
-			],
-			[
-				"for",
-				"for\tabc"
-			],
-			[
-				"Re",
-				"ReferenceError\tabc"
-			],
-			[
-				"defpr",
-				"defprop\tObject.defineProperty (get)"
-			],
-			[
-				"using",
-				"using_event\tabc"
-			],
-			[
-				"defpro",
-				"defpropset\tObject.defineProperty (get, set)"
-			],
-			[
-				"_pu",
-				"_pullSpecificSetEvents\tabc"
-			],
-			[
-				"spe",
-				"specific_set_events\tabc"
-			],
-			[
-				"sp",
-				"specific_set_events\tabc"
-			],
-			[
-				"remo",
-				"removeTag\tabc"
-			],
-			[
-				"enti",
-				"entity_name\tabc"
-			],
-			[
-				"getEn",
-				"getEntity\tabc"
-			],
-			[
-				"compon",
-				"components\tabc"
-			],
-			[
-				"com",
-				"component\tabc"
-			],
-			[
-				"add",
-				"addComponent\tabc"
-			],
-			[
-				"componen",
-				"components_entities\tabc"
-			],
-			[
-				"co",
-				"components\tabc"
-			],
-			[
-				"remove",
-				"removeComponent\t(index.js)"
-			],
-			[
-				"comp",
-				"components\tabc"
-			],
-			[
-				"entity",
-				"entity_list\tabc"
-			],
-			[
-				"environm",
-				"environments\tabc"
-			],
-			[
-				"environ",
-				"environment\tabc"
-			],
-			[
-				"folder",
-				"folders_set\tabc"
-			],
-			[
-				"fore",
-				"fore\tforEach()"
-			],
-			[
-				"new",
-				"new_ctx_x\tabc"
-			],
-			[
-				"new_c",
-				"new_ctx_x\tabc"
-			],
-			[
-				"scale",
-				"scale_panel_target\tabc"
-			],
-			[
-				"data",
-				"data_p.innerHTML\tabc"
-			],
-			[
-				"allS",
-				"allStructsDict\tabc"
-			],
-			[
-				"push",
-				"pushBuffer\tabc"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/2D.js",
+			"settings":
+			{
+				"buffer_size": 7037,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/keyboard shortcuts.html",
+			"settings":
+			{
+				"buffer_size": 6688,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/editor.html",
 			"settings":
 			{
-				"buffer_size": 11703,
+				"buffer_size": 12844,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/index.html",
+			"settings":
+			{
+				"buffer_size": 9238,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/debug.js",
+			"settings":
+			{
+				"buffer_size": 1329,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "const { spawn } = require('child_process');\n\n// Restart with force using the dedicated GPU\nif (process.env.GPUSET !== 'true') {\n  spawn(process.execPath, process.argv, {\n    env: {\n      ...process.env,\n      SHIM_MCCOMPAT: '0x800000001', // this forces windows to use the dedicated GPU for the process\n      GPUSET: 'true'\n    },\n    detached: true,\n  });\n  process.exit(0);\n}\n\n\n\n\n/////////////////////////////////////////////////////////////////////////////////////////\n\nconst express = require('express');\nconst app = express();\nconst serv = require('http').Server(app);\n\nvar httpPort = 12;\n\nserv.listen(httpPort);\n\nvar project = null;\nvar windows = new Map();\nvar io = require('socket.io')(serv,{});\nio.sockets.on('connection', (socket)=>{\n\n    socket.on('signup', (data)=>{\n        socket.name = data;\n        windows.set(data, socket);\n    });\n\n    socket.on('send', (data)=>{\n        var target = windows.get(data.name);\n        if(target != null){\n            target.emit(data.event, data.data);\n        }\n    });\n\n    socket.on('eval', (data)=>{\n        try{\n            socket.emit(\"eval\", eval(data));\n        }catch(e){\n            socket.emit('eval', e);\n        }\n    });\n\n    socket.on('project', (data)=>{\n        project = data;\n        socket.emit('startup');\n    });\n\n    socket.on('get project', ()=>{\n        socket.emit('get project', project);\n    });\n\n    socket.on('edit project', (data)=>{\n        project = data;\n        socket.emit('edit project confirmation');\n    });\n\n\n    socket.on('disconnect', ()=>{\n        if(socket.name != null){\n            windows.delete(socket.name);\n        }\n    });\n});\n//////////////////////////////////////////////////////////////////////////////\nvar {files} = require(\"C:/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/index.js\");\n\n\nconst electron = require('electron');\n\nconst application = electron.app;\n// application.disableHardwareAcceleration();\n\n\nconst BrowserWindow = electron.BrowserWindow;\n\nconst path = require('path');\nconst url = require('url');\n\nipc = require('electron').ipcMain;\n\n\nlet mainWindow;\n\n\nvar screenElectron = electron.screen;\n\ncreate_window = function(){\n    var displays = screenElectron.getAllDisplays();\n    var mainScreen = displays[0];\n\n    var open_proj = false;\n    if(process.argv.length != 0){\n        var project_path = process.argv[1];\n        if(files.fileExists(project_path)){\n            if(files.getFileExtention(project_path) == \"vrtp\"){\n                try{\n                    project = JSON.parse(files.readFile(project_path));\n                    open_proj = true;\n                }catch(e){\n                    // alert('Cannot read that file. Perhaps it is corrupted.');\n                }\n            }else{\n                // alert('Cannot open that type of file.');\n            }\n        }\n    }\n\n    if(open_proj){\n        // Create the browser window.\n        mainWindow = new BrowserWindow({\n            width: mainScreen.size.width, \n            height: mainScreen.size.height,\n            fullscreen: false,\n            backgroundColor: '#000000',\n            webPreferences: {\n                nodeIntegration: true,\n                enableRemoteModule: true\n            },\n            frame: false\n        });\n\n\n        mainWindow.loadURL(url.format({\n            pathname: path.join(__dirname,'editor.html'),\n            protocol: 'file:',\n            slashes: true\n        }));\n\n       \n    }else{\n        mainWindow = new BrowserWindow({\n            width: 582, \n            height: 480,\n            fullscreen: false, \n            backgroundColor: '#00191f',\n            webPreferences: {\n                nodeIntegration: true,\n                enableRemoteModule: true\n            },\n            frame: false,\n            maxWidth: 582,\n            maxHeight: 480,\n            minWidth: 582,\n            minHeight: 480,\n            maximizable: false,\n        });\n\n        mainWindow.loadURL(url.format({\n            pathname: path.join(__dirname,'index.html'),\n            protocol: 'file:',\n            slashes: true\n        }));\n    }\n\n\n    is = function(obj, arr){\n        var l = arr.length;\n        for(var i=0; i<l;i++){\n            if(obj == arr[i]){\n                return true;\n            }\n        }\n        return false;\n    }\n    const { dialog } = require('electron');\n    mainWindow.webContents.on('before-input-event', (event, input) => {\n        dialog.showMessageBoxSync({\n            message: input.key\n        });\n        if(is(input.key.toLowerCase(), ['F5', 'F11'])){\n            event.preventDefault();\n        }else if(input.control && input.key.toLowerCase() === 'r'){\n            event.preventDefault();\n        }\n    })\n\n    // mainWindow.webContents.openDevTools()\n\n    mainWindow.setMenuBarVisibility(false);\n\n\n\n\n    mainWindow.on('closed', ()=>{\n        mainWindow = null;\n    });\n}\n\napplication.on('ready', create_window);\n\n\n// application.on('browser-window-focus', function () {\n//     electron.globalShortcut.register(\"CommandOrControl+R\", (e)=>{\n//         console.log(\"CommandOrControl+R is pressed: Shortcut Disabled\");\n\n//     });\n//     electron.globalShortcut.register(\"F5\", (e)=>{\n//         e.preventDefault();\n//         console.log(\"F5 is pressed: Shortcut Disabled\");\n//     });\n// });\n\n\napplication.on('window-all-closed', ()=>{\n    if (process.platform != 'darwin') {\n        application.quit();\n    }\n});\n\napplication.on('activate', function(){\n    if(mainWindow == null){\n        create_window();\n    }\n})",
+			"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/main.js",
+			"file_size": 5205,
+			"file_write_time": 132660836057630005,
+			"settings":
+			{
+				"buffer_size": 5501,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/scripts/settings.js",
+			"settings":
+			{
+				"buffer_size": 5843,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -532,13 +588,13 @@
 			"file": "pixi.js",
 			"settings":
 			{
-				"buffer_size": 46916,
+				"buffer_size": 47869,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		}
 	],
-	"build_system": "Packages/User/builds/open explorer to dir.sublime-build",
+	"build_system": "Packages/User/builds/open terminal to dir.sublime-build",
 	"build_system_choices":
 	[
 		[
@@ -570,16 +626,16 @@
 				"Set Syntax: HTML"
 			],
 			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
 				"python",
 				"Set Syntax: Python"
 			],
 			[
 				"json",
 				"Set Syntax: JSON"
-			],
-			[
-				"js",
-				"Set Syntax: JavaScript"
 			],
 			[
 				"JS",
@@ -804,28 +860,45 @@
 	[
 		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app",
 		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/scripts",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows"
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types"
 	],
 	"file_history":
 	[
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/file explorer.js",
-		"/C/Users/andre/OneDrive/programming/nodejs programs/desktop pet/resources/app/index.html",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/time.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/package.json",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/inputManager.js",
+		"/C/Users/andre/AppData/Roaming/virtuosity engine/settings.JSON",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/graphics.js",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/pixi.js",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/add window.js",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/structures/PriorityQueue.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/index.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/node_modules/virtuosity-server/time.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/editor.html",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/structures.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/index.js",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/structures/Queue.js",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/structures/DoublyLinkedList.js",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/windows input.js",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/scripts/menu.js",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/file explorer.js",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/scripts/project manager.js",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/2D.js",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/index.html",
+		"/C/Users/andre/AppData/Roaming/virtuosity/Cookies",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/package.json",
+		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/main.js",
+		"/C/Users/andre/OneDrive/programming/nodejs programs/Virtuosity Engine old/resources/app/2d.html",
+		"/C/Users/andre/OneDrive/programming/nodejs/Raspberry Pi/Remote reset/scripts/blueprint.js",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/package.json",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/time.js",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/package.json",
+		"/C/Users/andre/OneDrive/programming/nodejs/PWAs/flappy bird/index.html",
+		"/C/Users/andre/OneDrive/programming/nodejs programs/desktop pet/resources/app/index.html",
+		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/node_modules/virtuosity-server/time.js",
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/snippets/js/class function.sublime-snippet",
 		"/C/Users/andre/OneDrive/programming/nodejs/scrybe/index.js",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/scripts/menu.js",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/windows input.js",
 		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/windows.js",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/index.html",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/main.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/ocs/scrybe.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/ocs/index.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/pixi.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/scrybe/package.json",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/cmd.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/scrybe/README.md",
@@ -833,10 +906,8 @@
 		"/C/Users/andre/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
 		"/C/Users/andre/OneDrive/programming/nodejs/scrybe/print.nodehp",
 		"/C/Users/andre/OneDrive/programming/nodejs programs/desktop pet/resources/app/main.js",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/scripts/project manager.js",
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/builds/open explorer to dir.sublime-build",
 		"/C/Users/andre/OneDrive/programming/nodejs/ocs/performance.js",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/2D.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/PWAs/envaid/colors.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/PWAs/envaid/index.html",
 		"/C/Users/andre/OneDrive/programming/nodejs/PWAs/envaid/cards.js",
@@ -877,10 +948,8 @@
 		"/C/Users/andre/OneDrive/programming/nodejs/Raspberry Pi/Remote reset/Building Plans/Jonsson_all2.bak",
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/snippets/js/class.sublime-snippet",
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/c++.yaml",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/inputManager.js",
 		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/new project.html",
 		"/C/Users/andre/OneDrive/programming/Virtuosity Projects/test/test.vrtp",
-		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/graphics.js",
 		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/cache.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/structures/LinkedList.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/Pet/resources/app/inputManager.js",
@@ -892,7 +961,6 @@
 		"/C/Users/andre/OneDrive/programming/old projects/Faction FPS old/Client/resources/app/game.html",
 		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/foo.js",
 		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/debug.js",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/add window.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/node_modules/ocs/index.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/debug.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/playground/package.json",
@@ -901,7 +969,6 @@
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/babylon/loader.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity/babylon/materials.js",
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/ocs/ocs EEO.sublime-snippet",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/package.json",
 		"/C/Users/andre/OneDrive/programming/nodejs/playground/index.js",
 		"/C/Users/andre/OneDrive/programming/nodejs programs/Virtuosity Engine old/resources/app/dev.html",
 		"/C/Users/andre/OneDrive/programming/nodejs/ocs/package.json",
@@ -916,7 +983,6 @@
 		"/C/Users/andre/OneDrive/programming/nodejs/scrybe/style.css",
 		"/C/Users/andre/AppData/Roaming/Sublime Merge/Packages/User/Preferences.sublime-settings",
 		"/C/Users/andre/AppData/Roaming/Sublime Merge/Packages/User/File Mode - merge.sublime-settings",
-		"/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/editor.html",
 		"/C/Users/andre/OneDrive/programming/nodejs/escs/index.js",
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/open terminal to dir.sublime-build",
 		"/C/Users/andre/AppData/Roaming/Sublime Text 3/Packages/User/open explorer to dir.sublime-build",
@@ -926,16 +992,7 @@
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/.git/config",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/virtuosity-server/files.js",
 		"/C/Users/andre/OneDrive/programming/nodejs/virtuosity/README.md",
-		"/C/Users/andre/OneDrive/programming/nodejs/project cars/old/index.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/project cars/index.html",
-		"/C/Users/andre/OneDrive/programming/nodejs/project cars/udp-parser.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/project cars/index.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/pcars2-udp-master/parseable-variable.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/pcars2-udp-master/struct.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/pcars2-udp-master/packet-category-statistics.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/pcars2-udp-master/SMS_UDP_Definitions.hpp",
-		"/C/Users/andre/OneDrive/programming/nodejs/pcars2-udp-master/udp-parser.js",
-		"/C/Users/andre/OneDrive/programming/nodejs/pcars2-udp-master/index.js"
+		"/C/Users/andre/OneDrive/programming/nodejs/project cars/old/index.js"
 	],
 	"find":
 	{
@@ -953,93 +1010,134 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"anchor",
-			"mponent('alpha')",
-			".addComponent('anchor')",
-			"anchor",
-			"zIndex",
-			"zIndex'",
-			"onent('alpha')",
-			"omponent('anchor')\n              .addComponent('alpha')",
-			"alpha",
-			"510",
-			"= img;",
-			"530",
-			"stage",
-			"ontainer",
-			"image",
-			"load_spritesheet",
-			"spritesheet",
+			"ullscreen",
+			"F5",
+			"globalShortcut",
+			"rectangle",
+			"480",
+			"(480 / (bottom.y - 10))",
+			"bottom.y) + 5",
+			"y =",
 			"textbox",
-			"method-",
-			"image",
-			"alpha",
-			"this.i",
-			"running",
-			"spritesheet",
-			"image",
-			"add_image",
-			"add_sprite",
-			"add_image",
-			"spritesheet_textures",
-			"textures",
-			"test",
-			"fighter",
-			"dog",
-			"\\",
-			"loading_textures",
-			"prop",
-			"load_spritesheet",
-			"cyan",
-			"blue",
-			"Sublime",
-			"#881798",
-			"003BEF",
-			"Sublime",
-			"0037DA",
-			"Sublime",
-			"escs",
-			"ESCS",
-			"escs",
-			"ESCS",
-			"escs",
-			"ESCS",
-			"powerPreference",
-			"alert",
-			"load_image",
-			"loadQueue",
-			"load_image",
+			"],",
+			"ouput",
+			"number_of_down",
+			".zIndex = 0;",
+			"panel_command.key",
+			"\"Panel Commands\"",
+			"save",
+			"dropdown-content",
+			"file-dropdown",
+			"File",
+			"fullscreen",
+			"command",
+			"cmd",
+			"command",
+			"cmd",
+			"command_list",
+			"previous",
+			"Next",
+			"#next",
+			"#priority",
+			"#next",
+			"next",
+			"#previous",
+			"this",
+			"id",
+			"@",
+			"Previous",
+			"asdf",
+			"next",
+			"previous",
+			"delete",
+			"head",
+			";",
+			"var",
+			");",
+			"push",
+			"doubly linked list",
+			"console.lo",
 			"console.log",
-			"+ id",
-			" + id",
-			"+ id",
-			"image(id,",
-			"id,",
-			"load_image",
-			"canvases.get(",
-			".loader",
-			"load_image",
-			"is not loaded or",
-			"textures",
-			"warn",
-			"debug",
-			".warn",
-			"console.",
-			"info",
-			"load_image",
-			"textures.",
-			"textures",
-			"action",
-			"start_load",
-			"load_image",
-			"loader",
-			"load_image",
-			"preload",
-			"on_delete",
-			"set_mode",
-			"click",
-			"\"#\">",
-			"a"
+			"log",
+			"4",
+			"Node",
+			"DoublyLinkedList",
+			"Queue",
+			"inputManager.keyboard",
+			".views[id].",
+			"command.",
+			"command",
+			"panels",
+			"(name, ",
+			"(",
+			"panel_target = panel_targets",
+			"window",
+			"commands",
+			");\n",
+			"commands",
+			"inputManager.key",
+			"new_command",
+			"keys",
+			"bind_",
+			"inputManager.key",
+			"require",
+			"inputManager.key",
+			"new_command",
+			"Down",
+			"command",
+			"down",
+			"keyDown",
+			"left",
+			"config.type",
+			"inputManager",
+			"inputManager.mouse.",
+			"inputManager.mouse.a",
+			"left",
+			"leftDown",
+			"inputManager",
+			"inputManager.key",
+			"name",
+			"bind_command",
+			"keyUp",
+			"merge_panels",
+			"keyDown",
+			"keyUp",
+			"inputManager.ke",
+			"keyDown",
+			"inputManager.keyboard",
+			"inputManager",
+			"input",
+			"config",
+			"\\",
+			"Settings",
+			"version",
+			"A",
+			"add",
+			"require",
+			"73",
+			"97",
+			"63",
+			"65",
+			"60",
+			"70",
+			"65",
+			".width + 10;",
+			"80",
+			"97",
+			"100",
+			"85",
+			"75",
+			"63",
+			"60",
+			"75",
+			"80",
+			"70",
+			"40",
+			"45",
+			"50",
+			"55",
+			"60",
+			"50"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1057,24 +1155,82 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/editor.html",
+					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/2D.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11703,
+						"buffer_size": 7037,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8099,
-								8099
+								2340,
+								2340
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/tscript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 627.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/keyboard shortcuts.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6688,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3028,
+								3028
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1093.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/editor.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12844,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4352,
+								4352
 							]
 						],
 						"settings":
@@ -1084,33 +1240,91 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2247.0,
+						"translation.y": 1369.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 1,
-					"file": "pixi.js",
+					"buffer": 3,
+					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 46916,
+						"buffer_size": 9238,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12190,
-								12190
+								2686,
+								2686
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 858.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/windows/panel types/debug.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1329,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								612,
+								612
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/tscript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5501,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4693,
+								4090
 							]
 						],
 						"settings":
@@ -1120,10 +1334,68 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4148.0,
+						"translation.y": 1122.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/C/Users/andre/OneDrive/programming/Virtuosity Engine/resources/app/scripts/settings.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5843,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3471,
+								3471
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/tscript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1683.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "pixi.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 47869,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								26235,
+								26235
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/tscript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 10053.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -1131,7 +1403,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 20.0
+		"height": 38.0
 	},
 	"input":
 	{
