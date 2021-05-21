@@ -66,7 +66,7 @@ var keyup_listener = function(event){
 	}
 }
 
-var keydown_events = new Map();
+keydown_events = new Map();
 var keydown_lookup = [255];
 var Keydown_Event = function(name, keys, event){
 	this.name = name;
@@ -114,20 +114,21 @@ delete_keydown = function(name){
 }
 
 
-var keyup_events = new Map();
+keyup_events = new Map();
 var keyup_lookup = [255];
 var Keyup_Event = function(name, keys, event){
 	this.name = name;
-
+	
 	if(typeof keys == "string"){
 		keys = [keys];
 	}
+	keys = [...keys];
 
-	this.keys = [];
+	this.keys = keys;
 	this.event = event;
 
 	for(var i = this.keys.length - 1; i>=0; i--){
-		this.keys[i] = DOWN_MAP.get(keys[i]);
+		this.keys[i] = DOWN_MAP.get(this.keys[i]);
 	}
 
 	keys.forEach((key)=>{

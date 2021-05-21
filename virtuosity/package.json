@@ -1,6 +1,6 @@
 {
   "name": "virtuosity",
-  "version": "0.14.4",
+  "version": "0.14.5",
   "description": "a free, open source game engine",
   "browser": "index.js",
   "main": "index.js",
