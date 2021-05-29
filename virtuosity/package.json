@@ -14,7 +14,7 @@
     "babylonjs": "^4.2.0",
     "babylonjs-loaders": "^4.2.0",
     "howler": "^2.2.1",
-    "ocs": "^1.0.0",
+    "ocs": "^1.0.3",
     "pixi.js": "^5.3.7",
     "virtuosity-server": "*"
   },

@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.Textbox";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.Textbox";</script>
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -142,8 +142,10 @@
 			var mode = "light";
 			toggle_mode = function(){
 				if(mode == "light"){
+					console.log("set to dark");
 					set_mode('dark');
 				}else{
+					console.log("set to light");
 					set_mode('light');
 				}
 			}
@@ -210,16 +212,16 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Textbox</h1><p>A textbox entity created by <a href="./virtuosity.engine2d.add.html#textbox">add.textbox</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">Textbox</span></div><h4>Components</h4><ul><li ><a href=#textbox>textbox</a></li><li ><a href=#position>position</a></li><li ><a href=#fontSize>fontSize</a></li><li ><a href=#width>width</a></li><li ><a href=#value>value</a></li><li ><a href=#style>style</a></li><li ><a href=#events>events</a></li></ul><hr><h3 id='textbox'>textbox</h3><p >reference to the DOM textbox entity</p><br><br><table>
+			<div id="header-spacing"></div><h1>Textbox</h1><p>A textbox entity created by <a href="./virtuosity.engine2d.add.html#textbox">add.textbox</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">Textbox</span></div><h4>Components</h4><ul><li ><a href=#html>html</a></li><li ><a href=#position>position</a></li><li ><a href=#fontSize>fontSize</a></li><li ><a href=#width>width</a></li><li ><a href=#value>value</a></li><li ><a href=#style>style</a></li><li ><a href=#events>events</a></li></ul><hr><h3 id='html'>html</h3><p >reference to the DOM html entity</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
 												</tr><tr>
-												<td><var>textbox</var></td>
+												<td><var>html</var></td>
 												<td><var><span class="white">DOM</span></var></td>
-												<td>reference to the DOM textbox entity</td>
-											</tr></table><h3 id='position'>position</h3><p >position of the textbox</p><br><br><table>
+												<td>reference to the DOM html entity</td>
+											</tr></table><h3 id='position'>position</h3><p >position of the html element</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -227,12 +229,12 @@
 												</tr><tr>
 												<td><var>x</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>x position of the textbox</td>
+												<td>x position of the html element</td>
 											</tr><tr>
 												<td><var>y</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>y position of the textbox</td>
-											</tr></table><h3 id='fontSize'>fontSize</h3><p >fontSize of the textbox</p><table>
+												<td>y position of the html element</td>
+											</tr></table><h3 id='fontSize'>fontSize</h3><p >fontSize of the html element</p><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -241,9 +243,9 @@
 												</tr><tr>
 												<td><var>fontSize</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>fontSize of the textbox</td>
+												<td>fontSize of the html element</td>
 												<td><var><span class="purple">19</span></var></td>
-											</tr></table><h3 id='width'>width</h3><p >width of the textbox</p><table>
+											</tr></table><h3 id='width'>width</h3><p >width of the html element</p><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -252,9 +254,9 @@
 												</tr><tr>
 												<td><var>width</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>width of the textbox</td>
+												<td>width of the html element</td>
 												<td><var><span class="purple">100</span></var></td>
-											</tr></table><h3 id='value'>value</h3><p >value of the textbox</p><br><br><table>
+											</tr></table><h3 id='value'>value</h3><p >value of the html element</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -262,7 +264,7 @@
 												</tr><tr>
 												<td><var>value</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>value of the textbox</td>
+												<td>value of the html element</td>
 											</tr></table><h3 id='style'>style</h3><p >reference to the style property DOM textbox entity</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
@@ -272,7 +274,7 @@
 												<td><var>textbox</var></td>
 												<td><var><span class="white">DOM</span></var></td>
 												<td>reference to the style property DOM textbox entity</td>
-											</tr></table><h3 id='events'>events</h3><p >events of the textbox</p><br><br><table>
+											</tr></table><h3 id='events'>events</h3><p >events of the html element</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>

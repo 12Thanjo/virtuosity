@@ -27,7 +27,6 @@
 		        <button id="search-button" onclick="search();">Search</button>
 		    </div>
 		</div>
-W
 
 		<div class="menu-bar" id="mobile-navbar">
 	        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">Home</button>
@@ -218,7 +217,7 @@ W
 			<p>OCS is a programming paradigm combining traits of OOP and ECS.. Documentation for OCS can be found <a href="https://www.npmjs.com/package/ocs">here</a>.</p>
 			<h3>Environments:</h3>
 			<ul>
-				<li><a href=#engine2d>engine2d</a></li><li><a href=#engine2d-textbox>engine2d-textbox</a></li><li><a href=#engine2d-graphics>engine2d-graphics</a></li><li><a href=#engine3d>engine3d</a></li>
+				<li><a href=#engine2d>engine2d</a></li><li><a href=#engine2d-html>engine2d-html</a></li><li><a href=#engine2d-graphics>engine2d-graphics</a></li><li><a href=#engine3d>engine3d</a></li>
 			</ul>
 			<hr>
 			<h2 id="engine2d">engine2d</h2><ul></ul><h3 id='pixi'>pixi</h3><br><br><table>
@@ -438,15 +437,15 @@ W
 												<td><var><span class="yellow">String</span></var></td>
 												<td>style of the text, (normal|italic|oblique)</td>
 												<td><var><span class="yellow">"normal"</span></var></td>
-											</tr></table><h2 id="engine2d-textbox">engine2d-textbox</h2><ul></ul><h3 id='textbox'>textbox</h3><br><br><table>
+											</tr></table><h2 id="engine2d-html">engine2d-html</h2><ul></ul><h3 id='html'>html</h3><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
 												</tr><tr>
-												<td><var>textbox</var></td>
+												<td><var>html</var></td>
 												<td><var><span class="white">DOM</span></var></td>
-												<td>reference to the DOM textbox entity</td>
+												<td>reference to the DOM html entity</td>
 											</tr></table><h3 id='position'>position</h3><br><br><table>
 												<tr>
 													<th>Parameter</th>
@@ -455,11 +454,11 @@ W
 												</tr><tr>
 												<td><var>x</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>x position of the textbox</td>
+												<td>x position of the html element</td>
 											</tr><tr>
 												<td><var>y</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>y position of the textbox</td>
+												<td>y position of the html element</td>
 											</tr></table><h3 id='fontSize'>fontSize</h3><br><br><table>
 												<tr>
 													<th>Parameter</th>
@@ -469,7 +468,7 @@ W
 												</tr><tr>
 												<td><var>fontSize</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>fontSize of the textbox</td>
+												<td>fontSize of the html element</td>
 												<td><var><span class="purple">19</span></var></td>
 											</tr></table><h3 id='width'>width</h3><br><br><table>
 												<tr>
@@ -480,7 +479,18 @@ W
 												</tr><tr>
 												<td><var>width</var></td>
 												<td><var><span class="purple">Int</span></var></td>
-												<td>width of the textbox</td>
+												<td>width of the html element</td>
+												<td><var><span class="purple">100</span></var></td>
+											</tr></table><h3 id='height'>height</h3><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>height</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>height of the html element</td>
 												<td><var><span class="purple">100</span></var></td>
 											</tr></table><h3 id='value'>value</h3><br><br><table>
 												<tr>
@@ -490,7 +500,7 @@ W
 												</tr><tr>
 												<td><var>value</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>value of the textbox</td>
+												<td>value of the html element</td>
 											</tr></table><h3 id='style'>style</h3><br><br><table>
 												<tr>
 													<th>Parameter</th>

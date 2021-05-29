@@ -87,7 +87,7 @@ module.exports = function(PIXI, canvases){
 
 
 
-	var containers = new Map();
+	containers = new Map();
 	var Container = function(name, canvas){
 		containers.set(name, this);
 		this.name = name;
@@ -592,9 +592,10 @@ module.exports = function(PIXI, canvases){
 			*/
 			shape: (name, container)=>{
 				return container_check(container, (cntnr)=>{
-					var shape = cntnr.shapes.delete(`${name}╎${container}`);
+					var shape = cntnr.shapes.get(`${name}╎${container}`);
 					cntnr.queue.delete(shape);
 					cntnr.shapes.delete(`${name}╎${container}`);
+					cntnr.draw();
 				});	
 			}
 		},

@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.get";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.get";</script>
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -142,8 +142,10 @@
 			var mode = "light";
 			toggle_mode = function(){
 				if(mode == "light"){
+					console.log("set to dark");
 					set_mode('dark');
 				}else{
+					console.log("set to light");
 					set_mode('light');
 				}
 			}
@@ -210,7 +212,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>get</h1><p>get engine2d assets</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">get</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#text">text</a></li><li><a href="#textbox">textbox</a></li><li><a href="#canvas">canvas</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">gets an <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">get</span>.<span class="green">image</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>get</h1><p>get engine2d assets</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">get</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#text">text</a></li><li><a href="#htmltext">htmltext</a></li><li><a href="#textbox">textbox</a></li><li><a href="#canvas">canvas</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">gets an <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">get</span>.<span class="green">image</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -236,6 +238,19 @@
 												<td><var>name</var></td>
 												<td><var><span class="yellow">String</span></var></td>
 												<td>name of the <a href="virtuosity.engine2d.Text.html">text</a></td>
+											</tr></table><h3 id="htmltext">htmltext</a></h3><p style="margin-top: 0px;">gets a <a href="virtuosity.engine2d.Textbox.html">htmltext</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">get</span>.<span class="green">htmltext</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the canvas</td>
+											</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the <a href="virtuosity.engine2d.Textbox.html">htmltext</a></td>
 											</tr></table><h3 id="textbox">textbox</a></h3><p style="margin-top: 0px;">gets a <a href="virtuosity.engine2d.Textbox.html">textbox</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">get</span>.<span class="green">textbox</span>(<span class="orange">canvas</span>, <span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>

@@ -2,7 +2,8 @@ var PIXI = require('pixi.js');
 var ocs = require("ocs");
 var debug = require('./debug.js');
 var {time} = require('../virtuosity-server/index.js');
-
+        
+        
 var load_canvas = null;
 var canvases = new Map();
 var new_canvas = function(name, config){
@@ -73,6 +74,7 @@ var new_canvas = function(name, config){
     ///////////////////////////////////////////
     new_ctx.images = new Map();
     new_ctx.texts = new Map();
+    new_ctx.htmltexts = new Map();
     new_ctx.textboxes = new Map();
     new_ctx.containers = new Set();
     //////////////////////////////////////////
@@ -286,7 +288,7 @@ new ocs.Component('engine2d', 'pixi', (pixi)=>{
 * @param {x}{Number}{x coordinate of the render object}
 * @param {y}{Number}{y coordinate of the render object}
 */
-var position = new ocs.Component('engine2d', "position", (x, y)=>{
+new ocs.Component('engine2d', "position", (x, y)=>{
     return new ocs.EEO({
         x: x || 0,
         y: y || 0
@@ -303,7 +305,7 @@ var position = new ocs.Component('engine2d', "position", (x, y)=>{
 * @env engine2d
 * @param {rotation}{Number}{rotation of the render object}{0}
 */
-var rotation = new ocs.Component('engine2d', "rotation", (r)=>{
+new ocs.Component('engine2d', "rotation", (r)=>{
     return new ocs.EEO({
         rotation: r || 0
     }, (entity, key, val)=>{
@@ -319,7 +321,7 @@ var rotation = new ocs.Component('engine2d', "rotation", (r)=>{
 * @param {x}{Number}{x coordinate of the anchor point}{0}
 * @param {y}{Number}{y coordinate of the anchor point}{0}
 */
-var anchor = new ocs.Component('engine2d', "anchor", (x, y)=>{
+new ocs.Component('engine2d', "anchor", (x, y)=>{
     return {
         anchor: new ocs.EEO({
                 x: x || 0,
@@ -338,7 +340,7 @@ var anchor = new ocs.Component('engine2d', "anchor", (x, y)=>{
 * @param {x}{Number}{x coordinate of the pivot point}{0}
 * @param {y}{Number}{y coordinate of the pivot point}{0}
 */
-var pivot = new ocs.Component('engine2d', "pivot", (x, y)=>{
+new ocs.Component('engine2d', "pivot", (x, y)=>{
     return {
         pivot: new ocs.EEO({
                 x: x || 0,
@@ -357,7 +359,7 @@ var pivot = new ocs.Component('engine2d', "pivot", (x, y)=>{
 * @param {x}{Number}{ammount of skew in the x-axis}{0}
 * @param {y}{Number}{ammount of skew in the y-axis}{0}
 */
-var skew = new ocs.Component('engine2d', "skew", (x, y)=>{
+new ocs.Component('engine2d', "skew", (x, y)=>{
     return {
         skew: new ocs.EEO({
                 x: x || 0,
@@ -376,9 +378,9 @@ var skew = new ocs.Component('engine2d', "skew", (x, y)=>{
 * @env engine2d
 * @param {alpha}{Number}{alpha of the render object}{1}
 */
-var alpha = new ocs.Component('engine2d', "alpha", (alpha)=>{
+new ocs.Component('engine2d', "alpha", (alpha)=>{
     return new ocs.EEO({
-        alpha: alpha ?? 0
+        alpha: alpha ?? 1
     }, (entity, key, val)=>{
         entity.pixi.alpha = val;
     });
@@ -392,7 +394,7 @@ var alpha = new ocs.Component('engine2d', "alpha", (alpha)=>{
 * @param {width}{Number}{width of the render object}
 * @param {height}{Number}{height of the render object}
 */
-var scale = new ocs.Component('engine2d', "scale", (width, height)=>{
+new ocs.Component('engine2d', "scale", (width, height)=>{
     return new ocs.EEO({
         width: width,
         height: height
@@ -408,7 +410,7 @@ var scale = new ocs.Component('engine2d', "scale", (width, height)=>{
 * @env engine2d
 * @param {zIndex}{Number}{zIndex of the render object}{0}
 */
-var zIndex = new ocs.Component('engine2d', "zIndex", (zIndex)=>{
+new ocs.Component('engine2d', "zIndex", (zIndex)=>{
     return new ocs.EEO({
         zIndex: zIndex ?? 0
     }, (entity, key, val)=>{
@@ -423,7 +425,7 @@ var zIndex = new ocs.Component('engine2d', "zIndex", (zIndex)=>{
 * @env engine2d
 * @param {tint}{Hex}{tint of the render object}{0xffffff}
 */
-var tint = new ocs.Component('engine2d', 'tint', (tint)=>{
+new ocs.Component('engine2d', 'tint', (tint)=>{
     return new ocs.EEO({
         tint: 16777215
     }, (entity, key, val)=>{
@@ -673,7 +675,7 @@ var delete_image = function(canvas, name){
 * @env engine2d
 * @param {text}{String}{value of the text shown}
 */
-var text = new ocs.Component('engine2d', "text", (text)=>{
+new ocs.Component('engine2d', "text", (text)=>{
     return new ocs.EEO({
         text: text
     }, (entity, key, val)=>{
@@ -697,7 +699,7 @@ var text = new ocs.Component('engine2d', "text", (text)=>{
 * @param {fontWeight}{Int}{thickness of the text (increments of 100, 100-900)}{400}
 * @param {fontStyle}{String}{style of the text, (normal|italic|oblique)}{"normal"}
 */
-var style = new ocs.Component('engine2d', "style", (fontSize, color)=>{
+new ocs.Component('engine2d', "style", (fontSize, color)=>{
     return new ocs.EEO({
         fontSize: fontSize,
         fontFamily: "Trebuchet",
@@ -780,7 +782,7 @@ var get_text = function(canvas, name){
     if(ctx.texts.has(name)){
         return ctx.texts.get(name);
     }else{
-        debug.warn('ReferenceError', `text (${name}) in canvas (${canvas}) does not exist`);
+        debug.error('ReferenceError', `text (${name}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
@@ -792,40 +794,41 @@ var delete_text = function(canvas, name){
         ctx.texts.get(name).pixi.destroy();
         ctx.texts.delete(name);
     }else{
-        debug.warn('ReferenceError', `text (${name}) in canvas (${canvas}) does not exist`);
+        debug.error('ReferenceError', `text (${name}) does not exist`);
     }
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
-* @name engine2d-textbox
+* @name engine2d-html
 * @type environment
 */
-var textbox_env = new ocs.Environment('engine2d-textbox');
+var html_env = new ocs.Environment('engine2d-html');
 
 
 /*
-* @name textbox
+* @name html
 * @type component
-* @description reference to the DOM textbox entity
-* @env engine2d-textbox
-* @param {textbox}{DOM}{reference to the DOM textbox entity}
+* @description reference to the DOM html entity
+* @env engine2d-html
+* @param {html}{DOM}{reference to the DOM html entity}
 */
-new ocs.Component('engine2d-textbox', 'textbox', (textbox)=>{
+new ocs.Component('engine2d-html', 'html', (html)=>{
     return {
-        textbox: textbox
+        html: html
     }
 });
 
 /*
 * @name position
 * @type component
-* @description position of the textbox
-* @env engine2d-textbox
-* @param {x}{Int}{x position of the textbox}
-* @param {y}{Int}{y position of the textbox}
+* @description position of the html element
+* @env engine2d-html
+* @param {x}{Int}{x position of the html element}
+* @param {y}{Int}{y position of the html element}
 */
-var textbox_position = new ocs.Component('engine2d-textbox', 'position', (x, y)=>{
+new ocs.Component('engine2d-html', 'position', (x, y)=>{
     return new ocs.EEO({
         x: x,
         y: y
@@ -842,11 +845,11 @@ var textbox_position = new ocs.Component('engine2d-textbox', 'position', (x, y)=
 /*
 * @name fontSize
 * @type component
-* @description fontSize of the textbox
-* @env engine2d-textbox
-* @param {fontSize}{Int}{fontSize of the textbox}{19}
+* @description fontSize of the html element
+* @env engine2d-html
+* @param {fontSize}{Int}{fontSize of the html element}{19}
 */
-var textbox_fontSize = new ocs.Component('engine2d-textbox', 'fontSize', (fontSize)=>{
+new ocs.Component('engine2d-html', 'fontSize', (fontSize)=>{
     return new ocs.EEO({
         fontSize: fontSize
     }, (entity, key, val)=>{
@@ -857,11 +860,11 @@ var textbox_fontSize = new ocs.Component('engine2d-textbox', 'fontSize', (fontSi
 /*
 * @name width
 * @type component
-* @description width of the textbox
-* @env engine2d-textbox
-* @param {width}{Int}{width of the textbox}{100}
+* @description width of the html element
+* @env engine2d-html
+* @param {width}{Int}{width of the html element}{100}
 */
-var textbox_width = new ocs.Component('engine2d-textbox', 'width', (width)=>{
+new ocs.Component('engine2d-html', 'width', (width)=>{
     return new ocs.EEO({
         width: width
     }, (entity, key, val)=>{
@@ -870,17 +873,32 @@ var textbox_width = new ocs.Component('engine2d-textbox', 'width', (width)=>{
 });
 
 /*
+* @name height
+* @type component
+* @description height of the html element
+* @env engine2d-html
+* @param {height}{Int}{height of the html element}{100}
+*/
+new ocs.Component('engine2d-html', 'height', (height)=>{
+    return new ocs.EEO({
+        height: height
+    }, (entity, key, val)=>{
+        entity.style.height = val + "px";
+    });
+});
+
+/*
 * @name value
 * @type component
-* @description value of the textbox
-* @env engine2d-textbox
-* @param {value}{String}{value of the textbox}
+* @description value of the html element
+* @env engine2d-html
+* @param {value}{String}{value of the html element}
 */
-var textbox_value = new ocs.Component('engine2d-textbox', 'value', (value)=>{
+new ocs.Component('engine2d-html', 'value', (value)=>{
     return new ocs.EEO({
         value: value
     }, (entity, key, val)=>{
-        entity.textbox.value = val;
+        entity.html.value = val;
     });
 });
 
@@ -888,10 +906,10 @@ var textbox_value = new ocs.Component('engine2d-textbox', 'value', (value)=>{
 * @name style
 * @type component
 * @description reference to the style property DOM textbox entity
-* @env engine2d-textbox
+* @env engine2d-html
 * @param {textbox}{DOM}{reference to the style property DOM textbox entity}
 */
-var textbox_style = new ocs.Component('engine2d-textbox', 'style', (textbox)=>{
+new ocs.Component('engine2d-html', 'style', (textbox)=>{
     return {
         style: textbox
     }
@@ -901,13 +919,13 @@ var textbox_style = new ocs.Component('engine2d-textbox', 'style', (textbox)=>{
 /*
 * @name events
 * @type component
-* @description events of the textbox
-* @env engine2d-textbox
+* @description events of the html element
+* @env engine2d-html
 * @param {onfocus}{Function}{event to run the textbox is focused (clicked on)}
 * @param {onblur}{Function}{event to run the textbox is blurred (clicked out of / press ENTER or ESC)}
 * @param {onkeypress}{Function}{event to run when a key is pressed while the textbox is focused}
 */
-var textbox_events = new ocs.Component('engine2d-textbox', 'events', ()=>{
+new ocs.Component('engine2d-html', 'events', ()=>{
     return {
         onkeypress: ()=>{},
         onfocus: ()=>{},
@@ -917,11 +935,106 @@ var textbox_events = new ocs.Component('engine2d-textbox', 'events', ()=>{
 
 
 /*
+* @name htmltext
+* @type entity
+* @description A htmltext entity created by <a href="./virtuosity.engine2d.add.html#htmltext">add.htmltext</a>
+* @env engine2d-html
+* @component html
+* @component position
+* @component fontSize
+* @component width
+* @component height
+* @component value
+* @component style
+*/
+var add_html_text = function(canvas, name, x, y, text, fontSize, onComplete){
+    new_ctx = canvases.get(canvas);
+    var new_ctx_x = engine2d.canvas.xPos(canvas);
+    var new_ctx_y = engine2d.canvas.yPos(canvas);
+
+    var new_pre = document.createElement('pre');
+    var style = new_pre.style;
+    style.position = 'absolute';
+    style.top = (y + new_ctx_y) + "px";
+    style.left = (x + new_ctx_x) + "px";
+    style.fontFamily = "Trebuchet";
+    style.fontSize = fontSize + "px";
+    style.color = "#ffffff";
+    style.margin = "0px";
+    new_pre.innerHTML = text;
+    document.getElementsByTagName('body')[0].appendChild(new_pre);
+
+    Object.defineProperty(new_pre, "x", {
+        get: ()=>{
+            var left = new_pre.style.left;
+            return JSON.parse(left.substring(0, left.lengt-3) - new_ctx_x);
+        },
+        set: (val)=>{
+            new_pre.style.left = (val + new_ctx_x) + "px";
+        }
+    });
+
+    Object.defineProperty(new_pre, "y", {
+        get: ()=>{
+            var top = new_pre.style.top;
+            return JSON.parse(top.substring(0, top.lengt-3) - new_ctx_y);
+        },
+        set: (val)=>{
+            new_pre.style.top = (val + new_ctx_y) + "px";
+        }
+    });
+
+
+    new_ctx.texts.set(name, new_pre);
+
+    var new_text = new ocs.Entity('engine2d-html', `${name}╎${canvas}htmltext`)
+    new_text.addComponent('html', new_pre)
+               .addComponent('style', new_pre.style)
+               .addComponent('position', x + new_ctx_x, y + new_ctx_y)
+               .addComponent('fontSize', 19);
+
+
+    Object.defineProperty(new_text, "value", {
+        get: ()=>{
+            return new_pre.innerHTML;
+        },
+        set: (val)=>{
+            new_pre.innerHTML = val;
+        }
+    });
+
+
+    Object.defineProperty(new_text, "width", {
+        get: ()=>{
+            return new_pre.offsetWidth;
+        }
+    });
+
+
+    Object.defineProperty(new_text, "height", {
+        get: ()=>{
+            return new_pre.offsetHeight;
+        }
+    });
+
+
+
+    if(onComplete != null){
+        onComplete(new_text);
+    }
+}
+
+
+
+
+
+
+/*
 * @name Textbox
 * @type entity
 * @description A textbox entity created by <a href="./virtuosity.engine2d.add.html#textbox">add.textbox</a>
-* @env engine2d-textbox
-* @component textbox
+* @env engine2d-html
+* @component html
 * @component position
 * @component fontSize
 * @component width
@@ -971,8 +1084,8 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     });
 
 
-    var new_textbox = new ocs.Entity('engine2d-textbox', `${name}╎${canvas}╎textbox`)
-    new_textbox.addComponent('textbox', input)
+    var new_textbox = new ocs.Entity('engine2d-html', `${name}╎${canvas}╎textbox`)
+    new_textbox.addComponent('html', input)
                .addComponent('style', input.style)
                .addComponent('position', x + new_ctx_x, y + new_ctx_y)
                .addComponent('fontSize', 19)
@@ -1183,14 +1296,32 @@ module.exports = {
         },
 
         /*
+        * @name htmltext
+        * @type method
+        * @description adds <a href="virtuosity.engine2d.htmltext.html">text</a> that can use HTML and CSS styling to the scene
+        * @parent add
+        * @param {canvas}{String}{Name of the canvas to add to}
+        * @param {name}{String}{unique name of the text}
+        * @param {x}{Number}{x position of the text}
+        * @param {y}{Number}{y position of the text}
+        * @param {text}{String}{the text for the text object to show}
+        * @param {fontSize}{Int}{font size of the text}
+        * @param {onComplete}{Function}{function to run after adding the text (takes the newly create text as a parameter)}
+        */
+
+        htmltext: function(canvas, name, x, y, text, fontSize, onComplete){
+            add_html_text(canvas, name, x, y, text, fontSize, onComplete);
+        },
+
+        /*
         * @name textbox
         * @type method
         * @description adds a <a href="virtuosity.engine2d.Textbox.html">textbox</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
-        * @param {name}{String}{unique name of the textbox}
-        * @param {x}{Number}{x position of the textbox}
-        * @param {y}{Number}{y position of the textbox}
+        * @param {name}{String}{unique name of the html element}
+        * @param {x}{Number}{x position of the html element}
+        * @param {y}{Number}{y position of the html element}
         * @param {onComplete}{Function}{function to run after adding the textbox (takes the newly create textbox as a parameter)}
         */
         textbox: function(canvas, name, x, y, onComplete){
@@ -1226,6 +1357,18 @@ module.exports = {
         */
         text: function(canvas, name){
             return get_text(canvas, name);
+        },
+
+        /*
+        * @name htmltext
+        * @type method
+        * @description gets a <a href="virtuosity.engine2d.Textbox.html">htmltext</a>
+        * @parent get
+        * @param {canvas}{String}{name of the canvas}
+        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Textbox.html">htmltext</a>}
+        */
+        htmltext: function(canvas, name){
+            return get_htmltext(canvas, name);
         },
 
         /*

@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.add";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.add";</script>
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -142,8 +142,10 @@
 			var mode = "light";
 			toggle_mode = function(){
 				if(mode == "light"){
+					console.log("set to dark");
 					set_mode('dark');
 				}else{
+					console.log("set to light");
 					set_mode('light');
 				}
 			}
@@ -210,7 +212,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>add</h1><p>add engine2d assets to the scene</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">add</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#sprite">sprite</a></li><li><a href="#text">text</a></li><li><a href="#textbox">textbox</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">adds an <a href="virtuosity.engine2d.Image.html">image</a> to the scene</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">add</span>.<span class="green">image</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">key</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>add</h1><p>add engine2d assets to the scene</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">add</span></div><h4>Methods</h4><ul><li><a href="#image">image</a></li><li><a href="#sprite">sprite</a></li><li><a href="#text">text</a></li><li><a href="#htmltext">htmltext</a></li><li><a href="#textbox">textbox</a></li></ul><hr><h2>Methods</h2><h3 id="image" style="margin-top: 0px;">image</a></h3><p style="margin-top: 0px;">adds an <a href="virtuosity.engine2d.Image.html">image</a> to the scene</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">add</span>.<span class="green">image</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">key</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -301,6 +303,39 @@
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>
 												<td>function to run after adding the text (takes the newly create text as a parameter)</td>
+											</tr></table><h3 id="htmltext">htmltext</a></h3><p style="margin-top: 0px;">adds <a href="virtuosity.engine2d.htmltext.html">text</a> that can use HTML and CSS styling to the scene</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">add</span>.<span class="green">htmltext</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">text</span>, <span class="orange">fontSize</span>, <span class="orange">onComplete</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>Name of the canvas to add to</td>
+											</tr><tr>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>unique name of the text</td>
+											</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>x position of the text</td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td>y position of the text</td>
+											</tr><tr>
+												<td><var>text</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>the text for the text object to show</td>
+											</tr><tr>
+												<td><var>fontSize</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>font size of the text</td>
+											</tr><tr>
+												<td><var>onComplete</var></td>
+												<td><var><span class="blue">Function</span></var></td>
+												<td>function to run after adding the text (takes the newly create text as a parameter)</td>
 											</tr></table><h3 id="textbox">textbox</a></h3><p style="margin-top: 0px;">adds a <a href="virtuosity.engine2d.Textbox.html">textbox</a> to the scene</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">add</span>.<span class="green">textbox</span>(<span class="orange">canvas</span>, <span class="orange">name</span>, <span class="orange">x</span>, <span class="orange">y</span>, <span class="orange">onComplete</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
@@ -313,15 +348,15 @@
 											</tr><tr>
 												<td><var>name</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>unique name of the textbox</td>
+												<td>unique name of the html element</td>
 											</tr><tr>
 												<td><var>x</var></td>
 												<td><var><span class="purple">Number</span></var></td>
-												<td>x position of the textbox</td>
+												<td>x position of the html element</td>
 											</tr><tr>
 												<td><var>y</var></td>
 												<td><var><span class="purple">Number</span></var></td>
-												<td>y position of the textbox</td>
+												<td>y position of the html element</td>
 											</tr><tr>
 												<td><var>onComplete</var></td>
 												<td><var><span class="blue">Function</span></var></td>

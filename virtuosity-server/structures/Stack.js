@@ -83,9 +83,9 @@ class Stack{
 		if(this.#size == 0){
 			return null;
 		}else{
-			this.#size += 1;
-			output = top;
-			top = output.getNext();
+			this.#size -= 1;
+			var output = this.#top;
+			this.#top = output.getNext();
 			return output;
 		}
 	}

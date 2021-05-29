@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="icon" href="favicon.ico">
-		<title>virtuosity Documentation | virtuosity.structures.Stack</title>
+		<title>virtuosity Documentation | virtuosity.engine2d.htmltext</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<header>
 		<datalist id="entities"></datalist>
 		<div class="menu-bar" id="desktop-navbar">
 		    <div class="left">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.html'">structures</button>
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button>
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Dark Mode</button>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.structures.html'">structures</button><script type="text/javascript">var path = "virtuosity.structures.Stack";</script>
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.htmltext";</script>
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -212,21 +212,80 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Stack</h1><p>stack</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="green">Stack</span>();</div><br><br><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-												</tr></table><h4>Classes</h4><ul><li><a href='./virtuosity.structures.Stack.Node.html'>Node</a></li></ul><h4>Methods</h4><ul><li><a href="#push">push</a></li><li><a href="#pop">pop</a></li><li><a href="#peek">peek</a></li><li><a href="#size">size</a></li><li><a href="#print">print</a></li></ul><hr><h2>Classes</h2><h3 id="Node" style="margin-top: 0px;"><a href='./virtuosity.structures.Stack.Node.html'>Node</a></h3><p style="margin-top: 0px;">Stack node</p><br><br><h2>Methods</h2><h3 id="push" style="margin-top: 0px;">push</a></h3><p style="margin-top: 0px;">add a node to the stack</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Stack</span>.<span class="green">push</span>(<span class="orange">data</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>htmltext</h1><p>A htmltext entity created by <a href="./virtuosity.engine2d.add.html#htmltext">add.htmltext</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">htmltext</span></div><h4>Components</h4><ul><li ><a href=#html>html</a></li><li ><a href=#position>position</a></li><li ><a href=#fontSize>fontSize</a></li><li ><a href=#width>width</a></li><li ><a href=#height>height</a></li><li ><a href=#value>value</a></li><li ><a href=#style>style</a></li></ul><hr><h3 id='html'>html</h3><p >reference to the DOM html entity</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
 												</tr><tr>
-												<td><var>data</var></td>
-												<td><var><span class="white">ANY</span></var></td>
-												<td>data for the new node</td>
-											</tr></table><h3 id="pop">pop</a></h3><p style="margin-top: 0px;">remove the top node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Stack</span>.<span class="green">pop</span>();</div><h3 id="peek">peek</a></h3><p style="margin-top: 0px;">return the top node</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Stack</span>.<span class="green">peek</span>();</div><h3 id="size">size</a></h3><p style="margin-top: 0px;">get the size of the Stack</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Stack</span>.<span class="green">size</span>();</div><h3 id="print">print</a></h3><p style="margin-top: 0px;">output an array representation of the stack</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">structures</span>.<span class="blue">Stack</span>.<span class="green">print</span>();</div><br><br>
+												<td><var>html</var></td>
+												<td><var><span class="white">DOM</span></var></td>
+												<td>reference to the DOM html entity</td>
+											</tr></table><h3 id='position'>position</h3><p >position of the html element</p><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>x position of the html element</td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>y position of the html element</td>
+											</tr></table><h3 id='fontSize'>fontSize</h3><p >fontSize of the html element</p><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>fontSize</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>fontSize of the html element</td>
+												<td><var><span class="purple">19</span></var></td>
+											</tr></table><h3 id='width'>width</h3><p >width of the html element</p><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>width</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>width of the html element</td>
+												<td><var><span class="purple">100</span></var></td>
+											</tr></table><h3 id='height'>height</h3><p >height of the html element</p><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+													<th>Default</th>
+												</tr><tr>
+												<td><var>height</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>height of the html element</td>
+												<td><var><span class="purple">100</span></var></td>
+											</tr></table><h3 id='value'>value</h3><p >value of the html element</p><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>value</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>value of the html element</td>
+											</tr></table><h3 id='style'>style</h3><p >reference to the style property DOM textbox entity</p><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>textbox</var></td>
+												<td><var><span class="white">DOM</span></var></td>
+												<td>reference to the style property DOM textbox entity</td>
+											</tr></table>
 		</div>
 	</body>
 	<footer>

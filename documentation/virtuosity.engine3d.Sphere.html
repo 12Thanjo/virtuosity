@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine3d.html'">engine3d</button><script type="text/javascript">var path = "virtuosity.engine3d.Sphere";</script
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine3d.html'">engine3d</button><script type="text/javascript">var path = "virtuosity.engine3d.Sphere";</script>
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -142,8 +142,10 @@
 			var mode = "light";
 			toggle_mode = function(){
 				if(mode == "light"){
+					console.log("set to dark");
 					set_mode('dark');
 				}else{
+					console.log("set to light");
 					set_mode('light');
 				}
 			}

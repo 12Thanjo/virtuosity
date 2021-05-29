@@ -2,8 +2,8 @@ var debug = require('./debug.js');
 
 
 var DOWN = [255]; //make an array to cover all the keypresses you should need with a normal keyboard
-var DOWN_MAP = new Map([["A",65],["B",66],["C",67],["D",68],["E",69],["F",70],["G",71],["H",72],["I",73],["J",74],["K",75],["L",76],["M",77],["N",78],["O",79],["P",80],["Q",81],["R",82],["S",83],["T",84],["U",85],["V",86],["W",87],["X",88],["Y",89],["Z",90],["ZERO",48],["ONE",49],["TWO",50],["THREE",51],["FOUR",52],["FIVE",53],["SIX",54],["SEVEN",55],["EIGHT",56],["NINE",57],["NUMPAD_0",96],["NUMPAD_1",97],["NUMPAD_2",98],["NUMPAD_3",99],["NUMPAD_4",100],["NUMPAD_5",101],["NUMPAD_6",102],["NUMPAD_7",103],["NUMPAD_8",104],["NUMPAD_9",105],["NUMPAD_MULTIPLY",106],["NUMPAD_ADD",107],["NUMPAD_ENTER",108],["NUMPAD_SUBTRACT",109],["NUMPAD_DECIMAL",110],["NUMPAD_DIVIDE",111],["F1",112],["F2",113],["F3",114],["F4",115],["F5",116],["F6",117],["F7",118],["F8",119],["F9",120],["F10",121],["F11",122],["F12",123],["F13",124],["F14",125],["F15",126],["COLON",186],["EQUALS",187],["COMMA",188],["UNDERSCORE",189],["PERIOD",190],["QUESTION_MARK",191],["TILDE",192],["OPEN_BRACKET",219],["BACKWARD_SLASH",220],["CLOSED_BRACKET",221],["QUOTES",222],["BACKSPACE",8],["TAB",9],["CLEAR",12],["ENTER",13],["SHIFT",16],["CONTROL",17],["ALT",18],["CAPS_LOCK",20],["ESC",27],["SPACE",32],["PAGE_UP",33],["PAGE_DOWN",34],["END",35],["HOME",36],["LEFT",37],["UP",38],["RIGHT",39],["DOWN",40],["PLUS",43],["MINUS",44],["INSERT",45],["DELETE",46],["HELP",47],["NUM_LOCK",144]]);//used for key strings
-var KEYCODE_MAP = new Map([[65,"A"],[66,"B"],[67,"C"],[68,"D"],[69,"E"],[70,"F"],[71,"G"],[72,"H"],[73,"I"],[74,"J"],[75,"K"],[76,"L"],[77,"M"],[78,"N"],[79,"O"],[80,"P"],[81,"Q"],[82,"R"],[83,"S"],[84,"T"],[85,"U"],[86,"V"],[87,"W"],[88,"X"],[89,"Y"],[90,"Z"],[48,"ZERO"],[49,"ONE"],[50,"TWO"],[51,"THREE"],[52,"FOUR"],[53,"FIVE"],[54,"SIX"],[55,"SEVEN"],[56,"EIGHT"],[57,"NINE"],[96,"NUMPAD_0"],[97,"NUMPAD_1"],[98,"NUMPAD_2"],[99,"NUMPAD_3"],[100,"NUMPAD_4"],[101,"NUMPAD_5"],[102,"NUMPAD_6"],[103,"NUMPAD_7"],[104,"NUMPAD_8"],[105,"NUMPAD_9"],[106,"NUMPAD_MULTIPLY"],[107,"NUMPAD_ADD"],[108,"NUMPAD_ENTER"],[109,"NUMPAD_SUBTRACT"],[110,"NUMPAD_DECIMAL"],[111,"NUMPAD_DIVIDE"],[112,"F1"],[113,"F2"],[114,"F3"],[115,"F4"],[116,"F5"],[117,"F6"],[118,"F7"],[119,"F8"],[120,"F9"],[121,"F10"],[122,"F11"],[123,"F12"],[124,"F13"],[125,"F14"],[126,"F15"],[186,"COLON"],[187,"EQUALS"],[188,"COMMA"],[189,"UNDERSCORE"],[190,"PERIOD"],[191,"QUESTION_MARK"],[192,"TILDE"],[219,"OPEN_BRACKET"],[220,"BACKWARD_SLASH"],[221,"CLOSED_BRACKET"],[222,"QUOTES"],[8,"BACKSPACE"],[9,"TAB"],[12,"CLEAR"],[13,"ENTER"],[16,"SHIFT"],[17,"CONTROL"],[18,"ALT"],[20,"CAPS_LOCK"],[27,"ESC"],[32,"SPACE"],[33,"PAGE_UP"],[34,"PAGE_DOWN"],[35,"END"],[36,"HOME"],[37,"LEFT"],[38,"UP"],[39,"RIGHT"],[40,"DOWN"],[43,"PLUS"],[44,"MINUS"],[45,"INSERT"],[46,"DELETE"],[47,"HELP"],[144,"NUM_LOCK"]]);//used for key strings
+var DOWN_MAP = new Map([["A",65],["B",66],["C",67],["D",68],["E",69],["F",70],["G",71],["H",72],["I",73],["J",74],["K",75],["L",76],["M",77],["N",78],["O",79],["P",80],["Q",81],["R",82],["S",83],["T",84],["U",85],["V",86],["W",87],["X",88],["Y",89],["Z",90],["ZERO",48],["ONE",49],["TWO",50],["THREE",51],["FOUR",52],["FIVE",53],["SIX",54],["SEVEN",55],["EIGHT",56],["NINE",57],["NUMPAD_0",96],["NUMPAD_1",97],["NUMPAD_2",98],["NUMPAD_3",99],["NUMPAD_4",100],["NUMPAD_5",101],["NUMPAD_6",102],["NUMPAD_7",103],["NUMPAD_8",104],["NUMPAD_9",105],["NUMPAD_MULTIPLY",106],["NUMPAD_ADD",107],["NUMPAD_ENTER",108],["NUMPAD_SUBTRACT",109],["NUMPAD_DECIMAL",110],["NUMPAD_DIVIDE",111],["F1",112],["F2",113],["F3",114],["F4",115],["F5",116],["F6",117],["F7",118],["F8",119],["F9",120],["F10",121],["F11",122],["F12",123],["F13",124],["F14",125],["F15",126],["COLON",186],["EQUALS",187],["COMMA",188],["UNDERSCORE",189],["PERIOD",190],["QUESTION_MARK",191],["TILDE",192],["OPEN_BRACKET",219],["BACKWARD_SLASH",220],["CLOSED_BRACKET",221],["QUOTES",222],["BACKSPACE",8],["TAB",9],["CLEAR",12],["ENTER",13],["SHIFT",16],["CONTROL",17],["ALT",18],["CAPS_LOCK",20],["ESCAPE",27],["SPACE",32],["PAGE_UP",33],["PAGE_DOWN",34],["END",35],["HOME",36],["LEFT",37],["UP",38],["RIGHT",39],["DOWN",40],["PLUS",43],["MINUS",44],["INSERT",45],["DELETE",46],["HELP",47],["NUM_LOCK",144]]);//used for key strings
+var KEYCODE_MAP = new Map([[65,"A"],[66,"B"],[67,"C"],[68,"D"],[69,"E"],[70,"F"],[71,"G"],[72,"H"],[73,"I"],[74,"J"],[75,"K"],[76,"L"],[77,"M"],[78,"N"],[79,"O"],[80,"P"],[81,"Q"],[82,"R"],[83,"S"],[84,"T"],[85,"U"],[86,"V"],[87,"W"],[88,"X"],[89,"Y"],[90,"Z"],[48,"ZERO"],[49,"ONE"],[50,"TWO"],[51,"THREE"],[52,"FOUR"],[53,"FIVE"],[54,"SIX"],[55,"SEVEN"],[56,"EIGHT"],[57,"NINE"],[96,"NUMPAD_0"],[97,"NUMPAD_1"],[98,"NUMPAD_2"],[99,"NUMPAD_3"],[100,"NUMPAD_4"],[101,"NUMPAD_5"],[102,"NUMPAD_6"],[103,"NUMPAD_7"],[104,"NUMPAD_8"],[105,"NUMPAD_9"],[106,"NUMPAD_MULTIPLY"],[107,"NUMPAD_ADD"],[108,"NUMPAD_ENTER"],[109,"NUMPAD_SUBTRACT"],[110,"NUMPAD_DECIMAL"],[111,"NUMPAD_DIVIDE"],[112,"F1"],[113,"F2"],[114,"F3"],[115,"F4"],[116,"F5"],[117,"F6"],[118,"F7"],[119,"F8"],[120,"F9"],[121,"F10"],[122,"F11"],[123,"F12"],[124,"F13"],[125,"F14"],[126,"F15"],[186,"COLON"],[187,"EQUALS"],[188,"COMMA"],[189,"UNDERSCORE"],[190,"PERIOD"],[191,"QUESTION_MARK"],[192,"TILDE"],[219,"OPEN_BRACKET"],[220,"BACKWARD_SLASH"],[221,"CLOSED_BRACKET"],[222,"QUOTES"],[8,"BACKSPACE"],[9,"TAB"],[12,"CLEAR"],[13,"ENTER"],[16,"SHIFT"],[17,"CONTROL"],[18,"ALT"],[20,"CAPS_LOCK"],[27,"ESCAPE"],[32,"SPACE"],[33,"PAGE_UP"],[34,"PAGE_DOWN"],[35,"END"],[36,"HOME"],[37,"LEFT"],[38,"UP"],[39,"RIGHT"],[40,"DOWN"],[43,"PLUS"],[44,"MINUS"],[45,"INSERT"],[46,"DELETE"],[47,"HELP"],[144,"NUM_LOCK"]]);//used for key strings
 
 var check_down = function(arr){
 	var down = true;
@@ -16,43 +16,46 @@ var check_down = function(arr){
 	return down;
 }
 
-var command_listener = {
+command_listener = {
 	down: 0,
 	list: new Set(),
 	event: ()=>{},
 	listening: false
 }
-var keydown_listener = function(event){
-	if(!DOWN[event.keyCode]){
-  		DOWN[event.keyCode] = true;
+var keydown_listener = function(e){
+	if(!DOWN[e.keyCode]){
+  		DOWN[e.keyCode] = true;
 
-  		var keydown_lookup_events = keydown_lookup[event.keyCode];
+  		var keydown_lookup_events = keydown_lookup[e.keyCode];
   		if(keydown_lookup_events != null){
 	  		keydown_lookup_events.forEach((event)=>{
 	  			if(check_down(event.keys)){
-	  				event.event(event);
+	  				event.event(e);
 	  			}
 	  		});
   		}
 
   		command_listener.down += 1;
-  		command_listener.list.add(event.keyCode);
+  		command_listener.list.add(e.keyCode);
   	}
 }
 
-var keyup_listener = function(event){
-	var keyup_lookup_events = keyup_lookup[event.keyCode];
+var keyup_listener = function(e){
+	var keyup_lookup_events = keyup_lookup[e.keyCode];
 	if(keyup_lookup_events != null){
 		keyup_lookup_events.forEach((event)=>{
 			if(check_down(event.keys)){
-				event.event(event);
+				event.event(e);
 			}
 		});
 	}
 
-	DOWN[event.keyCode] = false;
+	DOWN[e.keyCode] = false;
 
 	command_listener.down -= 1;
+	if(command_listener.down < 0){
+		command_listener.down = 0;
+	}
 	if(command_listener.listening){
 		if(command_listener.down == 0){
 			var output = [];
@@ -64,6 +67,7 @@ var keyup_listener = function(event){
 			command_listener.listening = false;
 		}
 	}
+
 }
 
 keydown_events = new Map();
@@ -588,7 +592,7 @@ exports = {
 	/*
 	* @name keyboard
 	* @type obj
-	* @description manages input from the keyboard. Supported keys are:<br> <div class="code yellow">"A"</div><div class="code yellow">"B"</div><div class="code yellow">"C"</div><div class="code yellow">"D"</div><div class="code yellow">"E"</div><div class="code yellow">"F"</div><div class="code yellow">"G"</div><div class="code yellow">"H"</div><div class="code yellow">"I"</div><div class="code yellow">"J"</div><div class="code yellow">"K"</div><div class="code yellow">"L"</div><div class="code yellow">"M"</div><div class="code yellow">"N"</div><div class="code yellow">"O"</div><div class="code yellow">"P"</div><div class="code yellow">"Q"</div><div class="code yellow">"R"</div><div class="code yellow">"S"</div><div class="code yellow">"T"</div><div class="code yellow">"U"</div><div class="code yellow">"V"</div><div class="code yellow">"W"</div><div class="code yellow">"X"</div><div class="code yellow">"Y"</div><div class="code yellow">"Z"</div><div class="code yellow">"ZERO"</div><div class="code yellow">"ONE"</div><div class="code yellow">"TWO"</div><div class="code yellow">"THREE"</div><div class="code yellow">"FOUR"</div><div class="code yellow">"FIVE"</div><div class="code yellow">"SIX"</div><div class="code yellow">"SEVEN"</div><div class="code yellow">"EIGHT"</div><div class="code yellow">"NINE"</div><div class="code yellow">"NUMPAD_0"</div><div class="code yellow">"NUMPAD_1"</div><div class="code yellow">"NUMPAD_2"</div><div class="code yellow">"NUMPAD_3"</div><div class="code yellow">"NUMPAD_4"</div><div class="code yellow">"NUMPAD_5"</div><div class="code yellow">"NUMPAD_6"</div><div class="code yellow">"NUMPAD_7"</div><div class="code yellow">"NUMPAD_8"</div><div class="code yellow">"NUMPAD_9"</div><div class="code yellow">"NUMPAD_MULTIPLY"</div><div class="code yellow">"NUMPAD_ADD"</div><div class="code yellow">"NUMPAD_ENTER"</div><div class="code yellow">"NUMPAD_SUBTRACT"</div><div class="code yellow">"NUMPAD_DECIMAL"</div><div class="code yellow">"NUMPAD_DIVIDE"</div><div class="code yellow">"F1"</div><div class="code yellow">"F2"</div><div class="code yellow">"F3"</div><div class="code yellow">"F4"</div><div class="code yellow">"F5"</div><div class="code yellow">"F6"</div><div class="code yellow">"F7"</div><div class="code yellow">"F8"</div><div class="code yellow">"F9"</div><div class="code yellow">"F10"</div><div class="code yellow">"F11"</div><div class="code yellow">"F12"</div><div class="code yellow">"F13"</div><div class="code yellow">"F14"</div><div class="code yellow">"F15"</div><div class="code yellow">"COLON"</div><div class="code yellow">"EQUALS"</div><div class="code yellow">"COMMA"</div><div class="code yellow">"UNDERSCORE"</div><div class="code yellow">"PERIOD"</div><div class="code yellow">"QUESTION_MARK"</div><div class="code yellow">"TILDE"</div><div class="code yellow">"OPEN_BRACKET"</div><div class="code yellow">"BACKWARD_SLASH"</div><div class="code yellow">"CLOSED_BRACKET"</div><div class="code yellow">"QUOTES"</div><div class="code yellow">"BACKSPACE"</div><div class="code yellow">"TAB"</div><div class="code yellow">"CLEAR"</div><div class="code yellow">"ENTER"</div><div class="code yellow">"SHIFT"</div><div class="code yellow">"CONTROL"</div><div class="code yellow">"ALT"</div><div class="code yellow">"CAPS_LOCK"</div><div class="code yellow">"ESC"</div><div class="code yellow">"SPACE"</div><div class="code yellow">"PAGE_UP"</div><div class="code yellow">"PAGE_DOWN"</div><div class="code yellow">"END"</div><div class="code yellow">"HOME"</div><div class="code yellow">"LEFT"</div><div class="code yellow">"UP"</div><div class="code yellow">"RIGHT"</div><div class="code yellow">"DOWN"</div><div class="code yellow">"PLUS"</div><div class="code yellow">"MINUS"</div><div class="code yellow">"INSERT"</div><div class="code yellow">"DELETE"</div><div class="code yellow">"HELP"</div><div class="code yellow">"NUM_LOCK"</div>
+	* @description manages input from the keyboard. Supported keys are:<br> <div class="code yellow">"A"</div><div class="code yellow">"B"</div><div class="code yellow">"C"</div><div class="code yellow">"D"</div><div class="code yellow">"E"</div><div class="code yellow">"F"</div><div class="code yellow">"G"</div><div class="code yellow">"H"</div><div class="code yellow">"I"</div><div class="code yellow">"J"</div><div class="code yellow">"K"</div><div class="code yellow">"L"</div><div class="code yellow">"M"</div><div class="code yellow">"N"</div><div class="code yellow">"O"</div><div class="code yellow">"P"</div><div class="code yellow">"Q"</div><div class="code yellow">"R"</div><div class="code yellow">"S"</div><div class="code yellow">"T"</div><div class="code yellow">"U"</div><div class="code yellow">"V"</div><div class="code yellow">"W"</div><div class="code yellow">"X"</div><div class="code yellow">"Y"</div><div class="code yellow">"Z"</div><div class="code yellow">"ZERO"</div><div class="code yellow">"ONE"</div><div class="code yellow">"TWO"</div><div class="code yellow">"THREE"</div><div class="code yellow">"FOUR"</div><div class="code yellow">"FIVE"</div><div class="code yellow">"SIX"</div><div class="code yellow">"SEVEN"</div><div class="code yellow">"EIGHT"</div><div class="code yellow">"NINE"</div><div class="code yellow">"NUMPAD_0"</div><div class="code yellow">"NUMPAD_1"</div><div class="code yellow">"NUMPAD_2"</div><div class="code yellow">"NUMPAD_3"</div><div class="code yellow">"NUMPAD_4"</div><div class="code yellow">"NUMPAD_5"</div><div class="code yellow">"NUMPAD_6"</div><div class="code yellow">"NUMPAD_7"</div><div class="code yellow">"NUMPAD_8"</div><div class="code yellow">"NUMPAD_9"</div><div class="code yellow">"NUMPAD_MULTIPLY"</div><div class="code yellow">"NUMPAD_ADD"</div><div class="code yellow">"NUMPAD_ENTER"</div><div class="code yellow">"NUMPAD_SUBTRACT"</div><div class="code yellow">"NUMPAD_DECIMAL"</div><div class="code yellow">"NUMPAD_DIVIDE"</div><div class="code yellow">"F1"</div><div class="code yellow">"F2"</div><div class="code yellow">"F3"</div><div class="code yellow">"F4"</div><div class="code yellow">"F5"</div><div class="code yellow">"F6"</div><div class="code yellow">"F7"</div><div class="code yellow">"F8"</div><div class="code yellow">"F9"</div><div class="code yellow">"F10"</div><div class="code yellow">"F11"</div><div class="code yellow">"F12"</div><div class="code yellow">"F13"</div><div class="code yellow">"F14"</div><div class="code yellow">"F15"</div><div class="code yellow">"COLON"</div><div class="code yellow">"EQUALS"</div><div class="code yellow">"COMMA"</div><div class="code yellow">"UNDERSCORE"</div><div class="code yellow">"PERIOD"</div><div class="code yellow">"QUESTION_MARK"</div><div class="code yellow">"TILDE"</div><div class="code yellow">"OPEN_BRACKET"</div><div class="code yellow">"BACKWARD_SLASH"</div><div class="code yellow">"CLOSED_BRACKET"</div><div class="code yellow">"QUOTES"</div><div class="code yellow">"BACKSPACE"</div><div class="code yellow">"TAB"</div><div class="code yellow">"CLEAR"</div><div class="code yellow">"ENTER"</div><div class="code yellow">"SHIFT"</div><div class="code yellow">"CONTROL"</div><div class="code yellow">"ALT"</div><div class="code yellow">"CAPS_LOCK"</div><div class="code yellow">"ESCAPE"</div><div class="code yellow">"SPACE"</div><div class="code yellow">"PAGE_UP"</div><div class="code yellow">"PAGE_DOWN"</div><div class="code yellow">"END"</div><div class="code yellow">"HOME"</div><div class="code yellow">"LEFT"</div><div class="code yellow">"UP"</div><div class="code yellow">"RIGHT"</div><div class="code yellow">"DOWN"</div><div class="code yellow">"PLUS"</div><div class="code yellow">"MINUS"</div><div class="code yellow">"INSERT"</div><div class="code yellow">"DELETE"</div><div class="code yellow">"HELP"</div><div class="code yellow">"NUM_LOCK"</div>
 	*/
 	keyboard: {
 		/*
