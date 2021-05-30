@@ -1,0 +1,1182 @@
+{"scope":"source.js - variable.other.js","completions":[
+	{
+		"trigger":"engine2d.Image", 
+		"contents":"engine2d.Image();"
+	},
+	{
+		"trigger":"engine2d.Sprite", 
+		"contents":"engine2d.Sprite();"
+	},
+	{
+		"trigger":"engine2d.Text", 
+		"contents":"engine2d.Text();"
+	},
+	{
+		"trigger":"engine2d.htmltext", 
+		"contents":"engine2d.htmltext();"
+	},
+	{
+		"trigger":"engine2d.Textbox", 
+		"contents":"engine2d.Textbox();"
+	},
+	{
+		"trigger":"engine2d.newCanvas", 
+		"contents":"engine2d.newCanvas(\"${1:name}\", ${2:config});"
+	},
+	{
+		"trigger":"engine2d.load.image", 
+		"contents":"engine2d.load.image(\"${1:key}\", \"${2:path}\");"
+	},
+	{
+		"trigger":"engine2d.load.spritesheet", 
+		"contents":"engine2d.load.spritesheet(\"${1:key}\", \"${2:path}\", ${3:frameWidth}, ${4:frameHeight});"
+	},
+	{
+		"trigger":"engine2d.unload", 
+		"contents":"engine2d.unload(\"${1:key}\");"
+	},
+	{
+		"trigger":"engine2d.beginLoading", 
+		"contents":"engine2d.beginLoading();"
+	},
+	{
+		"trigger":"engine2d.add.image", 
+		"contents":"engine2d.add.image(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()});"
+	},
+	{
+		"trigger":"engine2d.add.sprite", 
+		"contents":"engine2d.add.sprite(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()});"
+	},
+	{
+		"trigger":"engine2d.add.text", 
+		"contents":"engine2d.add.text(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:text}\", ${6:fontSize}, ${7:onComplete()});"
+	},
+	{
+		"trigger":"engine2d.add.htmltext", 
+		"contents":"engine2d.add.htmltext(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:text}\", ${6:fontSize}, ${7:onComplete()});"
+	},
+	{
+		"trigger":"engine2d.add.textbox", 
+		"contents":"engine2d.add.textbox(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:onComplete()});"
+	},
+	{
+		"trigger":"engine2d.get.image", 
+		"contents":"engine2d.get.image(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.get.text", 
+		"contents":"engine2d.get.text(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.get.htmltext", 
+		"contents":"engine2d.get.htmltext(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.get.textbox", 
+		"contents":"engine2d.get.textbox(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.get.canvas", 
+		"contents":"engine2d.get.canvas(\"${1:name}\");"
+	},
+	{
+		"trigger":"engine2d.delete.image", 
+		"contents":"engine2d.delete.image(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.delete.text", 
+		"contents":"engine2d.delete.text(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.delete.textbox", 
+		"contents":"engine2d.delete.textbox(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.performance.fps", 
+		"contents":"engine2d.performance.fps(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine2d.performance.fpsMin", 
+		"contents":"engine2d.performance.fpsMin(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine2d.performance.fpsMax", 
+		"contents":"engine2d.performance.fpsMax(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine2d.performance.fpsAvg", 
+		"contents":"engine2d.performance.fpsAvg(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine2d.graphics.Circle", 
+		"contents":"engine2d.graphics.Circle();"
+	},
+	{
+		"trigger":"engine2d.graphics.Rectange", 
+		"contents":"engine2d.graphics.Rectange();"
+	},
+	{
+		"trigger":"engine2d.graphics.Box", 
+		"contents":"engine2d.graphics.Box();"
+	},
+	{
+		"trigger":"engine2d.graphics.Line", 
+		"contents":"engine2d.graphics.Line();"
+	},
+	{
+		"trigger":"engine2d.graphics.Polygon", 
+		"contents":"engine2d.graphics.Polygon();"
+	},
+	{
+		"trigger":"engine2d.graphics.add.container", 
+		"contents":"engine2d.graphics.add.container(\"${1:name}\", \"${2:canvas}\");"
+	},
+	{
+		"trigger":"engine2d.graphics.add.circle", 
+		"contents":"engine2d.graphics.add.circle(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:r}, ${6:color});"
+	},
+	{
+		"trigger":"engine2d.graphics.add.rectangle", 
+		"contents":"engine2d.graphics.add.rectangle(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color});"
+	},
+	{
+		"trigger":"engine2d.graphics.add.box", 
+		"contents":"engine2d.graphics.add.box(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color}, ${8:borderRadius});"
+	},
+	{
+		"trigger":"engine2d.graphics.add.line", 
+		"contents":"engine2d.graphics.add.line(\"${1:name}\", \"${2:container}\", ${3:x1}, ${4:y1}, ${5:x2}, ${6:y2}, ${7:color});"
+	},
+	{
+		"trigger":"engine2d.graphics.add.ellipse", 
+		"contents":"engine2d.graphics.add.ellipse(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color});"
+	},
+	{
+		"trigger":"engine2d.graphics.add.torus", 
+		"contents":"engine2d.graphics.add.torus(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color});"
+	},
+	{
+		"trigger":"engine2d.graphics.add.polygon", 
+		"contents":"engine2d.graphics.add.polygon(\"${1:name}\", \"${2:container}\", ${3:points}, ${4:color});"
+	},
+	{
+		"trigger":"engine2d.graphics.get", 
+		"contents":"engine2d.graphics.get(\"${1:name}\", \"${2:container}\");"
+	},
+	{
+		"trigger":"engine2d.graphics.delete.container", 
+		"contents":"engine2d.graphics.delete.container(\"${1:container}\");"
+	},
+	{
+		"trigger":"engine2d.graphics.delete.shape", 
+		"contents":"engine2d.graphics.delete.shape(\"${1:name}\", \"${2:container}\");"
+	},
+	{
+		"trigger":"engine2d.graphics.containerClear", 
+		"contents":"engine2d.graphics.containerClear(\"${1:container}\", ${2:clear});"
+	},
+	{
+		"trigger":"engine2d.update.add", 
+		"contents":"engine2d.update.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+	},
+	{
+		"trigger":"engine2d.update.remove", 
+		"contents":"engine2d.update.remove(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.render.add", 
+		"contents":"engine2d.render.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+	},
+	{
+		"trigger":"engine2d.render.remove", 
+		"contents":"engine2d.render.remove(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine2d.canvas.xPos", 
+		"contents":"engine2d.canvas.xPos(\"${1:canvas}\", ${2:x});"
+	},
+	{
+		"trigger":"engine2d.canvas.yPos", 
+		"contents":"engine2d.canvas.yPos(\"${1:canvas}\", ${2:y});"
+	},
+	{
+		"trigger":"engine2d.canvas.width", 
+		"contents":"engine2d.canvas.width(\"${1:canvas}\", ${2:width});"
+	},
+	{
+		"trigger":"engine2d.canvas.height", 
+		"contents":"engine2d.canvas.height(\"${1:canvas}\", ${2:height});"
+	},
+	{
+		"trigger":"engine2d.canvas.zIndex", 
+		"contents":"engine2d.canvas.zIndex(\"${1:canvas}\", ${2:zIndex});"
+	},
+	{
+		"trigger":"engine2d.canvas.get", 
+		"contents":"engine2d.canvas.get(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine2d.canvas.destroy", 
+		"contents":"engine2d.canvas.destroy(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine2d.expose", 
+		"contents":"engine2d.expose();"
+	},
+	{
+		"trigger":"engine3d.Box", 
+		"contents":"engine3d.Box();"
+	},
+	{
+		"trigger":"engine3d.Sphere", 
+		"contents":"engine3d.Sphere();"
+	},
+	{
+		"trigger":"engine3d.Plane", 
+		"contents":"engine3d.Plane();"
+	},
+	{
+		"trigger":"engine3d.Mesh", 
+		"contents":"engine3d.Mesh();"
+	},
+	{
+		"trigger":"engine3d.load.addToLoadQueue", 
+		"contents":"engine3d.load.addToLoadQueue(\"${1:canvas}\", \"${2:name}\", \"${3:path}\");"
+	},
+	{
+		"trigger":"engine3d.load.loadQueueSize", 
+		"contents":"engine3d.load.loadQueueSize(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine3d.add.box", 
+		"contents":"engine3d.add.box(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.add.sphere", 
+		"contents":"engine3d.add.sphere(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:indicies}, ${7:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.add.plane", 
+		"contents":"engine3d.add.plane(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialBasic.addTo", 
+		"contents":"engine3d.add.material.MaterialBasic.addTo(${1:obj});"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.addTo", 
+		"contents":"engine3d.add.material.MaterialMetallic.addTo(${1:obj});"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialGlossy.addTo", 
+		"contents":"engine3d.add.material.MaterialGlossy.addTo(${1:obj});"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialCanvas.addTo", 
+		"contents":"engine3d.add.material.MaterialCanvas.addTo(${1:obj});"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialCanvas.update", 
+		"contents":"engine3d.add.material.MaterialCanvas.update();"
+	},
+	{
+		"trigger":"engine3d.add.material.basic", 
+		"contents":"engine3d.add.material.basic(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.add.material.metalic", 
+		"contents":"engine3d.add.material.metalic(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.add.material.glossy", 
+		"contents":"engine3d.add.material.glossy(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.add.light", 
+		"contents":"engine3d.add.light(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.add.mesh", 
+		"contents":"engine3d.add.mesh(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, \"${6:key}\", ${7:onComplete()});"
+	},
+	{
+		"trigger":"engine3d.get.camera", 
+		"contents":"engine3d.get.camera(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine3d.get.box", 
+		"contents":"engine3d.get.box(\"${1:name}\");"
+	},
+	{
+		"trigger":"engine3d.get.sphere", 
+		"contents":"engine3d.get.sphere(\"${1:name}\");"
+	},
+	{
+		"trigger":"engine3d.get.plane", 
+		"contents":"engine3d.get.plane(\"${1:name}\");"
+	},
+	{
+		"trigger":"engine3d.get.material", 
+		"contents":"engine3d.get.material(\"${1:name}\");"
+	},
+	{
+		"trigger":"engine3d.performance.fps", 
+		"contents":"engine3d.performance.fps(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine3d.performance.fpsMin", 
+		"contents":"engine3d.performance.fpsMin(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine3d.performance.fpsMax", 
+		"contents":"engine3d.performance.fpsMax(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine3d.performance.fpsAvg", 
+		"contents":"engine3d.performance.fpsAvg(\"${1:canvas}\");"
+	},
+	{
+		"trigger":"engine3d.update.add", 
+		"contents":"engine3d.update.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+	},
+	{
+		"trigger":"engine3d.update.remove", 
+		"contents":"engine3d.update.remove(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine3d.render.add", 
+		"contents":"engine3d.render.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+	},
+	{
+		"trigger":"engine3d.render.remove", 
+		"contents":"engine3d.render.remove(\"${1:canvas}\", \"${2:name}\");"
+	},
+	{
+		"trigger":"engine3d.newCanvas", 
+		"contents":"engine3d.newCanvas(\"${1:name}\", ${2:config});"
+	},
+	{
+		"trigger":"engine3d.zIndex", 
+		"contents":"engine3d.zIndex(\"${1:canvas}\", ${2:zIndex});"
+	},
+	{
+		"trigger":"engine3d.expose", 
+		"contents":"engine3d.expose();"
+	},
+	{
+		"trigger":"audioManager.Audio", 
+		"contents":"new audioManager.Audio();"
+	},
+	{
+		"trigger":"audioManager.Audio.play", 
+		"contents":"audioManager.Audio.play();"
+	},
+	{
+		"trigger":"audioManager.Audio.pause", 
+		"contents":"audioManager.Audio.pause();"
+	},
+	{
+		"trigger":"audioManager.Audio.stop", 
+		"contents":"audioManager.Audio.stop();"
+	},
+	{
+		"trigger":"audioManager.Audio.fade", 
+		"contents":"audioManager.Audio.fade(${1:from}, ${2:to}, ${3:duration});"
+	},
+	{
+		"trigger":"audioManager.setGlobalVolume", 
+		"contents":"audioManager.setGlobalVolume(${1:volume});"
+	},
+	{
+		"trigger":"audioManager.get", 
+		"contents":"audioManager.get(\"${1:name}\");"
+	},
+	{
+		"trigger":"audioManager.delete", 
+		"contents":"audioManager.delete(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.keyboard.add.keyDown", 
+		"contents":"inputManager.keyboard.add.keyDown(\"${1:name}\", ${2:keys}, ${3:event()});"
+	},
+	{
+		"trigger":"inputManager.keyboard.add.keyUp", 
+		"contents":"inputManager.keyboard.add.keyUp(\"${1:name}\", ${2:keys}, ${3:event()});"
+	},
+	{
+		"trigger":"inputManager.keyboard.delete.keyDown", 
+		"contents":"inputManager.keyboard.delete.keyDown(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.keyboard.delete.keyUp", 
+		"contents":"inputManager.keyboard.delete.keyUp(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.keyboard.down", 
+		"contents":"inputManager.keyboard.down(${1:keys});"
+	},
+	{
+		"trigger":"inputManager.keyboard.getCommand", 
+		"contents":"inputManager.keyboard.getCommand(${1:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.leftDown", 
+		"contents":"inputManager.mouse.add.leftDown(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.middleDown", 
+		"contents":"inputManager.mouse.add.middleDown(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.rightDown", 
+		"contents":"inputManager.mouse.add.rightDown(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.backDown", 
+		"contents":"inputManager.mouse.add.backDown(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.forwardDown", 
+		"contents":"inputManager.mouse.add.forwardDown(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.leftUp", 
+		"contents":"inputManager.mouse.add.leftUp(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.middleUp", 
+		"contents":"inputManager.mouse.add.middleUp(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.rightUp", 
+		"contents":"inputManager.mouse.add.rightUp(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.backUp", 
+		"contents":"inputManager.mouse.add.backUp(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.forwardUp", 
+		"contents":"inputManager.mouse.add.forwardUp(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.scroll", 
+		"contents":"inputManager.mouse.add.scroll(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.add.mouseMove", 
+		"contents":"inputManager.mouse.add.mouseMove(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.leftDown", 
+		"contents":"inputManager.mouse.delete.leftDown(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.middleDown", 
+		"contents":"inputManager.mouse.delete.middleDown(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.rightDown", 
+		"contents":"inputManager.mouse.delete.rightDown(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.backDown", 
+		"contents":"inputManager.mouse.delete.backDown(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.forwardDown", 
+		"contents":"inputManager.mouse.delete.forwardDown(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.leftUp", 
+		"contents":"inputManager.mouse.delete.leftUp(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.middleUp", 
+		"contents":"inputManager.mouse.delete.middleUp(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.rightUp", 
+		"contents":"inputManager.mouse.delete.rightUp(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.backUp", 
+		"contents":"inputManager.mouse.delete.backUp(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.forwardUp", 
+		"contents":"inputManager.mouse.delete.forwardUp(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.scroll", 
+		"contents":"inputManager.mouse.delete.scroll(\"${1:name}\");"
+	},
+	{
+		"trigger":"inputManager.mouse.delete.mouseMove", 
+		"contents":"inputManager.mouse.delete.mouseMove(\"${1:name}\", ${2:event()});"
+	},
+	{
+		"trigger":"inputManager.mouse.clearDeltas", 
+		"contents":"inputManager.mouse.clearDeltas();"
+	},
+	{
+		"trigger":"inputManager.mouse.pointerLock", 
+		"contents":"inputManager.mouse.pointerLock();"
+	},
+	{
+		"trigger":"inputManager.mouse.releasePointerLock", 
+		"contents":"inputManager.mouse.releasePointerLock();"
+	},
+	{
+		"trigger":"inputManager.gamepad.leftX", 
+		"contents":"inputManager.gamepad.leftX(${1:id});"
+	},
+	{
+		"trigger":"inputManager.gamepad.leftY", 
+		"contents":"inputManager.gamepad.leftY(${1:id});"
+	},
+	{
+		"trigger":"inputManager.gamepad.rightX", 
+		"contents":"inputManager.gamepad.rightX(${1:id});"
+	},
+	{
+		"trigger":"inputManager.gamepad.rightY", 
+		"contents":"inputManager.gamepad.rightY(${1:id});"
+	},
+	{
+		"trigger":"inputManager.gamepad.button", 
+		"contents":"inputManager.gamepad.button(${1:id}, \"${2:btn}\");"
+	},
+	{
+		"trigger":"inputManager.gamepad.getConnected", 
+		"contents":"inputManager.gamepad.getConnected();"
+	},
+	{
+		"trigger":"inputManager.enable", 
+		"contents":"inputManager.enable();"
+	},
+	{
+		"trigger":"inputManager.disable", 
+		"contents":"inputManager.disable();"
+	},
+	{
+		"trigger":"collisionManager.shape.Point", 
+		"contents":"new collisionManager.shape.Point(${1:x}, ${2:y});"
+	},
+	{
+		"trigger":"collisionManager.shape.Point.position", 
+		"contents":"collisionManager.shape.Point.position(${1:x}, ${2:y});"
+	},
+	{
+		"trigger":"collisionManager.shape.Box", 
+		"contents":"new collisionManager.shape.Box(${1:x}, ${2:y}, ${3:width}, ${4:height});"
+	},
+	{
+		"trigger":"collisionManager.shape.Box.position", 
+		"contents":"collisionManager.shape.Box.position(${1:x}, ${2:y});"
+	},
+	{
+		"trigger":"collisionManager.shape.Box.scaling", 
+		"contents":"collisionManager.shape.Box.scaling(${1:width}, ${2:height});"
+	},
+	{
+		"trigger":"collisionManager.shape.Circle", 
+		"contents":"new collisionManager.shape.Circle(${1:x}, ${2:y}, ${3:r});"
+	},
+	{
+		"trigger":"collisionManager.shape.Circle.position", 
+		"contents":"collisionManager.shape.Circle.position(${1:x}, ${2:y});"
+	},
+	{
+		"trigger":"collisionManager.shape.Circle.scaling", 
+		"contents":"collisionManager.shape.Circle.scaling(${1:r});"
+	},
+	{
+		"trigger":"collisionManager.shape.Line", 
+		"contents":"new collisionManager.shape.Line(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2});"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.position1", 
+		"contents":"collisionManager.shape.Line.position1(${1:x1}, ${2:y1});"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.position2", 
+		"contents":"collisionManager.shape.Line.position2(${1:x2}, ${2:y2});"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.scaling", 
+		"contents":"collisionManager.shape.Line.scaling(${1:width});"
+	},
+	{
+		"trigger":"collisionManager.shape.Polygon", 
+		"contents":"new collisionManager.shape.Polygon(${1:points});"
+	},
+	{
+		"trigger":"collisionManager.shape.Polygon.set", 
+		"contents":"collisionManager.shape.Polygon.set();"
+	},
+	{
+		"trigger":"collisionManager.collision.auto", 
+		"contents":"collisionManager.collision.auto(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.pointPoint", 
+		"contents":"collisionManager.collision.pointPoint(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.pointBox", 
+		"contents":"collisionManager.collision.pointBox(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.pointCircle", 
+		"contents":"collisionManager.collision.pointCircle(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.pointLine", 
+		"contents":"collisionManager.collision.pointLine(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.pointPolygon", 
+		"contents":"collisionManager.collision.pointPolygon(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.boxPoint", 
+		"contents":"collisionManager.collision.boxPoint(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.boxBox", 
+		"contents":"collisionManager.collision.boxBox(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.boxCircle", 
+		"contents":"collisionManager.collision.boxCircle(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.boxLine", 
+		"contents":"collisionManager.collision.boxLine(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.boxPolygon", 
+		"contents":"collisionManager.collision.boxPolygon(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.circlePoint", 
+		"contents":"collisionManager.collision.circlePoint(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.circleBox", 
+		"contents":"collisionManager.collision.circleBox(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.circleCircle", 
+		"contents":"collisionManager.collision.circleCircle(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.circleLine", 
+		"contents":"collisionManager.collision.circleLine(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.circlePolygon", 
+		"contents":"collisionManager.collision.circlePolygon(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.linePoint", 
+		"contents":"collisionManager.collision.linePoint(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.lineBox", 
+		"contents":"collisionManager.collision.lineBox(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.lineCircle", 
+		"contents":"collisionManager.collision.lineCircle(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.lineLine", 
+		"contents":"collisionManager.collision.lineLine(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.linePolygon", 
+		"contents":"collisionManager.collision.linePolygon(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.polygonPoint", 
+		"contents":"collisionManager.collision.polygonPoint(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.polygonBox", 
+		"contents":"collisionManager.collision.polygonBox(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.polygonCircle", 
+		"contents":"collisionManager.collision.polygonCircle(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.polygonLine", 
+		"contents":"collisionManager.collision.polygonLine(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"collisionManager.collision.polygonPolygon", 
+		"contents":"collisionManager.collision.polygonPolygon(${1:a}, ${2:b});"
+	},
+	{
+		"trigger":"structures.LinkedList", 
+		"contents":"new structures.LinkedList();"
+	},
+	{
+		"trigger":"structures.LinkedList.Node.getData", 
+		"contents":"structures.LinkedList.Node.getData();"
+	},
+	{
+		"trigger":"structures.LinkedList.Node.setData", 
+		"contents":"structures.LinkedList.Node.setData();"
+	},
+	{
+		"trigger":"structures.LinkedList.Node.getNext", 
+		"contents":"structures.LinkedList.Node.getNext();"
+	},
+	{
+		"trigger":"structures.LinkedList.Node.setNext", 
+		"contents":"structures.LinkedList.Node.setNext();"
+	},
+	{
+		"trigger":"structures.LinkedList.push", 
+		"contents":"structures.LinkedList.push(${1:data});"
+	},
+	{
+		"trigger":"structures.LinkedList.delete", 
+		"contents":"structures.LinkedList.delete(${1:i});"
+	},
+	{
+		"trigger":"structures.LinkedList.get", 
+		"contents":"structures.LinkedList.get(${1:i});"
+	},
+	{
+		"trigger":"structures.LinkedList.peek", 
+		"contents":"structures.LinkedList.peek();"
+	},
+	{
+		"trigger":"structures.LinkedList.size", 
+		"contents":"structures.LinkedList.size();"
+	},
+	{
+		"trigger":"structures.LinkedList.print", 
+		"contents":"structures.LinkedList.print();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList", 
+		"contents":"new structures.DoublyLinkedList();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.Node.getData", 
+		"contents":"structures.DoublyLinkedList.Node.getData();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.Node.setData", 
+		"contents":"structures.DoublyLinkedList.Node.setData();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.Node.getNext", 
+		"contents":"structures.DoublyLinkedList.Node.getNext();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.Node.setNext", 
+		"contents":"structures.DoublyLinkedList.Node.setNext();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.Node.getPrevious", 
+		"contents":"structures.DoublyLinkedList.Node.getPrevious();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.Node.setPrevious", 
+		"contents":"structures.DoublyLinkedList.Node.setPrevious();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.push", 
+		"contents":"structures.DoublyLinkedList.push(${1:data});"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.delete", 
+		"contents":"structures.DoublyLinkedList.delete(${1:i});"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.get", 
+		"contents":"structures.DoublyLinkedList.get(${1:i});"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.peek", 
+		"contents":"structures.DoublyLinkedList.peek();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.size", 
+		"contents":"structures.DoublyLinkedList.size();"
+	},
+	{
+		"trigger":"structures.DoublyLinkedList.print", 
+		"contents":"structures.DoublyLinkedList.print();"
+	},
+	{
+		"trigger":"structures.Stack", 
+		"contents":"new structures.Stack();"
+	},
+	{
+		"trigger":"structures.Stack.Node.getData", 
+		"contents":"structures.Stack.Node.getData();"
+	},
+	{
+		"trigger":"structures.Stack.Node.setData", 
+		"contents":"structures.Stack.Node.setData();"
+	},
+	{
+		"trigger":"structures.Stack.Node.getNext", 
+		"contents":"structures.Stack.Node.getNext();"
+	},
+	{
+		"trigger":"structures.Stack.Node.setNext", 
+		"contents":"structures.Stack.Node.setNext();"
+	},
+	{
+		"trigger":"structures.Stack.push", 
+		"contents":"structures.Stack.push(${1:data});"
+	},
+	{
+		"trigger":"structures.Stack.pop", 
+		"contents":"structures.Stack.pop();"
+	},
+	{
+		"trigger":"structures.Stack.peek", 
+		"contents":"structures.Stack.peek();"
+	},
+	{
+		"trigger":"structures.Stack.size", 
+		"contents":"structures.Stack.size();"
+	},
+	{
+		"trigger":"structures.Stack.print", 
+		"contents":"structures.Stack.print();"
+	},
+	{
+		"trigger":"structures.Queue", 
+		"contents":"new structures.Queue();"
+	},
+	{
+		"trigger":"structures.Queue.Node.getData", 
+		"contents":"structures.Queue.Node.getData();"
+	},
+	{
+		"trigger":"structures.Queue.Node.setData", 
+		"contents":"structures.Queue.Node.setData();"
+	},
+	{
+		"trigger":"structures.Queue.Node.getNext", 
+		"contents":"structures.Queue.Node.getNext();"
+	},
+	{
+		"trigger":"structures.Queue.Node.setNext", 
+		"contents":"structures.Queue.Node.setNext();"
+	},
+	{
+		"trigger":"structures.Queue.push", 
+		"contents":"structures.Queue.push(${1:data});"
+	},
+	{
+		"trigger":"structures.Queue.pop", 
+		"contents":"structures.Queue.pop();"
+	},
+	{
+		"trigger":"structures.Queue.peek", 
+		"contents":"structures.Queue.peek();"
+	},
+	{
+		"trigger":"structures.Queue.size", 
+		"contents":"structures.Queue.size();"
+	},
+	{
+		"trigger":"structures.Queue.print", 
+		"contents":"structures.Queue.print();"
+	},
+	{
+		"trigger":"structures.PriorityQueue", 
+		"contents":"new structures.PriorityQueue();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.Node.getData", 
+		"contents":"structures.PriorityQueue.Node.getData();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.Node.setData", 
+		"contents":"structures.PriorityQueue.Node.setData();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.Node.getNext", 
+		"contents":"structures.PriorityQueue.Node.getNext();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.Node.setNext", 
+		"contents":"structures.PriorityQueue.Node.setNext();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.Node.getPrevious", 
+		"contents":"structures.PriorityQueue.Node.getPrevious();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.Node.setPrevious", 
+		"contents":"structures.PriorityQueue.Node.setPrevious();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.Node.getPriority", 
+		"contents":"structures.PriorityQueue.Node.getPriority();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.push", 
+		"contents":"structures.PriorityQueue.push(${1:data});"
+	},
+	{
+		"trigger":"structures.PriorityQueue.peek", 
+		"contents":"structures.PriorityQueue.peek();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.pop", 
+		"contents":"structures.PriorityQueue.pop();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.delete", 
+		"contents":"structures.PriorityQueue.delete(${1:node});"
+	},
+	{
+		"trigger":"structures.PriorityQueue.get", 
+		"contents":"structures.PriorityQueue.get(${1:node});"
+	},
+	{
+		"trigger":"structures.PriorityQueue.setPriority", 
+		"contents":"structures.PriorityQueue.setPriority(${1:node}, ${2:priority});"
+	},
+	{
+		"trigger":"structures.PriorityQueue.size", 
+		"contents":"structures.PriorityQueue.size();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.print", 
+		"contents":"structures.PriorityQueue.print();"
+	},
+	{
+		"trigger":"structures.PriorityQueue.forEach", 
+		"contents":"structures.PriorityQueue.forEach(${1:event()});"
+	},
+	{
+		"trigger":"structures.PriorityQueue.reverseForEach", 
+		"contents":"structures.PriorityQueue.reverseForEach(${1:event()});"
+	},
+	{
+		"trigger":"structures.Heap", 
+		"contents":"new structures.Heap();"
+	},
+	{
+		"trigger":"structures.Heap.size", 
+		"contents":"structures.Heap.size();"
+	},
+	{
+		"trigger":"structures.Heap.push", 
+		"contents":"structures.Heap.push(${1:val});"
+	},
+	{
+		"trigger":"structures.Heap.print", 
+		"contents":"structures.Heap.print();"
+	},
+	{
+		"trigger":"structures.Heap.peek", 
+		"contents":"structures.Heap.peek();"
+	},
+	{
+		"trigger":"structures.Heap.pop", 
+		"contents":"structures.Heap.pop();"
+	},
+	{
+		"trigger":"structures.Heap.remove", 
+		"contents":"structures.Heap.remove(${1:i});"
+	},
+	{
+		"trigger":"structures.ReverseHeap", 
+		"contents":"new structures.ReverseHeap();"
+	},
+	{
+		"trigger":"structures.ReverseHeap.size", 
+		"contents":"structures.ReverseHeap.size();"
+	},
+	{
+		"trigger":"structures.ReverseHeap.push", 
+		"contents":"structures.ReverseHeap.push(${1:val});"
+	},
+	{
+		"trigger":"structures.ReverseHeap.print", 
+		"contents":"structures.ReverseHeap.print();"
+	},
+	{
+		"trigger":"structures.ReverseHeap.peek", 
+		"contents":"structures.ReverseHeap.peek();"
+	},
+	{
+		"trigger":"structures.ReverseHeap.pop", 
+		"contents":"structures.ReverseHeap.pop();"
+	},
+	{
+		"trigger":"structures.ReverseHeap.remove", 
+		"contents":"structures.ReverseHeap.remove(${1:i});"
+	},
+	{
+		"trigger":"files.WriteStream", 
+		"contents":"new files.WriteStream(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.WriteStream.write", 
+		"contents":"files.WriteStream.write();"
+	},
+	{
+		"trigger":"files.WriteStream.close", 
+		"contents":"files.WriteStream.close();"
+	},
+	{
+		"trigger":"files.readFile", 
+		"contents":"files.readFile(\"${1:path}\", ${2:asyncronous});"
+	},
+	{
+		"trigger":"files.writeFile", 
+		"contents":"files.writeFile(\"${1:path}\", \"${2:output}\", ${3:asyncronous});"
+	},
+	{
+		"trigger":"files.deleteFile", 
+		"contents":"files.deleteFile(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.copyFile", 
+		"contents":"files.copyFile(\"${1:path}\", \"${2:destination}\");"
+	},
+	{
+		"trigger":"files.fileExists", 
+		"contents":"files.fileExists(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.createDirectory", 
+		"contents":"files.createDirectory(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.getFileExtention", 
+		"contents":"files.getFileExtention(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.getFileName", 
+		"contents":"files.getFileName(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.getFileNameWithoutExtention", 
+		"contents":"files.getFileNameWithoutExtention(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.getFiles", 
+		"contents":"files.getFiles(\"${1:path}\", ${2:path});"
+	},
+	{
+		"trigger":"files.getFilePath", 
+		"contents":"files.getFilePath(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.getFilePathUpDirectory", 
+		"contents":"files.getFilePathUpDirectory(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.deleteFolder", 
+		"contents":"files.deleteFolder(\"${1:location}\");"
+	},
+	{
+		"trigger":"files.renameFile", 
+		"contents":"files.renameFile(\"${1:path}\");"
+	},
+	{
+		"trigger":"files.renameDirectory", 
+		"contents":"files.renameDirectory(\"${1:path}\");"
+	},
+	{
+		"trigger":"time.Timer", 
+		"contents":"time.Timer(${1:duration}, ${2:func()});"
+	},
+	{
+		"trigger":"time.AdvancedTimer", 
+		"contents":"new time.AdvancedTimer(${1:duration}, ${2:func()});"
+	},
+	{
+		"trigger":"time.AdvancedTimer.start", 
+		"contents":"time.AdvancedTimer.start();"
+	},
+	{
+		"trigger":"time.AdvancedTimer.stop", 
+		"contents":"time.AdvancedTimer.stop();"
+	},
+	{
+		"trigger":"time.AdvancedTimer.restart", 
+		"contents":"time.AdvancedTimer.restart();"
+	},
+	{
+		"trigger":"time.AdvancedTimer.pause", 
+		"contents":"time.AdvancedTimer.pause();"
+	},
+	{
+		"trigger":"time.AdvancedTimer.getTimeLeft", 
+		"contents":"time.AdvancedTimer.getTimeLeft();"
+	},
+	{
+		"trigger":"time.Interval", 
+		"contents":"time.Interval(${1:duration}, ${2:func()});"
+	},
+	{
+		"trigger":"time.AdvancedInterval", 
+		"contents":"new time.AdvancedInterval(${1:duration}, ${2:func()});"
+	},
+	{
+		"trigger":"time.AdvancedInterval.start", 
+		"contents":"time.AdvancedInterval.start();"
+	},
+	{
+		"trigger":"time.AdvancedInterval.stop", 
+		"contents":"time.AdvancedInterval.stop();"
+	},
+	{
+		"trigger":"multiThreading.Thread", 
+		"contents":"new multiThreading.Thread(\"${1:path}\", ${2:onMessage()}, ${3:onExit()});"
+	},
+	{
+		"trigger":"multiThreading.Thread.send", 
+		"contents":"multiThreading.Thread.send(${1:data});"
+	},
+	{
+		"trigger":"multiThreading.cluster", 
+		"contents":"multiThreading.cluster(\"${1:path}\", ${2:input}, ${3:onComplete()}, ${4:threads});"
+	},
+	{
+		"trigger":"multiThreading.cluster-worker", 
+		"contents":"new multiThreading.cluster-worker();"
+	},
+	{
+		"trigger":"multiThreading.cluster-worker.output", 
+		"contents":"multiThreading.cluster-worker.output();"
+	},
+	{
+		"trigger":"string.stringifyMap", 
+		"contents":"string.stringifyMap(${1:map});"
+	},
+	{
+		"trigger":"string.parseMap", 
+		"contents":"string.parseMap(${1:map});"
+	},
+	{
+		"trigger":"string.stringifySet", 
+		"contents":"string.stringifySet(${1:set});"
+	},
+	{
+		"trigger":"string.parseSet", 
+		"contents":"string.parseSet(${1:set});"
+	},
+	{
+		"trigger":"cmd.log", 
+		"contents":"cmd.log(\"${1:string}\", \"${2:color}\", \"${3:backgroundColor}\");"
+	},
+]}

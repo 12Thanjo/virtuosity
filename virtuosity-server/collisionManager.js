@@ -95,7 +95,7 @@ var Box = function(x, y, width, height){
 	* @description height of the Box
 	* @parent shape.Box
 	*/
-	this.hieght = height;
+	this.height = height;
 
 	/*
 	* @name position
@@ -118,9 +118,9 @@ var Box = function(x, y, width, height){
 	* @param {width}{Number}{width of the box}
 	* @param {height}{Number}{height of the box}
 	*/
-	this.scaling = function(width, hieght){
+	this.scaling = function(width, height){
 		this.width = width;
-		this.hieght = height;
+		this.height = height;
 	}
 }
 
@@ -351,18 +351,18 @@ var point_point = function(a, b){
 
 //box
 var box_point = function(a, b){
-    return b.x >= a.x && b.x <= a.x + a.width && b.y >= a.y && b.y <= a.y + a.hieght;
+    return b.x >= a.x && b.x <= a.x + a.width && b.y >= a.y && b.y <= a.y + a.height;
 }
 
 var box_box = function(a, b){
-    return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.hieght && a.y + a.hieght > b.y;
+    return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
 }
 
 var box_circle = function(a, b){
     var hw = a.width / 2;
-    var hh = a.hieght / 2;
+    var hh = a.height / 2;
     var distX = Math.abs(b.x - (a.x + a.width / 2));
-    var distY = Math.abs(b.y - (a.y + a.hieght / 2));
+    var distY = Math.abs(b.y - (a.y + a.height / 2));
 
     if (distX > hw + b.r || distY > hh + b.r){
         return false;

@@ -272,10 +272,26 @@ var env = new ocs.Environment('engine2d');
 * @description reference to the render object
 * @env engine2d
 * @param {pixi}{Pixi.js object}{reference to the pixi render object (internal)}
+* @param {type}{String}{the type of the Entity}
 */
-new ocs.Component('engine2d', 'pixi', (pixi)=>{
+new ocs.Component('engine2d', 'pixi', (pixi, type)=>{
     return{
-        pixi: pixi
+        pixi: pixi,
+        type: type
+    }
+});
+
+
+/*
+* @name id
+* @type component
+* @description reference to id of the render object. This is the original name of the entity (.name is formatted for internal use)
+* @env engine2d
+* @param {id}{String}{reference to id of the render object}
+*/
+new ocs.Component('engine2d', 'id', (id)=>{
+    return {
+        id: id
     }
 });
 
@@ -404,6 +420,25 @@ new ocs.Component('engine2d', "scale", (width, height)=>{
 });
 
 /*
+* @name size
+* @type component
+* @description get the size of the render object
+* @env engine2d
+* @param {width}{Number}{width of the render object}
+* @param {height}{Number}{height of the render object}
+*/
+new ocs.Component('engine2d', "size", (width, height)=>{
+    return new ocs.Getter([
+        "width",
+        "height"
+    ], (entity, key)=>{
+        return entity.pixi[key];
+    });
+});
+
+
+
+/*
 * @name zIndex
 * @type component
 * @description zIndex of the render object
@@ -441,6 +476,7 @@ new ocs.Component('engine2d', 'tint', (tint)=>{
 * @description An image using a loaded texture created by <a href="./virtuosity.engine2d.add.html#image">add.image</a>
 * @env engine2d
 * @component pixi
+* @component id
 * @component position
 * @component rotation
 * @component anchor
@@ -457,7 +493,8 @@ var add_image = function(canvas, name, x, y, key, onComplete){
         var new_img = new PIXI.Sprite(textures.get(key));
 
         var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎image`)
-        new_entity.addComponent('pixi', new_img)
+        new_entity.addComponent('pixi', new_img, "image")
+                  .addComponent('id', name)
                   .addComponent('position', x, y)
                   .addComponent('rotation')
                   .addComponent('alpha')
@@ -595,6 +632,7 @@ new ocs.Component('engine2d', 'sprite', (self, pixi)=>{
 * @description An sprite using a loaded srpite texture created by <a href="./virtuosity.engine2d.add.html#sprite">add.sprite</a>
 * @env engine2d
 * @component pixi
+* @component id
 * @component position
 * @component rotation
 * @component anchor
@@ -612,7 +650,8 @@ var add_sprite = function(canvas, name, x, y, key, onComplete){
         new_img.updateAnchor = true;
 
         var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎image`)
-        new_entity.addComponent('pixi', new_img)
+        new_entity.addComponent('pixi', new_img, "sprite")
+                  .addComponent('id', name)
                   .addComponent('position', x, y)
                   .addComponent('rotation')
                   .addComponent('alpha')
@@ -723,8 +762,9 @@ new ocs.Component('engine2d', "style", (fontSize, color)=>{
 * @description A text entity created by <a href="./virtuosity.engine2d.add.html#text">add.text</a>
 * @env engine2d
 * @component pixi
+* @component id
 * @component position
-* @component scale
+* @component size
 * @component rotation
 * @component anchor
 * @component alpha
@@ -745,29 +785,17 @@ var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
     new_txt.y = y;
 
     var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎text`)
-    new_entity.addComponent('pixi', new_txt)
+    new_entity.addComponent('pixi', new_txt, "text")
+              .addComponent('id', name)
               .addComponent('position', x, y)
               .addComponent('rotation')
               .addComponent('alpha')
               .addComponent('anchor')
               .addComponent('pivot')
-              .addComponent('skew')
+              .addComponent('size')
               .addComponent('zIndex')
               .addComponent('style', fontSize)
               .addComponent('text', text);
-
-
-    Object.defineProperty(new_entity, "width", {
-        get: ()=>{
-            return new_entity.pixi.width;
-        }
-    });
-
-    Object.defineProperty(new_entity, "height", {
-        get: ()=>{
-            return new_entity.pixi.height;
-        }
-    });
 
 
     ctx.stage.addChild(new_txt);
@@ -791,7 +819,14 @@ var delete_text = function(canvas, name){
     var ctx = canvases.get(canvas);
     if(ctx.texts.has(name)){
         ocs.getEntity('engine2d', `${name}╎${canvas}╎text`).destroy();
-        ctx.texts.get(name).pixi.destroy();
+
+        var text = ctx.texts.get(name);
+        if(text.type == "text"){
+            text.pixi.destroy();
+        }else{
+            // for htmltext
+            text.html.remove();
+        }
         ctx.texts.delete(name);
     }else{
         debug.error('ReferenceError', `text (${name}) does not exist`);
@@ -813,10 +848,25 @@ var html_env = new ocs.Environment('engine2d-html');
 * @description reference to the DOM html entity
 * @env engine2d-html
 * @param {html}{DOM}{reference to the DOM html entity}
+* @param {type}{String}{the type of the Entity}
 */
-new ocs.Component('engine2d-html', 'html', (html)=>{
+new ocs.Component('engine2d-html', 'html', (html, type)=>{
     return {
-        html: html
+        html: html,
+        type: type
+    }
+});
+
+/*
+* @name id
+* @type component
+* @description reference to id of the html element. This is the original name of the entity (.name is formatted for internal use)
+* @env engine2d-html
+* @param {id}{String}{reference to id of the html element}
+*/
+new ocs.Component('engine2d-html', 'id', (id)=>{
+    return {
+        id: id
     }
 });
 
@@ -940,6 +990,7 @@ new ocs.Component('engine2d-html', 'events', ()=>{
 * @description A htmltext entity created by <a href="./virtuosity.engine2d.add.html#htmltext">add.htmltext</a>
 * @env engine2d-html
 * @component html
+* @component id
 * @component position
 * @component fontSize
 * @component width
@@ -988,10 +1039,11 @@ var add_html_text = function(canvas, name, x, y, text, fontSize, onComplete){
     new_ctx.texts.set(name, new_pre);
 
     var new_text = new ocs.Entity('engine2d-html', `${name}╎${canvas}htmltext`)
-    new_text.addComponent('html', new_pre)
-               .addComponent('style', new_pre.style)
-               .addComponent('position', x + new_ctx_x, y + new_ctx_y)
-               .addComponent('fontSize', 19);
+    new_text.addComponent('html', new_pre, "htmltext")
+            .addComponent('id', name)
+            .addComponent('style', new_pre.style)
+            .addComponent('position', x + new_ctx_x, y + new_ctx_y)
+            .addComponent('fontSize', 19);
 
 
     Object.defineProperty(new_text, "value", {
@@ -1035,6 +1087,7 @@ var add_html_text = function(canvas, name, x, y, text, fontSize, onComplete){
 * @description A textbox entity created by <a href="./virtuosity.engine2d.add.html#textbox">add.textbox</a>
 * @env engine2d-html
 * @component html
+* @component id
 * @component position
 * @component fontSize
 * @component width
@@ -1085,7 +1138,8 @@ var add_textbox = function(canvas, name, x, y, onComplete){
 
 
     var new_textbox = new ocs.Entity('engine2d-html', `${name}╎${canvas}╎textbox`)
-    new_textbox.addComponent('html', input)
+    new_textbox.addComponent('html', input, "textbox")
+               .addComponent('id', name)
                .addComponent('style', input.style)
                .addComponent('position', x + new_ctx_x, y + new_ctx_y)
                .addComponent('fontSize', 19)
@@ -1143,8 +1197,8 @@ var get_textbox = function(canvas, name){
 var delete_textbox = function(canvas, name){
     var ctx = canvases.get(canvas);
     if(ctx.textboxes.has(name)){
-        ocs.getEntity('engine2d textbox', `${name}╎${canvas}╎textbox`).destroy();
-        ctx.textboxes.get(name).pixi.destroy();
+        ocs.getEntity('engine2d-html', `${name}╎${canvas}╎textbox`).destroy();
+        ctx.textboxes.get(name).html.remove();
         ctx.textboxes.delete(name);
     }else{
         debug.warn('ReferenceError', `textbox (${name}) in canvas (${canvas}) does not exist`);
@@ -1603,7 +1657,7 @@ module.exports = {
         * @description get / set the x position of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
-        * @param {x}{Int}{x position of the canvas}
+        * @param {x}{Int}{<b>(Optional)</b> x position of the canvas}
         */
         xPos: function(canvas, x){
             var ctx = canvases.get(canvas);
@@ -1622,7 +1676,7 @@ module.exports = {
         * @description get / set the y position of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
-        * @param {y}{Int}{y position of the canvas}
+        * @param {y}{Int}{<b>(Optional)</b> y position of the canvas}
         */
         yPos: function(canvas, y){
             var ctx = canvases.get(canvas);
@@ -1641,7 +1695,7 @@ module.exports = {
         * @description get / set the width of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
-        * @param {width}{Int}{width of the canvas}
+        * @param {width}{Int}{<b>(Optional)</b> width of the canvas}
         */
         width: function(canvas, width){
             var ctx = canvases.get(canvas);
@@ -1662,7 +1716,7 @@ module.exports = {
         * @description get / set the height of a canvas
         * @parent canvas
         * @param {canvas}{String}{name of the canvas}
-        * @param {height}{Int}{height of the canvas}
+        * @param {height}{Int}{<b>(Optional)</b> height of the canvas}
         */
         height: function(canvas, height){
             var ctx = canvases.get(canvas);
@@ -1694,10 +1748,24 @@ module.exports = {
             return ctx.zIndex;
         },
 
+        /*
+        * @name get
+        * @type method
+        * @description get a specific canvas
+        * @parent canvas
+        * @param {canvas}{String}{name of the canvas}
+        */
         get: function(canvas){
             return canvases.get(canvas);
         },
 
+        /*
+        * @name destroy
+        * @type method
+        * @description destroy a specific canvas
+        * @parent canvas
+        * @param {canvas}{String}{name of the canvas}
+        */
         destroy: function(canvas){
             var ctx = canvases.get(canvas);
             clearInterval(ctx.update);
