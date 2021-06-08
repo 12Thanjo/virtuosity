@@ -31,6 +31,19 @@ module.exports = function(PIXI, canvases){
 	});
 
 	/*
+	* @name id
+	* @type component
+	* @description reference to id of the graphics object.
+	* @env engine2d-graphics
+	* @param {id}{String}{reference to id of the graphics object}
+	*/
+	new ocs.Component(env, 'id', (id)=>{
+	    return {
+	        id: id
+	    }
+	});
+
+	/*
 	* @name color
 	* @type component
 	* @description color of the graphics object
@@ -88,16 +101,16 @@ module.exports = function(PIXI, canvases){
 
 
 	containers = new Map();
-	var Container = function(name, canvas){
-		containers.set(name, this);
-		this.name = name;
+	var Container = function(id, canvas){
+		containers.set(id, this);
+		this.id = id;
 		this.canvas = canvas;
 		this.shapes = new Map();
 		this.graphics = new PIXI.Graphics();
 		this.queue = new structures.PriorityQueue();
 		this.clear = true;
 		canvas.stage.addChild(this.graphics);
-		canvas.containers.add(name);
+		canvas.containers.add(id);
 
 		this.draw = function(){
 			if(this.clear) this.graphics.clear();
@@ -142,7 +155,7 @@ module.exports = function(PIXI, canvases){
 			this.draw();
 		}
 
-		new ocs.Tag(name);
+		new ocs.Tag(id);
 	}
 
 	/*
@@ -173,9 +186,10 @@ module.exports = function(PIXI, canvases){
 	* @component alpha
 	*/
 	new ocs.Tag('circle');
-	var new_circle = function(name, container, x, y, radius, color){
-		var new_circle = new ocs.Entity(env, `${name}╎${container}`)
+	var new_circle = function(id, container, x, y, radius, color){
+		var new_circle = new ocs.Entity(env, `${id}╎${container}`)
 		new_circle.addComponent('container', container)
+			      .addComponent('id', id)
 			      .addComponent('position', x, y)
 				  .addComponent('radius', radius)
 				  .addComponent('color', color)
@@ -216,9 +230,10 @@ module.exports = function(PIXI, canvases){
 	* @component alpha
 	*/
 	new ocs.Tag('rectangle');
-	var new_rectangle = function(name, container, x, y, width, height, color){
-		var new_rectangle = new ocs.Entity(env, `${name}╎${container}`)
+	var new_rectangle = function(id, container, x, y, width, height, color){
+		var new_rectangle = new ocs.Entity(env, `${id}╎${container}`)
 		new_rectangle.addComponent('container', container)
+			    	 .addComponent('id', id)
 			    	 .addComponent('position', x, y)
 					 .addComponent('scale', width, height)
 					 .addComponent('color', color)
@@ -258,9 +273,10 @@ module.exports = function(PIXI, canvases){
 	* @component alpha
 	*/
 	new ocs.Tag('box');
-	var new_box = function(name, container, x, y, width, height, color, borderRadius){
-		var new_box = new ocs.Entity(env, `${name}╎${container}`)
+	var new_box = function(id, container, x, y, width, height, color, borderRadius){
+		var new_box = new ocs.Entity(env, `${id}╎${container}`)
 		new_box.addComponent('container', container)
+			   .addComponent('id', id)
 			   .addComponent('position', x, y)
 			   .addComponent('scale', width, height)
 			   .addComponent('color', color)
@@ -317,8 +333,8 @@ module.exports = function(PIXI, canvases){
 	* @component alpha
 	*/
 	new ocs.Tag('line');
-	var new_line = function(name, container, x1, y1, x2, y2, color){
-		var new_line = new ocs.Entity(env, `${name}╎${container}`)
+	var new_line = function(id, container, x1, y1, x2, y2, color){
+		var new_line = new ocs.Entity(env, `${id}╎${container}`)
 		new_line.addComponent('container', container)
 			    .addComponent('position', x1, y1)
 				.addComponent('position2', x2, y2)
@@ -332,9 +348,10 @@ module.exports = function(PIXI, canvases){
 	}
 
 	new ocs.Tag('ellipse');
-	var new_ellipse = function(name, container, x, y, width, height, color){
-		var new_ellipse = new ocs.Entity(env, `${name}╎${container}`)
+	var new_ellipse = function(id, container, x, y, width, height, color){
+		var new_ellipse = new ocs.Entity(env, `${id}╎${container}`)
 		new_ellipse.addComponent('container', container)
+			       .addComponent('id', id)
 			       .addComponent('position', x, y)
 				   .addComponent('scale', width, height)
 				   .addComponent('color', color)
@@ -346,9 +363,10 @@ module.exports = function(PIXI, canvases){
 	}
 
 	new ocs.Tag('torus');
-	var new_torus = function(name, container, x, y, innerRadius, outerRadius, color){
-		var new_torus = new ocs.Entity(env, `${name}╎${container}`)
+	var new_torus = function(id, container, x, y, innerRadius, outerRadius, color){
+		var new_torus = new ocs.Entity(env, `${id}╎${container}`)
 		new_torus.addComponent('container', container)
+			     .addComponent('id', id)
 			     .addComponent('position', x, y)
 				 .addComponent('radius', outerRadius, innerRadius)
 				 .addComponent('color', color)
@@ -385,8 +403,8 @@ module.exports = function(PIXI, canvases){
 	* @component points
 	*/
 	new ocs.Tag('polygon');
-	var new_polygon = function(name, container, color, points){
-		var new_polygon = new ocs.Entity(env, `${name}╎${container}`)
+	var new_polygon = function(id, container, color, points){
+		var new_polygon = new ocs.Entity(env, `${id}╎${container}`)
 		new_polygon.addComponent('container', container)
 			       .addComponent('color', color)
 				   .addComponent('alpha')
@@ -419,11 +437,11 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description Adds a container. A container holds graphics entities. This increases performance because when a property of an asset inside the container is changed, only that container needs to be redrawn. It is also faster to redraw the entities in batches as opposed to having each graphics entity seperate.
 			* @parent add
-			* @param {name}{String}{unique name of the container}
-			* @param {canvas}{String}{name of the canvas the container should be a part of}
+			* @param {id}{String}{unique id of the container}
+			* @param {canvas}{String}{id of the canvas the container should be a part of}
 			*/
-			container: (name, canvas)=>{
-				return new Container(name, canvas);
+			container: (id, canvas)=>{
+				return new Container(id, canvas);
 			},
 
 			/*
@@ -431,15 +449,15 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description adds a circle
 			* @parent add
-			* @param {name}{String}{name of the circle}
-			* @param {container}{String}{name of the container}
+			* @param {id}{String}{id of the circle}
+			* @param {container}{String}{id of the container}
 			* @param {x}{Number}{x position of the circle}
 			* @param {y}{Number}{y position of the circle}
 			* @param {r}{Number}{radius of the circle}
 			* @param {color}{Hex}{color of the circle}
 			*/
-			circle: (name, container, x, y, radius, color)=>{
-				return new_circle(name, container, x, y, radius, color);
+			circle: (id, container, x, y, radius, color)=>{
+				return new_circle(id, container, x, y, radius, color);
 			},
 
 			/*
@@ -447,16 +465,16 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description adds a rectangle
 			* @parent add
-			* @param {name}{String}{name of the rectangle}
-			* @param {container}{String}{name of the container}
+			* @param {id}{String}{id of the rectangle}
+			* @param {container}{String}{id of the container}
 			* @param {x}{Number}{x position of the rectangle}
 			* @param {y}{Number}{y position of the rectangle}
 			* @param {width}{Number}{width of the rectangle}
 			* @param {height}{Number}{height of the rectangle}
 			* @param {color}{Hex}{color of the rectangle}
 			*/
-			rectangle: (name, container, x, y, width, height, color)=>{
-				return new_rectangle(name, container, x, y, width, height, color);
+			rectangle: (id, container, x, y, width, height, color)=>{
+				return new_rectangle(id, container, x, y, width, height, color);
 			},
 
 			/*
@@ -464,8 +482,8 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description adds a box
 			* @parent add
-			* @param {name}{String}{name of the box}
-			* @param {container}{String}{name of the container}
+			* @param {id}{String}{id of the box}
+			* @param {container}{String}{id of the container}
 			* @param {x}{Number}{x position of the box}
 			* @param {y}{Number}{y position of the box}
 			* @param {width}{Number}{width of the box}
@@ -473,8 +491,8 @@ module.exports = function(PIXI, canvases){
 			* @param {color}{Hex}{color of the box}
 			* @param {borderRadius}{Int}{radius of the corners of the box}
 			*/
-			box: (name, container, x, y, width, height, color, borderRadius)=>{
-				return new_box(name, container, x, y, width, height, color, borderRadius);
+			box: (id, container, x, y, width, height, color, borderRadius)=>{
+				return new_box(id, container, x, y, width, height, color, borderRadius);
 			},
 
 			/*
@@ -482,16 +500,16 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description adds a line
 			* @parent add
-			* @param {name}{String}{name of the line}
-			* @param {container}{String}{name of the container}
+			* @param {id}{String}{id of the line}
+			* @param {container}{String}{id of the container}
 			* @param {x1}{Number}{x1 position of the line}
 			* @param {y1}{Number}{y1 position of the line}
 			* @param {x2}{Number}{x2 position of the line}
 			* @param {y2}{Number}{y2 position of the line}
 			* @param {color}{Hex}{color of the line}
 			*/
-			line: (name, container, x1, y1, x2, y2, color)=>{
-				return new_line(name, container, x1, y1, x2, y2, color);
+			line: (id, container, x1, y1, x2, y2, color)=>{
+				return new_line(id, container, x1, y1, x2, y2, color);
 			},
 
 			/*
@@ -499,16 +517,16 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description adds a ellipse
 			* @parent add
-			* @param {name}{String}{name of the ellipse}
-			* @param {container}{String}{name of the container}
+			* @param {id}{String}{id of the ellipse}
+			* @param {container}{String}{id of the container}
 			* @param {x}{Number}{x position of the ellipse}
 			* @param {y}{Number}{y position of the ellipse}
 			* @param {width}{Number}{width of the ellipse}
 			* @param {height}{Number}{height of the ellipse}
 			* @param {color}{Hex}{color of the ellipse}
 			*/
-			ellipse: (name, container, x, y, width, height, color)=>{
-				return new_ellipse(name, container, x, y, width, height, color);
+			ellipse: (id, container, x, y, width, height, color)=>{
+				return new_ellipse(id, container, x, y, width, height, color);
 			},
 
 			/*
@@ -516,16 +534,16 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description adds a torus
 			* @parent add
-			* @param {name}{String}{name of the torus}
-			* @param {container}{String}{name of the container}
+			* @param {id}{String}{id of the torus}
+			* @param {container}{String}{id of the container}
 			* @param {x}{Number}{x position of the torus}
 			* @param {y}{Number}{y position of the torus}
 			* @param {width}{Number}{width of the torus}
 			* @param {height}{Number}{height of the torus}
 			* @param {color}{Hex}{color of the torus}
 			*/
-			torus: (name, container, x, y, width, height, color)=>{
-				return new_torus(name, container, x, y, width, height, color);	
+			torus: (id, container, x, y, width, height, color)=>{
+				return new_torus(id, container, x, y, width, height, color);	
 			},
 
 			/*
@@ -533,13 +551,13 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description adds a polygon
 			* @parent add
-			* @param {name}{String}{name of the polygon}
-			* @param {container}{String}{name of the container}
+			* @param {id}{String}{id of the polygon}
+			* @param {container}{String}{id of the container}
 			* @param {points}{[Point]}{points of the polygon}
 			* @param {color}{Hex}{color of the polygon}
 			*/
-			polygon: (name, container, color, points)=>{
-				return new_polygon(name, container, color, points);	
+			polygon: (id, container, color, points)=>{
+				return new_polygon(id, container, color, points);	
 			}
 		},
 
@@ -547,12 +565,12 @@ module.exports = function(PIXI, canvases){
 		* @name get
 		* @type method
 		* @description get a specific graphics entity
-		* @param {name}{String}{name of the graphics entity}
-		* @param {container}{String}{name of the container the graphics entity is in}
+		* @param {id}{String}{id of the graphics entity}
+		* @param {container}{String}{id of the container the graphics entity is in}
 		*/
-		get: (name, container)=>{
+		get: (id, container)=>{
 			return container_check(container, (cntnr)=>{
-				return cntnr.shapes.get(`${name}╎${container}`);
+				return cntnr.shapes.get(`${id}╎${container}`);
 			});
 		},
 
@@ -570,7 +588,7 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description delete a graphics container
 			* @parent delete
-			* @param {container}{String}{name of the container to delete}
+			* @param {container}{String}{id of the container to delete}
 			*/
 			container: (container)=>{
 				return container_check(container, (cntnr)=>{
@@ -587,14 +605,14 @@ module.exports = function(PIXI, canvases){
 			* @type method
 			* @description delete a graphics shape
 			* @parent delete
-			* @param {name}{String}{name of the graphics shape to delete}
-			* @param {container}{String}{name of the container to delete}
+			* @param {id}{String}{id of the graphics shape to delete}
+			* @param {container}{String}{id of the container to delete}
 			*/
-			shape: (name, container)=>{
+			shape: (id, container)=>{
 				return container_check(container, (cntnr)=>{
-					var shape = cntnr.shapes.get(`${name}╎${container}`);
+					var shape = cntnr.shapes.get(`${id}╎${container}`);
 					cntnr.queue.delete(shape);
-					cntnr.shapes.delete(`${name}╎${container}`);
+					cntnr.shapes.delete(`${id}╎${container}`);
 					cntnr.draw();
 				});	
 			}
@@ -604,7 +622,7 @@ module.exports = function(PIXI, canvases){
 		* @name containerClear
 		* @type method
 		* @description tells the container whether to clear canvas on redraw 
-		* @param {container}{String}{name of the container}
+		* @param {container}{String}{id of the container}
 		* @param {clear}{Boolean}{whether to clear the container canvas on redraw}
 		*/
 		containerClear: (container, clear)=>{

@@ -6,7 +6,7 @@ var {time} = require('../virtuosity-server/index.js');
         
 var load_canvas = null;
 var canvases = new Map();
-var new_canvas = function(name, config){
+var new_canvas = function(id, config){
     if(config.resolution == null){
         config.resolution = 1;
     }else{
@@ -61,14 +61,14 @@ var new_canvas = function(name, config){
         new_ctx.view.style.left = "0px";
     }
 
-    canvases.set(name, new_ctx);
+    canvases.set(id, new_ctx);
     load_canvas = new_ctx;
 
     new_ctx.started = false;
 
     if(config.preload != null){
         config.preload();
-        start_load(name);
+        start_load(id);
     }
 
     ///////////////////////////////////////////
@@ -285,7 +285,7 @@ new ocs.Component('engine2d', 'pixi', (pixi, type)=>{
 /*
 * @name id
 * @type component
-* @description reference to id of the render object. This is the original name of the entity (.name is formatted for internal use)
+* @description reference to id of the render object.
 * @env engine2d
 * @param {id}{String}{reference to id of the render object}
 */
@@ -432,7 +432,13 @@ new ocs.Component('engine2d', "size", (width, height)=>{
         "width",
         "height"
     ], (entity, key)=>{
-        return entity.pixi[key];
+        if(key == "width"){
+            return entity.pixi.width;
+        }else{
+            // height
+            var lines = new PIXI.TextMetrics.measureText(entity.text, entity.pixi.style).lines;
+            return entity.fontSize * lines.length;
+        }
     });
 });
 
@@ -486,15 +492,15 @@ new ocs.Component('engine2d', 'tint', (tint)=>{
 * @component zIndex
 * @component tint
 */
-var add_image = function(canvas, name, x, y, key, onComplete){
+var add_image = function(canvas, id, x, y, key, onComplete){
     if(textures.has(key)){
         var ctx = canvases.get(canvas);
         // var new_img = new PIXI.Sprite(ctx.loader.resources[key].texture);
         var new_img = new PIXI.Sprite(textures.get(key));
 
-        var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎image`)
+        var new_entity = new ocs.Entity('engine2d', `${id}╎${canvas}╎image`)
         new_entity.addComponent('pixi', new_img, "image")
-                  .addComponent('id', name)
+                  .addComponent('id', id)
                   .addComponent('position', x, y)
                   .addComponent('rotation')
                   .addComponent('alpha')
@@ -512,10 +518,10 @@ var add_image = function(canvas, name, x, y, key, onComplete){
         if(onComplete!=null){
             onComplete(new_entity);
         }
-        ctx.images.set(name, new_entity)
+        ctx.images.set(id, new_entity)
     }else if(loading_textures.has(key)){
         console.log(`waiting for texture (${key}) to load`);
-        loading_textures.get(key).push(()=>{add_image(canvas, name, x, y, key, onComplete);});
+        loading_textures.get(key).push(()=>{add_image(canvas, id, x, y, key, onComplete);});
     }else{
         debug.error("ReferenceError", `texture (${key}) is not loaded or in load queue`);
     }
@@ -527,8 +533,8 @@ class Animation{
     #timer;
     #frameTime;
 
-    constructor(entity, name, frames, frameTime){
-        this.name = name;
+    constructor(entity, id, frames, frameTime){
+        this.id = id;
         this.frames = frames;
 
         this.#frameTime = frameTime;
@@ -597,22 +603,22 @@ new ocs.Component('engine2d', 'sprite', (self, pixi)=>{
         totalFrames: pixi.totalFrames,
         _animations: new Map(),
         _currentAnimation: null,
-        addAnimation: (name, frames, frameTime)=>{
-            self._animations.set(name, new Animation(self, name, frames, frameTime));
+        addAnimation: (id, frames, frameTime)=>{
+            self._animations.set(id, new Animation(self, id, frames, frameTime));
         },
-        deleteAnimation: (name)=>{
-            self._animations.delete(name);
+        deleteAnimation: (id)=>{
+            self._animations.delete(id);
         },
-        runAnimation: (name)=>{
+        runAnimation: (id)=>{
             if(self._currentAnimation != null){
                 self._currentAnimation.stop();
             }
-            if(self._animations.has(name)){
-                self._currentAnimation = self._animations.get(name);
+            if(self._animations.has(id)){
+                self._currentAnimation = self._animations.get(id);
                 self._currentAnimation.start();
             }else{
-                var sprite_name = self.name.split("╎");
-                debug.error('ReferenceError', `sprite (${sprite_name}) does not have animation (${name})`);
+                var sprite_id = self.id.split("╎");
+                debug.error('ReferenceError', `sprite (${sprite_id}) does not have animation (${id})`);
             }
         }
     }, (entity, key, val)=>{
@@ -642,16 +648,16 @@ new ocs.Component('engine2d', 'sprite', (self, pixi)=>{
 * @component zIndex
 * @component sprite
 */
-var add_sprite = function(canvas, name, x, y, key, onComplete){
+var add_sprite = function(canvas, id, x, y, key, onComplete){
     if(spritesheet_textures.has(key)){
         var ctx = canvases.get(canvas);
         // var new_img = new PIXI.Sprite(ctx.loader.resources[key].texture);
         var new_img = new PIXI.AnimatedSprite(spritesheet_textures.get(key));
         new_img.updateAnchor = true;
 
-        var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎image`)
+        var new_entity = new ocs.Entity('engine2d', `${id}╎${canvas}╎image`)
         new_entity.addComponent('pixi', new_img, "sprite")
-                  .addComponent('id', name)
+                  .addComponent('id', id)
                   .addComponent('position', x, y)
                   .addComponent('rotation')
                   .addComponent('alpha')
@@ -671,35 +677,35 @@ var add_sprite = function(canvas, name, x, y, key, onComplete){
         if(onComplete!=null){
             onComplete(new_entity);
         }
-        ctx.images.set(name, new_entity)
+        ctx.images.set(id, new_entity)
     }else if(loading_textures.has(key)){
         console.log(`waiting for texture (${key}) to load`);
-        loading_textures.get(key).push(()=>{add_sprite(canvas, name, x, y, key, onComplete);});
+        loading_textures.get(key).push(()=>{add_sprite(canvas, id, x, y, key, onComplete);});
     }else{
         debug.error("ReferenceError", `texture (${key}) is not loaded or in load queue`);
     }
 }
 
 
-var get_image = function(canvas, name){
+var get_image = function(canvas, id){
     var ctx = canvases.get(canvas);
-    if(ctx.images.has(name)){
-        return ctx.images.get(name);
+    if(ctx.images.has(id)){
+        return ctx.images.get(id);
     }else{
-        debug.error('ReferenceError', `image (${name}) in canvas (${canvas}) does not exist`);
+        debug.error('ReferenceError', `image (${id}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
 
 
-var delete_image = function(canvas, name){
+var delete_image = function(canvas, id){
     var ctx = canvases.get(canvas);
-    if(ctx.images.has(name)){
-        ocs.getEntity('engine2d', `${name}╎${canvas}╎image`).destroy();
-        ctx.images.get(name).pixi.destroy();
-        ctx.images.delete(name);
+    if(ctx.images.has(id)){
+        ocs.getEntity('engine2d', `${id}╎${canvas}╎image`).destroy();
+        ctx.images.get(id).pixi.destroy();
+        ctx.images.delete(id);
     }else{
-        debug.error('ReferenceError', `image (${name}) does not exist`);
+        debug.error('ReferenceError', `image (${id}) does not exist`);
     }
 }
 
@@ -731,7 +737,7 @@ new ocs.Component('engine2d', "text", (text)=>{
 * @param {fontFamily}{String}{font type of the text}{"Trebuchet"}
 * @param {fill}{Hex}{color of the text}{0xffffff}
 * @param {align}{String}{alignment of the text}{"left"}
-* @param {stroke}{Hex}{color of the text outline}{"black"}
+* @param {stroke}{Hex}{color of the text outline}{"0x000000"}
 * @param {strokeThickness}{Int}{thickness of the text outline}{0}
 * @param {letterSpacing}{Int}{spacing between the letters}{0}
 * @param {lineHeight}{Int}{line height of the text}{fontSize + 2}
@@ -744,7 +750,7 @@ new ocs.Component('engine2d', "style", (fontSize, color)=>{
         fontFamily: "Trebuchet",
         fill: 0xffffff,
         align: 'left',
-        stroke: color || "black",
+        stroke: color || "0x000000",
         strokeThickness: 0,
         letterSpacing: 0,
         lineHeight: fontSize + 2,
@@ -773,20 +779,20 @@ new ocs.Component('engine2d', "style", (fontSize, color)=>{
 * @component pivot
 * @component text
 */
-var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
+var add_text = function(canvas, id, x, y, text, fontSize, onComplete){
     var ctx = canvases.get(canvas);
-    var new_txt = new PIXI.Text(text, {
+    var new_txt = new PIXI.Text(text, new PIXI.TextStyle({
         fontSize: fontSize,
         fill: 0xffffff,
         fontFamily: "Trebuchet"
-    });
+    }));
 
     new_txt.x = x;
     new_txt.y = y;
 
-    var new_entity = new ocs.Entity('engine2d', `${name}╎${canvas}╎text`)
+    var new_entity = new ocs.Entity('engine2d', `${id}╎${canvas}╎text`)
     new_entity.addComponent('pixi', new_txt, "text")
-              .addComponent('id', name)
+              .addComponent('id', id)
               .addComponent('position', x, y)
               .addComponent('rotation')
               .addComponent('alpha')
@@ -802,34 +808,34 @@ var add_text = function(canvas, name, x, y, text, fontSize, onComplete){
     if(onComplete!=null){
         onComplete(new_entity);
     }
-    ctx.texts.set(name, new_entity);
+    ctx.texts.set(id, new_entity);
 }
 
-var get_text = function(canvas, name){
+var get_text = function(canvas, id){
     var ctx = canvases.get(canvas);
-    if(ctx.texts.has(name)){
-        return ctx.texts.get(name);
+    if(ctx.texts.has(id)){
+        return ctx.texts.get(id);
     }else{
-        debug.error('ReferenceError', `text (${name}) in canvas (${canvas}) does not exist`);
+        debug.error('ReferenceError', `text (${id}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
 
-var delete_text = function(canvas, name){
+var delete_text = function(canvas, id){
     var ctx = canvases.get(canvas);
-    if(ctx.texts.has(name)){
-        ocs.getEntity('engine2d', `${name}╎${canvas}╎text`).destroy();
+    if(ctx.texts.has(id)){
+        ocs.getEntity('engine2d', `${id}╎${canvas}╎text`).destroy();
 
-        var text = ctx.texts.get(name);
+        var text = ctx.texts.get(id);
         if(text.type == "text"){
             text.pixi.destroy();
         }else{
             // for htmltext
             text.html.remove();
         }
-        ctx.texts.delete(name);
+        ctx.texts.delete(id);
     }else{
-        debug.error('ReferenceError', `text (${name}) does not exist`);
+        debug.error('ReferenceError', `text (${id}) does not exist`);
     }
 }
 
@@ -860,7 +866,7 @@ new ocs.Component('engine2d-html', 'html', (html, type)=>{
 /*
 * @name id
 * @type component
-* @description reference to id of the html element. This is the original name of the entity (.name is formatted for internal use)
+* @description reference to id of the html element
 * @env engine2d-html
 * @param {id}{String}{reference to id of the html element}
 */
@@ -953,6 +959,22 @@ new ocs.Component('engine2d-html', 'value', (value)=>{
 });
 
 /*
+* @name zIndex
+* @type component
+* @description zIndex of the html element
+* @env engine2d-html
+* @param {x}{Int}{x zIndex of the html element}
+* @param {y}{Int}{y zIndex of the html element}
+*/
+new ocs.Component('engine2d-html', 'zIndex', (zIndex)=>{
+    return new ocs.EEO({
+        zIndex: zIndex ?? 0
+    }, (entity, key, val)=>{
+        entity.html.style.zIndex = val;
+    });
+});
+
+/*
 * @name style
 * @type component
 * @description reference to the style property DOM textbox entity
@@ -996,9 +1018,10 @@ new ocs.Component('engine2d-html', 'events', ()=>{
 * @component width
 * @component height
 * @component value
+* @component html
 * @component style
 */
-var add_html_text = function(canvas, name, x, y, text, fontSize, onComplete){
+var add_html_text = function(canvas, id, x, y, text, fontSize, onComplete){
     new_ctx = canvases.get(canvas);
     var new_ctx_x = engine2d.canvas.xPos(canvas);
     var new_ctx_y = engine2d.canvas.yPos(canvas);
@@ -1036,14 +1059,15 @@ var add_html_text = function(canvas, name, x, y, text, fontSize, onComplete){
     });
 
 
-    new_ctx.texts.set(name, new_pre);
+    new_ctx.texts.set(id, new_pre);
 
-    var new_text = new ocs.Entity('engine2d-html', `${name}╎${canvas}htmltext`)
+    var new_text = new ocs.Entity('engine2d-html', `${id}╎${canvas}htmltext`)
     new_text.addComponent('html', new_pre, "htmltext")
-            .addComponent('id', name)
+            .addComponent('id', id)
             .addComponent('style', new_pre.style)
             .addComponent('position', x + new_ctx_x, y + new_ctx_y)
-            .addComponent('fontSize', 19);
+            .addComponent('fontSize', 19)
+            .addComponent('zIndex', new_pre.zIndex);
 
 
     Object.defineProperty(new_text, "value", {
@@ -1093,9 +1117,10 @@ var add_html_text = function(canvas, name, x, y, text, fontSize, onComplete){
 * @component width
 * @component value
 * @component style
+* @component zIndex
 * @component events
 */
-var add_textbox = function(canvas, name, x, y, onComplete){
+var add_textbox = function(canvas, id, x, y, onComplete){
     new_ctx = canvases.get(canvas);
     var new_ctx_x = engine2d.canvas.xPos(canvas);
     var new_ctx_y = engine2d.canvas.yPos(canvas);
@@ -1137,13 +1162,14 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     });
 
 
-    var new_textbox = new ocs.Entity('engine2d-html', `${name}╎${canvas}╎textbox`)
+    var new_textbox = new ocs.Entity('engine2d-html', `${id}╎${canvas}╎textbox`)
     new_textbox.addComponent('html', input, "textbox")
-               .addComponent('id', name)
+               .addComponent('id', id)
                .addComponent('style', input.style)
                .addComponent('position', x + new_ctx_x, y + new_ctx_y)
                .addComponent('fontSize', 19)
                .addComponent('width', 100)
+               .addComponent('zIndex', input.zIndex)
                .addComponent('events');
 
     Object.defineProperty(new_textbox, "value", {
@@ -1177,31 +1203,31 @@ var add_textbox = function(canvas, name, x, y, onComplete){
     }
 
 
-    new_ctx.textboxes.set(name, new_textbox);
+    new_ctx.textboxes.set(id, new_textbox);
 
     if(onComplete != null){
         onComplete(new_textbox);
     }
 }
 
-var get_textbox = function(canvas, name){
+var get_textbox = function(canvas, id){
     var ctx = canvases.get(canvas);
-    if(ctx.textboxes.has(name)){
-        return ctx.textboxes.get(name);
+    if(ctx.textboxes.has(id)){
+        return ctx.textboxes.get(id);
     }else{
-        debug.warn('ReferenceError', `textbox (${name}) in canvas (${canvas}) does not exist`);
+        debug.warn('ReferenceError', `textbox (${id}) in canvas (${canvas}) does not exist`);
         return null;
     }
 }
 
-var delete_textbox = function(canvas, name){
+var delete_textbox = function(canvas, id){
     var ctx = canvases.get(canvas);
-    if(ctx.textboxes.has(name)){
-        ocs.getEntity('engine2d-html', `${name}╎${canvas}╎textbox`).destroy();
-        ctx.textboxes.get(name).html.remove();
-        ctx.textboxes.delete(name);
+    if(ctx.textboxes.has(id)){
+        ocs.getEntity('engine2d-html', `${id}╎${canvas}╎textbox`).destroy();
+        ctx.textboxes.get(id).html.remove();
+        ctx.textboxes.delete(id);
     }else{
-        debug.warn('ReferenceError', `textbox (${name}) in canvas (${canvas}) does not exist`);
+        debug.warn('ReferenceError', `textbox (${id}) in canvas (${canvas}) does not exist`);
     }
 }
 
@@ -1213,7 +1239,7 @@ module.exports = {
     * @name newCanvas
     * @type method
     * @description creates a new engine 2d canvas
-    * @param {name}{String}{unique name of the canvas}
+    * @param {id}{String}{unique id of the canvas}
     * @param {config}{Object}{options to configure the canvas}
     */
     /*
@@ -1237,8 +1263,8 @@ module.exports = {
     * @param {render}{Function}{render function which runs as fast as possible and is tied to framerate}
     *
     */
-    newCanvas: (name, config)=>{
-        new_canvas(name, config);
+    newCanvas: (id, config)=>{
+        new_canvas(id, config);
     },
 
     /*
@@ -1252,7 +1278,7 @@ module.exports = {
         * @type method
         * @description adds an image to the load queue
         * @parent load
-        * @param {key}{String}{unique name of the image asset}
+        * @param {key}{String}{unique id of the image asset}
         * @param {path}{String}{path of the image asset}
         */
         image: function(key, path){
@@ -1264,7 +1290,7 @@ module.exports = {
         * @type method
         * @description adds a spritesheet to the load queue
         * @parent load
-        * @param {key}{String}{unique name of the spritesheet asset}
+        * @param {key}{String}{unique id of the spritesheet asset}
         * @param {path}{String}{path of the spritesheet asset}
         * @param {frameWidth}{Int}{width of the frames in the spritesheet}
         * @param {frameHeight}{Int}{height of the frames in the spritesheet}
@@ -1278,7 +1304,7 @@ module.exports = {
     * @name unload
     * @type method
     * @description unload an image asset from cache
-    * @param {key}{String}{unique name of the image asset}
+    * @param {key}{String}{unique id of the image asset}
     */
     unload: function(key){
         unload_image(key);
@@ -1306,14 +1332,14 @@ module.exports = {
         * @description adds an <a href="virtuosity.engine2d.Image.html">image</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
-        * @param {name}{String}{unique name of the image}
+        * @param {if}{String}{unique id of the image}
         * @param {x}{Number}{x position of the image}
         * @param {y}{Number}{y position of the image}
-        * @param {key}{String}{name of the image asset to use}
+        * @param {key}{String}{id of the image asset to use}
         * @param {onComplete}{Function}{function to run after adding the image (takes the newly create image as a parameter)}
         */
-        image: function(canvas, name, x, y, key, onComplete){
-            add_image(canvas, name, x, y, key, onComplete);
+        image: function(canvas, id, x, y, key, onComplete){
+            add_image(canvas, id, x, y, key, onComplete);
         },
 
         /*
@@ -1322,14 +1348,14 @@ module.exports = {
         * @description adds a <a href="virtuosity.engine2d.Sprite.html">sprite</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
-        * @param {name}{String}{unique name of the sprite}
+        * @param {id}{String}{unique id of the sprite}
         * @param {x}{Number}{x position of the sprite}
         * @param {y}{Number}{y position of the sprite}
-        * @param {key}{String}{name of the sprite asset to use}
+        * @param {key}{String}{id of the sprite asset to use}
         * @param {onComplete}{Function}{function to run after adding the sprite (takes the newly create sprite as a parameter)}
         */
-        sprite: function(canvas, name, x, y, key, onComplete){
-            add_sprite(canvas, name, x, y, key, onComplete);
+        sprite: function(canvas, id, x, y, key, onComplete){
+            add_sprite(canvas, id, x, y, key, onComplete);
         },
 
         /*
@@ -1338,15 +1364,15 @@ module.exports = {
         * @description adds <a href="virtuosity.engine2d.Text.html">text</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
-        * @param {name}{String}{unique name of the text}
+        * @param {id}{String}{unique id of the text}
         * @param {x}{Number}{x position of the text}
         * @param {y}{Number}{y position of the text}
         * @param {text}{String}{the text for the text object to show}
         * @param {fontSize}{Int}{font size of the text}
         * @param {onComplete}{Function}{function to run after adding the text (takes the newly create text as a parameter)}
         */
-        text: function(canvas, name, x, y, text, fontSize, onComplete){
-            add_text(canvas, name, x, y, text, fontSize, onComplete);
+        text: function(canvas, id, x, y, text, fontSize, onComplete){
+            add_text(canvas, id, x, y, text, fontSize, onComplete);
         },
 
         /*
@@ -1355,7 +1381,7 @@ module.exports = {
         * @description adds <a href="virtuosity.engine2d.htmltext.html">text</a> that can use HTML and CSS styling to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
-        * @param {name}{String}{unique name of the text}
+        * @param {id}{String}{unique id of the text}
         * @param {x}{Number}{x position of the text}
         * @param {y}{Number}{y position of the text}
         * @param {text}{String}{the text for the text object to show}
@@ -1363,8 +1389,8 @@ module.exports = {
         * @param {onComplete}{Function}{function to run after adding the text (takes the newly create text as a parameter)}
         */
 
-        htmltext: function(canvas, name, x, y, text, fontSize, onComplete){
-            add_html_text(canvas, name, x, y, text, fontSize, onComplete);
+        htmltext: function(canvas, id, x, y, text, fontSize, onComplete){
+            add_html_text(canvas, id, x, y, text, fontSize, onComplete);
         },
 
         /*
@@ -1373,13 +1399,13 @@ module.exports = {
         * @description adds a <a href="virtuosity.engine2d.Textbox.html">textbox</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
-        * @param {name}{String}{unique name of the html element}
+        * @param {id}{String}{unique id of the html element}
         * @param {x}{Number}{x position of the html element}
         * @param {y}{Number}{y position of the html element}
         * @param {onComplete}{Function}{function to run after adding the textbox (takes the newly create textbox as a parameter)}
         */
-        textbox: function(canvas, name, x, y, onComplete){
-            add_textbox(canvas, name, x, y, onComplete);
+        textbox: function(canvas, id, x, y, onComplete){
+            add_textbox(canvas, id, x, y, onComplete);
         }
     },
 
@@ -1394,11 +1420,11 @@ module.exports = {
         * @type method
         * @description gets an <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>
         * @parent get
-        * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>}
+        * @param {canvas}{String}{id of the canvas}
+        * @param {id}{String}{id of the <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>}
         */
-        image: function(canvas, name){
-            return get_image(canvas, name);
+        image: function(canvas, id){
+            return get_image(canvas, id);
         },
 
         /*
@@ -1406,11 +1432,11 @@ module.exports = {
         * @type method
         * @description gets <a href="virtuosity.engine2d.Text.html">text</a>
         * @parent get
-        * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Text.html">text</a>}
+        * @param {canvas}{String}{id of the canvas}
+        * @param {id}{String}{id of the <a href="virtuosity.engine2d.Text.html">text</a>}
         */
-        text: function(canvas, name){
-            return get_text(canvas, name);
+        text: function(canvas, id){
+            return get_text(canvas, id);
         },
 
         /*
@@ -1418,11 +1444,11 @@ module.exports = {
         * @type method
         * @description gets a <a href="virtuosity.engine2d.Textbox.html">htmltext</a>
         * @parent get
-        * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Textbox.html">htmltext</a>}
+        * @param {canvas}{String}{id of the canvas}
+        * @param {id}{String}{id of the <a href="virtuosity.engine2d.Textbox.html">htmltext</a>}
         */
-        htmltext: function(canvas, name){
-            return get_htmltext(canvas, name);
+        htmltext: function(canvas, id){
+            return get_htmltext(canvas, id);
         },
 
         /*
@@ -1430,11 +1456,11 @@ module.exports = {
         * @type method
         * @description gets a <a href="virtuosity.engine2d.Textbox.html">textbox</a>
         * @parent get
-        * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Textbox.html">textbox</a>}
+        * @param {canvas}{String}{id of the canvas}
+        * @param {id}{String}{id of the <a href="virtuosity.engine2d.Textbox.html">textbox</a>}
         */
-        textbox: function(canvas, name){
-            return get_textbox(canvas, name);
+        textbox: function(canvas, id){
+            return get_textbox(canvas, id);
         },
 
         /*
@@ -1442,10 +1468,10 @@ module.exports = {
         * @type method
         * @description get the DOM canvas
         * @parent get
-        * @param {name}{String}{name of the canvas}
+        * @param {id}{String}{id of the canvas}
         */
-        canvas: function(name){
-            return canvases.get(name).view;
+        canvas: function(id){
+            return canvases.get(id).view;
         }
     },
 
@@ -1460,11 +1486,11 @@ module.exports = {
         * @type method
         * @description deletes an <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>
         * @parent delete
-        * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>}
+        * @param {canvas}{String}{id of the canvas}
+        * @param {id}{String}{id of the <a href="virtuosity.engine2d.Image.html">image</a> or <a href="virtuosity.engine2d.Sprite.html">sprite</a>}
         */
-        image: function(canvas, name){
-            return delete_image(canvas, name);
+        image: function(canvas, id){
+            return delete_image(canvas, id);
         },
 
         /*
@@ -1472,11 +1498,11 @@ module.exports = {
         * @type method
         * @description deletes <a href="virtuosity.engine2d.Text.html">text</a>
         * @parent delete
-        * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Text.html">text</a>}
+        * @param {canvas}{String}{id of the canvas}
+        * @param {id}{String}{id of the <a href="virtuosity.engine2d.Text.html">text</a>}
         */
-        text: function(canvas, name){
-            return delete_text(canvas, name);
+        text: function(canvas, id){
+            return delete_text(canvas, id);
         },
 
         /*
@@ -1484,11 +1510,11 @@ module.exports = {
         * @type method
         * @description deletes a <a href="virtuosity.engine2d.Textbox.html">textbox</a>
         * @parent delete
-        * @param {canvas}{String}{name of the canvas}
-        * @param {name}{String}{name of the <a href="virtuosity.engine2d.Textbox.html">textbox</a>}
+        * @param {canvas}{String}{id of the canvas}
+        * @param {id}{String}{id of the <a href="virtuosity.engine2d.Textbox.html">textbox</a>}
         */
-        textbox: function(canvas, name){
-            return delete_textbox(canvas, name);
+        textbox: function(canvas, id){
+            return delete_textbox(canvas, id);
         }
     },
 
@@ -1503,7 +1529,7 @@ module.exports = {
         * @type method
         * @description frames per second
         * @parent performance
-        * @param {canvas}{String}{name of the canvas to get fps from}
+        * @param {canvas}{String}{id of the canvas to get fps from}
         */
         fps: (canvas)=>{
             return canvases.get(canvas).fps;
@@ -1514,7 +1540,7 @@ module.exports = {
         * @type method
         * @description minimum frames per second so far
         * @parent performance
-        * @param {canvas}{String}{name of the canvas to get fpsMin from}
+        * @param {canvas}{String}{id of the canvas to get fpsMin from}
         */
         fpsMin: (canvas)=>{
             return canvases.get(canvas).fpsMin;
@@ -1525,7 +1551,7 @@ module.exports = {
         * @type method
         * @description maximum frames per second so far
         * @parent performance
-        * @param {canvas}{String}{name of the canvas to get fpsMax from}
+        * @param {canvas}{String}{id of the canvas to get fpsMax from}
         */
         fpsMax: (canvas)=>{
             return canvases.get(canvas).fpsMax;
@@ -1536,7 +1562,7 @@ module.exports = {
         * @type method
         * @description average frames per second over the canvas fpsBuffer
         * @parent performance
-        * @param {canvas}{String}{name of the canvas to get fpsAvg from}
+        * @param {canvas}{String}{id of the canvas to get fpsAvg from}
         */
         fpsAvg: (canvas)=>{
             return canvases.get(canvas).fpsAvg;
@@ -1551,8 +1577,8 @@ module.exports = {
     */
     graphics: {
         add: {
-            container: (name, canvas)=>{
-                return graphics.add.container(name, canvases.get(canvas));
+            container: (id, canvas)=>{
+                return graphics.add.container(id, canvases.get(canvas));
             },
             circle: (...params)=>{
                 return graphics.add.circle(...params);
@@ -1592,12 +1618,12 @@ module.exports = {
         * @type method
         * @description add an event to the update function
         * @parent update
-        * @param {canvas}{String}{name of canvas to add event to update function}
-        * @param {name}{String}{unique name of the update event}
+        * @param {canvas}{String}{id of canvas to add event to update function}
+        * @param {id}{String}{unique id of the update event}
         * @param {event}{Function}{event to add to update function}
         */
-        add: function(canvas, name, event){
-            canvases.get(canvas).update_events.set(name, event);
+        add: function(canvas, id, event){
+            canvases.get(canvas).update_events.set(id, event);
         },
 
         /*
@@ -1605,11 +1631,11 @@ module.exports = {
         * @type method
         * @description remove an event from the update function
         * @parent update
-        * @param {canvas}{String}{name of canvas to remove event from update function}
-        * @param {name}{String}{name of the update event}
+        * @param {canvas}{String}{id4 of canvas to remove event from update function}
+        * @param {id4}{String}{id4 of the update event}
         */
-        remove: function(canvas, name){
-            canvases.get(canvas).update_events.delete(name);
+        remove: function(canvas, id4){
+            canvases.get(canvas).update_events.delete(id4);
         }
     },
 
@@ -1624,12 +1650,12 @@ module.exports = {
         * @type method
         * @description add an event to the render function
         * @parent render
-        * @param {canvas}{String}{name of canvas to add event to render function}
-        * @param {name}{String}{unique name of the render event}
+        * @param {canvas}{String}{id of canvas to add event to render function}
+        * @param {id}{String}{unique id of the render event}
         * @param {event}{Function}{event to add to render function}
         */
-        add: function(canvas, name, event){
-            canvases.get(canvas).render_events.set(name, event);
+        add: function(canvas, id, event){
+            canvases.get(canvas).render_events.set(id, event);
         },
 
         /*
@@ -1637,11 +1663,11 @@ module.exports = {
         * @type method
         * @description remove an event from the render function
         * @parent render
-        * @param {canvas}{String}{name of canvas to remove event from render function}
-        * @param {name}{String}{name of the render event}
+        * @param {canvas}{String}{id of canvas to remove event from render function}
+        * @param {id}{String}{id of the render event}
         */
-        remove: function(canvas, name){
-            canvases.get(canvas).render_events.delete(name);
+        remove: function(canvas, id){
+            canvases.get(canvas).render_events.delete(id);
         }
     },
 
@@ -1656,7 +1682,7 @@ module.exports = {
         * @type method
         * @description get / set the x position of a canvas
         * @parent canvas
-        * @param {canvas}{String}{name of the canvas}
+        * @param {canvas}{String}{id of the canvas}
         * @param {x}{Int}{<b>(Optional)</b> x position of the canvas}
         */
         xPos: function(canvas, x){
@@ -1675,7 +1701,7 @@ module.exports = {
         * @type method
         * @description get / set the y position of a canvas
         * @parent canvas
-        * @param {canvas}{String}{name of the canvas}
+        * @param {canvas}{String}{id of the canvas}
         * @param {y}{Int}{<b>(Optional)</b> y position of the canvas}
         */
         yPos: function(canvas, y){
@@ -1694,7 +1720,7 @@ module.exports = {
         * @type method
         * @description get / set the width of a canvas
         * @parent canvas
-        * @param {canvas}{String}{name of the canvas}
+        * @param {canvas}{String}{id of the canvas}
         * @param {width}{Int}{<b>(Optional)</b> width of the canvas}
         */
         width: function(canvas, width){
@@ -1715,7 +1741,7 @@ module.exports = {
         * @type method
         * @description get / set the height of a canvas
         * @parent canvas
-        * @param {canvas}{String}{name of the canvas}
+        * @param {canvas}{String}{id of the canvas}
         * @param {height}{Int}{<b>(Optional)</b> height of the canvas}
         */
         height: function(canvas, height){
@@ -1737,7 +1763,7 @@ module.exports = {
         * @type method
         * @description get / set the zIndex of a canvas
         * @parent canvas
-        * @param {canvas}{String}{name of the canvas}
+        * @param {canvas}{String}{id of the canvas}
         * @param {zIndex}{Int}{<b>(Optional)</b> the value to set the z index}
         */
         zIndex: function(canvas, zIndex){
@@ -1753,7 +1779,7 @@ module.exports = {
         * @type method
         * @description get a specific canvas
         * @parent canvas
-        * @param {canvas}{String}{name of the canvas}
+        * @param {canvas}{String}{id of the canvas}
         */
         get: function(canvas){
             return canvases.get(canvas);
@@ -1764,19 +1790,19 @@ module.exports = {
         * @type method
         * @description destroy a specific canvas
         * @parent canvas
-        * @param {canvas}{String}{name of the canvas}
+        * @param {canvas}{String}{id of the canvas}
         */
         destroy: function(canvas){
             var ctx = canvases.get(canvas);
             clearInterval(ctx.update);
             ctx.images.forEach((image)=>{
-                delete_image(canvas, image.name.substring(0, image.name.indexOf("╎")));
+                delete_image(canvas, image.id);
             });
             ctx.texts.forEach((text)=>{
-                delete_text(canvas, text.name.substring(0, text.name.indexOf("╎")));
+                delete_text(canvas, text.id);
             });
             ctx.textboxes.forEach((textbox)=>{
-                delete_textbox(canvas, textbox.name.substring(0, textbox.name.indexOf("╎")));
+                delete_textbox(canvas, textbox.id);
             })
             ctx.containers.forEach((container)=>{
                 graphics.delete.container(container);

@@ -202,10 +202,6 @@ var cluster = async function(path, input, onComplete, threads){
 var numCPUs = require('os').cpus().length;
 
 module.exports = {
-	thread: (path, onMessage, onExit)=>{
-		return new Thread(path, onMessage, onExit);
-	},
-	cluster: async (file, input, onComplete, threads)=>{
-		cluster(file, input, onComplete, threads)
-	}
+	Thread,
+	cluster: cluster
 }
