@@ -87,13 +87,13 @@ class Queue{
 	* @description remove the top node
 	*/
 	pop(){
-		var output = this.#front;
-		this.#size -= 1;
-		if(this.#size == 0){
-			return null;
-		}else{
+		if(this.#size != 0){
+			var output = this.#front;
+			this.#size -= 1;
 			this.#front = output.getNext();
 			return output;
+		}else{
+			return null;
 		}
 	}
 
