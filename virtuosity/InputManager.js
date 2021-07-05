@@ -167,8 +167,8 @@ delete_keyup = function(name){
 
 
 // mouse //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var mouse_x = 0;
-var mouse_y = 0;
+var mouse_x = screen.width/2;
+var mouse_y = screen.height/2;
 var dx = 0;
 var dy = 0;
 var screen_x = 0;

@@ -217,7 +217,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>canvas</h1><p>properties of a canvas</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">canvas</span></div><h4>Methods</h4><ul><li><a href="#xPos">xPos</a></li><li><a href="#yPos">yPos</a></li><li><a href="#width">width</a></li><li><a href="#height">height</a></li><li><a href="#zIndex">zIndex</a></li><li><a href="#get">get</a></li><li><a href="#destroy">destroy</a></li></ul><hr><h2>Methods</h2><h3 id="xPos" style="margin-top: 0px;">xPos</a></h3><p style="margin-top: 0px;">get / set the x position of a canvas</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">xPos</span>(<span class="orange">canvas</span>, <span class="orange">x</span>);</div><br><br><table>
+			<div id="header-spacing"></div><h1>canvas</h1><p>properties of a canvas</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">canvas</span></div><h4>Methods</h4><ul><li><a href="#xPos">xPos</a></li><li><a href="#yPos">yPos</a></li><li><a href="#width">width</a></li><li><a href="#height">height</a></li><li><a href="#x">x</a></li><li><a href="#y">y</a></li><li><a href="#scale">scale</a></li><li><a href="#alpha">alpha</a></li><li><a href="#zIndex">zIndex</a></li><li><a href="#get">get</a></li><li><a href="#destroy">destroy</a></li></ul><hr><h2>Methods</h2><h3 id="xPos" style="margin-top: 0px;">xPos</a></h3><p style="margin-top: 0px;">get / set the x position of a canvas</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">xPos</span>(<span class="orange">canvas</span>, <span class="orange">x</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -225,7 +225,7 @@
 												</tr><tr>
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the canvas</td>
+												<td>id of the canvas</td>
 											</tr><tr>
 												<td><var>x</var></td>
 												<td><var><span class="purple">Int</span></var></td>
@@ -238,7 +238,7 @@
 												</tr><tr>
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the canvas</td>
+												<td>id of the canvas</td>
 											</tr><tr>
 												<td><var>y</var></td>
 												<td><var><span class="purple">Int</span></var></td>
@@ -251,7 +251,7 @@
 												</tr><tr>
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the canvas</td>
+												<td>id of the canvas</td>
 											</tr><tr>
 												<td><var>width</var></td>
 												<td><var><span class="purple">Int</span></var></td>
@@ -264,11 +264,63 @@
 												</tr><tr>
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the canvas</td>
+												<td>id of the canvas</td>
 											</tr><tr>
 												<td><var>height</var></td>
 												<td><var><span class="purple">Int</span></var></td>
 												<td><b>(Optional)</b> height of the canvas</td>
+											</tr></table><h3 id="x">x</a></h3><p style="margin-top: 0px;">get / set the x position of a canvas camera</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">x</span>(<span class="orange">canvas</span>, <span class="orange">x</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>id of the canvas</td>
+											</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td><b>(Optional)</b> x of the canvas</td>
+											</tr></table><h3 id="y">y</a></h3><p style="margin-top: 0px;">get / set the y position of a canvas camera</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">y</span>(<span class="orange">canvas</span>, <span class="orange">y</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>id of the canvas</td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td><b>(Optional)</b> y of the canvas</td>
+											</tr></table><h3 id="scale">scale</a></h3><p style="margin-top: 0px;">get / set the scale of a canvas camera</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">scale</span>(<span class="orange">canvas</span>, <span class="orange">y</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>id of the canvas</td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td><b>(Optional)</b> scale of the canvas</td>
+											</tr></table><h3 id="alpha">alpha</a></h3><p style="margin-top: 0px;">get / set the alpha of a canvas</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">alpha</span>(<span class="orange">canvas</span>, <span class="orange">alpha</span>);</div><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>canvas</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>id of the canvas</td>
+											</tr><tr>
+												<td><var>alpha</var></td>
+												<td><var><span class="purple">Number</span></var></td>
+												<td><b>(Optional)</b> the value to set the alpha</td>
 											</tr></table><h3 id="zIndex">zIndex</a></h3><p style="margin-top: 0px;">get / set the zIndex of a canvas</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">zIndex</span>(<span class="orange">canvas</span>, <span class="orange">zIndex</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
@@ -277,7 +329,7 @@
 												</tr><tr>
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the canvas</td>
+												<td>id of the canvas</td>
 											</tr><tr>
 												<td><var>zIndex</var></td>
 												<td><var><span class="purple">Int</span></var></td>
@@ -290,7 +342,7 @@
 												</tr><tr>
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the canvas</td>
+												<td>id of the canvas</td>
 											</tr></table><h3 id="destroy">destroy</a></h3><p style="margin-top: 0px;">destroy a specific canvas</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">canvas</span>.<span class="green">destroy</span>(<span class="orange">canvas</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
@@ -299,7 +351,7 @@
 												</tr><tr>
 												<td><var>canvas</var></td>
 												<td><var><span class="yellow">String</span></var></td>
-												<td>name of the canvas</td>
+												<td>id of the canvas</td>
 											</tr></table><br><br>
 		</div>
 	</body>

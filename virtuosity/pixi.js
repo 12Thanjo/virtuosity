@@ -241,7 +241,7 @@ var start_load = function(canvas){
                 console.log(`engine2d succesfully loaded: ${key}`);
                 delete loader.resources[key];
             }else{
-                console.error(`error while loading: ${key}\n\n`, resources[key].error);
+                console.error(`error while loading image: ${key}\n\n`, resources[key].error);
             }
         }
     });
@@ -762,6 +762,7 @@ new ocs.Component('engine2d', "style", (fontSize, color)=>{
 });
 
 
+
 /*
 * @name Text
 * @type entity
@@ -779,7 +780,7 @@ new ocs.Component('engine2d', "style", (fontSize, color)=>{
 * @component pivot
 * @component text
 */
-var add_text = function(canvas, id, x, y, text, fontSize, onComplete){
+var add_text = function(canvas, id, x, y, text, fontSize, onComplete, FROM_STAGE){
     var ctx = canvases.get(canvas);
     var new_txt = new PIXI.Text(text, new PIXI.TextStyle({
         fontSize: fontSize,
@@ -805,10 +806,15 @@ var add_text = function(canvas, id, x, y, text, fontSize, onComplete){
 
 
     ctx.stage.addChild(new_txt);
+
+    if(FROM_STAGE != true){
+        ctx.texts.set(id, new_entity);
+    }
+
     if(onComplete!=null){
         onComplete(new_entity);
     }
-    ctx.texts.set(id, new_entity);
+
 }
 
 var get_text = function(canvas, id){
@@ -1233,8 +1239,12 @@ var delete_textbox = function(canvas, id){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 var graphics = require('./graphics.js')(PIXI, canvases);
+var stage = require('./stage.js')({
+    add_image,
+    add_text
+});
 
-module.exports = {
+var output = {
     /*
     * @name newCanvas
     * @type method
@@ -1471,7 +1481,11 @@ module.exports = {
         * @param {id}{String}{id of the canvas}
         */
         canvas: function(id){
-            return canvases.get(id).view;
+            if(canvases.has(id)){
+                return canvases.get(id).view;
+            }else{
+                debug.warn("ReferenceError", `canvas (${id}) does not exist`);
+            }
         }
     },
 
@@ -1759,6 +1773,77 @@ module.exports = {
 
 
         /*
+        * @name x
+        * @type method
+        * @description get / set the x position of a canvas camera
+        * @parent canvas
+        * @param {canvas}{String}{id of the canvas}
+        * @param {x}{Int}{<b>(Optional)</b> x of the canvas}
+        */
+        x: function(canvas, x){
+            var ctx = canvases.get(canvas);
+            if(x != null){
+                ctx.stage.position.x = x;
+                return x;
+            }else{
+                return ctx.stage.position.x;
+            }
+        },
+
+        /*
+        * @name y
+        * @type method
+        * @description get / set the y position of a canvas camera
+        * @parent canvas
+        * @param {canvas}{String}{id of the canvas}
+        * @param {y}{Int}{<b>(Optional)</b> y of the canvas}
+        */
+        y: function(canvas, y){
+            var ctx = canvases.get(canvas);
+            if(y != null){
+                ctx.stage.position.y = y;
+                return y;
+            }else{
+                return ctx.stage.position.y;
+            }
+        },
+
+        /*
+        * @name scale
+        * @type method
+        * @description get / set the scale of a canvas camera
+        * @parent canvas
+        * @param {canvas}{String}{id of the canvas}
+        * @param {y}{Number}{<b>(Optional)</b> scale of the canvas}
+        */
+        scale: function(canvas, scale){
+            var ctx = canvases.get(canvas);
+            if(scale != null){
+                ctx.stage.scale.set(scale, scale);
+                return scale;
+            }else{
+                return ctx.stage.scale.x;
+            }
+        },
+
+        /*
+        * @name alpha
+        * @type method
+        * @description get / set the alpha of a canvas
+        * @parent canvas
+        * @param {canvas}{String}{id of the canvas}
+        * @param {alpha}{Number}{<b>(Optional)</b> the value to set the alpha}
+        */
+        alpha: function(canvas, alpha){
+            var ctx = canvases.get(canvas);
+            if(alpha != null){
+                ctx.stage.alpha = alpha;
+            }
+            return ctx.stage.alpha;
+        },
+
+
+        /*
         * @name zIndex
         * @type method
         * @description get / set the zIndex of a canvas
@@ -1808,10 +1893,13 @@ module.exports = {
                 graphics.delete.container(container);
             });
 
-            canvases.delete(canvas);
+            // ctx.view.remove();
             ctx.destroy(true, {stageOptions: true});
+            canvases.delete(canvas);
         }
     },
+
+    stage: stage,
 
     /*
     * @name expose
@@ -1822,3 +1910,7 @@ module.exports = {
         return PIXI;
     }
 }
+
+
+
+module.exports = output;

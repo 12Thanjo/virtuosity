@@ -217,7 +217,7 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Textbox</h1><p>A textbox entity created by <a href="./virtuosity.engine2d.add.html#textbox">add.textbox</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">Textbox</span></div><h4>Components</h4><ul><li ><a href=#html>html</a></li><li ><a href=#id>id</a></li><li ><a href=#position>position</a></li><li ><a href=#fontSize>fontSize</a></li><li ><a href=#width>width</a></li><li ><a href=#value>value</a></li><li ><a href=#style>style</a></li><li ><a href=#events>events</a></li></ul><hr><h3 id='html'>html</h3><p >reference to the DOM html entity</p><br><br><table>
+			<div id="header-spacing"></div><h1>Textbox</h1><p>A textbox entity created by <a href="./virtuosity.engine2d.add.html#textbox">add.textbox</a></p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">Textbox</span></div><h4>Components</h4><ul><li ><a href=#html>html</a></li><li ><a href=#id>id</a></li><li ><a href=#position>position</a></li><li ><a href=#fontSize>fontSize</a></li><li ><a href=#width>width</a></li><li ><a href=#value>value</a></li><li ><a href=#style>style</a></li><li ><a href=#zIndex>zIndex</a></li><li ><a href=#events>events</a></li></ul><hr><h3 id='html'>html</h3><p >reference to the DOM html entity</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -226,7 +226,11 @@
 												<td><var>html</var></td>
 												<td><var><span class="white">DOM</span></var></td>
 												<td>reference to the DOM html entity</td>
-											</tr></table><h3 id='id'>id</h3><p >reference to id of the html element. This is the original name of the entity (.name is formatted for internal use)</p><br><br><table>
+											</tr><tr>
+												<td><var>type</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>the type of the Entity</td>
+											</tr></table><h3 id='id'>id</h3><p >reference to id of the html element</p><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
@@ -288,6 +292,19 @@
 												<td><var>textbox</var></td>
 												<td><var><span class="white">DOM</span></var></td>
 												<td>reference to the style property DOM textbox entity</td>
+											</tr></table><h3 id='zIndex'>zIndex</h3><p >zIndex of the html element</p><br><br><table>
+												<tr>
+													<th>Parameter</th>
+													<th>Type</th>
+													<th>Description</th>
+												</tr><tr>
+												<td><var>x</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>x zIndex of the html element</td>
+											</tr><tr>
+												<td><var>y</var></td>
+												<td><var><span class="purple">Int</span></var></td>
+												<td>y zIndex of the html element</td>
 											</tr></table><h3 id='events'>events</h3><p >events of the html element</p><br><br><table>
 												<tr>
 													<th>Parameter</th>

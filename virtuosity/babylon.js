@@ -73,12 +73,42 @@ var new_canvas = function(name, config){
 	new_ctx.engine = new BABYLON.Engine(new_ctx.ctx, config.antialias, {preserveDrawingBuffer: true, stencil: true});
 	new_ctx.engine.setHardwareScalingLevel(1 / (config.resolution * scale));
 	new_ctx.scene = new BABYLON.Scene(new_ctx.engine);
-	new_ctx.scene.clearColor = new BABYLON.Color3(0,0.75,1);
+	// new_ctx.scene.clearColor = new BABYLON.Color3(0,0.75,1);
 	
 	new_ctx.camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), new_ctx.scene);
 	new_ctx.camera.setTarget(BABYLON.Vector3.Zero());
 
 
+	new_ctx.ambientLight = new BABYLON.PointLight("_AMBIENTLIGHT_", new BABYLON.Vector3(0, 35, 35), new_ctx.scene);
+    new_ctx.ambientLight.intensity = 5000;
+
+
+
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+    // add shadow map level to config
+	new_ctx.shadowGenerator = new BABYLON.ShadowGenerator(4096, new_ctx.ambientLight);
+    // new_ctx.shadowGenerator.setDarkness(0.5);
+    new_ctx.shadowGenerator.usePoissonSampling = true;
 
 
 
@@ -156,7 +186,13 @@ var new_canvas = function(name, config){
 
 
 		// run the render loop
-		new_ctx.engine.runRenderLoop(function(){
+
+		// the canvas/window resize event handler
+		window.addEventListener('resize', function(){
+		    new_ctx.engine.resize();
+		});
+
+		var render = function(){
 			var diff = process.hrtime(new_ctx.fpsTimer);
 			new_ctx.fps = Math.floor(1e9 / (diff[0] * 1e9 + diff[1]));
 			new_ctx.fpsAvg = new_ctx.calcAverageTick(new_ctx.fps);
@@ -176,11 +212,19 @@ var new_canvas = function(name, config){
 		    new_ctx.render_events.forEach((event)=>{
 		    	event();
 		    });
-		});
-		// the canvas/window resize event handler
-		window.addEventListener('resize', function(){
-		    new_ctx.engine.resize();
-		});
+		}
+
+
+
+		if(config.vsync != null && config.vsync != true){
+			setInterval(render, 1000/Infinity);
+		}else{
+			new_ctx.engine.runRenderLoop(render);
+		}
+
+
+
+
 	});
 
 	
@@ -294,12 +338,17 @@ var add_box = function(canvas, name, x, y, z, onComplete){
 	var new_box = new BABYLON.Mesh.CreateBox(name, 1, ctx.scene);
 	new_box.position.set(x, z, y);
 
+	// shadows
+	ctx.shadowGenerator.getShadowMap().renderList.push(new_box);
+	new_box.receiveShadows = true;
+
 	var new_entity = new ocs.Entity('engine3d', name);
 	new_entity.addComponent('babylon', new_box)
 			  .addComponent('position', x, y, z)
 			  .addComponent('rotation')
 			  .addComponent('scale')
 			  .addTag('box')
+
 
 
 	boxes.set(name, new_entity);
@@ -325,6 +374,12 @@ var add_sphere = function(canvas, name, x, y, z, indicies, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_sphere = new BABYLON.Mesh.CreateSphere(name, indicies, 1, ctx.scene);
 	new_sphere.position.set(x, z, y);
+
+	// shadows
+	ctx.shadowGenerator.getShadowMap().renderList.push(new_sphere);
+	new_sphere.receiveShadows = true;
+
+
 
 	var new_entity = new ocs.Entity('engine3d', name);
 	new_entity.addComponent('babylon', new_sphere)
@@ -357,6 +412,10 @@ var add_plane = function(canvas, name, x, y, z, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_plane = new BABYLON.Mesh.CreatePlane(name, 1, ctx.scene);
 	new_plane.position.set(x, z, y);
+
+	// shadows
+	ctx.shadowGenerator.getShadowMap().renderList.push(new_plane);
+	new_plane.receiveShadows = true;
 
 	var new_entity = new ocs.Entity(name, 'engine3d');
 	new_entity.addComponent('babylon', new_plane)
@@ -393,6 +452,10 @@ var add_mesh = function(canvas, name, x, y, z, key, onComplete){
 	var new_mesh = ctx.mesh_cache.get(key).clone();
 	new_mesh.setEnabled(true);
 	new_mesh.position.set(x, z, y);
+
+	// shadows
+	ctx.shadowGenerator.getShadowMap().renderList.push(new_mesh);
+	new_mesh.receiveShadows = true;
 
 	var new_entity = new ocs.Entity(name, 'engine3d')
 	new_entity.addComponent('babylon', new_mesh)
@@ -784,6 +847,7 @@ module.exports = {
 	* @param {defaultResolution}{Int}{sets the resolution for auto scaling. Common practise is to use the screen resolution used in development}{actual client screen resolution}
 	* @param {antialias}{Boolean}{whether to use antialiasing}{true}
 	* @param {poll}{Int}{Polling rate of the update function. The update function will run this many times per second}{64}
+	* @param {vsync}{Boolean}{use vsync or not}{true}
 	* @param {fpsBuffer}{Int}{sets the maximum samples used to calculate average FPS}{1000}
 	* @param {preload}{Function}{function to run when loading assets. Assets can be loaded and unloaded later if you want, but main assets should be loaded here.}
 	* @param {create}{Function}{function to run while creating the scene}

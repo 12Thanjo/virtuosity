@@ -1,1182 +1,2192 @@
 {"scope":"source.js - variable.other.js","completions":[
 	{
-		"trigger":"engine2d.Image", 
-		"contents":"engine2d.Image();"
-	},
-	{
-		"trigger":"engine2d.Sprite", 
-		"contents":"engine2d.Sprite();"
-	},
-	{
-		"trigger":"engine2d.Text", 
-		"contents":"engine2d.Text();"
-	},
-	{
-		"trigger":"engine2d.htmltext", 
-		"contents":"engine2d.htmltext();"
-	},
-	{
-		"trigger":"engine2d.Textbox", 
-		"contents":"engine2d.Textbox();"
-	},
-	{
 		"trigger":"engine2d.newCanvas", 
-		"contents":"engine2d.newCanvas(\"${1:name}\", ${2:config});"
+		"contents":"engine2d.newCanvas(\"${1:id}\", ${2:config})",
+		"annotation":"creates a new engine 2d canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.load.image", 
-		"contents":"engine2d.load.image(\"${1:key}\", \"${2:path}\");"
+		"contents":"engine2d.load.image(\"${1:key}\", \"${2:path}\")",
+		"annotation":"adds an image to the load queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.load.spritesheet", 
-		"contents":"engine2d.load.spritesheet(\"${1:key}\", \"${2:path}\", ${3:frameWidth}, ${4:frameHeight});"
+		"contents":"engine2d.load.spritesheet(\"${1:key}\", \"${2:path}\", ${3:frameWidth}, ${4:frameHeight})",
+		"annotation":"adds a spritesheet to the load queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.unload", 
-		"contents":"engine2d.unload(\"${1:key}\");"
+		"contents":"engine2d.unload(\"${1:key}\")",
+		"annotation":"unload an image asset from cache",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.beginLoading", 
-		"contents":"engine2d.beginLoading();"
+		"contents":"engine2d.beginLoading()",
+		"annotation":"begin loading (automatiacally run at the end of the the canvas's preload function)",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.add.image", 
-		"contents":"engine2d.add.image(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()});"
+		"contents":"engine2d.add.image(\"${1:canvas}\", \"${2:if}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()})",
+		"annotation":"adds an image to the scene",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.add.sprite", 
-		"contents":"engine2d.add.sprite(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()});"
+		"contents":"engine2d.add.sprite(\"${1:canvas}\", \"${2:id}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()})",
+		"annotation":"adds a sprite to the scene",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.add.text", 
-		"contents":"engine2d.add.text(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:text}\", ${6:fontSize}, ${7:onComplete()});"
+		"contents":"engine2d.add.text(\"${1:canvas}\", \"${2:id}\", ${3:x}, ${4:y}, \"${5:text}\", ${6:fontSize}, ${7:onComplete()})",
+		"annotation":"adds text to the scene",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.add.htmltext", 
-		"contents":"engine2d.add.htmltext(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, \"${5:text}\", ${6:fontSize}, ${7:onComplete()});"
+		"contents":"engine2d.add.htmltext(\"${1:canvas}\", \"${2:id}\", ${3:x}, ${4:y}, \"${5:text}\", ${6:fontSize}, ${7:onComplete()})",
+		"annotation":"adds text that can use HTML and CSS styling to the scene",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.add.textbox", 
-		"contents":"engine2d.add.textbox(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:onComplete()});"
+		"contents":"engine2d.add.textbox(\"${1:canvas}\", \"${2:id}\", ${3:x}, ${4:y}, ${5:onComplete()})",
+		"annotation":"adds a textbox to the scene",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.get.image", 
-		"contents":"engine2d.get.image(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.get.image(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"gets an image or sprite",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.get.text", 
-		"contents":"engine2d.get.text(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.get.text(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"gets text",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.get.htmltext", 
-		"contents":"engine2d.get.htmltext(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.get.htmltext(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"gets a htmltext",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.get.textbox", 
-		"contents":"engine2d.get.textbox(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.get.textbox(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"gets a textbox",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.get.canvas", 
-		"contents":"engine2d.get.canvas(\"${1:name}\");"
+		"contents":"engine2d.get.canvas(\"${1:id}\")",
+		"annotation":"get the DOM canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.delete.image", 
-		"contents":"engine2d.delete.image(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.delete.image(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"deletes an image or sprite",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.delete.text", 
-		"contents":"engine2d.delete.text(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.delete.text(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"deletes text",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.delete.textbox", 
-		"contents":"engine2d.delete.textbox(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.delete.textbox(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"deletes a textbox",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.performance.fps", 
-		"contents":"engine2d.performance.fps(\"${1:canvas}\");"
+		"contents":"engine2d.performance.fps(\"${1:canvas}\")",
+		"annotation":"frames per second",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.performance.fpsMin", 
-		"contents":"engine2d.performance.fpsMin(\"${1:canvas}\");"
+		"contents":"engine2d.performance.fpsMin(\"${1:canvas}\")",
+		"annotation":"minimum frames per second so far",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.performance.fpsMax", 
-		"contents":"engine2d.performance.fpsMax(\"${1:canvas}\");"
+		"contents":"engine2d.performance.fpsMax(\"${1:canvas}\")",
+		"annotation":"maximum frames per second so far",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.performance.fpsAvg", 
-		"contents":"engine2d.performance.fpsAvg(\"${1:canvas}\");"
-	},
-	{
-		"trigger":"engine2d.graphics.Circle", 
-		"contents":"engine2d.graphics.Circle();"
-	},
-	{
-		"trigger":"engine2d.graphics.Rectange", 
-		"contents":"engine2d.graphics.Rectange();"
-	},
-	{
-		"trigger":"engine2d.graphics.Box", 
-		"contents":"engine2d.graphics.Box();"
-	},
-	{
-		"trigger":"engine2d.graphics.Line", 
-		"contents":"engine2d.graphics.Line();"
-	},
-	{
-		"trigger":"engine2d.graphics.Polygon", 
-		"contents":"engine2d.graphics.Polygon();"
+		"contents":"engine2d.performance.fpsAvg(\"${1:canvas}\")",
+		"annotation":"average frames per second over the canvas fpsBuffer",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.container", 
-		"contents":"engine2d.graphics.add.container(\"${1:name}\", \"${2:canvas}\");"
+		"contents":"engine2d.graphics.add.container(\"${1:id}\", \"${2:canvas}\")",
+		"annotation":"Adds a container. A container holds graphics entities. This increases performance because when a property of an asset inside the container is changed, only that container needs to be redrawn. It is also faster to redraw the entities in batches as opposed to having each graphics entity seperate.",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.circle", 
-		"contents":"engine2d.graphics.add.circle(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:r}, ${6:color});"
+		"contents":"engine2d.graphics.add.circle(\"${1:id}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:r}, ${6:color})",
+		"annotation":"adds a circle",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.rectangle", 
-		"contents":"engine2d.graphics.add.rectangle(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color});"
+		"contents":"engine2d.graphics.add.rectangle(\"${1:id}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color})",
+		"annotation":"adds a rectangle",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.box", 
-		"contents":"engine2d.graphics.add.box(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color}, ${8:borderRadius});"
+		"contents":"engine2d.graphics.add.box(\"${1:id}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color}, ${8:borderRadius})",
+		"annotation":"adds a box",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.line", 
-		"contents":"engine2d.graphics.add.line(\"${1:name}\", \"${2:container}\", ${3:x1}, ${4:y1}, ${5:x2}, ${6:y2}, ${7:color});"
+		"contents":"engine2d.graphics.add.line(\"${1:id}\", \"${2:container}\", ${3:x1}, ${4:y1}, ${5:x2}, ${6:y2}, ${7:color})",
+		"annotation":"adds a line",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.ellipse", 
-		"contents":"engine2d.graphics.add.ellipse(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color});"
+		"contents":"engine2d.graphics.add.ellipse(\"${1:id}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color})",
+		"annotation":"adds a ellipse",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.torus", 
-		"contents":"engine2d.graphics.add.torus(\"${1:name}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color});"
+		"contents":"engine2d.graphics.add.torus(\"${1:id}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:width}, ${6:height}, ${7:color})",
+		"annotation":"adds a torus",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.add.polygon", 
-		"contents":"engine2d.graphics.add.polygon(\"${1:name}\", \"${2:container}\", ${3:points}, ${4:color});"
+		"contents":"engine2d.graphics.add.polygon(\"${1:id}\", \"${2:container}\", ${3:points}, ${4:color})",
+		"annotation":"adds a polygon",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.get", 
-		"contents":"engine2d.graphics.get(\"${1:name}\", \"${2:container}\");"
+		"contents":"engine2d.graphics.get(\"${1:id}\", \"${2:container}\")",
+		"annotation":"get a specific graphics entity",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.delete.container", 
-		"contents":"engine2d.graphics.delete.container(\"${1:container}\");"
+		"contents":"engine2d.graphics.delete.container(\"${1:container}\")",
+		"annotation":"delete a graphics container",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.delete.shape", 
-		"contents":"engine2d.graphics.delete.shape(\"${1:name}\", \"${2:container}\");"
+		"contents":"engine2d.graphics.delete.shape(\"${1:id}\", \"${2:container}\")",
+		"annotation":"delete a graphics shape",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.graphics.containerClear", 
-		"contents":"engine2d.graphics.containerClear(\"${1:container}\", ${2:clear});"
+		"contents":"engine2d.graphics.containerClear(\"${1:container}\", ${2:clear})",
+		"annotation":"tells the container whether to clear canvas on redraw ",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.update.add", 
-		"contents":"engine2d.update.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+		"contents":"engine2d.update.add(\"${1:canvas}\", \"${2:id}\", ${3:event()})",
+		"annotation":"add an event to the update function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.update.remove", 
-		"contents":"engine2d.update.remove(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.update.remove(\"${1:canvas}\", \"${2:id4}\")",
+		"annotation":"remove an event from the update function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.render.add", 
-		"contents":"engine2d.render.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+		"contents":"engine2d.render.add(\"${1:canvas}\", \"${2:id}\", ${3:event()})",
+		"annotation":"add an event to the render function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.render.remove", 
-		"contents":"engine2d.render.remove(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine2d.render.remove(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"remove an event from the render function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.canvas.xPos", 
-		"contents":"engine2d.canvas.xPos(\"${1:canvas}\", ${2:x});"
+		"contents":"engine2d.canvas.xPos(\"${1:canvas}\", ${2:x})",
+		"annotation":"get / set the x position of a canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.canvas.yPos", 
-		"contents":"engine2d.canvas.yPos(\"${1:canvas}\", ${2:y});"
+		"contents":"engine2d.canvas.yPos(\"${1:canvas}\", ${2:y})",
+		"annotation":"get / set the y position of a canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.canvas.width", 
-		"contents":"engine2d.canvas.width(\"${1:canvas}\", ${2:width});"
+		"contents":"engine2d.canvas.width(\"${1:canvas}\", ${2:width})",
+		"annotation":"get / set the width of a canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.canvas.height", 
-		"contents":"engine2d.canvas.height(\"${1:canvas}\", ${2:height});"
+		"contents":"engine2d.canvas.height(\"${1:canvas}\", ${2:height})",
+		"annotation":"get / set the height of a canvas",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.canvas.x", 
+		"contents":"engine2d.canvas.x(\"${1:canvas}\", ${2:x})",
+		"annotation":"get / set the x position of a canvas camera",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.canvas.y", 
+		"contents":"engine2d.canvas.y(\"${1:canvas}\", ${2:y})",
+		"annotation":"get / set the y position of a canvas camera",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.canvas.scale", 
+		"contents":"engine2d.canvas.scale(\"${1:canvas}\", ${2:y})",
+		"annotation":"get / set the scale of a canvas camera",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.canvas.alpha", 
+		"contents":"engine2d.canvas.alpha(\"${1:canvas}\", ${2:alpha})",
+		"annotation":"get / set the alpha of a canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.canvas.zIndex", 
-		"contents":"engine2d.canvas.zIndex(\"${1:canvas}\", ${2:zIndex});"
+		"contents":"engine2d.canvas.zIndex(\"${1:canvas}\", ${2:zIndex})",
+		"annotation":"get / set the zIndex of a canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.canvas.get", 
-		"contents":"engine2d.canvas.get(\"${1:canvas}\");"
+		"contents":"engine2d.canvas.get(\"${1:canvas}\")",
+		"annotation":"get a specific canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.canvas.destroy", 
-		"contents":"engine2d.canvas.destroy(\"${1:canvas}\");"
+		"contents":"engine2d.canvas.destroy(\"${1:canvas}\")",
+		"annotation":"destroy a specific canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine2d.expose", 
-		"contents":"engine2d.expose();"
+		"contents":"engine2d.expose()",
+		"annotation":"interact with the Pixi.js render engine directly",
+		"kind":"function"
 	},
 	{
-		"trigger":"engine3d.Box", 
-		"contents":"engine3d.Box();"
+		"trigger":"engine3d.Light.x", 
+		"contents":"engine3d.Light.x",
+		"kind":"variable"
 	},
 	{
-		"trigger":"engine3d.Sphere", 
-		"contents":"engine3d.Sphere();"
+		"trigger":"engine3d.Light.y", 
+		"contents":"engine3d.Light.y",
+		"kind":"variable"
 	},
 	{
-		"trigger":"engine3d.Plane", 
-		"contents":"engine3d.Plane();"
+		"trigger":"engine3d.Light.z", 
+		"contents":"engine3d.Light.z",
+		"kind":"variable"
 	},
 	{
-		"trigger":"engine3d.Mesh", 
-		"contents":"engine3d.Mesh();"
+		"trigger":"engine3d.Light.color", 
+		"contents":"engine3d.Light.color",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.Light.intesity", 
+		"contents":"engine3d.Light.intesity",
+		"kind":"variable"
 	},
 	{
 		"trigger":"engine3d.load.addToLoadQueue", 
-		"contents":"engine3d.load.addToLoadQueue(\"${1:canvas}\", \"${2:name}\", \"${3:path}\");"
+		"contents":"engine3d.load.addToLoadQueue(\"${1:canvas}\", \"${2:name}\", \"${3:path}\")",
+		"annotation":"add an asset to the load queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.load.loadQueueSize", 
-		"contents":"engine3d.load.loadQueueSize(\"${1:canvas}\");"
+		"contents":"engine3d.load.loadQueueSize(\"${1:canvas}\")",
+		"annotation":"get the size of the load queue of an engine3d canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.box", 
-		"contents":"engine3d.add.box(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()});"
+		"contents":"engine3d.add.box(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()})",
+		"annotation":"add a box",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.sphere", 
-		"contents":"engine3d.add.sphere(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:indicies}, ${7:onComplete()});"
+		"contents":"engine3d.add.sphere(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:indicies}, ${7:onComplete()})",
+		"annotation":"add a sphere",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.plane", 
-		"contents":"engine3d.add.plane(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()});"
+		"contents":"engine3d.add.plane(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()})",
+		"annotation":"add a plane",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialBasic.color", 
+		"contents":"engine3d.add.material.MaterialBasic.color",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialBasic.specular", 
+		"contents":"engine3d.add.material.MaterialBasic.specular",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialBasic.emissive", 
+		"contents":"engine3d.add.material.MaterialBasic.emissive",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialBasic.wireframe", 
+		"contents":"engine3d.add.material.MaterialBasic.wireframe",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialBasic.alpha", 
+		"contents":"engine3d.add.material.MaterialBasic.alpha",
+		"kind":"variable"
 	},
 	{
 		"trigger":"engine3d.add.material.MaterialBasic.addTo", 
-		"contents":"engine3d.add.material.MaterialBasic.addTo(${1:obj});"
+		"contents":"engine3d.add.material.MaterialBasic.addTo(${1:obj})",
+		"annotation":"add this material to a mesh",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.color", 
+		"contents":"engine3d.add.material.MaterialMetallic.color",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.specular", 
+		"contents":"engine3d.add.material.MaterialMetallic.specular",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.emissive", 
+		"contents":"engine3d.add.material.MaterialMetallic.emissive",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.metallic", 
+		"contents":"engine3d.add.material.MaterialMetallic.metallic",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.roughness", 
+		"contents":"engine3d.add.material.MaterialMetallic.roughness",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.wireframe", 
+		"contents":"engine3d.add.material.MaterialMetallic.wireframe",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialMetallic.alpha", 
+		"contents":"engine3d.add.material.MaterialMetallic.alpha",
+		"kind":"variable"
 	},
 	{
 		"trigger":"engine3d.add.material.MaterialMetallic.addTo", 
-		"contents":"engine3d.add.material.MaterialMetallic.addTo(${1:obj});"
+		"contents":"engine3d.add.material.MaterialMetallic.addTo(${1:obj})",
+		"annotation":"add this material to a mesh",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialGlossy.color", 
+		"contents":"engine3d.add.material.MaterialGlossy.color",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialGlossy.specular", 
+		"contents":"engine3d.add.material.MaterialGlossy.specular",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialGlossy.emissive", 
+		"contents":"engine3d.add.material.MaterialGlossy.emissive",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialGlossy.glossiness", 
+		"contents":"engine3d.add.material.MaterialGlossy.glossiness",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialGlossy.wireframe", 
+		"contents":"engine3d.add.material.MaterialGlossy.wireframe",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialGlossy.alpha", 
+		"contents":"engine3d.add.material.MaterialGlossy.alpha",
+		"kind":"variable"
 	},
 	{
 		"trigger":"engine3d.add.material.MaterialGlossy.addTo", 
-		"contents":"engine3d.add.material.MaterialGlossy.addTo(${1:obj});"
+		"contents":"engine3d.add.material.MaterialGlossy.addTo(${1:obj})",
+		"annotation":"add this material to a mesh",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialCanvas.wireframe", 
+		"contents":"engine3d.add.material.MaterialCanvas.wireframe",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine3d.add.material.MaterialCanvas.alpha", 
+		"contents":"engine3d.add.material.MaterialCanvas.alpha",
+		"kind":"variable"
 	},
 	{
 		"trigger":"engine3d.add.material.MaterialCanvas.addTo", 
-		"contents":"engine3d.add.material.MaterialCanvas.addTo(${1:obj});"
+		"contents":"engine3d.add.material.MaterialCanvas.addTo(${1:obj})",
+		"annotation":"add this material to a mesh",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.material.MaterialCanvas.update", 
-		"contents":"engine3d.add.material.MaterialCanvas.update();"
+		"contents":"engine3d.add.material.MaterialCanvas.update()",
+		"annotation":"update the texture",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.material.basic", 
-		"contents":"engine3d.add.material.basic(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()});"
+		"contents":"engine3d.add.material.basic(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()})",
+		"annotation":"add basic material",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.material.metalic", 
-		"contents":"engine3d.add.material.metalic(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()});"
+		"contents":"engine3d.add.material.metalic(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()})",
+		"annotation":"add metalic material",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.material.glossy", 
-		"contents":"engine3d.add.material.glossy(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()});"
+		"contents":"engine3d.add.material.glossy(\"${1:canvas}\", \"${2:name}\", ${3:onComplete()})",
+		"annotation":"add glossy material",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.light", 
-		"contents":"engine3d.add.light(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()});"
+		"contents":"engine3d.add.light(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, ${6:onComplete()})",
+		"annotation":"add a light",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.add.mesh", 
-		"contents":"engine3d.add.mesh(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, \"${6:key}\", ${7:onComplete()});"
+		"contents":"engine3d.add.mesh(\"${1:canvas}\", \"${2:name}\", ${3:x}, ${4:y}, ${5:z}, \"${6:key}\", ${7:onComplete()})",
+		"annotation":"add a mesh ",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.get.camera", 
-		"contents":"engine3d.get.camera(\"${1:canvas}\");"
+		"contents":"engine3d.get.camera(\"${1:canvas}\")",
+		"annotation":"get the camera of a canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.get.box", 
-		"contents":"engine3d.get.box(\"${1:name}\");"
+		"contents":"engine3d.get.box(\"${1:name}\")",
+		"annotation":"get a specific box",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.get.sphere", 
-		"contents":"engine3d.get.sphere(\"${1:name}\");"
+		"contents":"engine3d.get.sphere(\"${1:name}\")",
+		"annotation":"get a specific sphere",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.get.plane", 
-		"contents":"engine3d.get.plane(\"${1:name}\");"
+		"contents":"engine3d.get.plane(\"${1:name}\")",
+		"annotation":"get a specific plane",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.get.material", 
-		"contents":"engine3d.get.material(\"${1:name}\");"
+		"contents":"engine3d.get.material(\"${1:name}\")",
+		"annotation":"get a specific material",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.performance.fps", 
-		"contents":"engine3d.performance.fps(\"${1:canvas}\");"
+		"contents":"engine3d.performance.fps(\"${1:canvas}\")",
+		"annotation":"frames per second",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.performance.fpsMin", 
-		"contents":"engine3d.performance.fpsMin(\"${1:canvas}\");"
+		"contents":"engine3d.performance.fpsMin(\"${1:canvas}\")",
+		"annotation":"minimum frames per second so far",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.performance.fpsMax", 
-		"contents":"engine3d.performance.fpsMax(\"${1:canvas}\");"
+		"contents":"engine3d.performance.fpsMax(\"${1:canvas}\")",
+		"annotation":"maximum frames per second so far",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.performance.fpsAvg", 
-		"contents":"engine3d.performance.fpsAvg(\"${1:canvas}\");"
+		"contents":"engine3d.performance.fpsAvg(\"${1:canvas}\")",
+		"annotation":"average frames per second over the canvas fpsBuffer",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.update.add", 
-		"contents":"engine3d.update.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+		"contents":"engine3d.update.add(\"${1:canvas}\", \"${2:name}\", ${3:event()})",
+		"annotation":"add an event to the update function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.update.remove", 
-		"contents":"engine3d.update.remove(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine3d.update.remove(\"${1:canvas}\", \"${2:name}\")",
+		"annotation":"remove an event from the update function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.render.add", 
-		"contents":"engine3d.render.add(\"${1:canvas}\", \"${2:name}\", ${3:event()});"
+		"contents":"engine3d.render.add(\"${1:canvas}\", \"${2:name}\", ${3:event()})",
+		"annotation":"add an event to the render function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.render.remove", 
-		"contents":"engine3d.render.remove(\"${1:canvas}\", \"${2:name}\");"
+		"contents":"engine3d.render.remove(\"${1:canvas}\", \"${2:name}\")",
+		"annotation":"remove an event from the render function",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.newCanvas", 
-		"contents":"engine3d.newCanvas(\"${1:name}\", ${2:config});"
+		"contents":"engine3d.newCanvas(\"${1:name}\", ${2:config})",
+		"annotation":"creates a new engine 2d canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.zIndex", 
-		"contents":"engine3d.zIndex(\"${1:canvas}\", ${2:zIndex});"
+		"contents":"engine3d.zIndex(\"${1:canvas}\", ${2:zIndex})",
+		"annotation":"get / set the zIndex of a canvas",
+		"kind":"function"
 	},
 	{
 		"trigger":"engine3d.expose", 
-		"contents":"engine3d.expose();"
+		"contents":"engine3d.expose()",
+		"annotation":"interact with the Babylonjs render engine directly",
+		"kind":"function"
 	},
 	{
 		"trigger":"audioManager.Audio", 
-		"contents":"new audioManager.Audio();"
+		"contents":"new audioManager.Audio()",
+		"annotation":"An audio entity created with: new virtuosity.audioManager.Audio(name, path);",
+		"kind":"function"
 	},
 	{
 		"trigger":"audioManager.Audio.play", 
-		"contents":"audioManager.Audio.play();"
+		"contents":"audioManager.Audio.play()",
+		"annotation":"plays the audio",
+		"kind":"function"
 	},
 	{
 		"trigger":"audioManager.Audio.pause", 
-		"contents":"audioManager.Audio.pause();"
+		"contents":"audioManager.Audio.pause()",
+		"annotation":"pauses the audio",
+		"kind":"function"
 	},
 	{
 		"trigger":"audioManager.Audio.stop", 
-		"contents":"audioManager.Audio.stop();"
+		"contents":"audioManager.Audio.stop()",
+		"annotation":"stops the audio",
+		"kind":"function"
 	},
 	{
 		"trigger":"audioManager.Audio.fade", 
-		"contents":"audioManager.Audio.fade(${1:from}, ${2:to}, ${3:duration});"
+		"contents":"audioManager.Audio.fade(${1:from}, ${2:to}, ${3:duration})",
+		"annotation":"fades the audio",
+		"kind":"function"
+	},
+	{
+		"trigger":"audioManager.Audio.x", 
+		"contents":"audioManager.Audio.x",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.y", 
+		"contents":"audioManager.Audio.y",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.z", 
+		"contents":"audioManager.Audio.z",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.volume", 
+		"contents":"audioManager.Audio.volume",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.length", 
+		"contents":"audioManager.Audio.length",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.time", 
+		"contents":"audioManager.Audio.time",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.speed", 
+		"contents":"audioManager.Audio.speed",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.loaded", 
+		"contents":"audioManager.Audio.loaded",
+		"kind":"variable"
+	},
+	{
+		"trigger":"audioManager.Audio.loop", 
+		"contents":"audioManager.Audio.loop",
+		"kind":"variable"
 	},
 	{
 		"trigger":"audioManager.setGlobalVolume", 
-		"contents":"audioManager.setGlobalVolume(${1:volume});"
+		"contents":"audioManager.setGlobalVolume(${1:volume})",
+		"annotation":"sets the global maximum volume",
+		"kind":"function"
 	},
 	{
 		"trigger":"audioManager.get", 
-		"contents":"audioManager.get(\"${1:name}\");"
+		"contents":"audioManager.get(\"${1:name}\")",
+		"annotation":"get an audio entity",
+		"kind":"function"
 	},
 	{
 		"trigger":"audioManager.delete", 
-		"contents":"audioManager.delete(\"${1:name}\");"
+		"contents":"audioManager.delete(\"${1:name}\")",
+		"annotation":"deletes an audio entity",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.keyboard.add.keyDown", 
-		"contents":"inputManager.keyboard.add.keyDown(\"${1:name}\", ${2:keys}, ${3:event()});"
+		"contents":"inputManager.keyboard.add.keyDown(\"${1:name}\", ${2:keys}, ${3:event()})",
+		"annotation":"key down event (non-repeated)",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.keyboard.add.keyUp", 
-		"contents":"inputManager.keyboard.add.keyUp(\"${1:name}\", ${2:keys}, ${3:event()});"
+		"contents":"inputManager.keyboard.add.keyUp(\"${1:name}\", ${2:keys}, ${3:event()})",
+		"annotation":"key up event (non-repeated)",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.keyboard.delete.keyDown", 
-		"contents":"inputManager.keyboard.delete.keyDown(\"${1:name}\");"
+		"contents":"inputManager.keyboard.delete.keyDown(\"${1:name}\")",
+		"annotation":"delete keyDown event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.keyboard.delete.keyUp", 
-		"contents":"inputManager.keyboard.delete.keyUp(\"${1:name}\");"
+		"contents":"inputManager.keyboard.delete.keyUp(\"${1:name}\")",
+		"annotation":"delete keyUp event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.keyboard.down", 
-		"contents":"inputManager.keyboard.down(${1:keys});"
+		"contents":"inputManager.keyboard.down(${1:keys})",
+		"annotation":"returns Boolean if given keys is down",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.keyboard.getCommand", 
-		"contents":"inputManager.keyboard.getCommand(${1:event()});"
+		"contents":"inputManager.keyboard.getCommand(${1:event()})",
+		"annotation":"runs an event once after the user inputs a keyboard shortcut",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.leftDown", 
-		"contents":"inputManager.mouse.add.leftDown(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.leftDown(\"${1:name}\", ${2:event()})",
+		"annotation":"add a left mouse button down event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.middleDown", 
-		"contents":"inputManager.mouse.add.middleDown(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.middleDown(\"${1:name}\", ${2:event()})",
+		"annotation":"add a middle mouse button down event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.rightDown", 
-		"contents":"inputManager.mouse.add.rightDown(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.rightDown(\"${1:name}\", ${2:event()})",
+		"annotation":"add a right mouse button down event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.backDown", 
-		"contents":"inputManager.mouse.add.backDown(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.backDown(\"${1:name}\", ${2:event()})",
+		"annotation":"add a back mouse button down event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.forwardDown", 
-		"contents":"inputManager.mouse.add.forwardDown(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.forwardDown(\"${1:name}\", ${2:event()})",
+		"annotation":"add a forward mouse button down event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.leftUp", 
-		"contents":"inputManager.mouse.add.leftUp(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.leftUp(\"${1:name}\", ${2:event()})",
+		"annotation":"add a left mouse button up event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.middleUp", 
-		"contents":"inputManager.mouse.add.middleUp(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.middleUp(\"${1:name}\", ${2:event()})",
+		"annotation":"add a middle mouse button up event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.rightUp", 
-		"contents":"inputManager.mouse.add.rightUp(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.rightUp(\"${1:name}\", ${2:event()})",
+		"annotation":"add a right mouse button up event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.backUp", 
-		"contents":"inputManager.mouse.add.backUp(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.backUp(\"${1:name}\", ${2:event()})",
+		"annotation":"add a back mouse button up event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.forwardUp", 
-		"contents":"inputManager.mouse.add.forwardUp(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.forwardUp(\"${1:name}\", ${2:event()})",
+		"annotation":"add a forward mouse button up event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.scroll", 
-		"contents":"inputManager.mouse.add.scroll(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.scroll(\"${1:name}\", ${2:event()})",
+		"annotation":"add a scroll event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.add.mouseMove", 
-		"contents":"inputManager.mouse.add.mouseMove(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.add.mouseMove(\"${1:name}\", ${2:event()})",
+		"annotation":"add a mouse move event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.leftDown", 
-		"contents":"inputManager.mouse.delete.leftDown(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.leftDown(\"${1:name}\")",
+		"annotation":"deletes a left mouse button down event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.middleDown", 
-		"contents":"inputManager.mouse.delete.middleDown(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.middleDown(\"${1:name}\")",
+		"annotation":"deletes a middle mouse button down event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.rightDown", 
-		"contents":"inputManager.mouse.delete.rightDown(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.rightDown(\"${1:name}\")",
+		"annotation":"deletes a right mouse button down event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.backDown", 
-		"contents":"inputManager.mouse.delete.backDown(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.backDown(\"${1:name}\")",
+		"annotation":"deletes a back mouse button down event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.forwardDown", 
-		"contents":"inputManager.mouse.delete.forwardDown(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.forwardDown(\"${1:name}\")",
+		"annotation":"deletes a forward mouse button down event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.leftUp", 
-		"contents":"inputManager.mouse.delete.leftUp(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.leftUp(\"${1:name}\")",
+		"annotation":"deletes a left button up event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.middleUp", 
-		"contents":"inputManager.mouse.delete.middleUp(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.middleUp(\"${1:name}\")",
+		"annotation":"deletes a middle button up event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.rightUp", 
-		"contents":"inputManager.mouse.delete.rightUp(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.rightUp(\"${1:name}\")",
+		"annotation":"deletes a right button up event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.backUp", 
-		"contents":"inputManager.mouse.delete.backUp(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.backUp(\"${1:name}\")",
+		"annotation":"deletes a back button up event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.forwardUp", 
-		"contents":"inputManager.mouse.delete.forwardUp(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.forwardUp(\"${1:name}\")",
+		"annotation":"deletes a forward button up event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.scroll", 
-		"contents":"inputManager.mouse.delete.scroll(\"${1:name}\");"
+		"contents":"inputManager.mouse.delete.scroll(\"${1:name}\")",
+		"annotation":"deletes a scroll event",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.delete.mouseMove", 
-		"contents":"inputManager.mouse.delete.mouseMove(\"${1:name}\", ${2:event()});"
+		"contents":"inputManager.mouse.delete.mouseMove(\"${1:name}\", ${2:event()})",
+		"annotation":"add a mouse move event ",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.clearDeltas", 
-		"contents":"inputManager.mouse.clearDeltas();"
+		"contents":"inputManager.mouse.clearDeltas()",
+		"annotation":"clear mouse deltas",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.pointerLock", 
-		"contents":"inputManager.mouse.pointerLock();"
+		"contents":"inputManager.mouse.pointerLock()",
+		"annotation":"hide the cursor for infinite movement (like in an FPS game)",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.mouse.releasePointerLock", 
-		"contents":"inputManager.mouse.releasePointerLock();"
+		"contents":"inputManager.mouse.releasePointerLock()",
+		"annotation":"unhide the cursor that was hidden from pointerLock",
+		"kind":"function"
+	},
+	{
+		"trigger":"inputManager.mouse.x", 
+		"contents":"inputManager.mouse.x",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.dx", 
+		"contents":"inputManager.mouse.dx",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.screenX", 
+		"contents":"inputManager.mouse.screenX",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.y", 
+		"contents":"inputManager.mouse.y",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.dy", 
+		"contents":"inputManager.mouse.dy",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.screenY", 
+		"contents":"inputManager.mouse.screenY",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.left", 
+		"contents":"inputManager.mouse.left",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.middle", 
+		"contents":"inputManager.mouse.middle",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.right", 
+		"contents":"inputManager.mouse.right",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.back", 
+		"contents":"inputManager.mouse.back",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.forward", 
+		"contents":"inputManager.mouse.forward",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.offsetX", 
+		"contents":"inputManager.mouse.offsetX",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.offsetY", 
+		"contents":"inputManager.mouse.offsetY",
+		"kind":"variable"
+	},
+	{
+		"trigger":"inputManager.mouse.pointerLocked", 
+		"contents":"inputManager.mouse.pointerLocked",
+		"kind":"variable"
 	},
 	{
 		"trigger":"inputManager.gamepad.leftX", 
-		"contents":"inputManager.gamepad.leftX(${1:id});"
+		"contents":"inputManager.gamepad.leftX(${1:id})",
+		"annotation":"get the left joystick current X position",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.gamepad.leftY", 
-		"contents":"inputManager.gamepad.leftY(${1:id});"
+		"contents":"inputManager.gamepad.leftY(${1:id})",
+		"annotation":"get the left joystick current Y position",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.gamepad.rightX", 
-		"contents":"inputManager.gamepad.rightX(${1:id});"
+		"contents":"inputManager.gamepad.rightX(${1:id})",
+		"annotation":"get the right joystick current X position",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.gamepad.rightY", 
-		"contents":"inputManager.gamepad.rightY(${1:id});"
+		"contents":"inputManager.gamepad.rightY(${1:id})",
+		"annotation":"get the right joystick current Y position",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.gamepad.button", 
-		"contents":"inputManager.gamepad.button(${1:id}, \"${2:btn}\");"
+		"contents":"inputManager.gamepad.button(${1:id}, \"${2:btn}\")",
+		"annotation":"return value of a controller button",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.gamepad.getConnected", 
-		"contents":"inputManager.gamepad.getConnected();"
+		"contents":"inputManager.gamepad.getConnected()",
+		"annotation":"returns [Boolean] of which controllers are connected",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.enable", 
-		"contents":"inputManager.enable();"
+		"contents":"inputManager.enable()",
+		"annotation":"enables inputManager",
+		"kind":"function"
 	},
 	{
 		"trigger":"inputManager.disable", 
-		"contents":"inputManager.disable();"
+		"contents":"inputManager.disable()",
+		"annotation":"disables inputManager",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Point", 
-		"contents":"new collisionManager.shape.Point(${1:x}, ${2:y});"
+		"contents":"new collisionManager.shape.Point(${1:x}, ${2:y})",
+		"annotation":"Returns a Point collision shape object",
+		"kind":"function"
+	},
+	{
+		"trigger":"collisionManager.shape.Point.x", 
+		"contents":"collisionManager.shape.Point.x",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Point.y", 
+		"contents":"collisionManager.shape.Point.y",
+		"kind":"variable"
 	},
 	{
 		"trigger":"collisionManager.shape.Point.position", 
-		"contents":"collisionManager.shape.Point.position(${1:x}, ${2:y});"
+		"contents":"collisionManager.shape.Point.position(${1:x}, ${2:y})",
+		"annotation":"Sets the position of the point",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Box", 
-		"contents":"new collisionManager.shape.Box(${1:x}, ${2:y}, ${3:width}, ${4:height});"
+		"contents":"new collisionManager.shape.Box(${1:x}, ${2:y}, ${3:width}, ${4:height})",
+		"annotation":"Returns a Box collision shape object",
+		"kind":"function"
+	},
+	{
+		"trigger":"collisionManager.shape.Box.x", 
+		"contents":"collisionManager.shape.Box.x",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Box.y", 
+		"contents":"collisionManager.shape.Box.y",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Box.width", 
+		"contents":"collisionManager.shape.Box.width",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Box.height", 
+		"contents":"collisionManager.shape.Box.height",
+		"kind":"variable"
 	},
 	{
 		"trigger":"collisionManager.shape.Box.position", 
-		"contents":"collisionManager.shape.Box.position(${1:x}, ${2:y});"
+		"contents":"collisionManager.shape.Box.position(${1:x}, ${2:y})",
+		"annotation":"Sets the position of the box",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Box.scaling", 
-		"contents":"collisionManager.shape.Box.scaling(${1:width}, ${2:height});"
+		"contents":"collisionManager.shape.Box.scaling(${1:width}, ${2:height})",
+		"annotation":"Sets the scaling of the box",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Circle", 
-		"contents":"new collisionManager.shape.Circle(${1:x}, ${2:y}, ${3:r});"
+		"contents":"new collisionManager.shape.Circle(${1:x}, ${2:y}, ${3:r})",
+		"annotation":"Returns a Circle collision shape object",
+		"kind":"function"
+	},
+	{
+		"trigger":"collisionManager.shape.Circle.x", 
+		"contents":"collisionManager.shape.Circle.x",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Circle.y", 
+		"contents":"collisionManager.shape.Circle.y",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Circle.r", 
+		"contents":"collisionManager.shape.Circle.r",
+		"kind":"variable"
 	},
 	{
 		"trigger":"collisionManager.shape.Circle.position", 
-		"contents":"collisionManager.shape.Circle.position(${1:x}, ${2:y});"
+		"contents":"collisionManager.shape.Circle.position(${1:x}, ${2:y})",
+		"annotation":"Sets the position of the box",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Circle.scaling", 
-		"contents":"collisionManager.shape.Circle.scaling(${1:r});"
+		"contents":"collisionManager.shape.Circle.scaling(${1:r})",
+		"annotation":"Sets the scaling of the box",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Line", 
-		"contents":"new collisionManager.shape.Line(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2});"
+		"contents":"new collisionManager.shape.Line(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})",
+		"annotation":"Returns a Line collision shape object",
+		"kind":"function"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.x1", 
+		"contents":"collisionManager.shape.Line.x1",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.y1", 
+		"contents":"collisionManager.shape.Line.y1",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.x2", 
+		"contents":"collisionManager.shape.Line.x2",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.y2", 
+		"contents":"collisionManager.shape.Line.y2",
+		"kind":"variable"
+	},
+	{
+		"trigger":"collisionManager.shape.Line.width", 
+		"contents":"collisionManager.shape.Line.width",
+		"kind":"variable"
 	},
 	{
 		"trigger":"collisionManager.shape.Line.position1", 
-		"contents":"collisionManager.shape.Line.position1(${1:x1}, ${2:y1});"
+		"contents":"collisionManager.shape.Line.position1(${1:x1}, ${2:y1})",
+		"annotation":"Sets the position of the box",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Line.position2", 
-		"contents":"collisionManager.shape.Line.position2(${1:x2}, ${2:y2});"
+		"contents":"collisionManager.shape.Line.position2(${1:x2}, ${2:y2})",
+		"annotation":"Sets the position of the box",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Line.scaling", 
-		"contents":"collisionManager.shape.Line.scaling(${1:width});"
+		"contents":"collisionManager.shape.Line.scaling(${1:width})",
+		"annotation":"Sets the width of the line",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Polygon", 
-		"contents":"new collisionManager.shape.Polygon(${1:points});"
+		"contents":"new collisionManager.shape.Polygon(${1:points})",
+		"annotation":"Returns a Polygon collision shape object",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.shape.Polygon.set", 
-		"contents":"collisionManager.shape.Polygon.set();"
+		"contents":"collisionManager.shape.Polygon.set()",
+		"annotation":"set Polygon points. Can be made up of Points, arrays setup like: [x, y], or a combination.",
+		"kind":"function"
+	},
+	{
+		"trigger":"collisionManager.shape.Polygon.points", 
+		"contents":"collisionManager.shape.Polygon.points",
+		"kind":"variable"
 	},
 	{
 		"trigger":"collisionManager.collision.auto", 
-		"contents":"collisionManager.collision.auto(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.auto(${1:a}, ${2:b})",
+		"annotation":"Check if two collision objects are colliding. Automatically decided which collision function to use.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.pointPoint", 
-		"contents":"collisionManager.collision.pointPoint(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.pointPoint(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Point and a Point are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.pointBox", 
-		"contents":"collisionManager.collision.pointBox(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.pointBox(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Point and a Box are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.pointCircle", 
-		"contents":"collisionManager.collision.pointCircle(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.pointCircle(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Point and a Circle are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.pointLine", 
-		"contents":"collisionManager.collision.pointLine(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.pointLine(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Point and a Line are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.pointPolygon", 
-		"contents":"collisionManager.collision.pointPolygon(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.pointPolygon(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Point and a Polygon are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.boxPoint", 
-		"contents":"collisionManager.collision.boxPoint(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.boxPoint(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Box and a Point are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.boxBox", 
-		"contents":"collisionManager.collision.boxBox(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.boxBox(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Box and a Box are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.boxCircle", 
-		"contents":"collisionManager.collision.boxCircle(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.boxCircle(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Box and a Circle are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.boxLine", 
-		"contents":"collisionManager.collision.boxLine(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.boxLine(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Box and a Line are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.boxPolygon", 
-		"contents":"collisionManager.collision.boxPolygon(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.boxPolygon(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Box and a Polygon are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.circlePoint", 
-		"contents":"collisionManager.collision.circlePoint(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.circlePoint(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Circle and a Point are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.circleBox", 
-		"contents":"collisionManager.collision.circleBox(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.circleBox(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Circle and a Box are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.circleCircle", 
-		"contents":"collisionManager.collision.circleCircle(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.circleCircle(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Circle and a Circle are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.circleLine", 
-		"contents":"collisionManager.collision.circleLine(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.circleLine(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Line and a Line are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.circlePolygon", 
-		"contents":"collisionManager.collision.circlePolygon(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.circlePolygon(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Polygon and a Polygon are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.linePoint", 
-		"contents":"collisionManager.collision.linePoint(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.linePoint(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Line and a Point are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.lineBox", 
-		"contents":"collisionManager.collision.lineBox(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.lineBox(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Line and a Box are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.lineCircle", 
-		"contents":"collisionManager.collision.lineCircle(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.lineCircle(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Line and a Circle are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.lineLine", 
-		"contents":"collisionManager.collision.lineLine(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.lineLine(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Line and a Line are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.linePolygon", 
-		"contents":"collisionManager.collision.linePolygon(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.linePolygon(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Polygon and a Polygon are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.polygonPoint", 
-		"contents":"collisionManager.collision.polygonPoint(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.polygonPoint(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Polygon and a Point are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.polygonBox", 
-		"contents":"collisionManager.collision.polygonBox(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.polygonBox(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Polygon and a Box are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.polygonCircle", 
-		"contents":"collisionManager.collision.polygonCircle(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.polygonCircle(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Polygon and a Circle are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.polygonLine", 
-		"contents":"collisionManager.collision.polygonLine(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.polygonLine(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Line and a Line are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"collisionManager.collision.polygonPolygon", 
-		"contents":"collisionManager.collision.polygonPolygon(${1:a}, ${2:b});"
+		"contents":"collisionManager.collision.polygonPolygon(${1:a}, ${2:b})",
+		"annotation":"Returns true if a Polygon and a Polygon are colliding.",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList", 
-		"contents":"new structures.LinkedList();"
+		"contents":"new structures.LinkedList()",
+		"annotation":"linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.Node.getData", 
-		"contents":"structures.LinkedList.Node.getData();"
+		"contents":"structures.LinkedList.Node.getData()",
+		"annotation":"get the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.Node.setData", 
-		"contents":"structures.LinkedList.Node.setData();"
+		"contents":"structures.LinkedList.Node.setData()",
+		"annotation":"set the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.Node.getNext", 
-		"contents":"structures.LinkedList.Node.getNext();"
+		"contents":"structures.LinkedList.Node.getNext()",
+		"annotation":"get the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.Node.setNext", 
-		"contents":"structures.LinkedList.Node.setNext();"
+		"contents":"structures.LinkedList.Node.setNext()",
+		"annotation":"set the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.push", 
-		"contents":"structures.LinkedList.push(${1:data});"
+		"contents":"structures.LinkedList.push(${1:data})",
+		"annotation":"add a node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.delete", 
-		"contents":"structures.LinkedList.delete(${1:i});"
+		"contents":"structures.LinkedList.delete(${1:i})",
+		"annotation":"delete a node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.get", 
-		"contents":"structures.LinkedList.get(${1:i});"
+		"contents":"structures.LinkedList.get(${1:i})",
+		"annotation":"get a node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.peek", 
-		"contents":"structures.LinkedList.peek();"
+		"contents":"structures.LinkedList.peek()",
+		"annotation":"get the head of the linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.size", 
-		"contents":"structures.LinkedList.size();"
+		"contents":"structures.LinkedList.size()",
+		"annotation":"get the size of the linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.LinkedList.print", 
-		"contents":"structures.LinkedList.print();"
+		"contents":"structures.LinkedList.print()",
+		"annotation":"output an array representation of the linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList", 
-		"contents":"new structures.DoublyLinkedList();"
+		"contents":"new structures.DoublyLinkedList()",
+		"annotation":"doubly linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.Node.getData", 
-		"contents":"structures.DoublyLinkedList.Node.getData();"
+		"contents":"structures.DoublyLinkedList.Node.getData()",
+		"annotation":"get the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.Node.setData", 
-		"contents":"structures.DoublyLinkedList.Node.setData();"
+		"contents":"structures.DoublyLinkedList.Node.setData()",
+		"annotation":"set the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.Node.getNext", 
-		"contents":"structures.DoublyLinkedList.Node.getNext();"
+		"contents":"structures.DoublyLinkedList.Node.getNext()",
+		"annotation":"get the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.Node.setNext", 
-		"contents":"structures.DoublyLinkedList.Node.setNext();"
+		"contents":"structures.DoublyLinkedList.Node.setNext()",
+		"annotation":"set the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.Node.getPrevious", 
-		"contents":"structures.DoublyLinkedList.Node.getPrevious();"
+		"contents":"structures.DoublyLinkedList.Node.getPrevious()",
+		"annotation":"get the previous node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.Node.setPrevious", 
-		"contents":"structures.DoublyLinkedList.Node.setPrevious();"
+		"contents":"structures.DoublyLinkedList.Node.setPrevious()",
+		"annotation":"set the previous node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.push", 
-		"contents":"structures.DoublyLinkedList.push(${1:data});"
+		"contents":"structures.DoublyLinkedList.push(${1:data})",
+		"annotation":"add a node to the doubly linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.delete", 
-		"contents":"structures.DoublyLinkedList.delete(${1:i});"
+		"contents":"structures.DoublyLinkedList.delete(${1:i})",
+		"annotation":"delete a node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.get", 
-		"contents":"structures.DoublyLinkedList.get(${1:i});"
+		"contents":"structures.DoublyLinkedList.get(${1:i})",
+		"annotation":"get a node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.peek", 
-		"contents":"structures.DoublyLinkedList.peek();"
+		"contents":"structures.DoublyLinkedList.peek()",
+		"annotation":"get the head of the doubly linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.size", 
-		"contents":"structures.DoublyLinkedList.size();"
+		"contents":"structures.DoublyLinkedList.size()",
+		"annotation":"get the size of the doubly linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.DoublyLinkedList.print", 
-		"contents":"structures.DoublyLinkedList.print();"
+		"contents":"structures.DoublyLinkedList.print()",
+		"annotation":"output an array representation of the doubly linked list",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack", 
-		"contents":"new structures.Stack();"
+		"contents":"new structures.Stack()",
+		"annotation":"stack",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.Node.getData", 
-		"contents":"structures.Stack.Node.getData();"
+		"contents":"structures.Stack.Node.getData()",
+		"annotation":"get the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.Node.setData", 
-		"contents":"structures.Stack.Node.setData();"
+		"contents":"structures.Stack.Node.setData()",
+		"annotation":"set the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.Node.getNext", 
-		"contents":"structures.Stack.Node.getNext();"
+		"contents":"structures.Stack.Node.getNext()",
+		"annotation":"get the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.Node.setNext", 
-		"contents":"structures.Stack.Node.setNext();"
+		"contents":"structures.Stack.Node.setNext()",
+		"annotation":"set the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.push", 
-		"contents":"structures.Stack.push(${1:data});"
+		"contents":"structures.Stack.push(${1:data})",
+		"annotation":"add a node to the stack",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.pop", 
-		"contents":"structures.Stack.pop();"
+		"contents":"structures.Stack.pop()",
+		"annotation":"remove the top node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.peek", 
-		"contents":"structures.Stack.peek();"
+		"contents":"structures.Stack.peek()",
+		"annotation":"return the top node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.size", 
-		"contents":"structures.Stack.size();"
+		"contents":"structures.Stack.size()",
+		"annotation":"get the size of the Stack",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Stack.print", 
-		"contents":"structures.Stack.print();"
+		"contents":"structures.Stack.print()",
+		"annotation":"output an array representation of the stack",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue", 
-		"contents":"new structures.Queue();"
+		"contents":"new structures.Queue()",
+		"annotation":"queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.Node.getData", 
-		"contents":"structures.Queue.Node.getData();"
+		"contents":"structures.Queue.Node.getData()",
+		"annotation":"get the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.Node.setData", 
-		"contents":"structures.Queue.Node.setData();"
+		"contents":"structures.Queue.Node.setData()",
+		"annotation":"set the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.Node.getNext", 
-		"contents":"structures.Queue.Node.getNext();"
+		"contents":"structures.Queue.Node.getNext()",
+		"annotation":"get the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.Node.setNext", 
-		"contents":"structures.Queue.Node.setNext();"
+		"contents":"structures.Queue.Node.setNext()",
+		"annotation":"set the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.push", 
-		"contents":"structures.Queue.push(${1:data});"
+		"contents":"structures.Queue.push(${1:data})",
+		"annotation":"add a node to the queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.pop", 
-		"contents":"structures.Queue.pop();"
+		"contents":"structures.Queue.pop()",
+		"annotation":"remove the top node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.peek", 
-		"contents":"structures.Queue.peek();"
+		"contents":"structures.Queue.peek()",
+		"annotation":"return the top node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.size", 
-		"contents":"structures.Queue.size();"
+		"contents":"structures.Queue.size()",
+		"annotation":"get the size of the Queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Queue.print", 
-		"contents":"structures.Queue.print();"
+		"contents":"structures.Queue.print()",
+		"annotation":"output an array representation of the Queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue", 
-		"contents":"new structures.PriorityQueue();"
+		"contents":"new structures.PriorityQueue()",
+		"annotation":"priority queue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.Node.getData", 
-		"contents":"structures.PriorityQueue.Node.getData();"
+		"contents":"structures.PriorityQueue.Node.getData()",
+		"annotation":"get the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.Node.setData", 
-		"contents":"structures.PriorityQueue.Node.setData();"
+		"contents":"structures.PriorityQueue.Node.setData()",
+		"annotation":"set the data of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.Node.getNext", 
-		"contents":"structures.PriorityQueue.Node.getNext();"
+		"contents":"structures.PriorityQueue.Node.getNext()",
+		"annotation":"get the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.Node.setNext", 
-		"contents":"structures.PriorityQueue.Node.setNext();"
+		"contents":"structures.PriorityQueue.Node.setNext()",
+		"annotation":"set the next node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.Node.getPrevious", 
-		"contents":"structures.PriorityQueue.Node.getPrevious();"
+		"contents":"structures.PriorityQueue.Node.getPrevious()",
+		"annotation":"get the previous node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.Node.setPrevious", 
-		"contents":"structures.PriorityQueue.Node.setPrevious();"
+		"contents":"structures.PriorityQueue.Node.setPrevious()",
+		"annotation":"set the previous node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.Node.getPriority", 
-		"contents":"structures.PriorityQueue.Node.getPriority();"
+		"contents":"structures.PriorityQueue.Node.getPriority()",
+		"annotation":"get the priority of the node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.push", 
-		"contents":"structures.PriorityQueue.push(${1:data});"
+		"contents":"structures.PriorityQueue.push(${1:data})",
+		"annotation":"add a node to the PriorityQueue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.peek", 
-		"contents":"structures.PriorityQueue.peek();"
+		"contents":"structures.PriorityQueue.peek()",
+		"annotation":"get the front of the PriorityQueue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.pop", 
-		"contents":"structures.PriorityQueue.pop();"
+		"contents":"structures.PriorityQueue.pop()",
+		"annotation":"remove the top node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.delete", 
-		"contents":"structures.PriorityQueue.delete(${1:node});"
+		"contents":"structures.PriorityQueue.delete(${1:node})",
+		"annotation":"delete a specific node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.get", 
-		"contents":"structures.PriorityQueue.get(${1:node});"
+		"contents":"structures.PriorityQueue.get(${1:node})",
+		"annotation":"get a specific node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.setPriority", 
-		"contents":"structures.PriorityQueue.setPriority(${1:node}, ${2:priority});"
+		"contents":"structures.PriorityQueue.setPriority(${1:node}, ${2:priority})",
+		"annotation":"change the priority of a specific node",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.size", 
-		"contents":"structures.PriorityQueue.size();"
+		"contents":"structures.PriorityQueue.size()",
+		"annotation":"get the size of the PriorityQueue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.print", 
-		"contents":"structures.PriorityQueue.print();"
+		"contents":"structures.PriorityQueue.print()",
+		"annotation":"output an array representation of the PriorityQueue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.forEach", 
-		"contents":"structures.PriorityQueue.forEach(${1:event()});"
+		"contents":"structures.PriorityQueue.forEach(${1:event()})",
+		"annotation":"enumerate over all nodes in the PriorityQueue",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.PriorityQueue.reverseForEach", 
-		"contents":"structures.PriorityQueue.reverseForEach(${1:event()});"
+		"contents":"structures.PriorityQueue.reverseForEach(${1:event()})",
+		"annotation":"enumerate over all nodes in the PriorityQueue in reverse order",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Heap", 
-		"contents":"new structures.Heap();"
+		"contents":"new structures.Heap()",
+		"annotation":"tree-like automatic ordering of a set for the purpose of getting the lowest value quickly. This is faster than a normal binary search tree as it actually uses an array",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Heap.size", 
-		"contents":"structures.Heap.size();"
+		"contents":"structures.Heap.size()",
+		"annotation":"get the size of the heap",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Heap.push", 
-		"contents":"structures.Heap.push(${1:val});"
+		"contents":"structures.Heap.push(${1:val})",
+		"annotation":"add a value to the heap",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Heap.print", 
-		"contents":"structures.Heap.print();"
+		"contents":"structures.Heap.print()",
+		"annotation":"print the array of the heap",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Heap.peek", 
-		"contents":"structures.Heap.peek();"
+		"contents":"structures.Heap.peek()",
+		"annotation":"get the lowest value",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Heap.pop", 
-		"contents":"structures.Heap.pop();"
+		"contents":"structures.Heap.pop()",
+		"annotation":"get and remove the lowest value",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.Heap.remove", 
-		"contents":"structures.Heap.remove(${1:i});"
+		"contents":"structures.Heap.remove(${1:i})",
+		"annotation":"get and remove a value from a specific index",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.ReverseHeap", 
-		"contents":"new structures.ReverseHeap();"
+		"contents":"new structures.ReverseHeap()",
+		"annotation":"tree-like automatic ordering of a set for the purpose of getting the highest value quickly. This is faster than a normal binary search tree as it actually uses an array",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.ReverseHeap.size", 
-		"contents":"structures.ReverseHeap.size();"
+		"contents":"structures.ReverseHeap.size()",
+		"annotation":"get the size of the reverse heap",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.ReverseHeap.push", 
-		"contents":"structures.ReverseHeap.push(${1:val});"
+		"contents":"structures.ReverseHeap.push(${1:val})",
+		"annotation":"add a value to the reverse heap",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.ReverseHeap.print", 
-		"contents":"structures.ReverseHeap.print();"
+		"contents":"structures.ReverseHeap.print()",
+		"annotation":"print the array of the reverse heap",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.ReverseHeap.peek", 
-		"contents":"structures.ReverseHeap.peek();"
+		"contents":"structures.ReverseHeap.peek()",
+		"annotation":"get the highest value",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.ReverseHeap.pop", 
-		"contents":"structures.ReverseHeap.pop();"
+		"contents":"structures.ReverseHeap.pop()",
+		"annotation":"get and remove the highest value",
+		"kind":"function"
 	},
 	{
 		"trigger":"structures.ReverseHeap.remove", 
-		"contents":"structures.ReverseHeap.remove(${1:i});"
+		"contents":"structures.ReverseHeap.remove(${1:i})",
+		"annotation":"get and remove a value from a specific index",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.WriteStream", 
-		"contents":"new files.WriteStream(\"${1:path}\");"
+		"contents":"new files.WriteStream(\"${1:path}\")",
+		"annotation":"file write stream",
+		"kind":"function"
+	},
+	{
+		"trigger":"files.WriteStream.path", 
+		"contents":"files.WriteStream.path",
+		"kind":"variable"
+	},
+	{
+		"trigger":"files.WriteStream.open", 
+		"contents":"files.WriteStream.open",
+		"kind":"variable"
 	},
 	{
 		"trigger":"files.WriteStream.write", 
-		"contents":"files.WriteStream.write();"
+		"contents":"files.WriteStream.write()",
+		"annotation":"writes to the WriteStream",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.WriteStream.close", 
-		"contents":"files.WriteStream.close();"
+		"contents":"files.WriteStream.close()",
+		"annotation":"closes to the WriteStream",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.readFile", 
-		"contents":"files.readFile(\"${1:path}\", ${2:asyncronous});"
+		"contents":"files.readFile(\"${1:path}\", ${2:asyncronous})",
+		"annotation":"readFile ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.writeFile", 
-		"contents":"files.writeFile(\"${1:path}\", \"${2:output}\", ${3:asyncronous});"
+		"contents":"files.writeFile(\"${1:path}\", \"${2:output}\", ${3:asyncronous})",
+		"annotation":"writeFile ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.deleteFile", 
-		"contents":"files.deleteFile(\"${1:path}\");"
+		"contents":"files.deleteFile(\"${1:path}\")",
+		"annotation":"deleteFile ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.copyFile", 
-		"contents":"files.copyFile(\"${1:path}\", \"${2:destination}\");"
+		"contents":"files.copyFile(\"${1:path}\", \"${2:destination}\")",
+		"annotation":"copyFile",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.fileExists", 
-		"contents":"files.fileExists(\"${1:path}\");"
+		"contents":"files.fileExists(\"${1:path}\")",
+		"annotation":"fileExists ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.createDirectory", 
-		"contents":"files.createDirectory(\"${1:path}\");"
+		"contents":"files.createDirectory(\"${1:path}\")",
+		"annotation":"createDirectory ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.getFileExtention", 
-		"contents":"files.getFileExtention(\"${1:path}\");"
+		"contents":"files.getFileExtention(\"${1:path}\")",
+		"annotation":"getFileExtention ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.getFileName", 
-		"contents":"files.getFileName(\"${1:path}\");"
+		"contents":"files.getFileName(\"${1:path}\")",
+		"annotation":"getFileName ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.getFileNameWithoutExtention", 
-		"contents":"files.getFileNameWithoutExtention(\"${1:path}\");"
+		"contents":"files.getFileNameWithoutExtention(\"${1:path}\")",
+		"annotation":"getFileNameWithoutExtention ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.getFiles", 
-		"contents":"files.getFiles(\"${1:path}\", ${2:path});"
+		"contents":"files.getFiles(\"${1:path}\", ${2:path})",
+		"annotation":"getFiles",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.getFilePath", 
-		"contents":"files.getFilePath(\"${1:path}\");"
+		"contents":"files.getFilePath(\"${1:path}\")",
+		"annotation":"getFilePath ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.getFilePathUpDirectory", 
-		"contents":"files.getFilePathUpDirectory(\"${1:path}\");"
+		"contents":"files.getFilePathUpDirectory(\"${1:path}\")",
+		"annotation":"getFilePathUpDirectory ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.deleteFolder", 
-		"contents":"files.deleteFolder(\"${1:location}\");"
+		"contents":"files.deleteFolder(\"${1:location}\")",
+		"annotation":"deleteFolder ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.renameFile", 
-		"contents":"files.renameFile(\"${1:path}\");"
+		"contents":"files.renameFile(\"${1:path}\")",
+		"annotation":"renameFile ",
+		"kind":"function"
 	},
 	{
 		"trigger":"files.renameDirectory", 
-		"contents":"files.renameDirectory(\"${1:path}\");"
+		"contents":"files.renameDirectory(\"${1:path}\")",
+		"annotation":"renameDirectory ",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.Timer", 
-		"contents":"time.Timer(${1:duration}, ${2:func()});"
+		"contents":"time.Timer(${1:duration}, ${2:func()})",
+		"annotation":"Runs a function after a set duration.",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.AdvancedTimer", 
-		"contents":"new time.AdvancedTimer(${1:duration}, ${2:func()});"
+		"contents":"new time.AdvancedTimer(${1:duration}, ${2:func()})",
+		"annotation":"Timer with extra functionality",
+		"kind":"function"
+	},
+	{
+		"trigger":"time.AdvancedTimer.running", 
+		"contents":"time.AdvancedTimer.running",
+		"kind":"variable"
+	},
+	{
+		"trigger":"time.AdvancedTimer.paused", 
+		"contents":"time.AdvancedTimer.paused",
+		"kind":"variable"
+	},
+	{
+		"trigger":"time.AdvancedTimer.duration", 
+		"contents":"time.AdvancedTimer.duration",
+		"kind":"variable"
 	},
 	{
 		"trigger":"time.AdvancedTimer.start", 
-		"contents":"time.AdvancedTimer.start();"
+		"contents":"time.AdvancedTimer.start()",
+		"annotation":"Starts the AdvancedTimer, or continues the AdvancedTimer (if it had been paused).",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.AdvancedTimer.stop", 
-		"contents":"time.AdvancedTimer.stop();"
+		"contents":"time.AdvancedTimer.stop()",
+		"annotation":"Stops the AdvancedTimer",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.AdvancedTimer.restart", 
-		"contents":"time.AdvancedTimer.restart();"
+		"contents":"time.AdvancedTimer.restart()",
+		"annotation":"Restarts the AdvancedTimer",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.AdvancedTimer.pause", 
-		"contents":"time.AdvancedTimer.pause();"
+		"contents":"time.AdvancedTimer.pause()",
+		"annotation":"Pauses the AdvancedTimer",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.AdvancedTimer.getTimeLeft", 
-		"contents":"time.AdvancedTimer.getTimeLeft();"
+		"contents":"time.AdvancedTimer.getTimeLeft()",
+		"annotation":"Gets the time left until the timer finishes",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.Interval", 
-		"contents":"time.Interval(${1:duration}, ${2:func()});"
+		"contents":"time.Interval(${1:duration}, ${2:func()})",
+		"annotation":"Runs a function at a set interval.",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.AdvancedInterval", 
-		"contents":"new time.AdvancedInterval(${1:duration}, ${2:func()});"
+		"contents":"new time.AdvancedInterval(${1:duration}, ${2:func()})",
+		"annotation":"Runs a function at a set interval, with some extra functionality.",
+		"kind":"function"
+	},
+	{
+		"trigger":"time.AdvancedInterval.duration", 
+		"contents":"time.AdvancedInterval.duration",
+		"kind":"variable"
+	},
+	{
+		"trigger":"time.AdvancedInterval.running", 
+		"contents":"time.AdvancedInterval.running",
+		"kind":"variable"
 	},
 	{
 		"trigger":"time.AdvancedInterval.start", 
-		"contents":"time.AdvancedInterval.start();"
+		"contents":"time.AdvancedInterval.start()",
+		"annotation":"Starts the AdvancedInterval.",
+		"kind":"function"
 	},
 	{
 		"trigger":"time.AdvancedInterval.stop", 
-		"contents":"time.AdvancedInterval.stop();"
+		"contents":"time.AdvancedInterval.stop()",
+		"annotation":"Stops the AdvancedInterval.",
+		"kind":"function"
 	},
 	{
 		"trigger":"multiThreading.Thread", 
-		"contents":"new multiThreading.Thread(\"${1:path}\", ${2:onMessage()}, ${3:onExit()});"
+		"contents":"new multiThreading.Thread(\"${1:path}\", ${2:onMessage()}, ${3:onExit()})",
+		"annotation":"Creates a separate run thread (multithreading)",
+		"kind":"function"
 	},
 	{
 		"trigger":"multiThreading.Thread.send", 
-		"contents":"multiThreading.Thread.send(${1:data});"
+		"contents":"multiThreading.Thread.send(${1:data})",
+		"annotation":"Semds data to the thread",
+		"kind":"function"
 	},
 	{
 		"trigger":"multiThreading.cluster", 
-		"contents":"multiThreading.cluster(\"${1:path}\", ${2:input}, ${3:onComplete()}, ${4:threads});"
+		"contents":"multiThreading.cluster(\"${1:path}\", ${2:input}, ${3:onComplete()}, ${4:threads})",
+		"annotation":"creates a cluster of threads",
+		"kind":"function"
 	},
 	{
 		"trigger":"multiThreading.cluster-worker", 
-		"contents":"new multiThreading.cluster-worker();"
+		"contents":"new multiThreading.cluster-worker()",
+		"annotation":"This is an object passed to the cluster worker. A cluster worker should be structured: module.exports=(worker)=>{};",
+		"kind":"function"
 	},
 	{
 		"trigger":"multiThreading.cluster-worker.output", 
-		"contents":"multiThreading.cluster-worker.output();"
+		"contents":"multiThreading.cluster-worker.output()",
+		"annotation":"Sends output back to the thread. Can be called as many times a you would like.",
+		"kind":"function"
+	},
+	{
+		"trigger":"multiThreading.cluster-worker.input", 
+		"contents":"multiThreading.cluster-worker.input",
+		"kind":"variable"
+	},
+	{
+		"trigger":"multiThreading.cluster-worker.id", 
+		"contents":"multiThreading.cluster-worker.id",
+		"kind":"variable"
+	},
+	{
+		"trigger":"multiThreading.cluster-worker.pid", 
+		"contents":"multiThreading.cluster-worker.pid",
+		"kind":"variable"
 	},
 	{
 		"trigger":"string.stringifyMap", 
-		"contents":"string.stringifyMap(${1:map});"
+		"contents":"string.stringifyMap(${1:map})",
+		"annotation":"stringifys a map",
+		"kind":"function"
 	},
 	{
 		"trigger":"string.parseMap", 
-		"contents":"string.parseMap(${1:map});"
+		"contents":"string.parseMap(${1:map})",
+		"annotation":"parses a map stringified by stringifyMap",
+		"kind":"function"
 	},
 	{
 		"trigger":"string.stringifySet", 
-		"contents":"string.stringifySet(${1:set});"
+		"contents":"string.stringifySet(${1:set})",
+		"annotation":"stringifys a set",
+		"kind":"function"
 	},
 	{
 		"trigger":"string.parseSet", 
-		"contents":"string.parseSet(${1:set});"
+		"contents":"string.parseSet(${1:set})",
+		"annotation":"parses a set stringified by stringifySet",
+		"kind":"function"
+	},
+	{
+		"trigger":"cmd.color.black", 
+		"contents":"cmd.color.black",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.color.red", 
+		"contents":"cmd.color.red",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.color.yellow", 
+		"contents":"cmd.color.yellow",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.color.green", 
+		"contents":"cmd.color.green",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.color.blue", 
+		"contents":"cmd.color.blue",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.color.magenta", 
+		"contents":"cmd.color.magenta",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.color.cyan", 
+		"contents":"cmd.color.cyan",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.color.white", 
+		"contents":"cmd.color.white",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.black", 
+		"contents":"cmd.backgroundColor.black",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.red", 
+		"contents":"cmd.backgroundColor.red",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.yellow", 
+		"contents":"cmd.backgroundColor.yellow",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.green", 
+		"contents":"cmd.backgroundColor.green",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.blue", 
+		"contents":"cmd.backgroundColor.blue",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.magenta", 
+		"contents":"cmd.backgroundColor.magenta",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.cyan", 
+		"contents":"cmd.backgroundColor.cyan",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.backgroundColor.white", 
+		"contents":"cmd.backgroundColor.white",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.style.reset", 
+		"contents":"cmd.style.reset",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.style.bright", 
+		"contents":"cmd.style.bright",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.style.dim", 
+		"contents":"cmd.style.dim",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.style.underscore", 
+		"contents":"cmd.style.underscore",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.style.blink", 
+		"contents":"cmd.style.blink",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.style.reverse", 
+		"contents":"cmd.style.reverse",
+		"kind":"variable"
+	},
+	{
+		"trigger":"cmd.style.hidden", 
+		"contents":"cmd.style.hidden",
+		"kind":"variable"
 	},
 	{
 		"trigger":"cmd.log", 
-		"contents":"cmd.log(\"${1:string}\", \"${2:color}\", \"${3:backgroundColor}\");"
+		"contents":"cmd.log(\"${1:string}\", \"${2:color}\", \"${3:backgroundColor}\")",
+		"annotation":"console.log() with stylizations with preventing overflow",
+		"kind":"function"
 	},
 ]}
