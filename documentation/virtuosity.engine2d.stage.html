@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="icon" href="favicon.ico">
-		<title>virtuosity Documentation | virtuosity.engine2d.graphics.Box</title>
+		<title>virtuosity Documentation | virtuosity.engine2d.stage</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<header>
 		<datalist id="entities"></datalist>
 		<div class="menu-bar" id="desktop-navbar">
 		    <div class="left">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.graphics.html'">graphics</button>
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button>
 		    </div>
 		    <div class="right">
 		    	<button class="menubar-btn" id="dark-mode" onclick="toggle_mode();">Light Mode</button>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="menu-bar mobile-interactive" id="path-navbar">
 			<div class="right">
-		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.graphics.html'">graphics</button><script type="text/javascript">var path = "virtuosity.engine2d.graphics.Box";</script>
+		        <button class="menubar-btn" onclick="location.href='./virtuosity.html'">virtuosity</button><button class="menubar-btn" onclick="location.href='./virtuosity.engine2d.html'">engine2d</button><script type="text/javascript">var path = "virtuosity.engine2d.stage";</script>
 			</div>
 		</div>
 		<div class="menu-bar mobile-interactive" id="search-navbar">
@@ -217,85 +217,43 @@
 	</header>
 	<body>
 		<div id="container">
-			<div id="header-spacing"></div><h1>Box</h1><p>A procedurally generated engine2d box</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">graphics</span>.<span class="green">Box</span></div><h4>Components</h4><ul><li ><a href=#container>container</a></li><li ><a href=#position>position</a></li><li ><a href=#scale>scale</a></li><li ><a href=#color>color</a></li><li ><a href=#borderRadius>borderRadius</a></li><li ><a href=#alpha>alpha</a></li></ul><hr><h3 id='container'>container</h3><p >container of the render object</p><br><br><table>
+			<div id="header-spacing"></div><h1>stage</h1><p><b>(ALPHA)</b> Creating and managing stages for easier, engine managed transitions</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="green">stage</span></div><h4>Classes</h4><ul><li><a href='./virtuosity.engine2d.stage.Stage2D.html'>Stage2D</a></li></ul><h4>Methods</h4><ul><li><a href="#build">build</a></li><li><a href="#get">get</a></li><li><a href="#delete">delete</a></li></ul><hr><h2>Classes</h2><h3 id="Stage2D" style="margin-top: 0px;"><a href='./virtuosity.engine2d.stage.Stage2D.html'>Stage2D</a></h3><p style="margin-top: 0px;">A 2D stage</p><div class="code"><span class="red">new</span> <span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">stage</span>.<span class="green">Stage2D</span>(<span class="orange">name</span>);</div><br><br><table>
+													<tr>
+														<th>Parameter</th>
+														<th>Type</th>
+														<th>Description</th>
+													</tr><tr>
+													<td><var>name</var></td>
+													<td><var><span class="yellow">String</span></var></td>
+													<td>name of the stage</td>
+												</tr></table><br><br><h2>Methods</h2><h3 id="build" style="margin-top: 0px;">build</a></h3><p style="margin-top: 0px;">build a stage from an exported state</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">stage</span>.<span class="green">build</span>(<span class="orange">stage</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
 												</tr><tr>
-												<td><var>container</var></td>
-												<td><var><span class="white">Container</span></var></td>
-												<td>container of the render object</td>
-											</tr><tr>
-												<td><var>zIndex</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>zIndex of the render object</td>
-											</tr></table><h3 id='position'>position</h3><p >position of the graphics object</p><table>
+												<td><var>stage</var></td>
+												<td><var><span class="blue">Object</span></var></td>
+												<td>stage to build</td>
+											</tr></table><h3 id="get">get</a></h3><p style="margin-top: 0px;">get a stage</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">stage</span>.<span class="green">get</span>(<span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
-													<th>Default</th>
 												</tr><tr>
-												<td><var>x</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>x coordinate of the graphics object</td>
-												<td><var><span class="purple">0</span></var></td>
-											</tr><tr>
-												<td><var>y</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>y coordinate of the graphics object</td>
-												<td><var><span class="purple">0</span></var></td>
-											</tr></table><h3 id='scale'>scale</h3><p >scale of the graphics object</p><table>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the stage</td>
+											</tr></table><h3 id="delete">delete</a></h3><p style="margin-top: 0px;">delete a stage</p><div class="code"><span class="blue">virtuosity</span>.<span class="blue">engine2d</span>.<span class="blue">stage</span>.<span class="green">delete</span>(<span class="orange">name</span>);</div><br><br><table>
 												<tr>
 													<th>Parameter</th>
 													<th>Type</th>
 													<th>Description</th>
-													<th>Default</th>
 												</tr><tr>
-												<td><var>width</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>width of the graphics object</td>
-												<td><var><span class="purple">10</span></var></td>
-											</tr><tr>
-												<td><var>height</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>height of the graphics object</td>
-												<td><var><span class="purple">10</span></var></td>
-											</tr></table><h3 id='color'>color</h3><p >color of the graphics object</p><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-													<th>Default</th>
-												</tr><tr>
-												<td><var>color</var></td>
-												<td><var><span class="purple">Hex</span></var></td>
-												<td>color of the graphics object</td>
-												<td><var><span class="purple">0xffffff</span></var></td>
-											</tr></table><h3 id='borderRadius'>borderRadius</h3><p >border radius of the graphics object</p><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-													<th>Default</th>
-												</tr><tr>
-												<td><var>radius</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>border radius of the graphics object</td>
-												<td><var><span class="purple">0</span></var></td>
-											</tr></table><h3 id='alpha'>alpha</h3><p >alpha of the graphics object</p><table>
-												<tr>
-													<th>Parameter</th>
-													<th>Type</th>
-													<th>Description</th>
-													<th>Default</th>
-												</tr><tr>
-												<td><var>alpha</var></td>
-												<td><var><span class="purple">Number</span></var></td>
-												<td>alpha of the graphics object</td>
-												<td><var><span class="purple">1</span></var></td>
-											</tr></table>
+												<td><var>name</var></td>
+												<td><var><span class="yellow">String</span></var></td>
+												<td>name of the stage</td>
+											</tr></table><br><br>
 		</div>
 	</body>
 	<footer>

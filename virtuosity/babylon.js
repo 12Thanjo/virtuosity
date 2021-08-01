@@ -1,10 +1,14 @@
 var BABYLON = require('babylonjs');
 require('babylonjs-loaders');
+require('./babylon/grid material.js');
 var debug = require('./debug.js');
 var ocs = require('ocs');
+var {math} = require('../virtuosity-server/index.js');
 
 
-canvases = new Map();
+
+
+var canvases = new Map();
 var get_canvas = function(canvas){
 	if(canvases.has(canvas)){
 		return canvases.get(canvas);
@@ -52,8 +56,6 @@ var new_canvas = function(name, config){
 	}
 	document.getElementsByTagName('body')[0].appendChild(new_ctx.ctx);
 
-
-
 	if(config.antialias == null){
 		config.antialias = true;
 	}
@@ -73,44 +75,40 @@ var new_canvas = function(name, config){
 	new_ctx.engine = new BABYLON.Engine(new_ctx.ctx, config.antialias, {preserveDrawingBuffer: true, stencil: true});
 	new_ctx.engine.setHardwareScalingLevel(1 / (config.resolution * scale));
 	new_ctx.scene = new BABYLON.Scene(new_ctx.engine);
-	// new_ctx.scene.clearColor = new BABYLON.Color3(0,0.75,1);
+	new_ctx.scene.clearColor = new BABYLON.Color3(0.05,0.05,0.06);
 	
 	new_ctx.camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), new_ctx.scene);
 	new_ctx.camera.setTarget(BABYLON.Vector3.Zero());
 
 
-	new_ctx.ambientLight = new BABYLON.PointLight("_AMBIENTLIGHT_", new BABYLON.Vector3(0, 35, 35), new_ctx.scene);
-    new_ctx.ambientLight.intensity = 5000;
+	new_ctx.ambientLight = new BABYLON.PointLight("_AMBIENTLIGHT_", new BABYLON.Vector3(100, 100, 100), new_ctx.scene);
+    new_ctx.ambientLight.intensity = 1e6;
 
 
+	new_ctx.scene.onPointerDown = function(evt, pickResult){
+        if(pickResult.hit){
+        	var mesh = pickResult.pickedMesh;
+            var type = mesh.type;
+            if(type == "box"){
+            	console.log(boxes.get(mesh.name));
+            }else if(type == "sphere"){
+            	console.log(spheres.get(mesh.name));
+            }else if(type == "plane"){
+            	console.log(planes.get(mesh.name));
+            }else if(type == "mesh"){
+            	console.log(meshes.get(mesh.name));
+            }
+        }
+    };
 
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-    // add shadow map level to config
-	new_ctx.shadowGenerator = new BABYLON.ShadowGenerator(4096, new_ctx.ambientLight);
+    if(config.shadowResolution == null){
+    	config.shadowResolution = 4096;
+    }
+	new_ctx.shadowGenerator = new BABYLON.ShadowGenerator(config.shadowResolution, new_ctx.ambientLight);
     // new_ctx.shadowGenerator.setDarkness(0.5);
     new_ctx.shadowGenerator.usePoissonSampling = true;
 
-
+  
 
 	canvases.set(name, new_ctx);
 
@@ -319,6 +317,39 @@ var scale = new ocs.Component('engine3d', "scale", (width, lenght, height)=>{
     });
 });
 
+
+
+/*
+* @name outline
+* @type component
+* @description outline of the object
+* @env engine3d
+* @param (color){HEX}{color of the outline}{0x000000}
+* @param (thickness){Int}{thickness of the outline}{4}
+* @param (alpha){Number}{alpha of the outline}{0}
+*/
+var outline = new ocs.Component('engine3d', "outline", (color, thickness, alpha)=>{
+	return {
+		outline: new ocs.EEO({
+			color: color ?? 0x000000,
+			thickness: thickness ?? 4,
+			alpha: alpha ?? 0
+		}, (entity, key, val)=>{
+			if(key == "color"){
+				var color = math.color.hexToRgb(val);
+				entity.babylon.edgesColor = new BABYLON.Color4(color[0], color[1], color[2], entity.outline.alpha);
+			}else if(key == "thickness"){
+				entity.babylon.edgesWidth = val;
+			}else if(key == "alpha"){
+				var color = math.color.hexToRgb(entity.outline.color);
+				entity.babylon.edgesColor = new BABYLON.Color4(color[0], color[1], color[2], val);
+			}
+		})
+	}
+});
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
@@ -330,6 +361,7 @@ var scale = new ocs.Component('engine3d', "scale", (width, lenght, height)=>{
 * @component position
 * @component rotation
 * @component scale
+* @component outline
 */
 new ocs.Tag('box');
 var boxes = new Map();
@@ -337,6 +369,10 @@ var add_box = function(canvas, name, x, y, z, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_box = new BABYLON.Mesh.CreateBox(name, 1, ctx.scene);
 	new_box.position.set(x, z, y);
+	new_box.type = 'box';
+	new_box.enableEdgesRendering();
+	new_box.edgesWidth = 0;
+	new_box.edgesColor = new BABYLON.Color4(0, 0, 0, 0);
 
 	// shadows
 	ctx.shadowGenerator.getShadowMap().renderList.push(new_box);
@@ -347,6 +383,7 @@ var add_box = function(canvas, name, x, y, z, onComplete){
 			  .addComponent('position', x, y, z)
 			  .addComponent('rotation')
 			  .addComponent('scale')
+			  .addComponent('outline')
 			  .addTag('box')
 
 
@@ -367,6 +404,7 @@ var add_box = function(canvas, name, x, y, z, onComplete){
 * @component position
 * @component rotation
 * @component scale
+* @component outline
 */
 new ocs.Tag('sphere');
 var spheres = new Map();
@@ -374,6 +412,10 @@ var add_sphere = function(canvas, name, x, y, z, indicies, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_sphere = new BABYLON.Mesh.CreateSphere(name, indicies, 1, ctx.scene);
 	new_sphere.position.set(x, z, y);
+	new_sphere.type = 'sphere';
+	new_sphere.enableEdgesRendering();
+	new_sphere.edgesWidth = 0;
+	new_sphere.edgesColor = new BABYLON.Color4(0, 0, 0, 0);
 
 	// shadows
 	ctx.shadowGenerator.getShadowMap().renderList.push(new_sphere);
@@ -386,7 +428,9 @@ var add_sphere = function(canvas, name, x, y, z, indicies, onComplete){
 			  .addComponent('position', x, y, z)
 			  .addComponent('rotation')
 			  .addComponent('scale')
+			  .addComponent('outline')
 			  .addTag('sphere')
+
 
 
 	spheres.set(name, new_entity);
@@ -405,6 +449,7 @@ var add_sphere = function(canvas, name, x, y, z, indicies, onComplete){
 * @component position
 * @component rotation
 * @component scale
+* @component outline
 */
 new ocs.Tag('plane');
 var planes = new Map();
@@ -412,16 +457,21 @@ var add_plane = function(canvas, name, x, y, z, onComplete){
 	var ctx = get_canvas(canvas);
 	var new_plane = new BABYLON.Mesh.CreatePlane(name, 1, ctx.scene);
 	new_plane.position.set(x, z, y);
+	new_plane.type = 'plane';
+	new_plane.enableEdgesRendering();
+	new_plane.edgesWidth = 0;
+	new_plane.edgesColor = new BABYLON.Color4(0, 0, 0, 0);
 
 	// shadows
 	ctx.shadowGenerator.getShadowMap().renderList.push(new_plane);
 	new_plane.receiveShadows = true;
 
-	var new_entity = new ocs.Entity(name, 'engine3d');
+	var new_entity = new ocs.Entity('engine3d'), name;
 	new_entity.addComponent('babylon', new_plane)
 			  .addComponent('position', x, y, z)
 			  .addComponent('rotation')
 			  .addComponent('scale')
+			  .addComponent('outline')
 			  .addTag('plane')
 
 
@@ -444,6 +494,7 @@ var add_plane = function(canvas, name, x, y, z, onComplete){
 * @component position
 * @component rotation
 * @component scale
+* @component outline
 */
 new ocs.Tag('mesh');
 var meshes = new Map();
@@ -452,16 +503,21 @@ var add_mesh = function(canvas, name, x, y, z, key, onComplete){
 	var new_mesh = ctx.mesh_cache.get(key).clone();
 	new_mesh.setEnabled(true);
 	new_mesh.position.set(x, z, y);
+	new_mesh.type = 'mesh';
+	new_mesh.enableEdgesRendering();
+	new_mesh.edgesWidth = 0;
+	new_mesh.edgesColor = new BABYLON.Color4(0, 0, 0, 0);
 
 	// shadows
 	ctx.shadowGenerator.getShadowMap().renderList.push(new_mesh);
 	new_mesh.receiveShadows = true;
 
-	var new_entity = new ocs.Entity(name, 'engine3d')
+	var new_entity = new ocs.Entity('engine3d', name)
 	new_entity.addComponent('babylon', new_mesh)
 			  .addComponent('position', x, y, z)
 			  .addComponent('rotation')
 			  .addComponent('scale')
+			  .addComponent('outline')
 			  .addTag('mesh')
 
 
@@ -475,7 +531,7 @@ var add_mesh = function(canvas, name, x, y, z, key, onComplete){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var materials = require("./babylon/materials.js");
+var materials = require("./babylon/materials.js")(canvases);
 var loader = require('./babylon/loader.js');
 var lights = require('./babylon/lights.js');
 /*
@@ -588,6 +644,11 @@ module.exports = {
 			*/
 			basic: (...params)=>{
 				new materials.MaterialBasic(...params);
+			},
+
+
+			grid: (...params)=>{
+				new materials.MaterialGrid(...params);
 			},
 
 			/*
@@ -714,8 +775,19 @@ module.exports = {
 		* @param {name}{String}{name of the material}
 		*/	
 		material: (name)=>{
-			return materials.get(name);
+			return materials.materials.get(name);
 		},
+
+		/*
+		* @name canvas
+		* @type method
+		* @description get a specific canvas
+		* @parent get
+		* @param {name}{String}{name of the canvas}
+		*/	
+		canvas: (name)=>{
+			return canvases.get(name);
+		}
 
 	},
 	/*
@@ -846,6 +918,7 @@ module.exports = {
 	* @param {resolution}{Int}{height resolution of the canvas}{actual client screen resolution}
 	* @param {defaultResolution}{Int}{sets the resolution for auto scaling. Common practise is to use the screen resolution used in development}{actual client screen resolution}
 	* @param {antialias}{Boolean}{whether to use antialiasing}{true}
+	* @param {shadowResolution}{Int}{resolution of the shadow map}{4096}
 	* @param {poll}{Int}{Polling rate of the update function. The update function will run this many times per second}{64}
 	* @param {vsync}{Boolean}{use vsync or not}{true}
 	* @param {fpsBuffer}{Int}{sets the maximum samples used to calculate average FPS}{1000}
@@ -872,6 +945,58 @@ module.exports = {
 	        ctx.zIndex = zIndex;
 	    }
 	    return ctx.zIndex;
+	},
+
+
+	/*
+	* @name ambientLight
+	* @type obj
+	* @description control the ambient light of a scene
+	*/
+	ambientLight: {
+		/*
+		* @name position
+		* @type method
+		* @description get / set the position of the ambient Light
+		* @parent ambientLight
+		* @param {canvas}{String}{name of the canvas}
+		* @param {x}{Number}{x position of the ambient light (null will not change the x position)}{100}
+		* @param {y}{Number}{y position of the ambient light (null will not change the y position)}{100}
+		* @param {z}{Number}{z position of the ambient light (null will not change the z position)}{100}
+		*/
+		position: function(canvas, x, y, z){
+			var ctx = get_canvas(canvas);
+			var alp = ctx.ambientLight.position;
+			if(x != null){
+				alp.x = x;
+			}
+			if(y != null){
+				alp.y = y;
+			}
+			if(z != null){
+				alp.z = z;
+			}
+			return {
+				x: alp.x,
+				y: alp.y,
+				z: alp.z
+			}
+		},
+		/*
+		* @name intensity
+		* @type method
+		* @description get / set the intensity of the ambient Light
+		* @parent ambientLight
+		* @param {canvas}{String}{name of the canvas}
+		* @param {intensity}{Int}{intensity of the light}{1e6}
+		*/
+		intensity: function(canvas, intensity){
+			var ctx = get_canvas(canvas);
+			if(intensity != null){
+				ctx.ambientLight.intensity = intensity;
+			}
+			return ctx.ambientLight.intensity;
+		}
 	},
 
 	/*

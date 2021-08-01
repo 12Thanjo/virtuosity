@@ -98,5 +98,13 @@ module.exports = {
 	* @description helper functions for stylized printing to the console
 	* @path ../virtuosity-server/cmd.js
 	*/
-	cmd: virtuosity_server.cmd
+	cmd: virtuosity_server.cmd,
+
+	/*
+	* @name math
+	* @type obj
+	* @description various math functions
+	* @path ../virtuosity-server/math.js
+	*/
+	math: virtuosity_server.math
 }

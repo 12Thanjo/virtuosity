@@ -1240,8 +1240,12 @@ var delete_textbox = function(canvas, id){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 var graphics = require('./graphics.js')(PIXI, canvases);
 var stage = require('./stage.js')({
+    canvases,
     add_image,
-    add_text
+    add_text,
+    get_text,
+    delete_text,
+    graphics
 });
 
 var output = {
@@ -1342,7 +1346,7 @@ var output = {
         * @description adds an <a href="virtuosity.engine2d.Image.html">image</a> to the scene
         * @parent add
         * @param {canvas}{String}{Name of the canvas to add to}
-        * @param {if}{String}{unique id of the image}
+        * @param {id}{String}{unique id of the image}
         * @param {x}{Number}{x position of the image}
         * @param {y}{Number}{y position of the image}
         * @param {key}{String}{id of the image asset to use}
@@ -1899,6 +1903,12 @@ var output = {
         }
     },
 
+    /*
+    * @name stage
+    * @type obj
+    * @description <b>(ALPHA)</b> Creating and managing stages for easier, engine managed transitions
+    * @path stage.js
+    */
     stage: stage,
 
     /*

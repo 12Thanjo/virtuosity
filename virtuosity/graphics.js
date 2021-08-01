@@ -48,7 +48,7 @@ module.exports = function(PIXI, canvases){
 	* @type component
 	* @description color of the graphics object
 	* @env engine2d-graphics
-	* @param {x}{Hex}{color of the graphics object}{0xffffff}
+	* @param {color}{Hex}{color of the graphics object}{0xffffff}
 	*/
 	var color = new ocs.Component(env, 'color', (color)=>{
 		return new ocs.EEO({
@@ -453,7 +453,7 @@ module.exports = function(PIXI, canvases){
 			* @param {container}{String}{id of the container}
 			* @param {x}{Number}{x position of the circle}
 			* @param {y}{Number}{y position of the circle}
-			* @param {r}{Number}{radius of the circle}
+			* @param {radius}{Number}{radius of the circle}
 			* @param {color}{Hex}{color of the circle}
 			*/
 			circle: (id, container, x, y, radius, color)=>{

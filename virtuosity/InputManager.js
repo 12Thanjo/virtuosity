@@ -568,9 +568,9 @@ var joystick_rightY = function(id){
 add_listeners = function(){
 	document.addEventListener('keydown', keydown_listener);
 	document.addEventListener('keyup', keyup_listener);
-	document.addEventListener('mousedown', mousedown_listener);
-	document.addEventListener('mouseup', mouseup_listener);
-	document.addEventListener('mousemove', mousemove_listener);
+	document.addEventListener('pointerdown', mousedown_listener);
+	document.addEventListener('pointerup', mouseup_listener);
+	document.addEventListener('pointermove', mousemove_listener);
 	document.addEventListener('wheel', wheel_listener);
 	window.addEventListener("gamepadconnected", controller_connect);
 	window.addEventListener("gamepaddisconnected", controller_disconnect);
@@ -579,9 +579,9 @@ add_listeners = function(){
 remove_listeners = function(){
 	document.removeEventListener('keydown', keydown_listener);
 	document.removeEventListener('keyup', keyup_listener);
-	document.removeEventListener('mousedown', mousedown_listener);
-	document.removeEventListener('mouseup', mouseup_listener);
-	document.removeEventListener('mousemove', mousemove_listener);
+	document.removeEventListener('pointerdown', mousedown_listener);
+	document.removeEventListener('pointerup', mouseup_listener);
+	document.removeEventListener('pointermove', mousemove_listener);
 	document.removeEventListener('wheel', onwheel_listener);
 	window.removeEventListener("gamepadconnected", controller_connect);
 	window.removeEventListener("gamepaddisconnected", controller_disconnect);

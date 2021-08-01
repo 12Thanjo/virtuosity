@@ -5,6 +5,7 @@ var time = require('./time.js');
 var string = require('./string.js');
 var cmd = require('./cmd.js');
 var structures = require('./structures.js');
+var math = require('./math.js');
 
 
 
@@ -15,5 +16,6 @@ module.exports = {
 	files: files,
 	time: time,
 	string: string,
-	cmd: cmd
+	cmd: cmd,
+	math: math
 }

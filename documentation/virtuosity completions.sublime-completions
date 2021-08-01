@@ -31,7 +31,7 @@
 	},
 	{
 		"trigger":"engine2d.add.image", 
-		"contents":"engine2d.add.image(\"${1:canvas}\", \"${2:if}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()})",
+		"contents":"engine2d.add.image(\"${1:canvas}\", \"${2:id}\", ${3:x}, ${4:y}, \"${5:key}\", ${6:onComplete()})",
 		"annotation":"adds an image to the scene",
 		"kind":"function"
 	},
@@ -139,7 +139,7 @@
 	},
 	{
 		"trigger":"engine2d.graphics.add.circle", 
-		"contents":"engine2d.graphics.add.circle(\"${1:id}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:r}, ${6:color})",
+		"contents":"engine2d.graphics.add.circle(\"${1:id}\", \"${2:container}\", ${3:x}, ${4:y}, ${5:radius}, ${6:color})",
 		"annotation":"adds a circle",
 		"kind":"function"
 	},
@@ -291,6 +291,89 @@
 		"trigger":"engine2d.canvas.destroy", 
 		"contents":"engine2d.canvas.destroy(\"${1:canvas}\")",
 		"annotation":"destroy a specific canvas",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D", 
+		"contents":"new engine2d.stage.Stage2D(\"${1:name}\")",
+		"annotation":"A 2D stage",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.name", 
+		"contents":"engine2d.stage.Stage2D.name",
+		"kind":"variable"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.add.text", 
+		"contents":"engine2d.stage.Stage2D.add.text(${1:img})",
+		"annotation":"add an text to the Stage2D (either from a non-exported state)",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.get.text", 
+		"contents":"engine2d.stage.Stage2D.get.text(\"${1:canvas}\", \"${2:id}\")",
+		"annotation":"get live text",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.has.text", 
+		"contents":"engine2d.stage.Stage2D.has.text()",
+		"annotation":"check if the Stage2D has a live text",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.forEach.texts", 
+		"contents":"engine2d.stage.Stage2D.forEach.texts(${1:event()})",
+		"annotation":"itterate over text entities",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.forEach.all", 
+		"contents":"engine2d.stage.Stage2D.forEach.all(${1:event()})",
+		"annotation":"itterate over all entities",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.setup", 
+		"contents":"engine2d.stage.Stage2D.setup(\"${1:canvas}\")",
+		"annotation":"setup the Stage2D",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.teardown", 
+		"contents":"engine2d.stage.Stage2D.teardown(\"${1:canvas}\")",
+		"annotation":"teardown the Stage2D",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.getEnabled", 
+		"contents":"engine2d.stage.Stage2D.getEnabled()",
+		"annotation":"get canvases this Stage2D is enabled on (using setup)",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.Stage2D.export", 
+		"contents":"engine2d.stage.Stage2D.export()",
+		"annotation":"export the Stage2D for storage (returns JSON) ",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.build", 
+		"contents":"engine2d.stage.build(${1:stage})",
+		"annotation":"build a stage from an exported state",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.get", 
+		"contents":"engine2d.stage.get(\"${1:name}\")",
+		"annotation":"get a stage",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine2d.stage.delete", 
+		"contents":"engine2d.stage.delete(\"${1:name}\")",
+		"annotation":"delete a stage",
 		"kind":"function"
 	},
 	{
@@ -545,6 +628,12 @@
 		"kind":"function"
 	},
 	{
+		"trigger":"engine3d.get.canvas", 
+		"contents":"engine3d.get.canvas(\"${1:name}\")",
+		"annotation":"get a specific canvas",
+		"kind":"function"
+	},
+	{
 		"trigger":"engine3d.performance.fps", 
 		"contents":"engine3d.performance.fps(\"${1:canvas}\")",
 		"annotation":"frames per second",
@@ -602,6 +691,18 @@
 		"trigger":"engine3d.zIndex", 
 		"contents":"engine3d.zIndex(\"${1:canvas}\", ${2:zIndex})",
 		"annotation":"get / set the zIndex of a canvas",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine3d.ambientLight.position", 
+		"contents":"engine3d.ambientLight.position(\"${1:canvas}\", ${2:x}, ${3:y}, ${4:z})",
+		"annotation":"get / set the position of the ambient Light",
+		"kind":"function"
+	},
+	{
+		"trigger":"engine3d.ambientLight.intensity", 
+		"contents":"engine3d.ambientLight.intensity(\"${1:canvas}\", ${2:intensity})",
+		"annotation":"get / set the intensity of the ambient Light",
 		"kind":"function"
 	},
 	{
@@ -2187,6 +2288,24 @@
 		"trigger":"cmd.log", 
 		"contents":"cmd.log(\"${1:string}\", \"${2:color}\", \"${3:backgroundColor}\")",
 		"annotation":"console.log() with stylizations with preventing overflow",
+		"kind":"function"
+	},
+	{
+		"trigger":"math.clamp", 
+		"contents":"math.clamp(${1:val}, ${2:min}, ${3:max})",
+		"annotation":"clamps a number (returns the number clamped)",
+		"kind":"function"
+	},
+	{
+		"trigger":"math.color.hexToRgb", 
+		"contents":"math.color.hexToRgb()",
+		"annotation":"converts a HEX to an RGB array",
+		"kind":"function"
+	},
+	{
+		"trigger":"math.color.rgbToHex", 
+		"contents":"math.color.rgbToHex()",
+		"annotation":"converts an RGB array to HEX",
 		"kind":"function"
 	},
 ]}
